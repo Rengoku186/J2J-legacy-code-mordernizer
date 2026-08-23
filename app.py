@@ -5,6 +5,8 @@ import time
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
 from agents.documentation_agent import create_doc_agent
+from agents.aggregator_agent import run_aggregator
+from agents.code_generator_agent import run_code_generation
 
 # Initialize environment
 load_dotenv()
@@ -89,8 +91,29 @@ Rewrite the documentation and write it to '{target_path}'. Ensure you follow all
 
 st.sidebar.markdown("---")
 st.sidebar.title("Pipeline Controls")
-if st.sidebar.button("▶ Run Full Pipeline (main.py)"):
+if st.sidebar.button("▶ Run Documentation Pipeline (main.py)"):
     st.sidebar.info("Pipeline started in background. Please check the terminal running Streamlit for logs.")
     import subprocess
-    # Run synchronously in background
     subprocess.Popen(["python", "main.py"])
+
+st.sidebar.markdown("---")
+st.sidebar.title("Phase 7: Modernization")
+
+if st.sidebar.button("🛠️ Run Master Aggregator"):
+    with st.spinner("Aggregating chunks into Master Documents..."):
+        try:
+            msg = run_aggregator()
+            st.sidebar.success(msg)
+        except Exception as e:
+            st.sidebar.error(f"Error: {e}")
+
+if st.sidebar.button("☕ Generate Java 21 Code"):
+    with st.spinner("Generating modernized modular Java code and running Auto-Healer... (Check terminal for live logs)"):
+        try:
+            msg = run_code_generation()
+            if "SUCCESS" in msg or "Successfully" in msg:
+                st.sidebar.success(msg)
+            else:
+                st.sidebar.warning(msg)
+        except Exception as e:
+            st.sidebar.error(f"Error: {e}")
