@@ -1,0 +1,10 @@
+langchain
+langchain-core
+langchain-openai
+langgraph
+python-dotenv
+chromadb
+tiktoken
+langchain-text-splitters
+langchain-community
+fastembed

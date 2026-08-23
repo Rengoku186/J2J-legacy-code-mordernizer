@@ -1,0 +1,23 @@
+# Environments
+venv/
+env/
+.env
+
+# Cache & Compiled
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE & System
+.vscode/
+.idea/
+.DS_Store
+
+# Agent & Database Storage
+chroma_db/
+.gemini/
+.agents/
+
+# (Optional) Generated Output Folders - uncomment if you don't want to track these in git
+# documentation/
+# flagged_documents/
