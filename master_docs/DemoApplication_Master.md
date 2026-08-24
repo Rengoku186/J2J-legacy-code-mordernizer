@@ -4,182 +4,182 @@
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_01"
-confidence_score: 0.95
-external_dependencies: ["java.util", "java.text.SimpleDateFormat", "java.io.BufferedWriter", "java.io.FileWriter", "java.io.IOException", "java.time.LocalDate", "java.time.format.DateTimeFormatter", "java.text.NumberFormat", "java.util.Locale", "java.nio.charset.StandardCharsets", "java.security.SecureRandom"]
+confidence_score: 1.0
+external_dependencies: []
 ---
 
 # Documentation for `DemoApplication.java` - Chunk 01
 
-This chunk of code contains the import statements for the `DemoApplication` class. These imports bring in various Java standard library classes and packages that are used throughout the application. Below is a breakdown of the imported classes and their potential purposes:
+## Overview
 
-## Imported Classes and Packages
+This code chunk consists of import statements that bring in various Java classes and packages. These imports are used to provide functionality for handling dates, formatting, file writing, random number generation, and character encoding. Below is a detailed explanation of each imported class or package and its potential purpose in the application.
 
-1. **`java.util.*`**:
-   - Provides utility classes such as `ArrayList`, `HashMap`, `Scanner`, and more.
-   - Likely used for data structures, collections, and utility methods.
+---
 
-2. **`java.text.SimpleDateFormat`**:
+### Imported Classes and Packages
+
+1. **`java.util.*`**
+   - This wildcard import includes all classes from the `java.util` package.
+   - Commonly used classes in this package include `ArrayList`, `HashMap`, `Date`, and `Collections`.
+   - Purpose: Provides utility classes for data structures, date manipulation, and other general-purpose utilities.
+
+2. **`java.text.SimpleDateFormat`**
    - A class for formatting and parsing dates in a locale-sensitive manner.
-   - Commonly used to format `Date` objects into readable strings or parse strings into `Date` objects.
+   - Purpose: Likely used for formatting dates into specific patterns or parsing date strings.
 
-3. **`java.io.BufferedWriter`**:
-   - A class for writing text to an output stream, buffering characters to provide efficient writing of single characters, arrays, and strings.
-   - Likely used for writing data to files or other output streams.
+3. **`java.io.BufferedWriter`**
+   - A class for writing text to an output stream, buffering characters to provide efficient writing.
+   - Purpose: Used for writing data to files or other output streams.
 
-4. **`java.io.FileWriter`**:
+4. **`java.io.FileWriter`**
    - A class for writing character files.
-   - Often used in conjunction with `BufferedWriter` for file writing operations.
+   - Purpose: Likely used in conjunction with `BufferedWriter` to write data to files.
 
-5. **`java.io.IOException`**:
-   - An exception class that signals that an I/O operation has failed or been interrupted.
-   - Likely used to handle errors during file or stream operations.
+5. **`java.io.IOException`**
+   - An exception class that signals an I/O operation failure.
+   - Purpose: Used to handle errors during file or stream operations.
 
-6. **`java.time.LocalDate`**:
+6. **`java.time.LocalDate`**
    - A class representing a date (year, month, day) without a time-zone.
-   - Useful for date-related operations without time or timezone considerations.
+   - Purpose: Likely used for date-related operations in the application.
 
-7. **`java.time.format.DateTimeFormatter`**:
+7. **`java.time.format.DateTimeFormatter`**
    - A class for formatting and parsing date-time objects.
-   - Likely used to format `LocalDate` objects into strings or parse strings into `LocalDate` objects.
+   - Purpose: Used to format `LocalDate` or other date-time objects into specific patterns.
 
-8. **`java.text.NumberFormat`**:
+8. **`java.text.NumberFormat`**
    - A class for formatting and parsing numbers in a locale-sensitive manner.
-   - Useful for formatting numbers, currencies, or percentages.
+   - Purpose: Likely used for formatting numbers, such as currency or percentages.
 
-9. **`java.util.Locale`**:
-   - A class that represents a specific geographical, political, or cultural region.
-   - Often used in conjunction with `NumberFormat` or `SimpleDateFormat` for locale-sensitive operations.
+9. **`java.util.Locale`**
+   - A class representing a specific geographical, political, or cultural region.
+   - Purpose: Used to customize locale-sensitive operations, such as date and number formatting.
 
-10. **`java.nio.charset.StandardCharsets`**:
-    - A class defining standard charsets (e.g., UTF-8, ISO-8859-1).
-    - Likely used for encoding and decoding byte streams.
+10. **`java.nio.charset.StandardCharsets`**
+    - A class defining standard character sets.
+    - Purpose: Used for encoding and decoding text, ensuring compatibility with specific character sets (e.g., UTF-8).
 
-11. **`java.security.SecureRandom`**:
+11. **`java.security.SecureRandom`**
     - A class providing a cryptographically strong random number generator.
-    - Likely used for generating secure keys, tokens, or signatures.
+    - Purpose: Likely used for generating secure random values, such as keys or signatures.
 
-## Purpose of the Imports
+---
 
-These imports collectively suggest that the `DemoApplication` class involves:
-- Handling dates and times in a locale-sensitive manner.
-- Performing file I/O operations.
-- Formatting numbers and text.
-- Generating secure random values.
-- Utilizing collections and utility classes for data manipulation.
+### Purpose of the Imports
 
-The specific usage of these imports will be clearer when analyzing the methods and logic within the `DemoApplication` class.
+The imports in this chunk suggest that the `DemoApplication` class involves:
+- Handling and formatting dates and times.
+- Writing data to files with proper error handling.
+- Formatting numbers and handling locale-specific operations.
+- Encoding text in a standard character set.
+- Generating secure random values, possibly for cryptographic purposes.
+
+These imports provide a foundation for various functionalities that are likely implemented in the rest of the `DemoApplication` class.
+
+---
+
+### External Dependencies
+
+This chunk does not directly depend on any external libraries or custom classes. All imports are part of the standard Java Development Kit (JDK).
 
 ---
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_02"
 confidence_score: 0.9
-external_dependencies: [CurrencyExchangeService, SignatureVerificationService, CoreBankingSystemUpdater, UserService, ChequeHistoryManager, FraudDetectionService, ExceptionReportManager, ChequeStatusManager, EmailNotificationService, ChequeImageHandler, CryptographyService, ClearinghouseService, ChequeProcessor, ChequePrintingService, FIRDetails, ExceptionRecord]
+external_dependencies: ["CurrencyExchangeService", "SignatureVerificationService", "CoreBankingSystemUpdater", "UserService", "ChequeHistoryManager", "FraudDetectionService", "ExceptionReportManager", "ChequeStatusManager", "EmailNotificationService", "ChequeImageHandler", "CryptographyService", "ClearinghouseService", "ChequeProcessor", "ChequePrintingService"]
 ---
 
-# Documentation for `DemoApplication` Class (Chunk 02)
+# Documentation for `DemoApplication` Class
 
 ## Overview
-The `DemoApplication` class serves as the main entry point for a Cheque Processing System with enhanced fraud detection capabilities. It initializes various services, handles user authentication, and provides a menu-driven interface for processing cheques, managing cheque history, and performing administrative tasks.
+The `DemoApplication` class serves as the entry point for a Cheque Processing System with enhanced fraud detection capabilities. It initializes various services, handles user authentication, and provides a menu-driven interface for users to perform various operations related to cheque processing, fraud detection, and administrative tasks.
 
 ## Key Functionalities
 
-### 1. **Initialization**
-The `main` method initializes the following services:
-- `CurrencyExchangeService`: Handles currency exchange operations.
-- `SignatureVerificationService`: Verifies cheque signatures.
-- `CoreBankingSystemUpdater`: Updates the core banking system.
-- `UserService`: Manages user authentication and related operations.
-- `ChequeHistoryManager`: Manages and displays cheque history.
-- `FraudDetectionService`: Detects fraudulent activities.
-- `ExceptionReportManager`: Manages and displays exception reports.
-- `ChequeStatusManager`: Tracks the status of cheques.
-- `EmailNotificationService`: Sends email notifications.
-- `ChequeImageHandler`: Handles cheque image processing.
-- `CryptographyService`: Provides encryption and signing services.
-- `ClearinghouseService`: Facilitates communication with the clearinghouse.
+### `main` Method
+The `main` method is the starting point of the application. It performs the following tasks:
 
-### 2. **Login Process**
-The `performLogin` method is invoked to authenticate the user. If the user fails to log in after multiple attempts, the application exits.
+1. **Initialization**:
+   - Initializes various services required for the cheque processing system, including:
+     - `CurrencyExchangeService`
+     - `SignatureVerificationService`
+     - `CoreBankingSystemUpdater`
+     - `UserService`
+     - `ChequeHistoryManager`
+     - `FraudDetectionService`
+     - `ExceptionReportManager`
+     - `ChequeStatusManager`
+     - `EmailNotificationService`
+     - `ChequeImageHandler`
+     - `CryptographyService`
+     - `ClearinghouseService`
+   - Sets up dependencies, such as linking the `FraudDetectionService` with the `ChequeHistoryManager`.
 
-### 3. **Menu Options**
-The application provides a menu-driven interface with the following options:
+2. **User Authentication**:
+   - Calls the `performLogin` method to authenticate the user. If the user fails to log in after multiple attempts, the application exits.
 
-#### Option 1: Process a Single Cheque
-Prompts the user for account number, cheque number, currency, amount, and signature, and processes the cheque using the `ChequeProcessor` service.
+3. **Main Menu**:
+   - Displays a menu with various options for the user to interact with the system. The options include:
+     1. Process a single cheque.
+     2. Process multiple cheques in a batch.
+     3. View cheque history.
+     4. View currency exchange information.
+     5. Generate cheque reports.
+     6. Scan, encrypt, and send a cheque image.
+     7. Simulate cheque printing.
+     8. Exit the application.
+     9. View cheque exception reports.
+     10. View all cheque statuses.
+     11. Cancel a cheque.
+     12. Record FIR/legal complaint for a bounced cheque.
+     13. Admin: Edit IFSC/Bank codes.
+     14. Admin: Manage batches.
+     15. Admin: Reset stuck transactions.
 
-#### Option 2: Process Multiple Cheques (Batch)
-Invokes the `processChequeBatch` method to process multiple cheques in a batch.
-
-#### Option 3: View Cheque History
-Prompts the user for an account number and displays the cheque history using the `ChequeHistoryManager`.
-
-#### Option 4: Currency Exchange Information
-Displays a currency exchange menu and handles user interactions via the `displayCurrencyExchangeMenu` method.
-
-#### Option 5: Generate Cheque Reports
-Generates cheque reports using the `handleReportGeneration` method.
-
-#### Option 6: Scan, Encrypt, and Send Cheque Image
-Handles the process of scanning, encrypting, signing, and sending a cheque image using the `handleChequeImageSubmission` method.
-
-#### Option 7: Simulate Cheque Printing
-Simulates cheque printing using the `ChequePrintingService` and the `handleChequePrinting` method.
-
-#### Option 8: Exit
-Logs out the user and exits the application.
-
-#### Option 9: View Cheque Exception Report
-Displays exception reports using the `ExceptionReportManager`.
-
-#### Option 10: View All Cheque Statuses
-Displays all cheque statuses using the `ChequeStatusManager`.
-
-#### Option 11: Cancel a Cheque
-Prompts the user for account and cheque numbers and cancels the cheque using the `ChequeProcessor`.
-
-#### Option 12: Record FIR/Legal Complaint for Bounced Cheque
-Prompts the user for details about a bounced cheque and records FIR/legal complaint details using the `recordFIRDetails` method in the `ExceptionReportManager`.
-
-#### Option 13: Admin: Edit IFSC/Bank Codes
-Admin functionality to edit IFSC or bank codes (implementation not shown in this chunk).
-
-#### Option 14: Admin: Manage Batches
-Admin functionality to manage cheque batches (implementation not shown in this chunk).
-
-#### Option 15: Admin: Reset Stuck Transactions
-Admin functionality to reset stuck transactions (implementation not shown in this chunk).
+4. **Menu Option Handling**:
+   - Based on the user's choice, the application performs the corresponding operation. Some of the key operations include:
+     - **Processing a Single Cheque**: The user provides details such as account number, cheque number, currency, amount, and signature. The `ChequeProcessor` processes the cheque.
+     - **Processing Multiple Cheques (Batch)**: Calls the `processChequeBatch` method to handle batch processing of cheques.
+     - **Viewing Cheque History**: Calls the `displayChequeHistory` method of `ChequeHistoryManager` to display the history of cheques for a given account number.
+     - **Currency Exchange Information**: Calls the `displayCurrencyExchangeMenu` method to provide options for viewing and converting currency exchange rates.
+     - **Generating Cheque Reports**: Calls the `handleReportGeneration` method to generate reports based on cheque history.
+     - **Scanning, Encrypting, and Sending Cheque Images**: Calls the `handleChequeImageSubmission` method to handle the process of scanning, encrypting, and sending cheque images.
+     - **Simulating Cheque Printing**: Calls the `handleChequePrinting` method to simulate the printing of cheques.
+     - **Viewing Cheque Exception Reports**: Calls the `displayExceptions` method of `ExceptionReportManager` to display exception reports.
+     - **Viewing All Cheque Statuses**: Calls the `displayAllStatuses` method of `ChequeStatusManager` to display the statuses of all cheques.
+     - **Cancelling a Cheque**: Calls the `cancelCheque` method of `ChequeProcessor` to cancel a specific cheque.
+     - **Recording FIR/Legal Complaint**: Calls the `recordFIRDetails` method of `ExceptionReportManager` to record details of an FIR or legal complaint for a bounced cheque.
 
 ## External Dependencies
-The following external classes and services are used in this chunk:
-- `CurrencyExchangeService`
-- `SignatureVerificationService`
-- `CoreBankingSystemUpdater`
-- `UserService`
-- `ChequeHistoryManager`
-- `FraudDetectionService`
-- `ExceptionReportManager`
-- `ChequeStatusManager`
-- `EmailNotificationService`
-- `ChequeImageHandler`
-- `CryptographyService`
-- `ClearinghouseService`
-- `ChequeProcessor`
-- `ChequePrintingService`
-- `FIRDetails`
-- `ExceptionRecord`
+The `DemoApplication` class relies on the following external classes and services:
+- `CurrencyExchangeService`: Handles currency exchange operations.
+- `SignatureVerificationService`: Verifies cheque signatures.
+- `CoreBankingSystemUpdater`: Updates the core banking system with cheque processing results.
+- `UserService`: Manages user authentication and related operations.
+- `ChequeHistoryManager`: Manages and displays cheque history.
+- `FraudDetectionService`: Detects potential fraud in cheque transactions.
+- `ExceptionReportManager`: Manages and displays exception reports.
+- `ChequeStatusManager`: Tracks and displays the status of cheques.
+- `EmailNotificationService`: Sends email notifications related to cheque processing.
+- `ChequeImageHandler`: Handles cheque image processing.
+- `CryptographyService`: Provides encryption and signing services for cheque images.
+- `ClearinghouseService`: Sends cheque images to the clearinghouse.
+- `ChequeProcessor`: Processes individual and batch cheques.
+- `ChequePrintingService`: Simulates cheque printing.
 
 ## Notes
-- The `performLogin`, `processChequeBatch`, `displayCurrencyExchangeMenu`, `handleReportGeneration`, `handleChequeImageSubmission`, and `handleChequePrinting` methods are defined elsewhere in the codebase.
-- The `recordFIRDetails` method is part of the `ExceptionReportManager` class and is used to record FIR/legal complaint details for bounced cheques.
-- The application uses a `Scanner` object for user input.
-- The `main` method contains a loop that continuously displays the menu until the user chooses to exit.
+- The `performLogin` method is used for user authentication. Its implementation was not provided in the code chunk but is assumed to handle user login and return an authenticated `User` object or `null` if authentication fails.
+- The methods `processChequeBatch`, `displayCurrencyExchangeMenu`, `handleReportGeneration`, `handleChequeImageSubmission`, and `handleChequePrinting` are used to handle specific operations. Their implementations were not provided in the code chunk but were found in the codebase.
+- The application uses a `Scanner` object for user input and provides a menu-driven interface for ease of use.
+- The application includes several administrative options, such as editing IFSC/Bank codes, managing batches, and resetting stuck transactions.
 
-This chunk provides a comprehensive overview of the main application logic, including initialization, user authentication, and the menu-driven interface for various cheque processing and administrative tasks.
+## Confidence Score
+The confidence score for this documentation is 0.9, as the majority of the code and its dependencies were understood and documented. However, some methods and classes were not fully explored due to the limited context provided in the code chunk.
 
 === NEXT CHUNK ===
 
@@ -188,79 +188,81 @@ original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_03"
 confidence_score: 0.9
-external_dependencies: ["AdminService", "BatchCheque", "Logger", "UserService"]
+external_dependencies: ["AdminService", "BatchCheque", "Logger", "UserService", "ChequeProcessor"]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Code Chunk: Admin Functionalities and Utility Methods
 
-## Overview
-This code chunk is part of the `DemoApplication` class and contains several functionalities related to administrative tasks, user login, and batch cheque processing. The code is structured into multiple `case` blocks within a `switch` statement, each handling a specific administrative operation. Additionally, the chunk includes two private static methods: `performLogin` and `processChequeBatch`.
+This code chunk is part of the `DemoApplication` class and implements several administrative functionalities, including managing IFSC/Bank codes, handling batches, and resetting stuck transactions. Additionally, it includes utility methods for user login and batch cheque processing.
+
+## Purpose
+The purpose of this code is to provide administrative functionalities for managing banking operations, such as editing IFSC/Bank codes, managing cheque batches, and handling stuck transactions. It also includes utility methods for user login and batch cheque processing.
 
 ## Code Breakdown
 
 ### Case 13: Admin - Edit IFSC/Bank Codes
-This block allows an admin to manage IFSC and bank codes. The admin can:
-1. Add or update an IFSC code.
-2. Add or update a bank code.
-3. View all IFSC codes.
-4. View all bank codes.
-5. Return to the previous menu.
+This section allows the admin to:
+1. Add or update IFSC codes.
+2. Add or update bank codes.
+3. View existing IFSC codes.
+4. View existing bank codes.
 
-The admin's choice is captured using a `Scanner` object, and the corresponding action is performed by invoking methods from the `AdminService` class:
-- `addOrUpdateIFSC(String ifsc, String bankCode)`: Adds or updates an IFSC code and its associated bank code.
-- `addOrUpdateBankCode(String code, String name)`: Adds or updates a bank code and its associated bank name.
-- `displayIFSCs()`: Displays all stored IFSC codes.
-- `displayBankCodes()`: Displays all stored bank codes.
+#### Key Operations:
+- **Add/Update IFSC**: Prompts the admin to enter an IFSC code and a corresponding bank code, which is then processed by the `adminService.addOrUpdateIFSC` method.
+- **Add/Update Bank Code**: Prompts the admin to enter a bank code and a bank name, which is processed by the `adminService.addOrUpdateBankCode` method.
+- **View IFSCs**: Displays all IFSC codes using `adminService.displayIFSCs`.
+- **View Bank Codes**: Displays all bank codes using `adminService.displayBankCodes`.
 
 ### Case 14: Admin - Manage Batches
-This block allows an admin to manage cheque batches. The admin can:
-1. Create a new batch by providing a batch ID and details for each cheque in the batch.
+This section allows the admin to:
+1. Create a new batch of cheques.
 2. View all existing batches.
-3. View details of a specific batch by providing its batch ID.
-4. Return to the previous menu.
+3. View details of a specific batch.
 
-The admin's choice is captured using a `Scanner` object, and the corresponding action is performed by invoking methods from the `AdminService` class:
-- `createBatch(String batchId, List<BatchCheque> batchCheques)`: Creates a new batch with the specified ID and a list of cheques.
-- `displayBatches()`: Displays all existing batches.
-- `displayBatchDetails(String batchId)`: Displays details of a specific batch.
-
-The `BatchCheque` class is used to represent individual cheques in a batch. Each cheque includes details such as account number, cheque number, currency, amount, and signature.
+#### Key Operations:
+- **Create Batch**: Prompts the admin to enter a batch ID and the number of cheques in the batch. For each cheque, the admin is prompted to enter details such as account number, cheque number, currency, amount, and signature. These details are stored in a `List<BatchCheque>` and processed by `adminService.createBatch`.
+- **View Batches**: Displays all batches using `adminService.displayBatches`.
+- **View Batch Details**: Prompts the admin to enter a batch ID and displays its details using `adminService.displayBatchDetails`.
 
 ### Case 15: Admin - Reset Stuck Transactions
-This block allows an admin to manage stuck transactions. The admin can:
-1. Mark a cheque as stuck by providing its cheque number.
-2. Reset a stuck cheque by providing its cheque number.
+This section allows the admin to:
+1. Mark a cheque as stuck.
+2. Reset a stuck cheque.
 3. View all stuck transactions.
-4. Return to the previous menu.
 
-The admin's choice is captured using a `Scanner` object, and the corresponding action is performed by invoking methods from the `AdminService` class:
-- `markTransactionStuck(String chequeNumber)`: Marks a cheque as stuck.
-- `resetStuckTransaction(String chequeNumber)`: Resets a stuck cheque.
-- `displayStuckTransactions()`: Displays all stuck transactions.
+#### Key Operations:
+- **Mark Cheque as Stuck**: Prompts the admin to enter a cheque number, which is then marked as stuck using `adminService.markTransactionStuck`.
+- **Reset Stuck Cheque**: Prompts the admin to enter a cheque number, which is reset using `adminService.resetStuckTransaction`.
+- **View Stuck Transactions**: Displays all stuck transactions using `adminService.displayStuckTransactions`.
 
-### Exception Handling
-The `try-catch` block ensures that any exceptions occurring during the execution of the main logic are caught and logged using the `Logger` class. The error message and stack trace are printed to the console for debugging purposes.
+### Utility Method: `performLogin`
+This method handles the user login process. It allows up to three login attempts and authenticates the user using the `userService.authenticate` method. If authentication is successful, the user is welcomed, and their details are logged using the `Logger` class. If authentication fails after three attempts, the method returns `null`.
 
-### Method: `performLogin`
-This method handles the user login process. It allows a user to attempt login up to three times by providing a username and password. The method uses the `UserService` class to authenticate the user:
-- `User authenticate(String username, String password)`: Authenticates the user based on the provided credentials.
+#### Parameters:
+- `scanner`: A `Scanner` object for reading user input.
+- `userService`: An instance of the `UserService` class for user authentication.
 
-If authentication is successful, the method returns the authenticated `User` object. Otherwise, it returns `null` after three failed attempts.
+#### Returns:
+- An authenticated `User` object if login is successful.
+- `null` if login fails after three attempts.
 
-### Method: `processChequeBatch`
-This method handles the processing of multiple cheques in a batch. It prompts the user to enter the number of cheques and their details, including account number, cheque number, currency, amount, and signature. The cheques are stored in a `List<BatchCheque>` and processed using the `ChequeProcessor` service.
+### Utility Method: `processChequeBatch`
+This method handles the processing of multiple cheques in a batch. It prompts the user for the number of cheques and their details, which are stored in a `List<BatchCheque>`. The method uses the `ChequeProcessor` service for processing.
+
+#### Parameters:
+- `scanner`: A `Scanner` object for reading user input.
+- `chequeProcessor`: An instance of the `ChequeProcessor` class for processing cheques.
+
+#### Key Operations:
+- Collects details for each cheque, including account number, cheque number, currency, amount, and signature.
+- Handles exceptions during input collection and logs errors using the `Logger` class.
 
 ## External Dependencies
-- **AdminService**: Provides methods for managing IFSC codes, bank codes, cheque batches, and stuck transactions.
-- **BatchCheque**: Represents individual cheques with details such as account number, cheque number, currency, amount, and signature.
-- **Logger**: Used for logging errors and informational messages.
-- **UserService**: Handles user authentication and management.
-
-## Notes
-- The `AdminService` class is instantiated in the `DemoApplication` class, but its implementation details are not provided in this chunk.
-- The `BatchCheque` class is used to represent cheque details, but its implementation is not provided in this chunk.
-- The `Logger` class is used for logging, but its implementation is not provided in this chunk.
-- The `UserService` class is responsible for user authentication and management, and its implementation is partially available in the codebase.
+- **`AdminService`**: Provides methods for managing IFSC codes, bank codes, batches, and stuck transactions.
+- **`BatchCheque`**: Represents a cheque in a batch, including details like account number, cheque number, currency, amount, and signature.
+- **`Logger`**: Used for logging information, warnings, and errors.
+- **`UserService`**: Handles user authentication and management.
+- **`ChequeProcessor`**: Processes cheques with functionalities like signature verification, fraud detection, and currency conversion.
 
 === NEXT CHUNK ===
 
@@ -268,100 +270,75 @@ This method handles the processing of multiple cheques in a batch. It prompts th
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_04"
-confidence_score: 0.95
+confidence_score: 0.9
 external_dependencies: ["BatchCheque", "ChequeProcessor", "CurrencyExchangeService", "ChequeHistoryManager", "ChequePrintingService"]
 ---
 
 # Documentation for Code Chunk
 
-This code chunk is part of a larger application and contains several functionalities related to cheque processing, currency exchange, report generation, and cheque printing. Below is a detailed explanation of the purpose and methods in this chunk.
+## Overview
+This code chunk is part of a larger application that handles cheque processing, currency exchange, report generation, and cheque printing. It includes methods for processing cheque batches, displaying a currency exchange menu, generating reports, and simulating cheque printing. The code interacts with several external services and classes, such as `BatchCheque`, `ChequeProcessor`, `CurrencyExchangeService`, `ChequeHistoryManager`, and `ChequePrintingService`.
 
 ## Key Functionalities
 
-### 1. **Batch Cheque Processing**
-This section of the code handles the processing of a batch of cheques. It performs the following steps:
-
-- **Adding Cheques to the Batch:**
-  ```java
-  chequesToProcess.add(new BatchCheque(accountNumber, chequeNumber, currency, amount, signature));
-  ```
-  - Creates a new `BatchCheque` object with the provided details (account number, cheque number, currency, amount, and signature) and adds it to the `chequesToProcess` list.
-  - If an exception occurs during this process, it logs the error and clears the scanner buffer.
-
-- **Processing the Batch:**
-  ```java
-  chequesToProcess.forEach(cheque -> {
-      try {
-          chequeProcessor.processCheque(cheque.accountNumber, cheque.chequeNumber, cheque.currency, cheque.amount, cheque.signature);
-      } catch (Exception ex) {
-          Logger.error("Error processing cheque in batch: " + ex.getMessage());
-      }
-  });
-  ```
-  - Iterates over the `chequesToProcess` list and processes each cheque using the `ChequeProcessor` class.
-  - Logs any errors encountered during the processing of individual cheques.
+### 1. **Processing Cheque Batches**
+- **Purpose**: Processes a batch of cheques by iterating over a list of `BatchCheque` objects and invoking the `processCheque` method of the `ChequeProcessor` class.
+- **Error Handling**: Logs errors during cheque collection and processing using a `Logger`.
+- **Key Operations**:
+  - Adds `BatchCheque` objects to a list (`chequesToProcess`).
+  - Iterates over the list and processes each cheque using `chequeProcessor.processCheque`.
 
 ### 2. **Currency Exchange Menu**
-The `displayCurrencyExchangeMenu` method provides a user interface for interacting with the currency exchange service. It supports the following options:
-
-- **View Supported Currencies:**
-  Retrieves and displays a list of supported currencies from the `CurrencyExchangeService`.
-
-- **Get Exchange Rate:**
-  Prompts the user for a currency code and retrieves the exchange rate for that currency using the `CurrencyExchangeService`.
-
-- **Get Detailed Exchange Rate Information:**
-  Prompts the user for a currency code and retrieves detailed exchange rate information (mid, buy, sell, and fee rates) from the `CurrencyExchangeService`.
-
-- **Convert Currency:**
-  Prompts the user for an amount, source currency, and target currency, and converts the amount using the `CurrencyExchangeService`.
-
-- **Return to Main Menu:**
-  Exits the currency exchange menu.
+- **Purpose**: Provides a menu-driven interface for users to interact with the `CurrencyExchangeService`.
+- **Menu Options**:
+  1. View supported currencies.
+  2. Get the exchange rate for a specific currency.
+  3. Get detailed exchange rate information (e.g., mid, buy, sell, and fee rates).
+  4. Convert an amount from one currency to another.
+  5. Return to the main menu.
+- **Error Handling**: Validates user input and handles unsupported currencies or invalid data gracefully.
 
 ### 3. **Report Generation**
-The `handleReportGeneration` method provides a user interface for generating cheque reports. It supports the following options:
-
-- **Daily Report:**
-  Generates a report for cheques processed on the current day.
-
-- **Weekly Report:**
-  Generates a report for cheques processed in the last 7 days.
-
-- **Monthly Report:**
-  Generates a report for cheques processed in the last 30 days.
-
-- **Custom Date Range Report:**
-  Prompts the user for a start and end date, and generates a report for cheques processed within that range.
-
-- **Return to Main Menu:**
-  Exits the report generation menu.
-
-The generated report is saved as a CSV file with a name based on the selected date range.
+- **Purpose**: Generates reports for cheque transactions over various time periods (daily, weekly, monthly, or custom date range).
+- **Key Operations**:
+  - Prompts the user to select a report type.
+  - Retrieves cheque records for the specified time period using `ChequeHistoryManager.getAllChequeRecordsInPeriod`.
+  - Generates a CSV report using `ChequeHistoryManager.generateChequeReportCSV` and writes it to a file.
+- **Error Handling**:
+  - Validates date inputs for custom date ranges.
+  - Handles cases where no records are found for the selected period.
 
 ### 4. **Cheque Printing Simulation**
-The `handleChequePrinting` method simulates the process of printing a cheque. It performs the following steps:
-
-- Prompts the user for the payee name, amount, date, account number, and cheque number.
-- Parses the date input and defaults to the current date if the input is invalid.
-- Uses the `ChequePrintingService` to simulate the printing of the cheque.
+- **Purpose**: Simulates the process of printing a cheque using the `ChequePrintingService`.
+- **Key Operations**:
+  - Collects user input for payee name, amount, date, account number, and cheque number.
+  - Validates the date format and defaults to the current date if invalid.
 
 ## External Dependencies
 
-- **`BatchCheque`:** Represents a cheque with attributes such as account number, cheque number, currency, amount, and signature.
-- **`ChequeProcessor`:** Handles the processing of cheques, including signature verification, fraud detection, currency conversion, and updating the core banking system.
-- **`CurrencyExchangeService`:** Provides functionalities for currency exchange, including retrieving exchange rates and converting currencies.
-- **`ChequeHistoryManager`:** Manages the history of cheques, including retrieving records for specific time periods and generating reports in CSV format.
-- **`ChequePrintingService`:** Simulates the printing of cheques.
+### 1. **BatchCheque**
+- Represents a cheque with attributes such as account number, cheque number, currency, amount, and signature.
+
+### 2. **ChequeProcessor**
+- Handles the processing of cheques, including signature verification, fraud detection, currency conversion, and updates to the core banking system.
+
+### 3. **CurrencyExchangeService**
+- Provides functionalities for currency exchange, including retrieving supported currencies, exchange rates, and converting amounts between currencies.
+
+### 4. **ChequeHistoryManager**
+- Manages cheque transaction history and provides methods for retrieving records and generating reports.
+
+### 5. **ChequePrintingService**
+- Simulates the printing of cheques based on user-provided details.
 
 ## Error Handling
+- The code includes robust error handling mechanisms, such as logging errors and validating user inputs.
+- Common issues like invalid date formats, unsupported currencies, and empty cheque records are handled gracefully.
 
-- Errors during cheque batch input or processing are logged using the `Logger.error` method.
-- Invalid user inputs, such as incorrect date formats or unsupported currency codes, are handled gracefully with appropriate error messages.
-- If no cheque records are found for a selected report period, a message is displayed to the user.
-- Errors during file writing for report generation are caught and logged.
-
-This code chunk demonstrates robust error handling and provides a user-friendly interface for managing cheques, currency exchange, and report generation.
+## Notes
+- The `Logger` class is used for error logging but is not defined in the provided code chunk.
+- The `scanner` object is used for user input and is assumed to be properly initialized elsewhere in the application.
+- The `BufferedWriter` and `FileWriter` classes are used for writing reports to files, and exceptions during file operations are caught and logged.
 
 === NEXT CHUNK ===
 
@@ -370,157 +347,86 @@ original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_05"
 confidence_score: 0.95
-external_dependencies: ["Scanner", "ChequePrintingService", "ChequeImageHandler", "CryptographyService", "ClearinghouseService", "User"]
+external_dependencies: ["ChequeImageHandler", "CryptographyService", "ClearinghouseService", "User"]
 ---
 
 # Documentation for Code Chunk
 
-## Overview
 This code chunk contains two main functionalities:
-1. **Cheque Printing Simulation**: Captures user input for cheque details and simulates the printing of a cheque using the `ChequePrintingService`.
-2. **Cheque Image Submission**: Handles the process of scanning, encrypting, signing, and sending a cheque image to a clearinghouse using various services such as `ChequeImageHandler`, `CryptographyService`, and `ClearinghouseService`.
 
-Additionally, the chunk includes inner classes for services like `ChequePrintingService`, `CryptographyService`, and `UserService`, as well as a `User` class and a `BatchCheque` class.
+1. **Cheque Printing and Input Handling**
+2. **Cheque Image Submission Process**
 
----
+## 1. Cheque Printing and Input Handling
+This section of the code handles user input for cheque details and simulates the printing of a cheque. The process includes:
 
-## 1. Cheque Printing Simulation
+- Prompting the user for details such as payee name, amount, date, account number, and cheque number.
+- Parsing the date input and handling invalid formats by defaulting to the current date.
+- Using the `ChequePrintingService` to simulate the printing of a cheque with the provided details.
 
-### Method: `handleChequePrinting`
-This method simulates the process of printing a cheque by collecting user input and using the `ChequePrintingService` to display a formatted cheque.
+### Key Methods and Classes:
+- **`ChequePrintingService.printCheque`**: This method formats and prints a simulated cheque with the following details:
+  - Bank name
+  - Payee name
+  - Amount (formatted as currency)
+  - Date (formatted as `dd-MMM-yyyy`)
+  - Account number
+  - Cheque number
 
-#### Parameters:
-- `Scanner scanner`: Used to capture user input from the console.
-- `ChequePrintingService printingService`: A service responsible for simulating the printing of a cheque.
-
-#### Workflow:
-1. Prompts the user to enter the payee name, amount, date, account number, and cheque number.
-2. Parses the date input by the user. If the input is invalid, the current date is used as a fallback.
-3. Uses the `ChequePrintingService` to print the cheque with the provided details.
-
----
-
-## 2. Cheque Image Submission
-
-### Method: `handleChequeImageSubmission`
-This method handles the process of scanning, encrypting, signing, and sending a cheque image to a clearinghouse.
-
-#### Parameters:
-- `Scanner scanner`: Used to capture user input from the console.
-- `ChequeImageHandler imageHandler`: A service responsible for handling the loading of cheque image data.
-- `CryptographyService cryptoService`: A service for encrypting and signing data.
-- `ClearinghouseService clearinghouseService`: A service for submitting the cheque image to a clearinghouse.
-- `User currentUser`: The currently logged-in user, used for signing the encrypted data.
-
-#### Workflow:
-1. Prompts the user to enter the account number, cheque number, and the path to the cheque image file.
-2. Uses the `ChequeImageHandler` to load the image data from the specified file path.
-3. Encrypts the image data using a placeholder encryption key with the `CryptographyService`.
-4. Signs the encrypted image data using the `CryptographyService` and the private key of the current user.
-5. Submits the encrypted and signed image data to the clearinghouse using the `ClearinghouseService`.
+### Example Output:
+The cheque is printed in a formatted manner, including placeholders for the amount in words and a signature line.
 
 ---
 
-## 3. Inner Classes
+## 2. Cheque Image Submission Process
+This section handles the submission of a cheque image for processing. The process includes:
 
-### Class: `ChequePrintingService`
-This class simulates the process of printing a cheque.
+1. **Input Collection**:
+   - The user is prompted to enter the account number, cheque number, and the file path to the cheque image.
 
-#### Method: `printCheque`
-Prints a formatted cheque with the provided details.
+2. **Image Handling**:
+   - The `ChequeImageHandler` service is used to load the image data from the provided file path.
+   - If the image data cannot be loaded, the process is aborted.
 
-**Parameters:**
-- `String payeeName`: The name of the payee.
-- `double amount`: The amount to be paid.
-- `Date date`: The date of the cheque.
-- `String accountNumber`: The account number associated with the cheque.
-- `String chequeNumber`: The cheque number.
-- `String bankName`: The name of the bank issuing the cheque.
+3. **Encryption**:
+   - The `CryptographyService` encrypts the image data using a placeholder encryption key.
 
----
+4. **Digital Signing**:
+   - The encrypted image data is signed using a placeholder private key derived from the current user's username.
 
-### Class: `CryptographyService`
-This class simulates cryptographic operations such as encryption and digital signing.
+5. **Submission**:
+   - The `ClearinghouseService` submits the encrypted and signed image data along with the account and cheque numbers to the clearinghouse.
 
-#### Method: `encryptData`
-Simulates encrypting data using a placeholder encryption mechanism.
+### Key Methods and Classes:
+- **`ChequeImageHandler.loadImageData`**: Loads image data from the specified file path.
+- **`CryptographyService.encryptData`**: Encrypts the image data using a provided encryption key.
+- **`CryptographyService.signData`**: Signs the encrypted image data using a private key.
+- **`ClearinghouseService.submitToClearinghouse`**: Submits the processed cheque image data to the clearinghouse.
 
-**Parameters:**
-- `byte[] data`: The data to encrypt.
-- `String key`: The encryption key.
-
-**Returns:**
-- `byte[]`: The encrypted data.
-
-#### Method: `signData`
-Simulates signing data using a placeholder signing mechanism.
-
-**Parameters:**
-- `byte[] data`: The data to sign.
-- `String privateKey`: The private key used for signing.
-
-**Returns:**
-- `String`: The digital signature.
+### Error Handling:
+- If the image data cannot be loaded, an error message is displayed, and the process is terminated.
+- The encryption and signing processes use placeholder keys, which should be replaced with secure key management in a production environment.
 
 ---
 
-### Class: `User`
-Represents a user of the system, such as an employee or account holder.
+## Additional Notes:
+- The `ChequeImageHandler`, `CryptographyService`, and `ClearinghouseService` classes are external dependencies. Their definitions were found in the same file and are summarized below:
 
-#### Fields:
-- `String username`: The username of the user.
-- `String password`: The password of the user (stored in plain text for simulation purposes).
-- `String role`: The role of the user (e.g., "EMPLOYEE", "ACCOUNT_HOLDER").
+### `ChequeImageHandler`:
+This service is responsible for loading image data from a specified file path. It simulates the process of scanning and uploading cheque images.
 
-#### Methods:
-- `getUsername()`: Returns the username.
-- `getPassword()`: Returns the password.
-- `getRole()`: Returns the role.
+### `CryptographyService`:
+This service simulates cryptographic operations, including:
+- **`encryptData`**: Encrypts data using a provided key (placeholder implementation).
+- **`signData`**: Signs data using a private key (placeholder implementation).
 
----
-
-### Class: `UserService`
-Manages user accounts and handles authentication.
-
-#### Method: `registerUser`
-Registers a new user.
-
-**Parameters:**
-- `String username`: The username of the new user.
-- `String password`: The password of the new user.
-- `String role`: The role of the new user.
-
-#### Method: `authenticate`
-Authenticates a user based on their username and password.
-
-**Parameters:**
-- `String username`: The username of the user.
-- `String password`: The password of the user.
-
-**Returns:**
-- `User`: The authenticated user object if successful, or `null` otherwise.
+### `ClearinghouseService`:
+This service simulates the submission of processed cheque data to a clearinghouse for further processing.
 
 ---
 
-### Class: `BatchCheque`
-Represents a single cheque transaction for batch processing.
-
-#### Fields:
-- `String accountNumber`: The account number associated with the cheque.
-- `String chequeNumber`: The cheque number.
-- `String currency`: The currency of the cheque.
-- `double amount`: The amount of the cheque.
-- `String signature`: The digital signature of the cheque.
-
----
-
-## External Dependencies
-- `Scanner`: Used for capturing user input.
-- `ChequePrintingService`: Simulates the printing of cheques.
-- `ChequeImageHandler`: Handles the loading of cheque image data.
-- `CryptographyService`: Provides encryption and signing functionalities.
-- `ClearinghouseService`: Submits encrypted and signed cheque data to a clearinghouse.
-- `User`: Represents the currently logged-in user.
+## Summary
+This code chunk demonstrates a simulation of cheque processing, including both physical cheque printing and digital cheque image submission. It highlights the use of various services for handling images, encryption, signing, and submission, while also showcasing error handling for invalid inputs and failed operations.
 
 === NEXT CHUNK ===
 
@@ -529,19 +435,20 @@ original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_06"
 confidence_score: 0.95
-external_dependencies: ["java.util.Date", "java.util.List", "java.util.ArrayList", "java.util.Map", "java.util.HashMap", "java.text.SimpleDateFormat", "java.nio.charset.StandardCharsets", "java.util.Arrays"]
+external_dependencies: ["java.util.Date", "java.util.List", "java.util.ArrayList", "java.text.SimpleDateFormat"]
 ---
 
 # Documentation for Code Chunk
 
-This code chunk is part of a larger Java application and contains several classes and methods related to handling cheque exceptions, FIR/legal complaint details, cheque statuses, logging, image handling, cryptographic operations, and clearinghouse submissions. Below is a detailed explanation of the components in this code chunk:
+## Overview
+This code chunk is part of a larger application that manages cheque processing, exception handling, and related operations. It introduces classes and methods for handling cheque exceptions, recording FIR/legal complaint details, and managing cheque statuses. Additionally, it includes utility classes for logging, image handling, cryptographic operations, and clearinghouse submissions.
 
 ## Classes and Methods
 
-### 1. `ExceptionRecord` Class
-This class represents a record of an exception related to a cheque. It stores details such as the account number, cheque number, type of exception, additional details, and the date of the exception. It also optionally stores FIR/legal complaint details.
+### 1. `ExceptionRecord`
+This class represents a record of a cheque exception. It stores details about the exception, such as the account number, cheque number, type of exception, details, and the date of occurrence. It also has an optional field for FIR/legal complaint details.
 
-#### Constructor:
+#### Constructor
 ```java
 ExceptionRecord(String accountNumber, String chequeNumber, String type, String details, Date date)
 ```
@@ -553,10 +460,10 @@ ExceptionRecord(String accountNumber, String chequeNumber, String type, String d
   - `date`: The date when the exception occurred.
 - **Behavior:** Initializes the exception record with the provided details and sets `firDetails` to `null`.
 
-### 2. `FIRDetails` Class
-This class represents FIR/legal complaint details for a bounced cheque. It stores information such as the FIR number, police station, FIR date, and remarks.
+### 2. `FIRDetails`
+This class represents FIR/legal complaint details associated with a bounced cheque.
 
-#### Constructor:
+#### Constructor
 ```java
 FIRDetails(String firNumber, String policeStation, Date firDate, String remarks)
 ```
@@ -567,30 +474,25 @@ FIRDetails(String firNumber, String policeStation, Date firDate, String remarks)
   - `remarks`: Additional remarks about the FIR.
 - **Behavior:** Initializes the FIR details with the provided information.
 
-### 3. `reportException` Method
-This method is used to report a cheque exception by creating a new `ExceptionRecord` and adding it to the list of exceptions.
+### 3. Methods in the Main Class
 
-#### Method Signature:
+#### `reportException`
 ```java
 public void reportException(String accountNumber, String chequeNumber, String type, String details)
 ```
+- **Purpose:** Adds a new exception record to the list of exceptions.
 - **Parameters:**
   - `accountNumber`: The account number associated with the cheque.
   - `chequeNumber`: The cheque number.
   - `type`: The type of exception (e.g., "Bounced").
   - `details`: Additional details about the exception.
-- **Behavior:**
-  - Creates a new `ExceptionRecord` with the provided details and the current date.
-  - Adds the record to the `exceptions` list.
-  - Prints a message indicating that the exception has been reported.
+- **Behavior:** Creates a new `ExceptionRecord` and adds it to the `exceptions` list. Logs the exception details to the console.
 
-### 4. `recordFIRDetails` Method
-This method is used to record FIR/legal complaint details for a bounced cheque.
-
-#### Method Signature:
+#### `recordFIRDetails`
 ```java
 public boolean recordFIRDetails(String accountNumber, String chequeNumber, String firNumber, String policeStation, Date firDate, String remarks)
 ```
+- **Purpose:** Records FIR/legal complaint details for a bounced cheque.
 - **Parameters:**
   - `accountNumber`: The account number associated with the cheque.
   - `chequeNumber`: The cheque number.
@@ -598,72 +500,77 @@ public boolean recordFIRDetails(String accountNumber, String chequeNumber, Strin
   - `policeStation`: The name of the police station where the FIR was filed.
   - `firDate`: The date of the FIR.
   - `remarks`: Additional remarks about the FIR.
-- **Behavior:**
-  - Searches the `exceptions` list for a matching `ExceptionRecord` with the specified account number, cheque number, and type "Bounced".
-  - If a match is found, updates the `firDetails` field of the record with the provided FIR details and prints a success message.
-  - If no match is found, prints an error message and returns `false`.
+- **Behavior:** Searches for a matching `ExceptionRecord` with the specified account and cheque number and a type of "Bounced". If found, associates the FIR details with the exception record and logs the update. Returns `true` if successful, otherwise logs an error and returns `false`.
 
-### 5. `displayExceptions` Method
-This method displays all reported cheque exceptions, including any associated FIR/legal complaint details for bounced cheques.
-
-#### Method Signature:
+#### `displayExceptions`
 ```java
 public void displayExceptions()
 ```
+- **Purpose:** Displays all recorded cheque exceptions and their details.
 - **Behavior:**
-  - If the `exceptions` list is empty, prints a message indicating that no exceptions have been reported.
+  - If no exceptions are recorded, logs a message indicating this.
   - Otherwise, iterates through the `exceptions` list and prints the details of each exception.
-  - If an exception is of type "Bounced" and has associated FIR details, prints the FIR details as well.
+  - If an exception is of type "Bounced" and has associated FIR details, these details are also displayed.
 
-### 6. `ChequeStatus` Enum
-This enumeration represents the possible statuses of a cheque:
-- `ISSUED`
-- `PROCESSED`
-- `CANCELED`
+### 4. `ChequeStatusManager`
+This class manages the statuses of cheques.
 
-### 7. `ChequeStatusManager` Class
-This class manages the statuses of cheques using a map where the key is a combination of the account number and cheque number, and the value is the cheque's status.
+#### `setStatus`
+```java
+public void setStatus(String accountNumber, String chequeNumber, ChequeStatus status)
+```
+- **Purpose:** Sets the status of a cheque.
+- **Parameters:**
+  - `accountNumber`: The account number associated with the cheque.
+  - `chequeNumber`: The cheque number.
+  - `status`: The new status of the cheque (e.g., `ISSUED`, `PROCESSED`, `CANCELED`).
+- **Behavior:** Updates the status of the specified cheque in the `chequeStatusMap`.
 
-#### Methods:
-- `setStatus(String accountNumber, String chequeNumber, ChequeStatus status)`: Sets the status of a cheque.
-- `getStatus(String accountNumber, String chequeNumber)`: Retrieves the status of a cheque.
-- `displayAllStatuses()`: Displays all recorded cheque statuses.
+#### `getStatus`
+```java
+public ChequeStatus getStatus(String accountNumber, String chequeNumber)
+```
+- **Purpose:** Retrieves the status of a cheque.
+- **Parameters:**
+  - `accountNumber`: The account number associated with the cheque.
+  - `chequeNumber`: The cheque number.
+- **Returns:** The status of the cheque, or `null` if not found.
 
-### 8. `Logger` Class
-This utility class provides methods for logging messages at different levels (INFO, WARN, ERROR, DEBUG).
+#### `displayAllStatuses`
+```java
+public void displayAllStatuses()
+```
+- **Purpose:** Displays the statuses of all cheques.
+- **Behavior:**
+  - If no statuses are recorded, logs a message indicating this.
+  - Otherwise, iterates through the `chequeStatusMap` and prints the status of each cheque.
 
-#### Methods:
-- `log(Level level, String message)`: Logs a message with the specified level and a timestamp.
-- `info(String message)`, `warn(String message)`, `error(String message)`, `debug(String message)`: Convenience methods for logging messages at specific levels.
+### 5. `Logger`
+A utility class for logging messages at different levels (INFO, WARN, ERROR, DEBUG).
 
-### 9. `ChequeImageHandler` Class
-This class simulates handling cheque images, including loading image data from a file path.
+#### `log`
+```java
+public static void log(Level level, String message)
+```
+- **Purpose:** Logs a message with a specified severity level.
+- **Parameters:**
+  - `level`: The severity level (e.g., `INFO`, `WARN`, `ERROR`, `DEBUG`).
+  - `message`: The message to log.
+- **Behavior:** Prints the message to the console with a timestamp and severity level.
 
-#### Method:
-- `loadImageData(String filePath)`: Simulates loading image data from a file path and returns a byte array representing the image data.
+#### Convenience Methods
+- `info(String message)`: Logs an INFO message.
+- `warn(String message)`: Logs a WARN message.
+- `error(String message)`: Logs an ERROR message.
+- `debug(String message)`: Logs a DEBUG message.
 
-### 10. `CryptographyService` Class
-This class simulates cryptographic operations such as encryption and digital signing.
+## External Dependencies
+- `java.util.Date`: Used for handling dates.
+- `java.util.List` and `java.util.ArrayList`: Used for managing collections of exceptions.
+- `java.text.SimpleDateFormat`: Used for formatting dates for display.
 
-#### Methods:
-- `encryptData(byte[] data, String key)`: Simulates encrypting data with a key.
-- `signData(byte[] data, String privateKey)`: Simulates digitally signing data with a private key.
-
-### 11. `ClearinghouseService` Class
-This class simulates submitting cheque image data and signatures to a clearinghouse.
-
-#### Method:
-- `submitToClearinghouse(String accountNumber, String chequeNumber, byte[] encryptedImageData, String digitalSignature)`: Simulates submitting data to a clearinghouse.
-
-### 12. `SignatureVerificationService` Class
-This class simulates verifying signatures on cheques.
-
-#### Constructor:
-- Initializes the service with some sample signatures for testing.
-
----
-
-This code chunk provides a comprehensive set of functionalities for managing cheque-related operations, including exception handling, FIR recording, status tracking, logging, image handling, cryptographic operations, and clearinghouse submissions.
+## Summary
+This code chunk provides robust functionality for managing cheque exceptions, recording FIR details, and tracking cheque statuses. It also includes utility classes for logging and other operations, making it a comprehensive solution for cheque processing and exception handling.
 
 === NEXT CHUNK ===
 
@@ -671,213 +578,243 @@ This code chunk provides a comprehensive set of functionalities for managing che
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_07"
-confidence_score: 0.95
+confidence_score: 0.9
 external_dependencies: ["CurrencyExchangeService", "CoreBankingSystemUpdater", "ChequeHistoryManager", "FraudDetectionService", "ExceptionReportManager", "ChequeStatusManager", "EmailNotificationService"]
 ---
 
-# Documentation: `SignatureVerificationService` and `ChequeProcessor` Classes
+# Documentation for `SignatureVerificationService` and `ChequeProcessor` Classes
 
 ## Overview
-This code chunk contains two main classes:
-
-1. **`SignatureVerificationService`**: A service for verifying and managing signatures associated with bank accounts. It provides methods to verify and update signatures for accounts.
-2. **`ChequeProcessor`**: A module responsible for processing cheques. It integrates multiple services such as signature verification, fraud detection, currency conversion, and core banking system updates to handle cheque processing.
+This code chunk contains two classes:
+1. `SignatureVerificationService`: A service for verifying and managing signatures associated with account numbers.
+2. `ChequeProcessor`: A module for processing cheques, which includes signature verification, fraud detection, currency conversion, and updating the core banking system.
 
 ---
 
 ## `SignatureVerificationService` Class
 
 ### Purpose
-The `SignatureVerificationService` class is a utility for managing and verifying account signatures. It is a simplified implementation designed for demonstration purposes.
+The `SignatureVerificationService` class is responsible for verifying signatures associated with account numbers. It maintains a mapping of account numbers to their respective signatures and provides methods to verify and update these signatures.
 
 ### Fields
-- `accountSignatures`: A `Map<String, String>` that stores account numbers as keys and their corresponding signatures as values.
+- `Map<String, String> accountSignatures`: A map that stores account numbers as keys and their corresponding signatures as values.
 
-### Constructor
-- **`SignatureVerificationService()`**: Initializes the service with a set of sample account numbers and their corresponding signatures for testing purposes.
+### Constructors
+- `SignatureVerificationService()`: Initializes the service with a predefined set of account numbers and their associated signatures for demonstration purposes.
 
 ### Methods
 
 #### `boolean verifySignature(String accountNumber, String signature)`
-- **Description**: Verifies if the provided signature matches the one on file for the given account number.
-- **Parameters**:
-  - `accountNumber`: The account number to verify the signature for.
-  - `signature`: The signature to be verified.
-- **Returns**: `true` if the signature matches the one on file or if no signature is on file (in which case the provided signature is accepted and stored). Returns `false` if the signature does not match.
-- **Behavior**:
-  - If no signature is on file for the account, the provided signature is accepted and stored.
-  - If a signature is on file, it is compared with the provided signature. If they match, the method returns `true`; otherwise, it returns `false`.
+Verifies if the provided signature matches the one on file for the given account number.
+
+**Parameters:**
+- `accountNumber` (String): The account number to verify the signature for.
+- `signature` (String): The signature to verify.
+
+**Returns:**
+- `true` if the signature matches the one on file or if no signature is on file (in which case the provided signature is accepted and stored).
+- `false` if the signature does not match the one on file.
+
+**Behavior:**
+1. If the account number does not exist in the `accountSignatures` map, the provided signature is accepted and stored.
+2. If the account number exists, the provided signature is compared to the stored signature.
+3. Logs the result of the verification process.
 
 #### `void updateSignature(String accountNumber, String newSignature)`
-- **Description**: Updates the signature on file for a given account number.
-- **Parameters**:
-  - `accountNumber`: The account number for which the signature is to be updated.
-  - `newSignature`: The new signature to be stored.
-- **Behavior**: Updates the `accountSignatures` map with the new signature for the specified account number.
+Updates the signature on file for the given account number.
+
+**Parameters:**
+- `accountNumber` (String): The account number for which the signature is to be updated.
+- `newSignature` (String): The new signature to be stored.
+
+**Behavior:**
+1. Updates the `accountSignatures` map with the new signature for the given account number.
+2. Logs the update operation.
 
 ---
 
 ## `ChequeProcessor` Class
 
 ### Purpose
-The `ChequeProcessor` class is responsible for processing cheques. It integrates various services to perform tasks such as signature verification, fraud detection, currency conversion, and updating the core banking system.
+The `ChequeProcessor` class is a comprehensive module for processing cheques. It integrates multiple services to handle various aspects of cheque processing, including:
+- Signature verification
+- Fraud detection
+- Currency conversion
+- Core banking system updates
+- Cheque status management
+- Exception reporting
+- Email notifications
 
 ### Fields
-- `currencyExchangeService`: An instance of `CurrencyExchangeService` used for currency conversion.
-- `signatureVerificationService`: An instance of `SignatureVerificationService` used for signature verification.
-- `coreBankingSystemUpdater`: An instance of `CoreBankingSystemUpdater` used to update the core banking system.
-- `chequeHistoryManager`: An instance of `ChequeHistoryManager` used to manage cheque history.
-- `fraudDetectionService`: An instance of `FraudDetectionService` used for fraud detection.
-- `exceptionReportManager`: An instance of `ExceptionReportManager` used to report exceptions during cheque processing.
-- `chequeStatusManager`: An instance of `ChequeStatusManager` used to track the status of cheques.
-- `emailNotificationService`: An instance of `EmailNotificationService` used to send email notifications.
+- `CurrencyExchangeService currencyExchangeService`: Handles currency exchange operations.
+- `SignatureVerificationService signatureVerificationService`: Verifies signatures on cheques.
+- `CoreBankingSystemUpdater coreBankingSystemUpdater`: Updates the core banking system with transaction details.
+- `ChequeHistoryManager chequeHistoryManager`: Manages the history of processed cheques.
+- `FraudDetectionService fraudDetectionService`: Detects fraudulent cheques.
+- `ExceptionReportManager exceptionReportManager`: Manages exception reports for issues encountered during cheque processing.
+- `ChequeStatusManager chequeStatusManager`: Tracks the status of cheques (e.g., issued, processed, canceled).
+- `EmailNotificationService emailNotificationService`: Sends email notifications for various events.
 
 ### Constructor
-- **`ChequeProcessor(...)`**: Initializes the `ChequeProcessor` with instances of the required services.
+- `ChequeProcessor(CurrencyExchangeService currencyExchangeService, SignatureVerificationService signatureVerificationService, CoreBankingSystemUpdater coreBankingSystemUpdater, ChequeHistoryManager chequeHistoryManager, FraudDetectionService fraudDetectionService, ExceptionReportManager exceptionReportManager, ChequeStatusManager chequeStatusManager, EmailNotificationService emailNotificationService)`:
+  Initializes the `ChequeProcessor` with the required services.
 
 ### Methods
 
 #### `void processCheque(String accountNumber, String chequeNumber, String currency, double amount, String signature)`
-- **Description**: Processes a cheque by performing various checks and operations.
-- **Parameters**:
-  - `accountNumber`: The account number associated with the cheque.
-  - `chequeNumber`: The cheque number.
-  - `currency`: The currency of the cheque amount.
-  - `amount`: The amount of the cheque.
-  - `signature`: The signature to be verified.
-- **Behavior**:
-  1. Checks if the cheque is already tracked in the `ChequeStatusManager`. If not, marks it as `ISSUED`.
-  2. Verifies the signature using the `SignatureVerificationService`. If verification fails, reports an exception and sends an email notification.
-  3. Performs fraud detection using the `FraudDetectionService`. If the cheque is fraudulent, reports an exception and sends an email notification.
-  4. Simulates a bounced cheque if the amount exceeds $50,000, reporting an exception and sending an email notification.
-  5. Simulates a delayed cheque if the cheque number ends with '9', reporting an exception.
-  6. Converts the cheque amount to local currency using the `CurrencyExchangeService` if the currency is not USD. Applies exchange rates and fees.
-  7. Updates the core banking system with the final amount in local currency using the `CoreBankingSystemUpdater`.
+Processes a cheque by performing the following steps:
+
+**Parameters:**
+- `accountNumber` (String): The account number associated with the cheque.
+- `chequeNumber` (String): The unique identifier for the cheque.
+- `currency` (String): The currency of the cheque amount.
+- `amount` (double): The amount of the cheque.
+- `signature` (String): The signature to be verified.
+
+**Behavior:**
+1. **Cheque Status Check:**
+   - Checks if the cheque has already been issued. If not, marks it as issued using `ChequeStatusManager`.
+
+2. **Signature Verification:**
+   - Verifies the signature using `SignatureVerificationService`.
+   - If the signature verification fails, an exception is reported using `ExceptionReportManager`, and an email notification is sent using `EmailNotificationService`.
+
+3. **Fraud Detection:**
+   - Checks for fraudulent or duplicate cheques using `FraudDetectionService`.
+   - If fraud is detected, an exception is reported, and an email notification is sent.
+
+4. **Simulated Bounced Cheque:**
+   - If the cheque amount exceeds $50,000, simulates a bounced cheque due to insufficient funds.
+   - Reports an exception and sends an email notification.
+
+5. **Simulated Delayed Cheque:**
+   - If the cheque number ends with '9', simulates a delayed cheque processing.
+   - Reports an exception and optionally sends a notification.
+
+6. **Currency Conversion:**
+   - If the currency is not USD, fetches detailed exchange rate information using `CurrencyExchangeService`.
+   - Converts the cheque amount to local currency (USD) using the buy rate and applies a fee.
+
+7. **Core Banking System Update:**
+   - Updates the core banking system with the converted amount using `CoreBankingSystemUpdater`.
 
 ---
 
 ## External Dependencies
-The following external classes and services are used in this code:
-
-1. **`CurrencyExchangeService`**: Provides currency exchange rates and detailed exchange rate information.
-2. **`CoreBankingSystemUpdater`**: Updates the core banking system with transaction details.
-3. **`ChequeHistoryManager`**: Manages the history of cheques processed.
-4. **`FraudDetectionService`**: Detects fraudulent or duplicate cheques.
-5. **`ExceptionReportManager`**: Reports exceptions encountered during cheque processing.
-6. **`ChequeStatusManager`**: Tracks the status of cheques (e.g., issued, processed, canceled).
-7. **`EmailNotificationService`**: Sends email notifications to account holders regarding cheque processing issues.
-
----
-
-## Notes
-- The `SignatureVerificationService` is a simplified implementation and may not be suitable for production use.
-- The `ChequeProcessor` class relies on several external services, which are assumed to be implemented elsewhere in the codebase.
-- The `processCheque` method includes simulated scenarios for bounced and delayed cheques, which may not reflect real-world banking operations.
+The `ChequeProcessor` class depends on the following external services:
+- `CurrencyExchangeService`: Provides currency exchange rates and conversion functionality.
+- `CoreBankingSystemUpdater`: Updates the core banking system with transaction details.
+- `ChequeHistoryManager`: Manages the history of processed cheques.
+- `FraudDetectionService`: Detects fraudulent or duplicate cheques.
+- `ExceptionReportManager`: Handles exception reporting for issues encountered during cheque processing.
+- `ChequeStatusManager`: Tracks the status of cheques.
+- `EmailNotificationService`: Sends email notifications for various events.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_08"
-confidence_score: 0.95
-external_dependencies: ["CoreBankingSystemUpdater", "ChequeHistoryManager", "ChequeStatusManager", "ChequeStatus", "ExceptionReportManager", "EmailNotificationService"]
+confidence_score: 0.9
+external_dependencies: ["CoreBankingSystemUpdater", "ChequeHistoryManager", "ChequeStatusManager", "ChequeStatus", "ExceptionReportManager", "EmailNotificationService", "CurrencyRate"]
 ---
 
 # Documentation for Code Chunk
 
-## Overview
-This code chunk is part of a cheque processing system. It handles the processing and cancellation of cheques, including updating the core banking system, recording cheque history, managing cheque statuses, and handling exceptions. Additionally, it includes a utility class for currency exchange services.
+This code chunk is part of a larger system that processes financial transactions, specifically handling cheques and currency exchange operations. Below is a detailed explanation of the functionality provided in this chunk.
 
-## Code Breakdown
+## Key Functionalities
 
-### Cheque Processing
-The code processes a cheque by performing the following steps:
+### 1. **Processing Cheques**
+The code handles cheque processing, including:
+- Logging details about the currency, amount, exchange rate, and fees.
+- Calculating the final amount in the local currency after applying fees.
+- Updating the core banking system with the final amount.
+- Recording the cheque in the cheque history.
+- Updating the cheque status to `PROCESSED` upon successful processing.
+- Handling exceptions during cheque processing and notifying the user via email in case of errors.
 
-1. **Log and Display Transaction Details:**
-   - Logs and displays details such as currency, original amount, exchange rate, fee rate, fee amount, and the amount in local currency before and after applying fees.
+#### Key Methods and Classes Used:
+- **`coreBankingSystemUpdater.updateCoreBankingSystem(accountNumber, amountInLocalCurrency)`**:
+  Updates the core banking system with the account number and the final amount in the local currency. This method is part of the `CoreBankingSystemUpdater` class.
 
-2. **Update Core Banking System:**
-   - Calls `coreBankingSystemUpdater.updateCoreBankingSystem(accountNumber, amountInLocalCurrency)` to update the account balance in the core banking system.
+- **`chequeHistoryManager.recordCheque(accountNumber, chequeNumber, currency, amount, new java.util.Date())`**:
+  Records the cheque details, including account number, cheque number, currency, amount, and the current date. This method is part of the `ChequeHistoryManager` class.
 
-   **Dependency:**
-   - `CoreBankingSystemUpdater` is a mock implementation that updates the core banking system with the account number and the final amount in local currency.
+- **`chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.PROCESSED)`**:
+  Updates the status of the cheque to `PROCESSED`. This method is part of the `ChequeStatusManager` class, which uses the `ChequeStatus` enum to represent the status of cheques (e.g., `ISSUED`, `PROCESSED`, `CANCELED`).
 
-3. **Record Cheque History:**
-   - Calls `chequeHistoryManager.recordCheque(accountNumber, chequeNumber, currency, amount, new java.util.Date())` to record the cheque details in the history.
+- **`Logger.info()` and `Logger.error()`**:
+  Logs information and errors during the cheque processing.
 
-   **Dependency:**
-   - `ChequeHistoryManager` is a mock implementation that stores cheque records in a history map.
+- **`exceptionReportManager.reportException(accountNumber, chequeNumber, "ProcessingError", ex.getMessage())`**:
+  Reports any exceptions that occur during cheque processing. This method is part of the `ExceptionReportManager` class.
 
-4. **Update Cheque Status:**
-   - Calls `chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.PROCESSED)` to update the status of the cheque to `PROCESSED`.
+- **`emailNotificationService.sendEmail()`**:
+  Sends an email notification to the account holder in case of a processing error. This method is part of the `EmailNotificationService` class.
 
-   **Dependency:**
-   - `ChequeStatusManager` is a class that manages the status of cheques using a map. The status is represented by the `ChequeStatus` enum, which includes values like `ISSUED`, `PROCESSED`, and `CANCELED`.
+### 2. **Cancelling Cheques**
+The code provides functionality to cancel a cheque by updating its status to `CANCELED` and logging the action.
 
-5. **Error Handling:**
-   - If an exception occurs during processing, the following actions are taken:
-     - Logs the error using `Logger.error`.
-     - Reports the exception using `exceptionReportManager.reportException(accountNumber, chequeNumber, "ProcessingError", ex.getMessage())`.
+#### Key Methods and Classes Used:
+- **`chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.CANCELED)`**:
+  Updates the status of the cheque to `CANCELED`.
 
-       **Dependency:**
-       - `ExceptionReportManager` is a class that logs exception details, including account number, cheque number, error type, and error message.
+- **`Logger.info()` and `Logger.error()`**:
+  Logs information and errors during the cheque cancellation process.
 
-     - Sends an email notification about the error using `emailNotificationService.sendEmail`.
+### 3. **Currency Exchange Service**
+The `CurrencyExchangeService` class provides functionalities for handling currency exchange operations, including fetching exchange rates, converting currencies, and providing detailed exchange rate information.
 
-       **Dependency:**
-       - `EmailNotificationService` is a class that simulates sending email notifications by printing the email details to the console.
+#### Key Methods:
+- **`getExchangeRate(String currency)`**:
+  Fetches the exchange rate for a given currency. The method first checks a local cache for the rate, then attempts to fetch it from an external API. If both fail, it falls back to predefined rates.
 
-### Cheque Cancellation
-The `cancelCheque` method is used to cancel a cheque. It performs the following steps:
+- **`convertCurrency(double amount, String fromCurrency, String toCurrency)`**:
+  Converts an amount from one currency to another using the exchange rates.
 
-1. **Update Cheque Status:**
-   - Calls `chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.CANCELED)` to update the status of the cheque to `CANCELED`.
+- **`getDetailedExchangeRates(String currency)`**:
+  Provides detailed exchange rate information, including buy/sell rates and fees.
 
-2. **Log and Display Cancellation:**
-   - Logs the cancellation using `Logger.info` and displays a message to the console.
+- **`getSupportedCurrencies()`**:
+  Returns a list of all supported currencies, including the base currency (`USD`) and fallback rates.
 
-3. **Error Handling:**
-   - If an exception occurs during cancellation, it logs the error using `Logger.error` and displays an error message to the console.
+#### Key Attributes:
+- **`exchangeRateCache`**:
+  A cache for storing exchange rates to reduce API calls.
 
-### CurrencyExchangeService Class
-This class provides methods for handling currency exchange rates and conversions. It includes the following features:
+- **`FALLBACK_RATES`**:
+  A predefined map of fallback exchange rates for various currencies.
 
-1. **Exchange Rate Retrieval:**
-   - The `getExchangeRate` method retrieves the exchange rate for a given currency. It first checks a cache for a valid rate, then attempts to fetch the rate from an external API. If both fail, it falls back to predefined rates.
+- **`CACHE_EXPIRY_MINUTES`**:
+  The duration (in minutes) for which cached rates are considered valid.
 
-2. **Currency Conversion:**
-   - The `convertCurrency` method converts an amount from one currency to another by first converting it to the base currency (USD) and then to the target currency.
+- **`BASE_CURRENCY`**:
+  The base currency for all exchange rate calculations (default is `USD`).
 
-3. **Detailed Exchange Rates:**
-   - The `getDetailedExchangeRates` method provides detailed rate information, including mid, buy, and sell rates, as well as fees.
-
-4. **Supported Currencies:**
-   - The `getSupportedCurrencies` method returns a sorted list of all supported currency codes.
-
-5. **Cache Validation:**
-   - The `isCacheValid` method checks if a cached exchange rate is still valid based on a predefined expiry time.
-
-### External Dependencies
-- **CoreBankingSystemUpdater:** Updates the core banking system with account and transaction details.
-- **ChequeHistoryManager:** Records cheque details in a history map.
-- **ChequeStatusManager:** Manages the status of cheques using a map.
-- **ChequeStatus:** Enum representing the status of a cheque (e.g., ISSUED, PROCESSED, CANCELED).
-- **ExceptionReportManager:** Logs exception details.
-- **EmailNotificationService:** Simulates sending email notifications.
+#### Helper Methods:
+- **`isCacheValid(String currency)`**:
+  Checks if the cached exchange rate for a given currency is still valid.
 
 ## Error Handling
 The code includes robust error handling mechanisms:
-- Logs errors using `Logger.error`.
-- Reports exceptions using `ExceptionReportManager`.
-- Sends email notifications for errors using `EmailNotificationService`.
+- Logs errors using `Logger.error()`.
+- Reports exceptions using `exceptionReportManager.reportException()`.
+- Notifies users via email using `emailNotificationService.sendEmail()`.
 
-## Notes
-- The `CurrencyExchangeService` class uses a combination of cached rates, external API calls, and fallback rates to provide exchange rate information. The API key is hardcoded as "demo" and should be replaced with a valid key in a production environment.
-- The `CurrencyExchangeService` class also calculates buy/sell rates and fees based on the base rate.
-- The `cancelCheque` method is a simple implementation that only updates the cheque status to `CANCELED` and logs the action.
+## External Dependencies
+The following external classes and enums are used in this code chunk:
+- **`CoreBankingSystemUpdater`**: Updates the core banking system.
+- **`ChequeHistoryManager`**: Manages cheque history records.
+- **`ChequeStatusManager`**: Manages the status of cheques.
+- **`ChequeStatus`**: Enum representing cheque statuses (`ISSUED`, `PROCESSED`, `CANCELED`).
+- **`ExceptionReportManager`**: Handles exception reporting.
+- **`EmailNotificationService`**: Sends email notifications.
+- **`CurrencyRate`**: Represents exchange rate information, including the rate and the last updated timestamp.
 
-This code is part of a larger system and relies on several external classes and services for its functionality.
+## Summary
+This code chunk is a critical part of the application, handling cheque processing, cancellation, and currency exchange operations. It integrates with multiple services and includes comprehensive error handling to ensure reliability and user notification in case of issues.
 
 === NEXT CHUNK ===
 
@@ -886,134 +823,115 @@ original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_09"
 confidence_score: 0.95
-external_dependencies: ["java.util.Collections", "java.util.HashMap", "java.util.Map", "java.util.List", "java.util.ArrayList", "java.net.HttpURLConnection", "java.net.URL", "java.io.BufferedReader", "java.io.InputStreamReader", "java.time.LocalDateTime", "java.util.Date", "FraudDetection", "ChequeHistoryManager"]
+external_dependencies: ["CurrencyRate", "FraudDetection", "ChequeHistoryManager", "ChequeTransaction"]
 ---
 
 # Documentation for Code Chunk
 
-## Overview
-This code chunk contains multiple classes and methods related to currency exchange services and fraud detection. The main components include:
+This code chunk contains several classes and methods related to currency exchange services and fraud detection mechanisms. Below is a detailed explanation of the key components:
 
-1. **CurrencyExchangeService**: A service for managing currency exchange rates, including caching, fetching rates from an external API, and clearing the cache.
-2. **CurrencyExchangeServiceV2**: An enhanced version of the currency exchange service with additional features and a fallback mechanism for exchange rates.
-3. **CurrencyRate**: A data class to store currency rate information along with a timestamp.
-4. **FraudDetectionService**: A service for detecting fraudulent cheque activities using various fraud detection mechanisms.
+## 1. **Currency Exchange Service**
 
-## Detailed Explanation
+### Purpose
+The `CurrencyExchangeService` and `CurrencyExchangeServiceV2` classes provide functionality for fetching and managing currency exchange rates. They include caching mechanisms, API integration, and fallback rates for currency conversion.
 
-### CurrencyExchangeService
-This class provides functionality for managing currency exchange rates. It includes the following key components:
+### Key Methods
 
-- **exchangeRateCache**: A `Map<String, CurrencyRate>` that stores cached exchange rates for different currencies.
-- **BASE_CURRENCY**: A constant representing the base currency ("USD").
-- **CACHE_EXPIRY_MINUTES**: A constant defining the cache expiry time (60 minutes).
-- **API_KEY**: A placeholder for the API key used to fetch exchange rates from an external API.
+#### `isCacheValid(String currency)`
+- **Purpose**: Checks if the cached exchange rate for a given currency is still valid.
+- **Parameters**:
+  - `currency`: The currency code (e.g., "USD").
+- **Returns**: `true` if the cache is valid, `false` otherwise.
+- **Logic**:
+  - Verifies if the currency exists in the cache.
+  - Compares the current time with the cache expiry time.
 
-#### Methods
+#### `fetchRateFromAPI(String currency)`
+- **Purpose**: Fetches the exchange rate for a given currency from an external API.
+- **Parameters**:
+  - `currency`: The currency code.
+- **Returns**: The exchange rate as a `double`.
+- **Throws**: Exception if the API call fails.
+- **Logic**:
+  - Constructs the API URL using the base currency and API key.
+  - Makes an HTTP GET request to fetch the exchange rate.
+  - Parses the response (mocked in this code).
 
-1. **isCacheValid(String currency)**
-   - Checks if the cached exchange rate for a given currency is still valid.
-   - Compares the current time with the cache's expiry time.
-   - Returns `true` if the cache is valid, otherwise `false`.
+#### `clearCache()`
+- **Purpose**: Clears the exchange rate cache.
+- **Logic**:
+  - Empties the `exchangeRateCache` map.
+  - Logs a message indicating the cache has been cleared.
 
-2. **fetchRateFromAPI(String currency)**
-   - Fetches the exchange rate for a given currency from an external API (e.g., Open Exchange Rates API).
-   - Uses `java.net.HttpURLConnection` to make an HTTP GET request.
-   - Parses the API response to extract the exchange rate (mocked in this code).
-   - Throws an exception if the API call fails or returns an error status code.
+#### `CurrencyExchangeServiceV2`
+- **Purpose**: An enhanced version of the currency exchange service with additional features and fallback rates.
+- **Key Features**:
+  - Uses a `cache` map for storing exchange rates.
+  - Provides fallback rates for specific currencies.
+  - Includes methods for fetching exchange rates, converting currencies, and retrieving detailed exchange rate information.
 
-3. **clearCache()**
-   - Clears the `exchangeRateCache`.
-   - Logs a message indicating that the cache has been cleared.
+## 2. **CurrencyRate Class**
 
-### CurrencyExchangeServiceV2
-This is an enhanced version of the `CurrencyExchangeService` with additional features and a fallback mechanism for exchange rates.
+### Purpose
+The `CurrencyRate` class is a data structure for storing exchange rate information along with a timestamp.
 
-#### Key Components
-- **cache**: A `Map<String, Double>` that stores cached exchange rates.
-- **BASE**: A constant representing the base currency ("USD").
-- **KEY**: A placeholder for the API key used to fetch exchange rates from an external API.
-- **RATES**: A static map containing fallback exchange rates for various currencies.
-
-#### Methods
-
-1. **getExchangeRateV2(String currency)**
-   - Retrieves the exchange rate for a given currency.
-   - Checks the cache first, then attempts to fetch the rate from an external API.
-   - Falls back to predefined rates if the API call fails.
-
-2. **convertCurrencyV2(double amount, String from, String to)**
-   - Converts an amount from one currency to another using exchange rates.
-   - Returns `0.0` if the exchange rate for either currency is unavailable.
-
-3. **getDetailedExchangeRatesV2(String currency)**
-   - Provides detailed exchange rate information for a given currency, including mid, buy, sell, and fee rates.
-
-4. **getSupportedCurrenciesV2()**
-   - Returns a list of supported currencies, including the base currency and those in the fallback rates.
-
-5. **fetchRateFromAPIV2(String currency)**
-   - Fetches the exchange rate for a given currency from an external API.
-   - Parses the API response to extract the exchange rate (inefficiently).
-
-6. **clearCacheV2()**
-   - Clears the `cache`.
-
-### CurrencyRate
-A simple data class to store currency rate information along with a timestamp.
-
-#### Fields
-- **rate**: The exchange rate.
-- **lastUpdated**: The timestamp of the last update.
+### Key Methods
 
 #### Constructor
-- **CurrencyRate(double rate, java.time.LocalDateTime lastUpdated)**: Initializes the `rate` and `lastUpdated` fields.
+- **Parameters**:
+  - `rate`: The exchange rate value.
+  - `lastUpdated`: The timestamp of the last update.
 
-#### Methods
-- **getRate()**: Returns the exchange rate.
-- **getLastUpdated()**: Returns the timestamp of the last update.
+#### `getRate()`
+- **Returns**: The exchange rate value.
 
-### FraudDetectionService
-This class implements various mechanisms to detect fraudulent cheque activities. It uses a `FraudDetection` instance and a `ChequeHistoryManager` for historical data.
+#### `getLastUpdated()`
+- **Returns**: The timestamp of the last update.
 
-#### Key Components
-- **fraudDetection**: An instance of the `FraudDetection` class.
-- **historyManager**: An instance of the `ChequeHistoryManager` class.
-- **recentTransactions**: A `Map<String, List<ChequeTransaction>>` to store recent transactions.
-- **Fraud detection thresholds**:
-  - `VELOCITY_CHECK_DAYS`: Number of days for velocity checks (7 days).
-  - `VELOCITY_THRESHOLD`: Maximum allowed transactions in the velocity check period (5 transactions).
-  - `PATTERN_THRESHOLD`: Similarity threshold for pattern-based fraud detection (95%).
-  - `SIMILAR_AMOUNT_THRESHOLD`: Similarity threshold for amount-based fraud detection (90%).
-  - `UNUSUAL_FREQUENCY_THRESHOLD`: Threshold for unusual frequency detection (3x normal frequency).
+## 3. **Fraud Detection Service**
 
-#### Methods
+### Purpose
+The `FraudDetectionService` class implements various mechanisms to detect fraudulent cheque activities. It integrates with a `ChequeHistoryManager` and uses a `FraudDetection` instance for its operations.
 
-1. **isFraudulentCheque(String accountId, String chequeNumber, double amount)**
-   - Checks if a cheque is fraudulent based on various criteria, including duplicate cheques, abnormal amounts, suspicious activity, velocity fraud, pattern fraud, historical duplicates, unusual frequency, and similarity to recent transactions.
-   - Logs the results of the fraud checks and determines the fraud alert level.
-   - Returns `true` if any of the checks indicate fraud, otherwise `false`.
+### Key Methods
 
-2. **checkDuplicateCheque(String accountId, String chequeNumber)**
-   - Checks if the cheque is a duplicate using the `FraudDetection` instance.
+#### `isFraudulentCheque(String accountId, String chequeNumber, double amount)`
+- **Purpose**: Determines if a cheque is fraudulent based on multiple checks.
+- **Parameters**:
+  - `accountId`: The account ID associated with the cheque.
+  - `chequeNumber`: The cheque number.
+  - `amount`: The cheque amount.
+- **Returns**: `true` if the cheque is fraudulent, `false` otherwise.
+- **Logic**:
+  - Performs various checks, including:
+    - Duplicate cheque detection.
+    - Abnormal amount detection.
+    - Suspicious activity detection.
+    - Velocity fraud detection.
+    - Pattern fraud detection.
+    - Historical duplicate detection (if `ChequeHistoryManager` is available).
+    - Unusual frequency detection.
+    - Similarity to recent transactions.
+  - Logs the results of the checks.
+  - Determines the fraud alert level based on the results.
 
-3. **checkAbnormalAmount(double amount)**
-   - Checks if the cheque amount is abnormal using the `FraudDetection` instance.
+#### `checkDuplicateCheque(String accountId, String chequeNumber)`
+- **Purpose**: Checks if a cheque is a duplicate.
+- **Logic**:
+  - Delegates the check to the `FraudDetection` instance.
 
-### External Dependencies
-- **java.util.Collections**: Used for sorting collections.
-- **java.util.HashMap**: Used for storing key-value pairs.
-- **java.util.Map**: Interface for key-value mappings.
-- **java.util.List**: Interface for ordered collections.
-- **java.util.ArrayList**: Implementation of the `List` interface.
-- **java.net.HttpURLConnection**: Used for making HTTP requests.
-- **java.net.URL**: Represents a URL.
-- **java.io.BufferedReader**: Used for reading text from an input stream.
-- **java.io.InputStreamReader**: Converts byte streams to character streams.
-- **java.time.LocalDateTime**: Represents date-time without a time-zone.
-- **java.util.Date**: Represents a specific instant in time.
-- **FraudDetection**: A class used for fraud detection (implementation not provided in this chunk).
-- **ChequeHistoryManager**: A class for managing cheque history records.
+#### `checkAbnormalAmount(double amount)`
+- **Purpose**: Checks if the cheque amount is abnormal.
+- **Logic**:
+  - Delegates the check to the `FraudDetection` instance.
+
+### Dependencies
+- **`FraudDetection`**: A class used for performing specific fraud detection checks.
+- **`ChequeHistoryManager`**: Manages historical cheque data for additional fraud checks.
+- **`ChequeTransaction`**: Represents individual cheque transactions.
+
+## Summary
+This code chunk provides a comprehensive implementation of currency exchange services and fraud detection mechanisms. It includes caching, API integration, fallback rates, and various fraud detection algorithms. The code demonstrates a mix of best practices and areas for improvement, such as error handling and efficient data parsing.
 
 === NEXT CHUNK ===
 
@@ -1027,231 +945,230 @@ external_dependencies: ["FraudDetection", "ChequeHistoryManager"]
 
 # Documentation for Fraud Detection Code Chunk
 
-## Overview
-This code chunk is part of a fraud detection system implemented in the `FraudDetectionServiceV1` class. It provides various methods to detect fraudulent activities related to cheque transactions. The system evaluates multiple fraud indicators, such as duplicate cheques, abnormal amounts, suspicious activities, velocity fraud, pattern fraud, historical duplicates, unusual frequency, and similarity to recent transactions. Based on these checks, it determines an alert level and logs the results.
+This code chunk is part of a fraud detection system implemented in the `FraudDetectionServiceV1` class. It provides various methods to detect fraudulent activities related to cheque transactions. Below is a detailed explanation of the methods and their purposes:
 
-## Key Components
+## Key Methods
 
-### 1. **Fraud Detection Methods**
-The following methods are used to detect specific types of fraud:
+### `isFraudulentCheque`
+This method determines whether a cheque transaction is fraudulent by performing a series of checks. It evaluates the following conditions:
+- **Duplicate cheque**: Checks if the cheque has already been processed.
+- **Abnormal amount**: Checks if the transaction amount is unusually high or low.
+- **Suspicious activity**: Checks for suspicious patterns in the account's transaction history.
+- **Velocity fraud**: Checks if the number of transactions within a short period exceeds a predefined threshold.
+- **Pattern fraud**: Checks for repetitive patterns in transaction amounts.
+- **Historical duplicate**: Checks if the cheque matches any previously processed cheques.
+- **Unusual frequency**: Checks if the frequency of transactions is abnormally high compared to historical data.
+- **Similar to recent**: Checks if the transaction amount is similar to recent transactions.
 
-#### `checkDuplicateCheque(String accountId, String chequeNumber)`
-- **Purpose**: Checks if a cheque is a duplicate.
-- **Implementation**: Delegates the check to the `FraudDetection` class.
+The method returns `true` if any of the above checks fail, indicating potential fraud.
 
-#### `checkAbnormalAmount(double amount)`
-- **Purpose**: Checks if the cheque amount is abnormal.
-- **Implementation**: Delegates the check to the `FraudDetection` class.
+### `determineAlertLevel`
+This method calculates the fraud alert level based on the results of the individual checks. The alert levels are:
+- **LOW**: Minimal risk.
+- **MEDIUM**: Moderate risk.
+- **HIGH**: High risk.
+- **CRITICAL**: Severe risk.
 
-#### `checkSuspiciousActivity(String accountId, double amount)`
-- **Purpose**: Checks for suspicious activity based on the account ID and amount.
-- **Implementation**: Delegates the check to the `FraudDetection` class.
+The alert level is determined by assigning weights to each check and summing them up. A higher score indicates a higher alert level.
 
-#### `checkVelocityFraud(String accountId, double amount)`
-- **Purpose**: Detects if there are too many transactions within a short period (velocity fraud).
+### `logFraudChecks`
+This method logs the results of the fraud checks for a given transaction. It provides a detailed report, including:
+- Account ID
+- Cheque number
+- Transaction amount
+- Results of each fraud check
+- A summary indicating whether fraud was detected
+
+### Individual Check Methods
+
+#### `checkDuplicateCheque`
+- **Purpose**: Checks if a cheque with the same number has already been processed for the given account.
+- **Implementation**: Calls the `isDuplicateCheque` method of the `FraudDetection` class.
+
+#### `checkAbnormalAmount`
+- **Purpose**: Checks if the transaction amount is abnormal.
+- **Implementation**: Calls the `isAbnormalAmount` method of the `FraudDetection` class.
+
+#### `checkSuspiciousActivity`
+- **Purpose**: Checks for suspicious activity in the account.
+- **Implementation**: Calls the `isSuspiciousActivity` method of the `FraudDetection` class.
+
+#### `checkVelocityFraud`
+- **Purpose**: Checks if the number of transactions within the last 7 days exceeds a predefined threshold.
 - **Implementation**:
   - Maintains a list of recent transactions for each account.
-  - Filters transactions within the last 7 days (`VELOCITY_CHECK_DAYS`).
-  - Counts the number of recent transactions and compares it to a threshold (`VELOCITY_THRESHOLD`).
-  - Cleans up old transactions to optimize memory usage.
+  - Filters transactions within the last 7 days.
+  - Compares the count of recent transactions to the `VELOCITY_THRESHOLD`.
 
-#### `checkPatternFraud(String accountId, double amount)`
-- **Purpose**: Detects if the current transaction follows a suspicious pattern of similar amounts.
+#### `checkPatternFraud`
+- **Purpose**: Checks for repetitive patterns in transaction amounts.
 - **Implementation**:
-  - Retrieves recent transactions for the account.
-  - Compares the current amount with past amounts to calculate similarity.
-  - Flags fraud if at least three past transactions have a similarity above the `PATTERN_THRESHOLD` (95%).
+  - Analyzes the similarity of the current transaction amount with previous transactions.
+  - Uses a similarity threshold (`PATTERN_THRESHOLD`) to identify patterns.
 
-#### `checkHistoricalDuplicate(String accountId, String chequeNumber)`
-- **Purpose**: Checks if the cheque number exists in the historical records.
-- **Implementation**: Uses the `ChequeHistoryManager` class to retrieve historical cheque numbers for the account.
+#### `checkHistoricalDuplicate`
+- **Purpose**: Checks if the cheque matches any previously processed cheques for the account.
+- **Implementation**: Calls the `getChequeNumbers` method of the `ChequeHistoryManager` class.
 
-#### `checkUnusualFrequency(String accountId)`
-- **Purpose**: Detects if the frequency of recent transactions is unusually high.
+#### `checkUnusualFrequency`
+- **Purpose**: Checks if the frequency of transactions is abnormally high compared to historical data.
 - **Implementation**:
-  - Retrieves the total and recent cheque counts for the account from the `ChequeHistoryManager`.
-  - Compares the recent cheque count to the average monthly frequency multiplied by the `UNUSUAL_FREQUENCY_THRESHOLD` (3x).
+  - Retrieves the total and recent cheque counts from the `ChequeHistoryManager`.
+  - Compares the recent cheque count to the average monthly frequency multiplied by a threshold (`UNUSUAL_FREQUENCY_THRESHOLD`).
 
-#### `checkSimilarToRecent(String accountId, double amount)`
-- **Purpose**: Checks if the current transaction amount is similar to recent transactions.
-- **Implementation**: Uses the `ChequeHistoryManager` class to compare the current amount with recent cheque amounts based on a similarity threshold (`SIMILAR_AMOUNT_THRESHOLD`).
+#### `checkSimilarToRecent`
+- **Purpose**: Checks if the transaction amount is similar to recent transactions.
+- **Implementation**: Calls the `hasSimilarRecentCheque` method of the `ChequeHistoryManager` class.
 
-### 2. **Alert Level Determination**
-#### `determineAlertLevel(...)`
-- **Purpose**: Determines the fraud alert level based on the results of the individual fraud checks.
-- **Implementation**:
-  - Assigns weights to each fraud indicator.
-  - Calculates a total fraud score.
-  - Returns an alert level (`LOW`, `MEDIUM`, `HIGH`, or `CRITICAL`) based on the score.
+### Helper Methods
 
-### 3. **Logging Fraud Checks**
-#### `logFraudChecks(...)`
-- **Purpose**: Logs the results of all fraud checks for a given transaction.
-- **Implementation**:
-  - Prints a detailed report of the fraud checks, including basic and advanced checks.
-  - Summarizes whether any fraud was detected.
+#### `formatCheckResult`
+- **Purpose**: Formats the result of a fraud check for logging purposes.
+- **Implementation**: Returns "FAILED ⚠️" if the check failed, otherwise "Passed ✓".
 
-### 4. **Helper Methods and Classes**
-#### `formatCheckResult(boolean failed)`
-- **Purpose**: Formats the result of a fraud check for logging.
-- **Output**: Returns "FAILED ⚠️" if the check failed, otherwise "Passed ✓".
+### Nested Class: `ChequeTransaction`
+This class represents a cheque transaction and contains the following fields:
+- `amount`: The transaction amount.
+- `date`: The date of the transaction.
 
-#### `ChequeTransaction` (Inner Class)
-- **Purpose**: Represents a cheque transaction with an amount and date.
-- **Fields**:
-  - `double amount`: The amount of the cheque.
-  - `java.time.LocalDate date`: The date of the transaction.
-- **Methods**:
-  - `getAmount()`: Returns the amount of the transaction.
-  - `getDate()`: Returns the date of the transaction.
+It provides getter methods for these fields.
 
 ## External Dependencies
-
-### 1. **FraudDetection**
-- A class used to perform basic fraud checks such as detecting duplicate cheques, abnormal amounts, and suspicious activities.
-
-### 2. **ChequeHistoryManager**
-- A class used to manage historical cheque data and perform advanced fraud checks, such as detecting historical duplicates, unusual frequencies, and similar recent transactions.
+- **`FraudDetection`**: Provides methods for detecting duplicate cheques, abnormal amounts, and suspicious activities.
+- **`ChequeHistoryManager`**: Manages historical cheque data and provides methods for retrieving cheque history and frequency information.
 
 ## Constants
-- `VELOCITY_CHECK_DAYS`: Number of days to consider for velocity fraud detection (7 days).
-- `VELOCITY_THRESHOLD`: Maximum allowed transactions within the velocity check period (5 transactions).
-- `PATTERN_THRESHOLD`: Similarity threshold for pattern fraud detection (95%).
-- `SIMILAR_AMOUNT_THRESHOLD`: Similarity threshold for recent transaction amounts (90%).
-- `UNUSUAL_FREQUENCY_THRESHOLD`: Multiplier for detecting unusual frequency (3x).
+- `VELOCITY_CHECK_DAYS`: The number of days to consider for velocity fraud detection (default: 7 days).
+- `VELOCITY_THRESHOLD`: The maximum allowed number of transactions within the velocity check period (default: 5).
+- `PATTERN_THRESHOLD`: The similarity threshold for pattern fraud detection (default: 95%).
+- `SIMILAR_AMOUNT_THRESHOLD`: The similarity threshold for recent transaction comparison (default: 90%).
+- `UNUSUAL_FREQUENCY_THRESHOLD`: The multiplier for detecting unusual transaction frequency (default: 3x).
 
 ## Summary
-This code chunk is a comprehensive implementation of a fraud detection system for cheque transactions. It uses a combination of basic and advanced checks to identify potential fraud and assigns an appropriate alert level based on the severity of the detected issues. The system also logs detailed reports of the checks performed, making it easier to audit and analyze fraud detection results.
+This code chunk is a comprehensive implementation of a fraud detection system for cheque transactions. It uses a combination of basic and advanced checks to identify potential fraud and assigns an alert level based on the severity of the detected issues. The system is modular, allowing for easy integration with external components like `FraudDetection` and `ChequeHistoryManager`.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_11"
 confidence_score: 0.95
-external_dependencies: ["FraudDetection", "ChequeHistoryManager"]
+external_dependencies: ["FraudDetection", "ChequeHistoryManager", "AlertLevel"]
 ---
 
-# Documentation: Fraud Detection Methods in `DemoApplication`
+# Documentation for Fraud Detection Methods in `DemoApplication`
 
-This code chunk is part of a fraud detection system implemented in the `DemoApplication.java` file. It defines a method `isFraudulentCheque` that evaluates whether a cheque transaction is potentially fraudulent based on various criteria. The class also includes helper methods to perform specific fraud checks and utility methods for logging and formatting results.
+## Overview
+This code chunk is part of a fraud detection system that evaluates whether a cheque transaction is potentially fraudulent. It implements various checks, including duplicate detection, abnormal amounts, suspicious activity, velocity fraud, and pattern analysis. Additionally, it incorporates historical data checks if a `ChequeHistoryManager` is available.
 
-## `isFraudulentCheque` Method
+The main method, `isFraudulentCheque`, orchestrates these checks and determines the overall fraud status of a cheque transaction. The results of the checks are logged, and an alert level is determined based on the severity of the detected issues.
 
-### Purpose
-The `isFraudulentCheque` method determines whether a cheque transaction is fraudulent by performing a series of checks. It evaluates the transaction based on duplicate cheques, abnormal amounts, suspicious activity, velocity fraud, pattern fraud, historical duplicates, unusual frequency, and similarity to recent transactions.
+## Key Methods
 
-### Parameters
-- `String accountId`: The unique identifier for the account associated with the cheque.
-- `String chequeNumber`: The unique identifier for the cheque.
-- `double amount`: The monetary value of the cheque.
-
-### Returns
-- `boolean`: Returns `true` if the cheque is deemed fraudulent based on any of the checks; otherwise, returns `false`.
-
-### Workflow
-1. **Basic Checks**:
-   - `checkDuplicateCheque`: Checks if the cheque is a duplicate.
-   - `checkAbnormalAmount`: Checks if the cheque amount is abnormal.
-   - `checkSuspiciousActivity`: Checks for suspicious activity associated with the account and amount.
-   - `checkVelocityFraud`: Checks if the transaction frequency exceeds a predefined threshold.
-   - `checkPatternFraud`: Checks for patterns in recent transactions that indicate fraud.
-
-2. **Advanced Checks** (if `historyManager` is available):
-   - `checkHistoricalDuplicate`: Checks if the cheque number exists in historical records.
-   - `checkUnusualFrequency`: Checks if the frequency of transactions is unusually high.
-   - `checkSimilarToRecent`: Checks if the cheque amount is similar to recent transactions.
-
-3. **Logging**:
-   - `logFraudChecks`: Logs the results of all fraud checks for auditing and debugging purposes.
-
-4. **Alert Level Determination**:
-   - `determineAlertLevel`: Assigns an alert level (CRITICAL, HIGH, MEDIUM, LOW) based on the results of the checks.
-
-5. **Final Decision**:
-   - Returns `true` if any of the checks indicate fraud; otherwise, returns `false`.
-
-## Helper Methods
+### `isFraudulentCheque`
+```java
+public boolean isFraudulentCheque(String accountId, String chequeNumber, double amount)
+```
+This is the main method that evaluates whether a cheque is fraudulent. It performs the following steps:
+1. Executes basic fraud checks: duplicate cheque, abnormal amount, suspicious activity, velocity fraud, and pattern fraud.
+2. If a `ChequeHistoryManager` is available, it performs additional checks: historical duplicate, unusual frequency, and similarity to recent transactions.
+3. Logs the results of all checks.
+4. Determines the fraud alert level using the `determineAlertLevel` method.
+5. Returns `true` if any of the checks indicate fraud; otherwise, returns `false`.
 
 ### `checkDuplicateCheque`
-- **Purpose**: Checks if the cheque is a duplicate.
-- **Implementation**: Delegates to the `isDuplicateCheque` method of the `FraudDetection` class.
+```java
+private boolean checkDuplicateCheque(String accountId, String chequeNumber)
+```
+Checks if the cheque is a duplicate using the `FraudDetection` service.
 
 ### `checkAbnormalAmount`
-- **Purpose**: Checks if the cheque amount is abnormal.
-- **Implementation**: Delegates to the `isAbnormalAmount` method of the `FraudDetection` class.
+```java
+private boolean checkAbnormalAmount(double amount)
+```
+Checks if the cheque amount is abnormal using the `FraudDetection` service.
 
 ### `checkSuspiciousActivity`
-- **Purpose**: Checks for suspicious activity based on the account and amount.
-- **Implementation**: Delegates to the `isSuspiciousActivity` method of the `FraudDetection` class.
+```java
+private boolean checkSuspiciousActivity(String accountId, double amount)
+```
+Checks for suspicious activity associated with the account and amount using the `FraudDetection` service.
 
 ### `checkVelocityFraud`
-- **Purpose**: Checks if the transaction frequency exceeds a predefined threshold.
-- **Implementation**:
-  - Maintains a list of recent transactions for each account.
-  - Filters transactions within a specific time window (`VELOCITY_CHECK_DAYS`).
-  - Compares the count of recent transactions to a threshold (`VELOCITY_THRESHOLD`).
+```java
+private boolean checkVelocityFraud(String accountId, double amount)
+```
+Detects velocity fraud by analyzing the frequency of recent transactions for the account. It uses the constants:
+- `VELOCITY_CHECK_DAYS`: Number of days to consider for velocity checks (7 days).
+- `VELOCITY_THRESHOLD`: Maximum allowed transactions within the velocity check period (5 transactions).
 
 ### `checkPatternFraud`
-- **Purpose**: Checks for patterns in recent transactions that indicate fraud.
-- **Implementation**:
-  - Analyzes recent transactions for the account.
-  - Compares the similarity of amounts to a predefined threshold (`PATTERN_THRESHOLD`).
+```java
+private boolean checkPatternFraud(String accountId, double amount)
+```
+Analyzes transaction patterns to detect fraud. It checks if the current transaction amount is similar to at least three recent transactions using the `PATTERN_THRESHOLD` constant (95% similarity).
 
 ### `checkHistoricalDuplicate`
-- **Purpose**: Checks if the cheque number exists in historical records.
-- **Implementation**: Uses the `ChequeHistoryManager` class to retrieve historical cheque numbers for the account.
+```java
+private boolean checkHistoricalDuplicate(String accountId, String chequeNumber)
+```
+Checks if the cheque number exists in the historical records using the `ChequeHistoryManager`.
 
 ### `checkUnusualFrequency`
-- **Purpose**: Checks if the frequency of transactions is unusually high.
-- **Implementation**:
-  - Retrieves total and recent cheque counts from the `ChequeHistoryManager`.
-  - Compares recent cheque counts to an average monthly frequency multiplied by a threshold (`UNUSUAL_FREQUENCY_THRESHOLD`).
+```java
+private boolean checkUnusualFrequency(String accountId)
+```
+Detects unusual transaction frequency by comparing recent transaction counts to the average monthly frequency. It uses the `UNUSUAL_FREQUENCY_THRESHOLD` constant (3x normal frequency).
 
 ### `checkSimilarToRecent`
-- **Purpose**: Checks if the cheque amount is similar to recent transactions.
-- **Implementation**: Uses the `ChequeHistoryManager` to find similar recent cheques based on a similarity threshold (`SIMILAR_AMOUNT_THRESHOLD`).
+```java
+private boolean checkSimilarToRecent(String accountId, double amount)
+```
+Checks if the current transaction amount is similar to recent transactions using the `SIMILAR_AMOUNT_THRESHOLD` constant (90% similarity).
 
 ### `determineAlertLevel`
-- **Purpose**: Assigns an alert level based on the results of the fraud checks.
-- **Implementation**:
-  - Calculates a fraud score based on the number and severity of failed checks.
-  - Returns one of the following alert levels: `CRITICAL`, `HIGH`, `MEDIUM`, or `LOW`.
+```java
+private AlertLevel determineAlertLevel(boolean isDuplicate, boolean isAbnormal,
+                                       boolean isSuspicious, boolean isVelocityFraud,
+                                       boolean isPatternFraud, boolean isHistoricalDuplicate,
+                                       boolean isUnusualFrequency, boolean isSimilarToRecent)
+```
+Determines the fraud alert level based on the results of the checks. The alert levels are:
+- `LOW`
+- `MEDIUM`
+- `HIGH`
+- `CRITICAL`
 
 ### `logFraudChecks`
-- **Purpose**: Logs the results of all fraud checks for auditing and debugging purposes.
-- **Implementation**:
-  - Prints a detailed report of the fraud checks, including basic and advanced checks.
-  - Summarizes whether any fraud was detected.
+```java
+private void logFraudChecks(String accountId, String chequeNumber, double amount,
+                            boolean isDuplicate, boolean isAbnormal, boolean isSuspicious,
+                            boolean isVelocityFraud, boolean isPatternFraud,
+                            boolean isHistoricalDuplicate, boolean isUnusualFrequency,
+                            boolean isSimilarToRecent)
+```
+Logs the results of all fraud checks and provides a summary indicating whether fraud was detected.
 
-### `formatCheckResult`
-- **Purpose**: Formats the result of a fraud check for logging.
-- **Implementation**: Returns "FAILED ⚠️" if the check failed, otherwise returns "Passed ✓".
+### `ChequeTransaction` (Inner Class)
+```java
+private static class ChequeTransaction
+```
+Represents a cheque transaction with the following fields:
+- `amount`: The transaction amount.
+- `date`: The transaction date.
 
-## Nested Class: `ChequeTransaction`
-
-### Purpose
-Represents a single cheque transaction with an amount and a date.
-
-### Fields
-- `double amount`: The monetary value of the cheque.
-- `java.time.LocalDate date`: The date of the transaction.
-
-### Constructor
-- `ChequeTransaction(double amount, java.time.LocalDate date)`: Initializes the transaction with the specified amount and date.
-
-### Methods
-- `double getAmount()`: Returns the amount of the transaction.
-- `java.time.LocalDate getDate()`: Returns the date of the transaction.
+## Constants
+- `VELOCITY_CHECK_DAYS`: 7 days.
+- `VELOCITY_THRESHOLD`: 5 transactions.
+- `PATTERN_THRESHOLD`: 95% similarity.
+- `SIMILAR_AMOUNT_THRESHOLD`: 90% similarity.
+- `UNUSUAL_FREQUENCY_THRESHOLD`: 3x normal frequency.
 
 ## External Dependencies
-
-### `FraudDetection`
-A service class used for basic fraud checks such as duplicate cheques, abnormal amounts, and suspicious activity.
-
-### `ChequeHistoryManager`
-A mock implementation that manages historical cheque data. Provides methods to retrieve cheque history and analyze transaction patterns.
+- `FraudDetection`: Provides methods for detecting duplicate cheques, abnormal amounts, and suspicious activity.
+- `ChequeHistoryManager`: Manages historical cheque data and provides methods for advanced fraud checks.
+- `AlertLevel`: Enum representing the fraud alert levels.
 
 === NEXT CHUNK ===
 
@@ -1259,115 +1176,91 @@ A mock implementation that manages historical cheque data. Provides methods to r
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_12"
-confidence_score: 0.9
+confidence_score: 0.85
 external_dependencies: ["FraudDetection", "ChequeHistoryManager", "ChequeTransaction"]
 ---
 
-# FraudDetectionServiceV2 Class Documentation
+# FraudDetectionServiceV2 Class
 
-## Overview
-The `FraudDetectionServiceV2` class is a service designed to detect fraudulent cheque activities. It implements various fraud detection mechanisms and integrates with the `ChequeHistoryManager` to analyze historical cheque data. The class uses multiple strategies to identify potential fraud, such as detecting duplicate cheques, abnormal amounts, suspicious activities, velocity fraud, and pattern-based fraud.
+The `FraudDetectionServiceV2` class is a service designed to detect fraudulent cheque activities. It implements various fraud detection mechanisms and integrates with a `ChequeHistoryManager` to analyze historical cheque data. This class is part of a larger system for managing and analyzing cheque transactions.
 
 ## Fields
 
-### Fraud Detection Components
-- **fraudDetection**: An instance of the `FraudDetection` class, which provides methods for detecting specific types of fraud (e.g., duplicate cheques, abnormal amounts, suspicious activities).
-- **historyManager**: An instance of the `ChequeHistoryManager` class, used to retrieve historical cheque data for fraud analysis.
+### Private Fields
 
-### Data Structures
-- **recentTransactions**: A map that stores recent cheque transactions for each account.
-- **duplicateChequeCounter**: A map that tracks the count of duplicate cheques for each account.
-- **abnormalAmounts**: A map that stores abnormal cheque amounts for each account.
-- **suspiciousAmounts**: A map that stores suspicious cheque amounts for each account.
-- **velocityAmounts**: A map that tracks cheque amounts for velocity fraud detection.
-- **patternAmounts**: A map that tracks cheque amounts for pattern-based fraud detection.
-- **historicalDuplicateAmounts**: A map that tracks historical duplicate cheque amounts.
-- **unusualFrequencyAmounts**: A map that tracks cheque amounts with unusual frequency.
-- **similarToRecentAmounts**: A map that tracks cheque amounts similar to recent transactions.
-- **fraudLogs**: A list of strings used to log fraud detection activities.
+- **fraudDetection**: An instance of the `FraudDetection` class, used to perform core fraud detection operations such as checking for duplicate cheques, abnormal amounts, and suspicious activities.
+- **historyManager**: An instance of the `ChequeHistoryManager` class, used to retrieve historical cheque data for fraud analysis.
+- **recentTransactions**: A `Map<String, List<ChequeTransaction>>` that stores recent cheque transactions for each account.
+- **duplicateChequeCounter**: A `Map<String, Integer>` that tracks the count of duplicate cheques for each account.
+- **abnormalAmounts**: A `Map<String, List<Double>>` that stores abnormal cheque amounts for each account.
+- **suspiciousAmounts**: A `Map<String, List<Double>>` that stores suspicious cheque amounts for each account.
+- **velocityAmounts**: A `Map<String, List<Double>>` that tracks cheque amounts for velocity-based fraud detection.
+- **patternAmounts**: A `Map<String, List<Double>>` that tracks cheque amounts for pattern-based fraud detection.
+- **historicalDuplicateAmounts**: A `Map<String, List<Double>>` that tracks historical duplicate cheque amounts.
+- **unusualFrequencyAmounts**: A `Map<String, List<Double>>` that tracks cheque amounts with unusual frequency.
+- **similarToRecentAmounts**: A `Map<String, List<Double>>` that tracks cheque amounts similar to recent transactions.
+- **fraudLogs**: A `List<String>` that stores logs of fraud detection activities.
 - **totalFraudChecks**: An integer counter for the total number of fraud checks performed.
 
-### Fraud Detection Thresholds
-- **VELOCITY_CHECK_DAYS**: The number of days to consider for velocity fraud detection (default: 7 days).
-- **VELOCITY_THRESHOLD**: The maximum number of transactions allowed within the velocity check period (default: 5 transactions).
-- **PATTERN_THRESHOLD**: The similarity threshold for pattern-based fraud detection (default: 95%).
-- **SIMILAR_AMOUNT_THRESHOLD**: The similarity threshold for detecting amounts similar to recent transactions (default: 90%).
-- **UNUSUAL_FREQUENCY_THRESHOLD**: The multiplier for detecting unusual frequency of transactions (default: 3x normal frequency).
+### Constants
 
-### Fraud Alert Levels
-The `AlertLevel` enum defines the levels of fraud alerts:
-- **LOW**
-- **MEDIUM**
-- **HIGH**
-- **CRITICAL**
-
-## Constructor
-
-### FraudDetectionServiceV2()
-Initializes the `FraudDetectionServiceV2` instance and its internal data structures.
+- **VELOCITY_CHECK_DAYS**: The number of days to consider for velocity-based fraud detection (7 days).
+- **VELOCITY_THRESHOLD**: The maximum number of transactions allowed within the velocity check period (5 transactions).
+- **PATTERN_THRESHOLD**: The similarity threshold for pattern-based fraud detection (95%).
+- **SIMILAR_AMOUNT_THRESHOLD**: The similarity threshold for detecting amounts similar to recent transactions (90%).
+- **UNUSUAL_FREQUENCY_THRESHOLD**: The multiplier for detecting unusual frequency of transactions (3x normal frequency).
 
 ## Methods
 
-### setHistoryManager(ChequeHistoryManager historyManager)
-Sets the `ChequeHistoryManager` instance for retrieving historical cheque data.
+### Constructor
 
-### isFraudulentCheque(String accountId, String chequeNumber, double amount)
-Performs a comprehensive fraud check for a given cheque. It evaluates multiple fraud detection criteria and determines the fraud alert level.
+- **FraudDetectionServiceV2()**: Initializes the service with default values and data structures. It also creates an instance of the `FraudDetection` class.
 
-#### Parameters:
-- **accountId**: The account ID associated with the cheque.
-- **chequeNumber**: The cheque number.
-- **amount**: The cheque amount.
+### Public Methods
 
-#### Returns:
-- **boolean**: `true` if the cheque is fraudulent, `false` otherwise.
+- **setHistoryManager(ChequeHistoryManager historyManager)**: Sets the `ChequeHistoryManager` instance for the service.
+- **isFraudulentCheque(String accountId, String chequeNumber, double amount)**: Determines if a cheque is fraudulent by performing various checks, including:
+  - Duplicate cheque detection
+  - Abnormal amount detection
+  - Suspicious activity detection
+  - Velocity-based fraud detection
+  - Pattern-based fraud detection
+  - Historical duplicate detection (if `historyManager` is set)
+  - Unusual frequency detection (if `historyManager` is set)
+  - Similar-to-recent detection (if `historyManager` is set)
 
-### Private Helper Methods
+  Returns `true` if any of the checks indicate fraud, otherwise returns `false`.
 
-#### checkDuplicateCheque(String accountId, String chequeNumber)
-Checks if the cheque is a duplicate using the `FraudDetection` class.
+### Private Methods
 
-#### checkAbnormalAmount(double amount)
-Checks if the cheque amount is abnormal using the `FraudDetection` class.
+- **checkDuplicateCheque(String accountId, String chequeNumber)**: Checks if a cheque is a duplicate using the `FraudDetection` instance.
+- **checkAbnormalAmount(double amount)**: Checks if the cheque amount is abnormal using the `FraudDetection` instance.
+- **checkSuspiciousActivity(String accountId, double amount)**: Checks for suspicious activity using the `FraudDetection` instance.
+- **checkVelocityFraud(String accountId, double amount)**: Checks for velocity-based fraud by analyzing the number of transactions within the last 7 days.
+- **checkPatternFraud(String accountId, double amount)**: Checks for pattern-based fraud by analyzing the similarity of the current cheque amount to previous transactions.
+- **checkHistoricalDuplicate(String accountId, String chequeNumber)**: Checks for historical duplicates using the `ChequeHistoryManager` instance.
+- **checkUnusualFrequency(String accountId)**: Checks for unusual frequency of transactions using the `ChequeHistoryManager` instance.
+- **checkSimilarToRecent(String accountId, double amount)**: Checks if the cheque amount is similar to recent transactions using the `ChequeHistoryManager` instance.
+- **determineAlertLevel(...)**: Determines the fraud alert level (LOW, MEDIUM, HIGH, CRITICAL) based on the results of the fraud checks.
+- **logFraudChecks(...)**: Logs the results of the fraud checks for auditing and debugging purposes.
 
-#### checkSuspiciousActivity(String accountId, double amount)
-Checks for suspicious activity using the `FraudDetection` class.
+## Enums
 
-#### checkVelocityFraud(String accountId, double amount)
-Detects velocity fraud by analyzing the frequency of recent transactions for the account.
-
-#### checkPatternFraud(String accountId, double amount)
-Detects pattern-based fraud by analyzing the similarity of recent transaction amounts.
-
-#### checkHistoricalDuplicate(String accountId, String chequeNumber)
-Checks for historical duplicate cheques using the `ChequeHistoryManager`.
-
-#### checkUnusualFrequency(String accountId)
-Detects unusual frequency of transactions using the `ChequeHistoryManager`.
-
-#### checkSimilarToRecent(String accountId, double amount)
-Checks if the cheque amount is similar to recent transactions using the `ChequeHistoryManager`.
-
-#### determineAlertLevel(...)
-Determines the fraud alert level based on the results of various fraud checks.
-
-#### logFraudChecks(...)
-Logs the results of the fraud checks for a given cheque.
+- **AlertLevel**: Represents the severity of a fraud alert. Possible values are:
+  - `LOW`
+  - `MEDIUM`
+  - `HIGH`
+  - `CRITICAL`
 
 ## External Dependencies
 
-### FraudDetection
-A class that provides methods for detecting specific types of fraud. The exact implementation is not provided in the current context.
-
-### ChequeHistoryManager
-A mock implementation for managing historical cheque data. It provides methods to record and retrieve cheque history.
-
-### ChequeTransaction
-A class representing a cheque transaction. The exact implementation is not provided in the current context.
+- **FraudDetection**: Used for core fraud detection operations.
+- **ChequeHistoryManager**: Used for retrieving historical cheque data.
+- **ChequeTransaction**: Represents a cheque transaction, including details like amount and date.
 
 ## Notes
-- The `FraudDetection` and `ChequeTransaction` classes are not fully defined in the provided code or search results. Their functionality is inferred based on their usage in the `FraudDetectionServiceV2` class.
-- The `ChequeHistoryManager` is a mock implementation that stores and retrieves cheque history for fraud analysis.
+
+This class is a critical component of the fraud detection system. It combines real-time and historical data analysis to identify potentially fraudulent cheque activities. The integration with `ChequeHistoryManager` enhances its capabilities by allowing it to analyze historical trends and patterns.
 
 === NEXT CHUNK ===
 
@@ -1375,87 +1268,69 @@ A class representing a cheque transaction. The exact implementation is not provi
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_13"
-confidence_score: 0.95
-external_dependencies: ["ChequeHistoryManager", "FraudDetection", "AdminService"]
+confidence_score: 0.9
+external_dependencies: ["historyManager", "formatCheckResult", "isDuplicate", "isAbnormal", "isSuspicious", "isVelocityFraud", "isPatternFraud", "isHistoricalDuplicate", "isUnusualFrequency", "isSimilarToRecent"]
 ---
 
+# Documentation for Code Chunk
+
 ## Overview
-This code chunk is part of a larger Java-based application that includes functionality for fraud detection, cheque transaction management, and administrative operations. It integrates basic and advanced fraud detection checks, provides methods for managing master data and batch transactions, and handles stuck transactions. The system is modular, leveraging external dependencies like `ChequeHistoryManager` and `FraudDetection` for enhanced functionality.
+This code chunk is part of a fraud detection system. It performs a series of checks to identify potential fraudulent activities related to cheque transactions. The checks are divided into two categories: **Basic Checks** and **Advanced Checks**. A summary is then printed to indicate whether any fraud was detected.
 
-### Key Components
+## Key Components
 
-#### Fraud Detection
-The fraud detection system is divided into two categories:
+### Basic Checks
+The following checks are performed as part of the basic fraud detection:
 
-1. **Basic Checks**:
-   - **Duplicate Check**: Identifies if the cheque is a duplicate.
-   - **Abnormal Amount Check**: Flags cheques with amounts exceeding a predefined threshold.
-   - **Suspicious Activity Check**: Detects unusual account activity or transaction patterns.
-   - **Velocity Check**: Monitors rapid transactions that may indicate fraud.
-   - **Pattern Analysis**: Analyzes transaction patterns for irregularities.
+1. **Duplicate Check**: Determines if the cheque is a duplicate.
+2. **Abnormal Amount Check**: Checks if the cheque amount exceeds a predefined threshold.
+3. **Suspicious Activity Check**: Identifies if the account activity is suspicious based on predefined rules.
+4. **Velocity Check**: Detects rapid transactions that may indicate fraudulent behavior.
+5. **Pattern Analysis**: Analyzes transaction patterns to identify anomalies.
 
-2. **Advanced Checks** (if `ChequeHistoryManager` is available):
-   - **Historical Duplicate Check**: Compares the cheque against historical data for duplicates.
-   - **Unusual Frequency Check**: Detects unusually high transaction frequencies.
-   - **Similar Recent Amount Check**: Identifies cheques with amounts similar to recent transactions.
+### Advanced Checks
+If the `historyManager` object is not null, additional advanced checks are performed:
 
-#### Administrative Services
-The `AdminService` class provides methods for managing master data and batch transactions:
+1. **Historical Duplicate Check**: Checks if the cheque matches any historical duplicates.
+2. **Unusual Frequency Check**: Identifies unusual transaction frequencies.
+3. **Similar Recent Amount Check**: Compares the cheque amount with recent transactions to find similarities.
 
-- **`addOrUpdateIFSC(String ifsc, String bankCode)`**:
-  - Maps an IFSC code to a bank code.
-  - Logs the mapping operation.
+### Fraud Detection Summary
+After performing the checks, the system evaluates whether any fraud was detected. If any of the checks fail, a fraud alert is printed. Otherwise, a message indicating no fraud is displayed.
 
-- **`createBatch(String batchId, List<BatchCheque> cheques)`**:
-  - Creates a new batch of cheques identified by a unique batch ID.
-  - Stores the batch for future processing.
+## Methods
 
-- **`markTransactionStuck(String chequeNumber)`**:
-  - Marks a cheque transaction as stuck.
-  - Adds the cheque number to a set of stuck transactions.
-
-#### Fraud Detection Summary
-After performing the checks, the system determines if any fraud has been detected. If any check fails, a fraud alert is generated; otherwise, a message indicating no fraud is displayed.
-
-### Methods
-
-#### `formatCheckResult(boolean failed)`
-This private method formats the result of a check into a user-friendly string.
-
-- **Parameters**:
-  - `failed` (boolean): Indicates whether the check failed.
-- **Returns**: A string indicating the result of the check ("FAILED ⚠️" or "Passed ✓").
-
-#### `ChequeTransaction` (Nested Class)
-This static nested class represents a cheque transaction.
-
-- **Fields**:
-  - `amount` (double): The amount of the cheque.
-  - `date` (java.time.LocalDate): The date of the cheque transaction.
-- **Constructor**:
-  - `ChequeTransaction(double amount, java.time.LocalDate date)`: Initializes a cheque transaction with the specified amount and date.
-- **Methods**:
-  - `getAmount()`: Returns the amount of the cheque.
-  - `getDate()`: Returns the date of the cheque transaction.
+### `formatCheckResult`
+```java
+private String formatCheckResult(boolean failed) {
+    return failed ? "FAILED ⚠️" : "Passed ✓";
+}
+```
+This method formats the result of a check. If the check fails (`failed` is `true`), it returns "FAILED ⚠️". Otherwise, it returns "Passed ✓".
 
 ### External Dependencies
 
-#### `ChequeHistoryManager`
-This class manages the history of cheque transactions. It provides methods to record and retrieve historical cheque data, which are utilized in advanced fraud detection checks.
+#### `historyManager`
+The `historyManager` object is used to perform advanced checks. It provides methods to retrieve historical cheque data and analyze transaction patterns.
 
-#### `FraudDetection`
-This class implements the core fraud detection mechanisms, including methods for detecting duplicate cheques, abnormal amounts, suspicious activities, velocity fraud, and pattern fraud. It also supports advanced checks like historical duplicate detection, unusual frequency detection, and similar recent amount detection.
+#### Fraud Detection Methods
+The following methods are used to perform the checks:
+- `isDuplicate`: Checks for duplicate cheques.
+- `isAbnormal`: Checks for abnormal cheque amounts.
+- `isSuspicious`: Identifies suspicious account activity.
+- `isVelocityFraud`: Detects rapid transactions.
+- `isPatternFraud`: Analyzes transaction patterns.
+- `isHistoricalDuplicate`: Checks for historical duplicates.
+- `isUnusualFrequency`: Identifies unusual transaction frequencies.
+- `isSimilarToRecent`: Compares the cheque amount with recent transactions.
 
-#### `AdminService`
-This class handles administrative tasks such as managing master data (e.g., IFSC codes and bank codes) and batch transactions. It also provides functionality for marking transactions as stuck.
-
-### Summary
-This code chunk is a critical component of a comprehensive fraud detection and transaction management system. It combines basic and advanced fraud detection checks with administrative capabilities to ensure robust and efficient operations. The modular design and use of external dependencies like `ChequeHistoryManager`, `FraudDetection`, and `AdminService` enhance the system's functionality and maintainability.
+## Summary
+This code chunk is a critical part of the fraud detection system, providing both basic and advanced checks to identify potential fraudulent activities. The results of these checks are formatted and displayed to the user, along with a summary indicating whether any fraud was detected.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_14"
 confidence_score: 0.9
@@ -1464,82 +1339,63 @@ external_dependencies: ["BatchCheque"]
 
 # Documentation for Code Chunk
 
-This code chunk is part of a Java application that appears to manage cheque processing, including batch details and stuck transactions. Below is a detailed explanation of the methods in this chunk:
+This code chunk is part of a cheque processing application. It provides functionality for managing cheque batches and handling stuck transactions. Below is a detailed explanation of the methods included in this chunk:
 
 ## Methods
 
 ### `displayBatchDetails(String batchId)`
-This method retrieves and displays the details of a specific batch of cheques identified by the `batchId`.
+This method retrieves and displays the details of a specific cheque batch identified by its `batchId`.
 
-#### Parameters:
-- `batchId` (String): The unique identifier for the batch of cheques.
-
-#### Functionality:
-1. Retrieves the list of `BatchCheque` objects associated with the given `batchId` from the `batches` map.
-2. If no batch is found for the given `batchId`, it prints "Batch not found." and exits the method.
-3. If a batch is found, it iterates through the list of `BatchCheque` objects and prints the details of each cheque, including:
-   - Account number
-   - Cheque number
-   - Amount
-   - Currency
-
-#### Dependencies:
-- `BatchCheque`: A class representing a cheque in a batch. It contains fields such as `accountNumber`, `chequeNumber`, `amount`, and `currency`.
-- `batches`: A `Map` that stores batch IDs as keys and lists of `BatchCheque` objects as values.
-
----
+- **Parameters:**
+  - `batchId` (String): The unique identifier for the batch.
+- **Functionality:**
+  - Retrieves the list of cheques associated with the given `batchId` from the `batches` map.
+  - If the batch is not found, it prints "Batch not found." and exits the method.
+  - If the batch is found, it iterates through the list of `BatchCheque` objects and prints their details, including:
+    - Account number
+    - Cheque number
+    - Amount
+    - Currency
 
 ### `markTransactionStuck(String chequeNumber)`
-This method marks a cheque as "stuck" by adding its cheque number to a collection of stuck transactions.
+This method marks a cheque as "stuck" by adding its cheque number to the `stuckTransactions` set.
 
-#### Parameters:
-- `chequeNumber` (String): The unique identifier of the cheque to be marked as stuck.
-
-#### Functionality:
-1. Adds the `chequeNumber` to the `stuckTransactions` collection.
-2. Prints a confirmation message indicating that the cheque has been marked as stuck.
-
-#### Dependencies:
-- `stuckTransactions`: A collection (likely a `Set` or `List`) that stores the cheque numbers of stuck transactions.
-
----
+- **Parameters:**
+  - `chequeNumber` (String): The unique identifier for the cheque.
+- **Functionality:**
+  - Adds the `chequeNumber` to the `stuckTransactions` set.
+  - Prints a confirmation message indicating that the cheque has been marked as stuck.
 
 ### `resetStuckTransaction(String chequeNumber)`
-This method removes a cheque from the list of stuck transactions.
+This method removes a cheque from the "stuck" list if it exists.
 
-#### Parameters:
-- `chequeNumber` (String): The unique identifier of the cheque to be reset.
-
-#### Functionality:
-1. Attempts to remove the `chequeNumber` from the `stuckTransactions` collection.
-2. If the cheque number is successfully removed, it prints a confirmation message.
-3. If the cheque number is not found in the `stuckTransactions` collection, it prints a message indicating that the cheque was not marked as stuck.
-
-#### Dependencies:
-- `stuckTransactions`: A collection that stores the cheque numbers of stuck transactions.
-
----
+- **Parameters:**
+  - `chequeNumber` (String): The unique identifier for the cheque.
+- **Functionality:**
+  - Attempts to remove the `chequeNumber` from the `stuckTransactions` set.
+  - If successful, prints a confirmation message.
+  - If the cheque was not in the "stuck" list, prints a message indicating that the cheque was not marked as stuck.
 
 ### `displayStuckTransactions()`
-This method displays all the cheque numbers currently marked as stuck.
+This method displays all cheques currently marked as "stuck."
 
-#### Parameters:
-- None
-
-#### Functionality:
-1. Prints a header "--- Stuck Transactions ---".
-2. If the `stuckTransactions` collection is empty, it prints "No stuck transactions.".
-3. If the collection is not empty, it iterates through the `stuckTransactions` collection and prints each cheque number.
-
-#### Dependencies:
-- `stuckTransactions`: A collection that stores the cheque numbers of stuck transactions.
-
----
+- **Parameters:**
+  - None
+- **Functionality:**
+  - Prints a header "--- Stuck Transactions ---".
+  - If the `stuckTransactions` set is empty, prints "No stuck transactions.".
+  - Otherwise, iterates through the set and prints each cheque number.
 
 ## External Dependencies
-- **`BatchCheque`**: A class representing a cheque in a batch. It is used in the `displayBatchDetails` method to access cheque details such as `accountNumber`, `chequeNumber`, `amount`, and `currency`.
-- **`batches`**: A `Map` that associates batch IDs with lists of `BatchCheque` objects. It is used in the `displayBatchDetails` method.
-- **`stuckTransactions`**: A collection (likely a `Set` or `List`) that stores the cheque numbers of stuck transactions. It is used in the `markTransactionStuck`, `resetStuckTransaction`, and `displayStuckTransactions` methods.
+
+- **`BatchCheque`**: This class represents a cheque and is used to store details such as account number, cheque number, amount, and currency. The exact implementation of this class was not provided in the code chunk but is referenced in the `displayBatchDetails` method.
+
+## Notes
+
+- The `batches` map is used to store cheque batches, where the key is the batch ID and the value is a list of `BatchCheque` objects. This map is assumed to be defined elsewhere in the class.
+- The `stuckTransactions` set is used to track cheques that are marked as "stuck." This set is also assumed to be defined elsewhere in the class.
+
+This code is part of a larger application for managing cheque processing, and the methods here focus on batch management and handling stuck transactions.
 
 === NEXT CHUNK ===
 
@@ -1554,63 +1410,96 @@ external_dependencies: ["CurrencyExchangeService", "SignatureVerificationService
 # Documentation for `ChequeApplication` Class
 
 ## Overview
-The `ChequeApplication` class serves as the entry point for a comprehensive cheque processing system. It initializes various services, handles user authentication, and provides a menu-driven interface for performing multiple cheque-related operations. The system includes enhanced fraud detection, cheque history management, and administrative tools.
+The `ChequeApplication` class serves as the main entry point for a cheque processing system. It initializes various services, handles user authentication, and provides a menu-driven interface for performing a wide range of cheque-related operations. The system includes enhanced fraud detection, cheque history management, and administrative tools.
 
-## Key Functionalities
+## Key Features
+- User authentication and session management.
+- Cheque processing (single and batch).
+- Fraud detection and exception reporting.
+- Currency exchange information.
+- Cheque image scanning, encryption, and submission.
+- Administrative tools for managing IFSC codes, batches, and stuck transactions.
 
-### 1. **System Initialization**
-The `main` method initializes the following services:
-- **CurrencyExchangeService**: Handles currency exchange operations.
-- **SignatureVerificationService**: Verifies cheque signatures.
-- **CoreBankingSystemUpdater**: Updates the core banking system with cheque transactions.
-- **UserService**: Manages user authentication and information.
-- **ChequeHistoryManager**: Tracks and displays cheque history.
-- **FraudDetectionService**: Detects fraudulent cheque activities.
-- **ExceptionReportManager**: Manages and displays cheque exception reports.
-- **ChequeStatusManager**: Tracks the status of cheques.
-- **EmailNotificationService**: Sends email notifications.
-- **AdminService**: Provides administrative functionalities.
-- **ChequeImageHandler**: Handles cheque image processing.
-- **CryptographyService**: Encrypts and signs cheque data.
-- **ClearinghouseService**: Sends cheque data to the clearinghouse.
+## Code Walkthrough
 
-### 2. **User Authentication**
-The `performLogin` method is invoked to authenticate the user. If authentication fails after multiple attempts, the system exits.
+### `main` Method
+The `main` method is the entry point of the application. It performs the following tasks:
 
-### 3. **Menu-Driven Operations**
-The application provides a menu with the following options:
+1. **Initialization**:
+   - Initializes various services required for cheque processing, such as:
+     - `CurrencyExchangeService`
+     - `SignatureVerificationService`
+     - `CoreBankingSystemUpdater`
+     - `UserService`
+     - `ChequeHistoryManager`
+     - `FraudDetectionService`
+     - `ExceptionReportManager`
+     - `ChequeStatusManager`
+     - `EmailNotificationService`
+     - `AdminService`
+     - `ChequeImageHandler`
+     - `CryptographyService`
+     - `ClearinghouseService`
+   - Sets up dependencies, such as linking the `FraudDetectionService` with the `ChequeHistoryManager`.
 
-#### Cheque Processing
-- **Process a Single Cheque**: Prompts the user for cheque details and processes it using the `ChequeProcessor`.
-- **Process Multiple Cheques (Batch)**: Invokes the `processChequeBatch` method to handle batch processing.
+2. **User Authentication**:
+   - Calls the `performLogin` method to authenticate the user. If authentication fails after multiple attempts, the application exits.
 
-#### Cheque History and Reports
-- **View Cheque History**: Displays the cheque history for a specific account using `ChequeHistoryManager`.
-- **Generate Cheque Reports**: Calls `handleReportGeneration` to generate detailed reports.
+3. **Main Menu**:
+   - Displays a menu with various options for the user to interact with the system. The options include:
+     1. Process a single cheque.
+     2. Process multiple cheques in a batch.
+     3. View cheque history.
+     4. Display currency exchange information.
+     5. Generate cheque reports.
+     6. Scan, encrypt, and send a cheque image.
+     7. Simulate cheque printing.
+     8. Exit the application.
+     9. View cheque exception reports.
+     10. View all cheque statuses.
+     11. Cancel a cheque.
+     12. Record FIR/legal complaint for a bounced cheque.
+     13. Admin: Edit IFSC/Bank codes.
+     14. Admin: Manage batches.
+     15. Admin: Reset stuck transactions.
 
-#### Currency Exchange
-- **Currency Exchange Information**: Displays a currency exchange menu using `displayCurrencyExchangeMenu`.
+4. **Menu Option Handling**:
+   - The user selects an option by entering a number. The application then performs the corresponding action using helper methods and services. For example:
+     - **Option 1**: Processes a single cheque using the `ChequeProcessor` service.
+     - **Option 2**: Processes multiple cheques in a batch using the `processChequeBatch` method.
+     - **Option 3**: Displays cheque history using the `ChequeHistoryManager`.
+     - **Option 4**: Displays currency exchange information using the `displayCurrencyExchangeMenu` method.
+     - **Option 5**: Generates reports using the `handleReportGeneration` method.
+     - **Option 6**: Handles cheque image submission using the `handleChequeImageSubmission` method.
+     - **Option 7**: Simulates cheque printing using the `ChequePrintingService`.
+     - **Option 8**: Logs out and exits the application.
+     - **Option 9**: Displays exception reports using the `ExceptionReportManager`.
+     - **Option 10**: Displays all cheque statuses using the `ChequeStatusManager`.
+     - **Option 11**: Cancels a cheque using the `ChequeProcessor`.
+     - **Option 12**: Records FIR/legal complaints for bounced cheques using the `ExceptionReportManager`.
 
-#### Cheque Image Handling
-- **Scan, Encrypt, and Send Cheque Image**: Uses `handleChequeImageSubmission` to process cheque images.
+### Helper Methods
 
-#### Administrative Tools
-- **Edit IFSC/Bank Codes**: Allows administrators to edit bank codes.
-- **Manage Batches**: Provides batch management functionalities.
-- **Reset Stuck Transactions**: Resets transactions stuck in the system.
+#### `performLogin`
+Handles user authentication by interacting with the `UserService`. If the user fails to authenticate after multiple attempts, the application exits.
 
-#### Miscellaneous
-- **Simulate Cheque Printing**: Uses `handleChequePrinting` to simulate cheque printing.
-- **View Cheque Exception Report**: Displays exceptions using `ExceptionReportManager`.
-- **View All Cheque Statuses**: Lists all cheque statuses using `ChequeStatusManager`.
-- **Cancel a Cheque**: Cancels a cheque using `ChequeProcessor`.
-- **Record FIR/Legal Complaint for Bounced Cheque**: Records FIR details for bounced cheques using `ExceptionReportManager`.
+#### `processChequeBatch`
+Processes multiple cheques in a batch. It collects cheque details from the user and uses the `ChequeProcessor` to process each cheque.
 
-### 4. **Exit**
-The user can log out and exit the system by selecting the appropriate menu option.
+#### `displayCurrencyExchangeMenu`
+Displays a menu for currency exchange operations, such as viewing supported currencies, getting exchange rates, and converting currencies. Interacts with the `CurrencyExchangeService`.
+
+#### `handleReportGeneration`
+Generates various reports related to cheque processing. Interacts with the `ChequeHistoryManager`.
+
+#### `handleChequeImageSubmission`
+Handles the process of scanning, encrypting, signing, and sending a cheque image. Interacts with the `ChequeImageHandler`, `CryptographyService`, and `ClearinghouseService`.
+
+#### `handleChequePrinting`
+Simulates cheque printing. Uses the `ChequePrintingService`.
 
 ## External Dependencies
-The `ChequeApplication` class relies on the following external classes and services:
+The `ChequeApplication` class relies on the following external services and classes:
 - `CurrencyExchangeService`
 - `SignatureVerificationService`
 - `CoreBankingSystemUpdater`
@@ -1627,499 +1516,582 @@ The `ChequeApplication` class relies on the following external classes and servi
 - `ChequeProcessor`
 - `ChequePrintingService`
 
-## Notes
-- The `performLogin`, `processChequeBatch`, `displayCurrencyExchangeMenu`, `handleReportGeneration`, `handleChequeImageSubmission`, and `handleChequePrinting` methods are defined elsewhere in the codebase.
-- The application uses a `Scanner` object for user input.
-- The system includes robust error handling for invalid inputs and failed operations.
-
-This documentation provides an overview of the `ChequeApplication` class and its functionalities. For detailed implementation of the referenced methods, refer to their respective documentation.
+## Conclusion
+The `ChequeApplication` class is a comprehensive system for managing cheque-related operations, including processing, fraud detection, and administrative tasks. It is designed to be user-friendly and extensible, with a modular architecture that allows for easy integration of new features.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_16"
-confidence_score: 0.9
-external_dependencies: ["AdminService", "BatchCheque", "Logger"]
+confidence_score: 0.95
+external_dependencies: ["AdminService", "BatchCheque", "Logger", "UserService", "User", "ChequeProcessor"]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Code Chunk
 
 ## Overview
-This code chunk is part of the `DemoApplication` class and implements several administrative functionalities for managing IFSC/Bank codes, batches, and stuck transactions. It also includes methods for user login and batch cheque processing. The code relies on external services such as `AdminService` and `Logger` for its operations.
+This code chunk is part of the `DemoApplication` class and implements several administrative functionalities for managing IFSC codes, bank codes, cheque batches, and stuck transactions. Additionally, it includes methods for user login and batch cheque processing. The code is structured using nested switch-case statements to handle various user choices.
 
-## Code Breakdown
+## Key Functionalities
 
-### Case 13: Admin - Edit IFSC/Bank Codes
-This section provides an interface for administrators to manage IFSC and bank codes. The options include:
+### 1. **Admin: Edit IFSC/Bank Codes**
+This section allows administrators to manage IFSC and bank codes. The options include:
+- Adding or updating an IFSC code.
+- Adding or updating a bank code.
+- Viewing all IFSC codes.
+- Viewing all bank codes.
 
-1. **Add/Update IFSC**: Prompts the user to input an IFSC code and a corresponding bank code, then calls `adminService.addOrUpdateIFSC(ifsc, bankCode)` to save or update the information.
-2. **Add/Update Bank Code**: Prompts the user to input a bank code and a bank name, then calls `adminService.addOrUpdateBankCode(code, name)` to save or update the information.
-3. **View IFSCs**: Calls `adminService.displayIFSCs()` to display all stored IFSC codes.
-4. **View Bank Codes**: Calls `adminService.displayBankCodes()` to display all stored bank codes.
-5. **Return**: Exits the current menu.
+#### Code Details:
+- **Option 1:** Prompts the user to enter an IFSC and a bank code, then calls `adminService.addOrUpdateIFSC(ifsc, bankCode)`.
+- **Option 2:** Prompts the user to enter a bank code and name, then calls `adminService.addOrUpdateBankCode(code, name)`.
+- **Option 3:** Calls `adminService.displayIFSCs()` to display all IFSC codes.
+- **Option 4:** Calls `adminService.displayBankCodes()` to display all bank codes.
 
-### Case 14: Admin - Manage Batches
-This section provides an interface for administrators to manage cheque batches. The options include:
+### 2. **Admin: Manage Batches**
+This section allows administrators to manage cheque batches. The options include:
+- Creating a new batch.
+- Viewing all batches.
+- Viewing details of a specific batch.
 
-1. **Create Batch**: Prompts the user to input a batch ID and the number of cheques in the batch. For each cheque, the user is prompted to input details such as account number, cheque number, currency, amount, and signature. These details are stored in a `BatchCheque` object, which is added to a list. Finally, the list is passed to `adminService.createBatch(batchId, batchCheques)` to create the batch.
-2. **View Batches**: Calls `adminService.displayBatches()` to display all batches.
-3. **View Batch Details**: Prompts the user to input a batch ID and calls `adminService.displayBatchDetails(viewBatchId)` to display details of the specified batch.
-4. **Return**: Exits the current menu.
+#### Code Details:
+- **Option 1:**
+  - Prompts the user to enter a batch ID and the number of cheques in the batch.
+  - Collects details for each cheque (account number, cheque number, currency, amount, and signature).
+  - Creates a list of `BatchCheque` objects and calls `adminService.createBatch(batchId, batchCheques)`.
+- **Option 2:** Calls `adminService.displayBatches()` to display all batches.
+- **Option 3:** Prompts the user to enter a batch ID and calls `adminService.displayBatchDetails(viewBatchId)`.
 
-### Case 15: Admin - Reset Stuck Transactions
-This section provides an interface for administrators to manage stuck transactions. The options include:
+### 3. **Admin: Reset Stuck Transactions**
+This section allows administrators to manage stuck transactions. The options include:
+- Marking a cheque as stuck.
+- Resetting a stuck cheque.
+- Viewing all stuck transactions.
 
-1. **Mark Cheque as Stuck**: Prompts the user to input a cheque number and calls `adminService.markTransactionStuck(stuckChq)` to mark the transaction as stuck.
-2. **Reset Stuck Cheque**: Prompts the user to input a cheque number and calls `adminService.resetStuckTransaction(resetChq)` to reset the stuck transaction.
-3. **View Stuck Transactions**: Calls `adminService.displayStuckTransactions()` to display all stuck transactions.
-4. **Return**: Exits the current menu.
+#### Code Details:
+- **Option 1:** Prompts the user to enter a cheque number and calls `adminService.markTransactionStuck(stuckChq)`.
+- **Option 2:** Prompts the user to enter a cheque number and calls `adminService.resetStuckTransaction(resetChq)`.
+- **Option 3:** Calls `adminService.displayStuckTransactions()` to display all stuck transactions.
 
-### Exception Handling
-The code includes a `try-catch` block to handle any exceptions that may occur during the execution of the main logic. If an exception is caught, it is logged using the `Logger` class, and the stack trace is printed.
+### 4. **User Login**
+The `performLogin` method handles user authentication. It allows up to three login attempts and uses the `UserService` class to authenticate users.
 
-### Method: `performLogin`
-This method handles the user login process. It allows up to three attempts for the user to log in by providing a username and password. If authentication is successful, the method returns the authenticated `User` object. Otherwise, it returns `null` after three failed attempts.
-
-#### Parameters:
-- `scanner`: A `Scanner` object for reading user input.
-- `userService`: A `UserService` object for authenticating the user.
-
-#### Key Operations:
+#### Code Details:
 - Prompts the user for a username and password.
-- Calls `userService.authenticate(username, password)` to verify credentials.
+- Calls `userService.authenticate(username, password)` to validate credentials.
 - Logs successful or failed login attempts using the `Logger` class.
+- Returns the authenticated `User` object or `null` if login fails after three attempts.
 
-### Method: `processChequeBatch`
-This method handles the processing of multiple cheques in a batch. It prompts the user to input the number of cheques and their details, then processes them using the `ChequeProcessor` service.
+### 5. **Batch Cheque Processing**
+The `processChequeBatch` method handles the processing of multiple cheques in a batch.
 
-#### Parameters:
-- `scanner`: A `Scanner` object for reading user input.
-- `chequeProcessor`: A `ChequeProcessor` object for processing cheques.
-
-#### Key Operations:
-- Prompts the user for the number of cheques in the batch.
-- Iteratively collects details for each cheque, including account number, cheque number, currency, amount, and signature.
-- Creates a `BatchCheque` object for each cheque and adds it to a list.
-- Passes the list to `chequeProcessor` for processing.
-- Handles exceptions during input collection and logs errors using the `Logger` class.
+#### Code Details:
+- Prompts the user to enter the number of cheques in the batch.
+- Collects details for each cheque (account number, cheque number, currency, amount, and signature).
+- Creates a list of `BatchCheque` objects for processing.
+- Handles input errors and logs them using the `Logger` class.
 
 ## External Dependencies
-- **`AdminService`**: Provides methods for managing IFSC codes, bank codes, batches, and stuck transactions.
-- **`BatchCheque`**: Represents a cheque with details such as account number, cheque number, currency, amount, and signature.
-- **`Logger`**: Used for logging information, warnings, and errors.
 
-## Notes
-- The `AdminService` and `BatchCheque` classes are defined elsewhere in the codebase.
-- The `Logger` class is used for logging but its implementation details are not provided in this chunk.
-- The code assumes that user input is valid and does not include extensive input validation.
+### 1. **AdminService**
+Provides methods for managing IFSC codes, bank codes, cheque batches, and stuck transactions.
+
+### 2. **BatchCheque**
+Represents a cheque in a batch, including details such as account number, cheque number, currency, amount, and signature.
+
+### 3. **Logger**
+Used for logging information, warnings, and errors.
+
+### 4. **UserService**
+Handles user authentication and management.
+
+### 5. **User**
+Represents a user in the system, including attributes such as username, password, and role.
+
+### 6. **ChequeProcessor**
+Processes cheques with functionalities such as signature verification, fraud detection, and currency conversion.
+
+## Error Handling
+- Exceptions during user login and cheque batch processing are caught and logged using the `Logger` class.
+- Input errors are handled gracefully, and the scanner buffer is cleared to avoid cascading issues.
+
+## Conclusion
+This code chunk implements critical administrative and user-facing functionalities in the `DemoApplication`. It leverages several external services and classes to provide a robust and modular design for managing banking operations.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_17"
-confidence_score: 0.9
+confidence_score: 0.95
 external_dependencies: ["BatchCheque", "ChequeProcessor", "CurrencyExchangeService", "ChequeHistoryManager", "ChequePrintingService"]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Code Chunk
 
 ## Overview
-This code chunk is part of a larger application that handles various banking operations, including cheque processing, currency exchange, report generation, and cheque printing. The provided code includes several methods that perform specific tasks related to these operations. Below is a detailed explanation of the code.
+This code chunk is part of a larger Java application that handles various functionalities related to cheque processing, currency exchange, report generation, and cheque printing. Below is a detailed explanation of the methods and logic implemented in this chunk.
 
 ---
 
 ### 1. **Batch Cheque Processing**
-This section of the code processes a batch of cheques. It adds cheques to a list (`chequesToProcess`) and processes them using a `ChequeProcessor` instance.
 
-#### Key Components:
-- **`chequesToProcess`**: A collection that stores instances of `BatchCheque`.
-- **`BatchCheque`**: Represents a cheque with attributes such as `accountNumber`, `chequeNumber`, `currency`, `amount`, and `signature`.
-- **`chequeProcessor`**: An instance of the `ChequeProcessor` class, which handles the processing of cheques.
+#### Purpose
+The batch cheque processing logic collects cheque details, processes them in a batch, and handles any errors that occur during the process.
 
-#### Workflow:
-1. Cheques are added to the `chequesToProcess` list using the `BatchCheque` constructor.
-2. If an exception occurs during input collection, it is logged using the `Logger.error` method, and the scanner buffer is cleared.
-3. The batch of cheques is processed using the `chequeProcessor.processCheque` method.
-4. Any exceptions during processing are logged.
+#### Key Operations
+- **Adding Cheques to Batch**: Cheques are added to a list (`chequesToProcess`) using the `BatchCheque` class.
+- **Processing Each Cheque**: The `ChequeProcessor` class is used to process each cheque in the batch.
+- **Error Handling**: Errors during cheque collection or processing are logged using the `Logger` class.
 
-#### External Dependencies:
-- `BatchCheque`: Represents a cheque object.
-- `ChequeProcessor`: A class responsible for processing cheques. It includes functionalities like signature verification, fraud detection, and currency conversion.
+#### Code Snippet
+```java
+chequesToProcess.add(new BatchCheque(accountNumber, chequeNumber, currency, amount, signature));
+} catch (Exception ex) {
+    Logger.error("Error collecting cheque batch input: " + ex.getMessage());
+    scanner.nextLine(); // Clear buffer
+}
+
+System.out.println("\nProcessing batch...");
+chequesToProcess.forEach(cheque -> {
+    try {
+        chequeProcessor.processCheque(cheque.accountNumber, cheque.chequeNumber, cheque.currency, cheque.amount, cheque.signature);
+    } catch (Exception ex) {
+        Logger.error("Error processing cheque in batch: " + ex.getMessage());
+    }
+});
+```
+
+#### External Dependencies
+- **`BatchCheque`**: Represents a cheque with attributes like account number, cheque number, currency, amount, and signature.
+- **`ChequeProcessor`**: A class responsible for processing cheques, including signature verification, fraud detection, and updating the core banking system.
 
 ---
 
 ### 2. **Currency Exchange Menu**
-This method (`displayCurrencyExchangeMenu`) provides a user interface for currency exchange operations. It interacts with the `CurrencyExchangeService` to perform various tasks.
 
-#### Parameters:
-- `scanner`: A `Scanner` object for reading user input.
-- `currencyExchangeService`: An instance of `CurrencyExchangeService` that provides currency exchange functionalities.
+#### Purpose
+Displays a menu for currency exchange operations and handles user interactions.
 
-#### Menu Options:
-1. **View Supported Currencies**: Displays a list of currencies supported by the service.
-2. **Get Exchange Rate**: Retrieves the exchange rate for a specific currency.
-3. **Get Detailed Exchange Rate Information**: Provides detailed information, including mid, buy, sell, and fee rates for a specific currency.
-4. **Convert Currency**: Converts an amount from one currency to another.
-5. **Return to Main Menu**: Exits the currency exchange menu.
+#### Key Operations
+- **Menu Options**:
+  1. View supported currencies.
+  2. Get exchange rate for a specific currency.
+  3. Get detailed exchange rate information (e.g., mid, buy, sell, fee rates).
+  4. Convert an amount from one currency to another.
+  5. Return to the main menu.
+- **User Input Handling**: The `Scanner` class is used to capture user input and navigate through the menu options.
+- **Integration with `CurrencyExchangeService`**: This service provides the necessary data for currency exchange operations.
 
-#### External Dependencies:
-- `CurrencyExchangeService`: Provides methods like `getSupportedCurrencies`, `getExchangeRate`, `getDetailedExchangeRates`, and `convertCurrency`.
+#### Code Snippet
+```java
+System.out.println("\n--- Currency Exchange Menu ---");
+System.out.println("1. View Supported Currencies");
+System.out.println("2. Get Exchange Rate");
+System.out.println("3. Get Detailed Exchange Rate Information");
+System.out.println("4. Convert Currency");
+System.out.println("5. Return to Main Menu");
+System.out.print("Enter your choice: ");
+
+int choice = scanner.nextInt();
+scanner.nextLine(); // Consume newline
+
+switch (choice) {
+    case 1:
+        List<String> supportedCurrencies = currencyExchangeService.getSupportedCurrencies();
+        System.out.println("\nSupported Currencies:");
+        for (String currencyCode : supportedCurrencies) {
+            System.out.println("- " + currencyCode);
+        }
+        break;
+    // Other cases omitted for brevity
+}
+```
+
+#### External Dependencies
+- **`CurrencyExchangeService`**: Provides methods to fetch supported currencies, exchange rates, and perform currency conversion.
 
 ---
 
 ### 3. **Report Generation**
-The `handleReportGeneration` method generates reports for cheque transactions over different time periods.
 
-#### Parameters:
-- `scanner`: A `Scanner` object for reading user input.
-- `chequeHistoryManager`: An instance of `ChequeHistoryManager` that manages cheque transaction history.
+#### Purpose
+Generates reports for cheque transactions over different time periods (daily, weekly, monthly, or custom date range).
 
-#### Workflow:
-1. Displays a menu with options for generating daily, weekly, monthly, or custom date range reports.
-2. Based on the user's choice, determines the date range for the report.
-3. Retrieves cheque records for the specified period using `chequeHistoryManager.getAllChequeRecordsInPeriod`.
-4. Generates a CSV report using `chequeHistoryManager.generateChequeReportCSV` and writes it to a file.
-5. Handles errors such as invalid date formats or no records found.
+#### Key Operations
+- **Date Range Selection**: Allows users to select predefined or custom date ranges.
+- **Fetching Records**: Uses `ChequeHistoryManager` to retrieve cheque records for the selected period.
+- **CSV Report Generation**: Generates a CSV file containing the cheque records.
+- **Error Handling**: Validates user input and handles file writing errors.
 
-#### External Dependencies:
-- `ChequeHistoryManager`: Manages cheque transaction history and provides methods for retrieving and generating reports.
+#### Code Snippet
+```java
+List<ChequeHistoryManager.ChequeRecord> records = chequeHistoryManager.getAllChequeRecordsInPeriod(startDate, endDate);
+
+if (records.isEmpty()) {
+    System.out.println("No cheque records found for the selected period.");
+    return;
+}
+
+String csvData = chequeHistoryManager.generateChequeReportCSV(records);
+String fileName = reportNamePrefix + startDate.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                  "_to_" + endDate.format(DateTimeFormatter.ISO_LOCAL_DATE) + ".csv";
+
+try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+    writer.write(csvData);
+    System.out.println("Report generated successfully: " + fileName);
+} catch (IOException e) {
+    System.err.println("Error writing report to file: " + e.getMessage());
+}
+```
+
+#### External Dependencies
+- **`ChequeHistoryManager`**: Manages cheque transaction history and provides methods to fetch records and generate reports.
 
 ---
 
 ### 4. **Cheque Printing Simulation**
-The `handleChequePrinting` method simulates the process of printing a cheque.
 
-#### Parameters:
-- `scanner`: A `Scanner` object for reading user input.
-- `printingService`: An instance of `ChequePrintingService` that handles cheque printing operations.
+#### Purpose
+Simulates the process of printing a cheque by collecting user input and formatting the cheque details.
 
-#### Workflow:
-1. Prompts the user to input details such as payee name, amount, date, account number, and cheque number.
-2. Parses the date input and defaults to the current date if the input is invalid.
-3. Uses the `printingService` to simulate the cheque printing process.
+#### Key Operations
+- **User Input**: Collects details such as payee name, amount, date, account number, and cheque number.
+- **Date Parsing**: Parses the date input and defaults to the current date if the input is invalid.
 
-#### External Dependencies:
-- `ChequePrintingService`: Provides methods for simulating cheque printing.
+#### Code Snippet
+```java
+System.out.print("Enter Payee Name: ");
+String payeeName = scanner.nextLine();
+
+System.out.print("Enter Amount: ");
+double amount = scanner.nextDouble();
+scanner.nextLine(); // Consume newline
+
+System.out.print("Enter Date (YYYY-MM-DD): ");
+String dateStr = scanner.nextLine();
+Date chequeDate;
+try {
+    chequeDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
+} catch (java.text.ParseException e) {
+    System.out.println("Invalid date format. Please use YYYY-MM-DD. Using current date.");
+    chequeDate = new Date();
+}
+```
+
+#### External Dependencies
+- **`ChequePrintingService`**: Handles the actual printing of cheques (not shown in this chunk).
 
 ---
 
-## Error Handling
-- Exceptions during cheque input collection and processing are logged using `Logger.error`.
-- Invalid user inputs, such as incorrect date formats, are handled with appropriate error messages.
-- If no records are found for a report, the user is notified.
-
 ## Summary
-This code chunk is part of a comprehensive banking application that handles cheque processing, currency exchange, report generation, and cheque printing. It relies on several external services and classes to perform these operations efficiently and includes robust error handling to ensure smooth execution.
+This code chunk demonstrates the implementation of key functionalities in a cheque processing system, including batch processing, currency exchange, report generation, and cheque printing. It integrates with several external services and handles user input and errors effectively.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_18"
 confidence_score: 0.95
 external_dependencies: ["Scanner", "ChequeImageHandler", "CryptographyService", "ClearinghouseService", "ChequePrintingService", "User"]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Code Chunk
 
 ## Overview
 This code chunk contains two main functionalities:
-1. **Cheque Printing Simulation**: A method to simulate the process of printing a cheque.
-2. **Cheque Image Submission**: A method to handle the process of scanning, encrypting, signing, and sending a cheque image to a clearinghouse.
+1. **Cheque Printing Simulation**: Captures user input for cheque details and simulates the printing of a cheque.
+2. **Cheque Image Submission**: Handles the process of scanning, encrypting, signing, and submitting a cheque image to a clearinghouse.
 
-Additionally, the code includes the implementation of several inner classes that provide services for cheque printing, cryptographic operations, user management, and exception reporting.
+Additionally, the code includes definitions for several utility classes, such as `ChequePrintingService`, `User`, `UserService`, and `ExceptionReportManager`.
 
 ---
 
 ## 1. Cheque Printing Simulation
 
-### Method: `handleChequePrinting`
-This method simulates the process of printing a cheque. It collects user input for various cheque details, validates the input, and then uses the `ChequePrintingService` to print the cheque.
+### Purpose
+The `handleChequePrinting` method simulates the process of printing a cheque. It collects user input for the payee name, amount, date, account number, and cheque number, and then uses the `ChequePrintingService` to print a simulated cheque.
 
-#### Parameters:
-- `Scanner scanner`: Used to read user input from the console.
-- `ChequePrintingService printingService`: A service responsible for simulating the cheque printing process.
+### Code Walkthrough
+```java
+System.out.print("Enter Payee Name: ");
+String payeeName = scanner.nextLine();
+```
+Prompts the user to enter the payee's name and stores it in the `payeeName` variable.
 
-#### Workflow:
-1. Prompts the user to enter the payee name, amount, date, account number, and cheque number.
-2. Validates the date input. If the date format is invalid, the current date is used as a fallback.
-3. Uses the `ChequePrintingService` to print the cheque with the provided details.
+```java
+System.out.print("Enter Amount: ");
+double amount = scanner.nextDouble();
+scanner.nextLine(); // Consume newline
+```
+Prompts the user to enter the cheque amount and stores it in the `amount` variable. The `scanner.nextLine()` is used to consume the newline character left by `nextDouble()`.
 
-#### Example Output:
-The cheque is printed in a formatted manner, including details like the bank name, payee name, amount, date, account number, and cheque number.
+```java
+System.out.print("Enter Date (YYYY-MM-DD): ");
+String dateStr = scanner.nextLine();
+Date chequeDate;
+try {
+    chequeDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
+} catch (java.text.ParseException e) {
+    System.out.println("Invalid date format. Please use YYYY-MM-DD. Using current date.");
+    chequeDate = new Date();
+}
+```
+Prompts the user to enter the cheque date in the format `YYYY-MM-DD`. If the input is invalid, the current date is used as a fallback.
+
+```java
+System.out.print("Enter Account Number: ");
+String accountNumber = scanner.nextLine();
+
+System.out.print("Enter Cheque Number: ");
+String chequeNumber = scanner.nextLine();
+```
+Prompts the user to enter the account number and cheque number, storing them in `accountNumber` and `chequeNumber` respectively.
+
+```java
+String bankName = "Global Trust Bank";
+```
+Sets the bank name to a default value. This can be made configurable in the future.
+
+```java
+printingService.printCheque(payeeName, amount, chequeDate, accountNumber, chequeNumber, bankName);
+```
+Calls the `printCheque` method of the `ChequePrintingService` to simulate the printing of the cheque with the provided details.
 
 ---
 
 ## 2. Cheque Image Submission
 
-### Method: `handleChequeImageSubmission`
-This method handles the process of scanning, encrypting, signing, and sending a cheque image to a clearinghouse.
+### Purpose
+The `handleChequeImageSubmission` method facilitates the submission of a cheque image to a clearinghouse. It involves scanning the cheque image, encrypting the image data, signing the encrypted data, and submitting it to the clearinghouse.
 
-#### Parameters:
-- `Scanner scanner`: Used to read user input from the console.
-- `ChequeImageHandler imageHandler`: A service responsible for handling cheque image uploads.
-- `CryptographyService cryptoService`: A service for encrypting and signing data.
-- `ClearinghouseService clearinghouseService`: A service for submitting data to the clearinghouse.
-- `User currentUser`: The currently logged-in user.
+### Code Walkthrough
+```java
+System.out.print("Enter Account Number for the cheque: ");
+String accountNumber = scanner.nextLine();
+System.out.print("Enter Cheque Number: ");
+String chequeNumber = scanner.nextLine();
+System.out.print("Enter path to cheque image file (e.g., /path/to/cheque.jpg): ");
+String imagePath = scanner.nextLine();
+```
+Prompts the user to enter the account number, cheque number, and the file path to the cheque image.
 
-#### Workflow:
-1. Prompts the user to enter the account number, cheque number, and the path to the cheque image file.
-2. Uses the `ChequeImageHandler` to load the image data from the specified file path.
-   - If the image data cannot be loaded, the process is aborted.
-3. Encrypts the image data using a placeholder encryption key and the `CryptographyService`.
-4. Signs the encrypted image data using a placeholder private key derived from the current user's username.
-5. Submits the encrypted and signed image data to the clearinghouse using the `ClearinghouseService`.
+```java
+byte[] imageData = imageHandler.loadImageData(imagePath);
+if (imageData == null) {
+    System.out.println("Failed to load image data. Aborting submission.");
+    return;
+}
+System.out.println("Cheque image \"uploaded\" successfully from: " + imagePath);
+```
+Uses the `ChequeImageHandler` service to load the image data from the specified file path. If the image data cannot be loaded, the process is aborted.
+
+```java
+String encryptionKey = "a-very-secure-encryption-key"; // Placeholder
+byte[] encryptedImageData = cryptoService.encryptData(imageData, encryptionKey);
+System.out.println("Image data encrypted.");
+```
+Encrypts the image data using the `CryptographyService` with a placeholder encryption key.
+
+```java
+String privateKey = currentUser.getUsername() + "-private-key"; // Placeholder
+String digitalSignature = cryptoService.signData(encryptedImageData, privateKey);
+System.out.println("Encrypted image data signed. Signature: " + digitalSignature.substring(0, 10) + "...");
+```
+Signs the encrypted image data using the `CryptographyService` and the private key derived from the current user's username. A truncated version of the digital signature is displayed.
+
+```java
+clearinghouseService.submitToClearinghouse(accountNumber, chequeNumber, encryptedImageData, digitalSignature);
+```
+Submits the encrypted and signed cheque image data to the clearinghouse using the `ClearinghouseService`.
 
 ---
 
-## 3. Inner Classes
+## 3. Utility Classes
 
-### 3.1 `ChequePrintingService`
-This class simulates the process of printing a cheque. It formats the cheque details, including the bank name, payee name, amount, date, account number, and cheque number, and prints them in a structured format.
+### ChequePrintingService
+This class simulates the printing of a cheque. It formats the cheque details, including the payee name, amount, date, account number, and cheque number, and prints them in a structured format.
 
-#### Method: `printCheque`
-- **Parameters:**
-  - `String payeeName`: The name of the payee.
-  - `double amount`: The amount to be paid.
-  - `Date date`: The date of the cheque.
-  - `String accountNumber`: The account number associated with the cheque.
-  - `String chequeNumber`: The cheque number.
-  - `String bankName`: The name of the bank issuing the cheque.
-- **Output:**
-  - Prints a formatted representation of the cheque to the console.
+### User
+Represents a user of the system, such as an employee or account holder. It includes attributes like `username`, `password`, and `role`.
 
-### 3.2 `User`
-This class represents a user of the system, such as an employee or an account holder.
+### UserService
+Manages user accounts and handles authentication. It includes methods for registering new users and authenticating existing users.
 
-#### Fields:
-- `String username`: The username of the user.
-- `String password`: The password of the user (stored in plain text, which is not secure).
-- `String role`: The role of the user (e.g., "EMPLOYEE", "ACCOUNT_HOLDER").
-
-#### Methods:
-- `getUsername()`: Returns the username.
-- `getPassword()`: Returns the password.
-- `getRole()`: Returns the role of the user.
-
-### 3.3 `UserService`
-This class manages users and handles authentication.
-
-#### Methods:
-- `registerUser(String username, String password, String role)`: Registers a new user with the specified username, password, and role.
-- `authenticate(String username, String password)`: Authenticates a user based on their username and password. Returns the `User` object if authentication is successful, otherwise returns `null`.
-
-### 3.4 `BatchCheque`
-This class represents a single cheque transaction for batch processing.
-
-#### Fields:
-- `String accountNumber`: The account number associated with the cheque.
-- `String chequeNumber`: The cheque number.
-- `String currency`: The currency of the cheque.
-- `double amount`: The amount of the cheque.
-- `String signature`: The digital signature of the cheque.
-
-### 3.5 `ExceptionReportManager`
-This class manages exception reports for cheques, such as bounced, duplicate, altered, or delayed cheques. It also supports recording FIR/legal complaint details for bounced cheques.
-
-#### Inner Class: `ExceptionRecord`
-- **Fields:**
-  - `String accountNumber`: The account number associated with the cheque.
-  - `String chequeNumber`: The cheque number.
-  - `String type`: The type of exception (e.g., "bounced", "duplicate").
-  - `String details`: Additional details about the exception.
-  - `Date date`: The date of the exception.
-  - `FIRDetails firDetails`: Details of any FIR or legal complaint related to the exception.
-
-#### Inner Class: `FIRDetails`
-- **Fields:**
-  - `String firNumber`: The FIR number.
-  - `String policeStation`: The police station where the FIR was filed.
-  - `Date firDate`: The date the FIR was filed.
-  - `String remarks`: Additional remarks about the FIR.
+### ExceptionReportManager
+Manages exception reports for cheques, such as bounced, duplicate, altered, or delayed cheques. It also supports recording FIR/legal complaint details for bounced cheques.
 
 ---
 
 ## External Dependencies
-- `Scanner`: Used for reading user input.
-- `ChequeImageHandler`: Handles cheque image uploads.
+- `Scanner`: Used for capturing user input.
+- `ChequeImageHandler`: Handles the loading of cheque image data.
 - `CryptographyService`: Provides methods for encrypting and signing data.
-- `ClearinghouseService`: Submits encrypted and signed data to the clearinghouse.
-- `ChequePrintingService`: Simulates the process of printing cheques.
-- `User`: Represents a user of the system.
+- `ClearinghouseService`: Facilitates the submission of cheque data to a clearinghouse.
+- `ChequePrintingService`: Simulates the printing of cheques.
+- `User`: Represents the currently logged-in user.
+
+---
+
+## Notes
+- The `ChequePrintingService` and `CryptographyService` are simulated and do not perform actual printing or cryptographic operations.
+- The encryption key and private key used in the `handleChequeImageSubmission` method are placeholders and should be replaced with secure key management in a real system.
+- The `ExceptionReportManager` class includes a nested `FIRDetails` class for handling legal complaint details related to bounced cheques.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_19"
-confidence_score: 1.0
+confidence_score: 0.95
 external_dependencies: ["java.util.Date", "java.util.List", "java.util.ArrayList", "java.util.Map", "java.util.HashMap", "java.text.SimpleDateFormat", "java.nio.charset.StandardCharsets", "java.util.Arrays"]
 ---
 
 # Documentation for Code Chunk
 
-This code chunk is part of a larger Java application and contains several classes and methods related to handling cheque exceptions, FIR/legal complaint details, cheque statuses, logging, cheque image handling, cryptographic operations, and clearinghouse submissions. Below is a detailed explanation of the code:
+This code chunk is part of a Java application that handles various operations related to cheque processing, exception reporting, and related services. Below is a detailed explanation of the classes and methods included in this chunk.
 
 ## Classes and Methods
 
-### 1. **`ExceptionRecord` Class**
-This class represents an exception record for a cheque. It stores details about the exception, such as the account number, cheque number, type of exception, details, date, and optional FIR/legal complaint details.
-
-#### Fields:
-- `String accountNumber`: The account number associated with the cheque.
-- `String chequeNumber`: The cheque number.
-- `String type`: The type of exception (e.g., "Bounced").
-- `String details`: Additional details about the exception.
-- `Date date`: The date when the exception occurred.
-- `FIRDetails firDetails`: An optional field to store FIR/legal complaint details for bounced cheques.
+### 1. `ExceptionRecord`
+This class represents an exception record for a cheque. It stores details about the exception, such as the account number, cheque number, type of exception, and additional details.
 
 #### Constructor:
 ```java
 ExceptionRecord(String accountNumber, String chequeNumber, String type, String details, Date date)
 ```
-Initializes an `ExceptionRecord` object with the provided details. The `firDetails` field is initialized to `null`.
+- **Parameters:**
+  - `accountNumber`: The account number associated with the cheque.
+  - `chequeNumber`: The cheque number.
+  - `type`: The type of exception (e.g., "Bounced").
+  - `details`: Additional details about the exception.
+  - `date`: The date when the exception occurred.
+- **Description:** Initializes an `ExceptionRecord` object with the provided details.
 
----
-
-### 2. **`FIRDetails` Class**
-This class represents FIR/legal complaint details for a bounced cheque.
-
-#### Fields:
-- `String firNumber`: The FIR number.
-- `String policeStation`: The name of the police station where the FIR was filed.
-- `Date firDate`: The date the FIR was filed.
-- `String remarks`: Additional remarks about the FIR.
+### 2. `FIRDetails`
+This class represents FIR (First Information Report) or legal complaint details related to a cheque exception.
 
 #### Constructor:
 ```java
 FIRDetails(String firNumber, String policeStation, Date firDate, String remarks)
 ```
-Initializes an `FIRDetails` object with the provided FIR details.
+- **Parameters:**
+  - `firNumber`: The FIR number.
+  - `policeStation`: The name of the police station where the FIR was filed.
+  - `firDate`: The date of the FIR.
+  - `remarks`: Additional remarks about the FIR.
+- **Description:** Initializes an `FIRDetails` object with the provided details.
 
----
+### 3. `reportException`
+This method is used to report a cheque exception.
 
-### 3. **`reportException` Method**
+#### Method Signature:
 ```java
 public void reportException(String accountNumber, String chequeNumber, String type, String details)
 ```
-This method is used to report a cheque exception. It creates a new `ExceptionRecord` object with the provided details and the current date, and adds it to the `exceptions` list.
+- **Parameters:**
+  - `accountNumber`: The account number associated with the cheque.
+  - `chequeNumber`: The cheque number.
+  - `type`: The type of exception (e.g., "Bounced").
+  - `details`: Additional details about the exception.
+- **Description:** Adds a new `ExceptionRecord` to the list of exceptions and logs the reported exception.
 
-#### Parameters:
-- `String accountNumber`: The account number associated with the cheque.
-- `String chequeNumber`: The cheque number.
-- `String type`: The type of exception (e.g., "Bounced").
-- `String details`: Additional details about the exception.
+### 4. `recordFIRDetails`
+This method is used to record FIR/legal complaint details for a bounced cheque.
 
-#### Behavior:
-- Adds the new exception record to the `exceptions` list.
-- Prints a message indicating that the exception has been reported.
-
----
-
-### 4. **`recordFIRDetails` Method**
+#### Method Signature:
 ```java
 public boolean recordFIRDetails(String accountNumber, String chequeNumber, String firNumber, String policeStation, Date firDate, String remarks)
 ```
-This method is used to record FIR/legal complaint details for a bounced cheque.
+- **Parameters:**
+  - `accountNumber`: The account number associated with the cheque.
+  - `chequeNumber`: The cheque number.
+  - `firNumber`: The FIR number.
+  - `policeStation`: The name of the police station where the FIR was filed.
+  - `firDate`: The date of the FIR.
+  - `remarks`: Additional remarks about the FIR.
+- **Returns:** `true` if the FIR details were successfully recorded, `false` otherwise.
+- **Description:** Searches for a bounced cheque exception in the list of exceptions and associates the FIR details with it. Logs the result of the operation.
 
-#### Parameters:
-- `String accountNumber`: The account number associated with the cheque.
-- `String chequeNumber`: The cheque number.
-- `String firNumber`: The FIR number.
-- `String policeStation`: The name of the police station where the FIR was filed.
-- `Date firDate`: The date the FIR was filed.
-- `String remarks`: Additional remarks about the FIR.
+### 5. `displayExceptions`
+This method displays all reported cheque exceptions.
 
-#### Behavior:
-- Searches the `exceptions` list for a matching `ExceptionRecord` with the same `accountNumber`, `chequeNumber`, and a type of "Bounced".
-- If a match is found, it updates the `firDetails` field of the `ExceptionRecord` with the provided FIR details and prints a success message.
-- If no match is found, it prints an error message and returns `false`.
-
-#### Returns:
-- `true` if the FIR details were successfully recorded.
-- `false` if no matching exception record was found.
-
----
-
-### 5. **`displayExceptions` Method**
+#### Method Signature:
 ```java
 public void displayExceptions()
 ```
-This method displays all the cheque exceptions recorded in the `exceptions` list.
+- **Description:** Prints a report of all cheque exceptions, including FIR details for bounced cheques if available.
 
-#### Behavior:
-- If the `exceptions` list is empty, it prints a message indicating that no exceptions have been reported.
-- Otherwise, it iterates through the `exceptions` list and prints the details of each exception.
-- If an exception is of type "Bounced" and has associated `FIRDetails`, it also prints the FIR details.
-
----
-
-### 6. **`ChequeStatus` Enum**
-This enum represents the status of a cheque. Possible values are:
+### 6. `ChequeStatus` (Enum)
+This enumeration represents the status of a cheque. Possible values are:
 - `ISSUED`
 - `PROCESSED`
 - `CANCELED`
 
----
-
-### 7. **`ChequeStatusManager` Class**
+### 7. `ChequeStatusManager`
 This class manages the status of cheques.
 
-#### Fields:
-- `Map<String, ChequeStatus> chequeStatusMap`: A map where the key is a combination of `accountNumber` and `chequeNumber`, and the value is the `ChequeStatus`.
+#### Methods:
+- **`setStatus(String accountNumber, String chequeNumber, ChequeStatus status)`**
+  - Sets the status of a cheque.
+  - Logs the updated status.
+
+- **`getStatus(String accountNumber, String chequeNumber)`**
+  - Retrieves the status of a cheque.
+  - Returns `null` if no status is found.
+
+- **`displayAllStatuses()`**
+  - Displays all recorded cheque statuses.
+
+### 8. `Logger`
+This utility class provides methods for logging messages at different levels (INFO, WARN, ERROR, DEBUG).
 
 #### Methods:
-- `setStatus(String accountNumber, String chequeNumber, ChequeStatus status)`: Sets the status of a cheque.
-- `ChequeStatus getStatus(String accountNumber, String chequeNumber)`: Retrieves the status of a cheque.
-- `displayAllStatuses()`: Displays the status of all cheques in the map.
+- **`log(Level level, String message)`**
+  - Logs a message with the specified level and a timestamp.
+- **`info(String message)`**
+  - Logs an informational message.
+- **`warn(String message)`**
+  - Logs a warning message.
+- **`error(String message)`**
+  - Logs an error message.
+- **`debug(String message)`**
+  - Logs a debug message.
 
----
-
-### 8. **`Logger` Class**
-This class provides a simple logging utility with different log levels.
-
-#### Enum:
-- `Level`: Represents log levels (`INFO`, `WARN`, `ERROR`, `DEBUG`).
-
-#### Methods:
-- `log(Level level, String message)`: Logs a message with the specified level and a timestamp.
-- `info(String message)`, `warn(String message)`, `error(String message)`, `debug(String message)`: Convenience methods for logging messages at specific levels.
-
----
-
-### 9. **`ChequeImageHandler` Class**
-This class simulates handling of cheque images.
+### 9. `ChequeImageHandler`
+This class simulates handling cheque images.
 
 #### Methods:
-- `loadImageData(String filePath)`: Simulates loading image data from a file path. Returns a byte array representing the image data or `null` on failure.
+- **`loadImageData(String filePath)`**
+  - Simulates loading image data from a file path.
+  - Returns a byte array representing the image data or `null` on failure.
 
----
-
-### 10. **`CryptographyService` Class**
-This class simulates cryptographic operations such as encryption and digital signing.
-
-#### Methods:
-- `encryptData(byte[] data, String key)`: Simulates encrypting data by appending the key to the data.
-- `signData(byte[] data, String privateKey)`: Simulates digitally signing data by creating a mock hash-like string.
-
----
-
-### 11. **`ClearinghouseService` Class**
-This class simulates the submission of cheque image data and digital signatures to a clearinghouse.
+### 10. `CryptographyService`
+This class simulates cryptographic operations like encryption and digital signing.
 
 #### Methods:
-- `submitToClearinghouse(String accountNumber, String chequeNumber, byte[] encryptedImageData, String digitalSignature)`: Simulates submitting cheque image data and a digital signature to a clearinghouse.
+- **`encryptData(byte[] data, String key)`**
+  - Simulates encrypting data using a key.
+  - Returns a mock encrypted byte array.
 
----
+- **`signData(byte[] data, String privateKey)`**
+  - Simulates digitally signing data using a private key.
+  - Returns a mock digital signature.
+
+### 11. `ClearinghouseService`
+This class simulates sending data to a clearinghouse.
+
+#### Methods:
+- **`submitToClearinghouse(String accountNumber, String chequeNumber, byte[] encryptedImageData, String digitalSignature)`**
+  - Simulates submitting cheque image data and a digital signature to a clearinghouse.
+  - Logs the submission process and its success.
 
 ## Summary
-This code chunk provides a comprehensive set of classes and methods for managing cheque exceptions, recording FIR/legal complaint details, tracking cheque statuses, logging, handling cheque images, performing cryptographic operations, and simulating interactions with a clearinghouse. It demonstrates a modular approach to handling various aspects of cheque processing in a banking or financial application.
+This code chunk provides a comprehensive set of classes and methods for managing cheque exceptions, recording FIR details, handling cheque images, performing cryptographic operations, and interacting with a clearinghouse. It also includes utility classes for logging and managing cheque statuses. The code is well-structured and demonstrates a modular approach to handling various aspects of cheque processing.
 
 === NEXT CHUNK ===
 
@@ -2127,96 +2099,95 @@ This code chunk provides a comprehensive set of classes and methods for managing
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_20"
-confidence_score: 0.9
-external_dependencies: ["CurrencyExchangeService", "FraudDetectionService", "ExceptionReportManager", "ChequeStatusManager", "EmailNotificationService"]
+confidence_score: 0.95
+external_dependencies: ["CurrencyExchangeService", "FraudDetectionService", "ExceptionReportManager", "ChequeStatusManager", "EmailNotificationService", "Logger", "ChequeStatus"]
 ---
 
-# Documentation for `DemoApplication` Code Chunk
+# Documentation for `DemoApplication.java` (Chunk 20)
 
-This code chunk contains several mock implementations and a `ChequeProcessor` class that integrates multiple services to process cheques. Below is a detailed explanation of the components and their roles:
+## Overview
+This code chunk contains several classes and methods that simulate a banking system's cheque processing workflow. The main components include:
 
-## 1. `ChequeHistoryManager`
-This class is responsible for managing the history of cheques for different accounts. It provides methods to record and display cheque history.
+1. **ChequeHistoryManager**: Manages the history of cheques for different accounts.
+2. **CoreBankingSystemUpdater**: Updates the core banking system with transaction details.
+3. **SignatureVerificationService**: Verifies the authenticity of signatures on cheques.
+4. **ChequeProcessor**: A comprehensive module that processes cheques, including signature verification, fraud detection, currency conversion, and updating the core banking system.
 
-### Methods:
-- **`recordCheque(String acc, String chq, String curr, double amt, Date d)`**:
-  Records a cheque for a given account.
-- **`displayChequeHistory(String acc)`**:
-  Displays the number of cheques recorded for a specific account.
-- **`getChequeNumbers(String acc)`**:
-  Returns a list of cheque numbers for a given account (currently returns an empty list).
-- **`getTotalChequeCount(String acc)`**:
-  Returns the total number of cheques for a given account (currently returns 0).
-- **`getRecentChequeCount(String acc)`**:
-  Returns the count of recent cheques for a given account (currently returns 0).
-- **`hasSimilarRecentCheque(String acc, double amt, double threshold)`**:
-  Checks if there is a similar recent cheque (currently always returns false).
-- **`getAllChequeRecordsInPeriod(LocalDate start, LocalDate end)`**:
-  Retrieves all cheque records within a specified period (currently returns an empty list).
-- **`generateChequeReportCSV(List<ChequeRecord> records)`**:
-  Generates a CSV report for the given cheque records (currently returns a placeholder string).
+## Classes and Methods
 
-## 2. `CoreBankingSystemUpdater`
-This class provides a method to update the core banking system with transaction details.
+### 1. `ChequeHistoryManager`
+This class is responsible for managing the history of cheques for different accounts. It provides methods to record and retrieve cheque history.
 
-### Methods:
-- **`updateCoreBankingSystem(String acc, double amt)`**:
-  Updates the core banking system for a given account and amount.
+#### Inner Class: `ChequeRecord`
+Represents a single cheque record with the following attributes:
+- `accountNumber` (String): The account number associated with the cheque.
+- `chequeNumber` (String): The unique identifier for the cheque.
+- `currency` (String): The currency of the cheque.
+- `amount` (double): The amount of the cheque.
+- `date` (Date): The date the cheque was issued.
 
-## 3. `SignatureVerificationService`
-This service verifies the signatures on cheques against stored signatures for accounts.
+#### Methods
+- `recordCheque(String acc, String chq, String curr, double amt, Date d)`: Records a cheque for a given account.
+- `displayChequeHistory(String acc)`: Displays the number of cheque records for a given account.
+- `getChequeNumbers(String acc)`: Returns a list of cheque numbers for a given account (currently returns an empty list).
+- `getTotalChequeCount(String acc)`: Returns the total number of cheques for a given account (currently returns 0).
+- `getRecentChequeCount(String acc)`: Returns the count of recent cheques for a given account (currently returns 0).
+- `hasSimilarRecentCheque(String acc, double amt, double threshold)`: Checks if there is a similar recent cheque (currently returns false).
+- `getAllChequeRecordsInPeriod(LocalDate start, LocalDate end)`: Retrieves all cheque records within a specified period (currently returns an empty list).
+- `generateChequeReportCSV(List<ChequeRecord> records)`: Generates a CSV report for the given list of cheque records (currently returns a placeholder string).
 
-### Fields:
-- **`accountSignatures`**:
-  A map storing account numbers and their corresponding signatures.
+### 2. `CoreBankingSystemUpdater`
+This class is responsible for updating the core banking system with transaction details.
 
-### Methods:
-- **`verifySignature(String accountNumber, String signature)`**:
-  Verifies if the provided signature matches the stored signature for the account. If no signature is on file, it accepts the new signature and stores it.
-- **`updateSignature(String accountNumber, String newSignature)`**:
-  Updates the stored signature for a given account.
+#### Methods
+- `updateCoreBankingSystem(String acc, double amt)`: Updates the core banking system for a given account with the specified amount.
 
-## 4. `ChequeProcessor`
-This class integrates multiple services to process cheques. It handles signature verification, fraud detection, currency conversion, and updates to the core banking system.
+### 3. `SignatureVerificationService`
+This class provides functionality for verifying and updating signatures associated with accounts.
 
-### Dependencies:
-- **`CurrencyExchangeService`**: Handles currency conversion.
-- **`SignatureVerificationService`**: Verifies cheque signatures.
-- **`CoreBankingSystemUpdater`**: Updates the core banking system.
-- **`ChequeHistoryManager`**: Manages cheque history.
-- **`FraudDetectionService`**: Detects fraudulent cheques.
-- **`ExceptionReportManager`**: Logs exceptions during cheque processing.
-- **`ChequeStatusManager`**: Tracks the status of cheques.
-- **`EmailNotificationService`**: Sends email notifications.
+#### Attributes
+- `accountSignatures` (Map<String, String>): A map storing account numbers and their associated signatures.
 
-### Methods:
-- **`processCheque(String accountNumber, String chequeNumber, String currency, double amount, String signature)`**:
-  Processes a cheque by performing the following steps:
-  1. Checks and updates the cheque status using `ChequeStatusManager`.
+#### Constructor
+- `SignatureVerificationService()`: Initializes the service with some sample account signatures for testing purposes.
+
+#### Methods
+- `verifySignature(String accountNumber, String signature)`: Verifies if the provided signature matches the one on file for the given account. If no signature is on file, it accepts the provided signature and stores it.
+- `updateSignature(String accountNumber, String newSignature)`: Updates the signature on file for a given account.
+
+### 4. `ChequeProcessor`
+This class is a comprehensive module for processing cheques. It integrates various services to handle signature verification, fraud detection, currency conversion, and core banking system updates.
+
+#### Attributes
+- `currencyExchangeService` (CurrencyExchangeService): Handles currency conversion.
+- `signatureVerificationService` (SignatureVerificationService): Verifies cheque signatures.
+- `coreBankingSystemUpdater` (CoreBankingSystemUpdater): Updates the core banking system.
+- `chequeHistoryManager` (ChequeHistoryManager): Manages cheque history.
+- `fraudDetectionService` (FraudDetectionService): Detects fraudulent cheques.
+- `exceptionReportManager` (ExceptionReportManager): Manages exception reporting.
+- `chequeStatusManager` (ChequeStatusManager): Tracks the status of cheques.
+- `emailNotificationService` (EmailNotificationService): Sends email notifications.
+
+#### Constructor
+- `ChequeProcessor(...)`: Initializes the processor with the required services.
+
+#### Methods
+- `processCheque(String accountNumber, String chequeNumber, String currency, double amount, String signature)`: Processes a cheque by performing the following steps:
+  1. Checks and sets the status of the cheque to `ISSUED` if not already tracked.
   2. Verifies the signature using `SignatureVerificationService`. If verification fails, an exception is reported, and an email notification is sent.
-  3. Detects fraudulent cheques using `FraudDetectionService`. If fraud is detected, an exception is reported, and an email notification is sent.
-  4. Simulates cheque bouncing for amounts greater than 50,000 and reports an exception.
-  5. Simulates delayed cheque processing for cheque numbers ending in '9' and reports an exception.
+  3. Detects fraud using `FraudDetectionService`. If fraud is detected, an exception is reported, and an email notification is sent.
+  4. Simulates a bounced cheque if the amount exceeds 50,000. Reports an exception and sends an email notification.
+  5. Simulates a delayed cheque if the cheque number ends with '9'. Reports an exception and optionally sends a notification.
 
-### Notes:
-- The `processCheque` method includes logging and exception handling for various scenarios, such as signature mismatches, fraudulent cheques, and simulated cheque bounces or delays.
-- The method uses the `Logger` class for logging and the `exceptionReportManager` for reporting issues.
-
-### External Dependencies:
-- **`CurrencyExchangeService`**: Used for currency conversion.
-- **`FraudDetectionService`**: Used for detecting fraudulent cheques.
-- **`ExceptionReportManager`**: Used for logging exceptions.
-- **`ChequeStatusManager`**: Used for tracking cheque statuses.
-- **`EmailNotificationService`**: Used for sending email notifications.
-
-### Enum:
-- **`ChequeStatus`**:
-  Represents the status of a cheque. Possible values are:
-  - `ISSUED`
-  - `PROCESSED`
-  - `CANCELED`
-
-This code chunk provides a comprehensive framework for cheque processing, including various checks and updates to ensure the integrity and security of transactions.
+## External Dependencies
+The following external classes and enums are referenced in this code:
+- `CurrencyExchangeService`: Handles currency conversion.
+- `FraudDetectionService`: Detects fraudulent cheques.
+- `ExceptionReportManager`: Manages exception reporting.
+- `ChequeStatusManager`: Tracks the status of cheques.
+- `EmailNotificationService`: Sends email notifications.
+- `Logger`: Logs messages and warnings.
+- `ChequeStatus`: Enum representing the status of a cheque (`ISSUED`, `PROCESSED`, `CANCELED`).
 
 === NEXT CHUNK ===
 
@@ -2224,165 +2195,90 @@ This code chunk provides a comprehensive framework for cheque processing, includ
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_21"
-confidence_score: 0.9
-external_dependencies: ["exceptionReportManager", "Logger", "currencyExchangeService", "coreBankingSystemUpdater", "chequeHistoryManager", "chequeStatusManager", "emailNotificationService", "CurrencyRate"]
+confidence_score: 0.95
+external_dependencies: ["exceptionReportManager", "Logger", "coreBankingSystemUpdater", "chequeHistoryManager", "chequeStatusManager", "emailNotificationService", "CurrencyRate"]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Code Chunk
 
 ## Overview
-This code chunk is part of a larger system that processes cheques, handles currency exchange, and manages cheque statuses. It includes logic for handling delayed cheques, converting foreign currency amounts to local currency, updating the core banking system, recording cheque history, and managing cheque statuses. Additionally, it provides a method to cancel cheques and includes a nested `CurrencyExchangeService` class for handling currency exchange rates and conversions.
+This code chunk is part of a larger system that handles cheque processing, including operations such as simulating delays, currency exchange calculations, updating the core banking system, recording cheque history, and managing cheque statuses. Additionally, it includes a method to cancel cheques and a nested class for handling currency exchange rates.
 
-## Code Breakdown
+## Key Functionalities
 
 ### 1. Simulating Delayed Cheques
-```java
-if (chequeNumber.endsWith("9")) {
-    exceptionReportManager.reportException(accountNumber, chequeNumber, "Delayed", "Cheque processing delayed (simulated)");
-    Logger.info("Cheque processing delayed for cheque: " + chequeNumber);
-    System.out.println("Cheque processing delayed (simulated).");
-    // Optional: send notification for delayed cheques if desired
-}
-```
 - **Purpose**: Simulates a delay in cheque processing if the cheque number ends with '9'.
-- **Key Actions**:
+- **Key Operations**:
   - Reports the delay using `exceptionReportManager`.
   - Logs the delay using `Logger`.
-  - Prints a message to the console.
+  - Optionally, a notification can be sent for delayed cheques.
 
-### 2. Currency Conversion for Non-Local Currencies
-```java
-if (!"USD".equalsIgnoreCase(currency)) {
-    Map<String, Double> detailedRates = currencyExchangeService.getDetailedExchangeRates(currency);
-
-    if (detailedRates.isEmpty()) {
-        Logger.error("Exchange rate unavailable for currency: " + currency);
-        System.out.println("Failed to fetch exchange rate. Cheque processing aborted.");
-        return;
-    }
-
-    double buyRate = detailedRates.get("buy");
-    double fee = detailedRates.get("fee");
-
-    amountInLocalCurrency = amount * buyRate;
-    double feeAmount = amount * fee;
-
-    System.out.println("Currency: " + currency.toUpperCase());
-    System.out.println("Original amount: " + amount);
-    System.out.println("Exchange rate (buy): " + buyRate);
-    System.out.println("Fee rate: " + fee);
-    System.out.println("Fee amount: " + feeAmount);
-    System.out.println("Amount in local currency (before fees): " + amountInLocalCurrency);
-
-    amountInLocalCurrency -= feeAmount;
-    System.out.println("Final amount in local currency (USD): " + amountInLocalCurrency);
-} else {
-    System.out.println("Processing in local currency (USD): " + amountInLocalCurrency);
-}
-```
-- **Purpose**: Converts the cheque amount to the local currency (USD) if the cheque is in a foreign currency.
-- **Key Actions**:
-  - Fetches detailed exchange rates using `currencyExchangeService`.
-  - Logs an error and aborts processing if exchange rates are unavailable.
-  - Calculates the amount in local currency using the buy rate and deducts a fee.
-  - Prints detailed information about the conversion process.
+### 2. Currency Exchange Calculations
+- **Purpose**: Converts the cheque amount to the local currency (USD) if the cheque's currency is not USD.
+- **Key Operations**:
+  - Fetches detailed exchange rate information using `currencyExchangeService.getDetailedExchangeRates()`.
+  - Logs errors if exchange rates are unavailable.
+  - Converts the amount to local currency using the buy rate and applies a fee.
+  - Logs detailed information about the conversion process.
 
 ### 3. Updating the Core Banking System
-```java
-coreBankingSystemUpdater.updateCoreBankingSystem(accountNumber, amountInLocalCurrency);
-```
-- **Purpose**: Updates the core banking system with the account number and the converted amount in local currency.
-- **Dependency**: `coreBankingSystemUpdater` is responsible for this operation.
+- **Purpose**: Updates the core banking system with the processed cheque amount in local currency.
+- **Key Operations**:
+  - Uses `coreBankingSystemUpdater.updateCoreBankingSystem()` to update the system.
 
 ### 4. Recording Cheque History
-```java
-chequeHistoryManager.recordCheque(accountNumber, chequeNumber, currency, amount, new java.util.Date());
-```
-- **Purpose**: Records the cheque details, including account number, cheque number, currency, amount, and the current date.
-- **Dependency**: `chequeHistoryManager` handles the recording of cheque history.
+- **Purpose**: Records the cheque's details in the cheque history.
+- **Key Operations**:
+  - Uses `chequeHistoryManager.recordCheque()` to log the cheque's details.
 
-### 5. Updating Cheque Status
-```java
-chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.PROCESSED);
-Logger.info("Cheque processed successfully: " + chequeNumber);
-System.out.println("Cheque processed successfully.");
-```
+### 5. Managing Cheque Status
 - **Purpose**: Updates the status of the cheque to `PROCESSED` upon successful processing.
-- **Key Actions**:
-  - Updates the status using `chequeStatusManager`.
-  - Logs the successful processing using `Logger`.
-  - Prints a success message to the console.
+- **Key Operations**:
+  - Uses `chequeStatusManager.setStatus()` to update the cheque's status.
+  - Logs the successful processing of the cheque using `Logger`.
 
 ### 6. Error Handling
-```java
-} catch (Exception ex) {
-    Logger.error("Error processing cheque " + chequeNumber + ": " + ex.getMessage());
-    exceptionReportManager.reportException(accountNumber, chequeNumber, "ProcessingError", ex.getMessage());
-    System.out.println("An error occurred during cheque processing. Please check logs.");
-    emailNotificationService.sendEmail(
-        accountNumber + "@bank.com",
-        "Cheque Processing Error",
-        "An error occurred while processing cheque " + chequeNumber + " for account " + accountNumber + ": " + ex.getMessage()
-    );
-}
-```
 - **Purpose**: Handles exceptions that occur during cheque processing.
-- **Key Actions**:
+- **Key Operations**:
   - Logs the error using `Logger`.
   - Reports the error using `exceptionReportManager`.
-  - Sends an email notification using `emailNotificationService`.
+  - Sends an email notification about the error using `emailNotificationService.sendEmail()`.
 
 ### 7. Cancelling a Cheque
-```java
-public void cancelCheque(String accountNumber, String chequeNumber) {
-    try {
-        chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.CANCELED);
-        Logger.info("Cheque canceled: " + chequeNumber + " for account: " + accountNumber);
-        System.out.println("Cheque " + chequeNumber + " for account " + accountNumber + " has been canceled.");
-    } catch (Exception ex) {
-        Logger.error("Error canceling cheque " + chequeNumber + ": " + ex.getMessage());
-        System.out.println("An error occurred while canceling the cheque.");
-    }
-}
-```
-- **Purpose**: Cancels a cheque and updates its status to `CANCELED`.
-- **Key Actions**:
-  - Updates the status using `chequeStatusManager`.
+- **Purpose**: Cancels a cheque and updates its status.
+- **Key Operations**:
+  - Uses `chequeStatusManager.setStatus()` to set the cheque's status to `CANCELED`.
   - Logs the cancellation using `Logger`.
-  - Prints a cancellation message to the console.
-  - Handles exceptions by logging errors and printing error messages.
 
-### 8. `CurrencyExchangeService` Class
-The `CurrencyExchangeService` class provides methods for fetching and converting currency exchange rates. It includes:
-
-#### Methods:
-1. **`getExchangeRate(String currency)`**:
-   - Fetches the exchange rate for a given currency.
-   - Uses a cache for previously fetched rates.
-   - Falls back to predefined rates if the API is unavailable.
-
-2. **`convertCurrency(double amount, String fromCurrency, String toCurrency)`**:
-   - Converts an amount from one currency to another using exchange rates.
-
-3. **`getDetailedExchangeRates(String currency)`**:
-   - Provides detailed exchange rate information, including buy/sell rates and fees.
-
-#### Attributes:
-- `exchangeRateCache`: A cache for storing exchange rates.
-- `BASE_CURRENCY`: The base currency (USD).
-- `CACHE_EXPIRY_MINUTES`: Cache expiry time in minutes.
-- `API_KEY`: API key for fetching rates from an external source.
-- `FALLBACK_RATES`: Predefined fallback rates for various currencies.
+### 8. CurrencyExchangeService Class
+- **Purpose**: Provides methods for handling currency exchange rates and conversions.
+- **Key Methods**:
+  - `getExchangeRate(String currency)`: Fetches the exchange rate for a given currency, using cached rates, external APIs, or fallback rates.
+  - `convertCurrency(double amount, String fromCurrency, String toCurrency)`: Converts an amount from one currency to another.
+  - `getDetailedExchangeRates(String currency)`: Provides detailed exchange rate information, including buy/sell rates and fees.
 
 ## External Dependencies
-- **`exceptionReportManager`**: Handles reporting of exceptions.
-- **`Logger`**: Logs messages and errors.
-- **`currencyExchangeService`**: Provides currency exchange rates and conversion methods.
-- **`coreBankingSystemUpdater`**: Updates the core banking system.
-- **`chequeHistoryManager`**: Records cheque history.
-- **`chequeStatusManager`**: Manages the status of cheques.
-- **`emailNotificationService`**: Sends email notifications.
-- **`CurrencyRate`**: Represents exchange rate information, including the rate and last updated timestamp.
+- **exceptionReportManager**: Manages the reporting of exceptions.
+- **Logger**: Logs information, errors, and other messages.
+- **coreBankingSystemUpdater**: Updates the core banking system with transaction details.
+- **chequeHistoryManager**: Records cheque transaction history.
+- **chequeStatusManager**: Manages the status of cheques (e.g., ISSUED, PROCESSED, CANCELED).
+- **emailNotificationService**: Sends email notifications for errors or other events.
+- **CurrencyRate**: Represents exchange rate information, including the rate and the last updated timestamp.
+
+## Error Handling
+- The code includes robust error handling mechanisms to ensure that exceptions during cheque processing are logged, reported, and notified via email.
+
+## Notes
+- The `CurrencyExchangeService` class includes a caching mechanism for exchange rates and uses fallback rates if external APIs are unavailable.
+- The code assumes that USD is the base currency for all exchange rate calculations.
+- The `cancelCheque` method provides a simple way to cancel a cheque and update its status.
+
+## Potential Enhancements
+- Implement a notification system for delayed cheques.
+- Add more detailed logging for each step of the cheque processing workflow.
+- Enhance the `CurrencyExchangeService` to support more dynamic fee calculations.
+- Improve error handling to include retry mechanisms for failed API calls.
 
 === NEXT CHUNK ===
 
@@ -2391,17 +2287,15 @@ original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_22"
 confidence_score: 0.95
-external_dependencies: ["CurrencyRate", "ChequeHistoryManager", "FraudDetection", "ChequeTransaction"]
+external_dependencies: ["java.time.LocalDateTime", "java.net.HttpURLConnection", "org.json.simple.parser.JSONParser", "org.json.simple.JSONObject", "java.util.Collections", "java.util.HashMap", "java.util.ArrayList", "java.util.List", "java.util.Map", "FraudDetection", "ChequeHistoryManager", "ChequeTransaction"]
 ---
 
-# Documentation for Code Chunk
-
 ## Overview
-This code chunk is part of a legacy Java application that provides functionalities for currency exchange rate calculations, caching, and fraud detection. It includes methods for calculating detailed exchange rates, fetching rates from an external API, managing supported currencies, and detecting fraudulent activities related to cheques.
+This chunk of code is part of a legacy Java application that provides functionalities for currency exchange rate calculations, caching, and fraud detection. The code includes methods for calculating detailed exchange rates, fetching supported currencies, validating cached rates, fetching exchange rates from an external API, and clearing the cache. Additionally, it contains a secondary implementation of a currency exchange service (`CurrencyExchangeServiceV2`), a `CurrencyRate` class for storing exchange rate data, and a `FraudDetectionService` class for detecting fraudulent cheque activities.
 
-## Code Breakdown
+### Code Breakdown
 
-### 1. **Detailed Exchange Rate Calculation**
+#### 1. **Detailed Exchange Rate Calculation**
 ```java
 if (baseRate <= 0) {
     return Collections.emptyMap();
@@ -2424,14 +2318,12 @@ detailedRates.put("fee", fee);
 
 return detailedRates;
 ```
-This block calculates detailed exchange rates based on a given base rate. It computes the mid, buy, sell, and fee rates and stores them in a `HashMap` with descriptive keys. If the base rate is less than or equal to zero, an empty map is returned.
+- **Purpose**: This block calculates detailed exchange rates based on a given base rate.
+  - If the `baseRate` is less than or equal to 0, it returns an empty map.
+  - Otherwise, it calculates the mid, buy, sell, and fee rates and stores them in a map.
+  - The `buyRate` is 1% lower than the `baseRate`, the `sellRate` is 1% higher, and the `fee` is 0.5% of the `baseRate`.
 
-- **`mid`**: The base rate.
-- **`buy`**: 1% lower than the base rate.
-- **`sell`**: 1% higher than the base rate.
-- **`fee`**: 0.5% of the base rate.
-
-### 2. **Supported Currencies Retrieval**
+#### 2. **Fetching Supported Currencies**
 ```java
 public List<String> getSupportedCurrencies() {
     List<String> currencies = new ArrayList<>();
@@ -2443,9 +2335,11 @@ public List<String> getSupportedCurrencies() {
     return currencies;
 }
 ```
-This method returns a list of all supported currency codes. It includes the base currency (`BASE_CURRENCY`) and all keys from the `FALLBACK_RATES` map. The list is sorted alphabetically before being returned.
+- **Purpose**: This method returns a list of all supported currency codes.
+  - It includes the base currency (`BASE_CURRENCY`) and all keys from the `FALLBACK_RATES` map.
+  - The list is sorted alphabetically before being returned.
 
-### 3. **Cache Validation**
+#### 3. **Cache Validation**
 ```java
 private boolean isCacheValid(String currency) {
     if (!exchangeRateCache.containsKey(currency)) {
@@ -2459,9 +2353,11 @@ private boolean isCacheValid(String currency) {
     return now.isBefore(expiryTime);
 }
 ```
-This private method checks if the cached exchange rate for a given currency is still valid. It compares the current time with the cache expiry time, which is calculated by adding `CACHE_EXPIRY_MINUTES` to the last updated timestamp of the cached rate.
+- **Purpose**: This method checks if the cached exchange rate for a given currency is still valid.
+  - It verifies if the currency exists in the `exchangeRateCache`.
+  - If the cache exists, it checks whether the cached rate has expired by comparing the current time with the expiry time (`CACHE_EXPIRY_MINUTES` after the last update).
 
-### 4. **Fetching Exchange Rate from External API**
+#### 4. **Fetching Exchange Rate from External API**
 ```java
 private double fetchRateFromAPI(String currency) throws Exception {
     String apiUrl = "https://open.er-api.com/v6/latest/" + BASE_CURRENCY + "?apikey=" + API_KEY;
@@ -2483,7 +2379,6 @@ private double fetchRateFromAPI(String currency) throws Exception {
         }
         reader.close();
 
-        // Parse JSON response
         org.json.simple.parser.JSONParser parser = new org.json.simple.parser.JSONParser();
         org.json.simple.JSONObject jsonObject = (org.json.simple.JSONObject) parser.parse(response.toString());
         org.json.simple.JSONObject rates = (org.json.simple.JSONObject) jsonObject.get("rates");
@@ -2501,63 +2396,58 @@ private double fetchRateFromAPI(String currency) throws Exception {
     }
 }
 ```
-This method fetches the exchange rate for a given currency from an external API. It constructs the API URL using the `BASE_CURRENCY` and `API_KEY`. If the API response is successful, it parses the JSON response to extract the exchange rate for the specified currency. If the currency is not found or an error occurs, an exception is thrown.
+- **Purpose**: This method fetches the exchange rate for a given currency from an external API.
+  - It constructs the API URL using the `BASE_CURRENCY` and `API_KEY`.
+  - The method handles HTTP requests, reads the response, and parses the JSON to extract the exchange rate for the specified currency.
+  - If the currency is not found or an error occurs, an exception is thrown.
 
-### 5. **Clearing the Cache**
+#### 5. **Clearing the Cache**
 ```java
 public void clearCache() {
     exchangeRateCache.clear();
     System.out.println("Exchange rate cache cleared");
 }
 ```
-This method clears the `exchangeRateCache` and logs a message indicating that the cache has been cleared.
+- **Purpose**: This method clears the `exchangeRateCache` and logs a message indicating that the cache has been cleared.
 
-### 6. **CurrencyExchangeServiceV2 Class**
-This class is an enhanced version of the currency exchange service. It includes methods for fetching exchange rates, converting currencies, and retrieving detailed exchange rates. It also uses a fallback mechanism for exchange rates when the API is unavailable.
+### Additional Classes and Services
 
-#### Key Features:
-- **`getExchangeRateV2`**: Fetches the exchange rate for a given currency, using a cache or fallback rates if the API is unavailable.
-- **`convertCurrencyV2`**: Converts an amount from one currency to another using the exchange rates.
-- **`getDetailedExchangeRatesV2`**: Retrieves detailed exchange rates (mid, buy, sell, fee) for a given currency.
-- **`getSupportedCurrenciesV2`**: Returns a list of supported currencies.
-- **`fetchRateFromAPIV2`**: Fetches the exchange rate for a currency from an external API.
-- **`clearCacheV2`**: Clears the cache of exchange rates.
+#### `CurrencyExchangeServiceV2`
+- A simplified and less efficient version of the primary currency exchange service.
+- Provides similar functionalities, such as fetching exchange rates, converting currencies, and clearing the cache.
+- Uses hardcoded fallback rates and a basic JSON parsing mechanism.
 
-### 7. **CurrencyRate Class**
-This class is used to store currency rate information along with a timestamp indicating when the rate was last updated.
+#### `CurrencyRate`
+- A class for storing exchange rate information along with a timestamp of the last update.
+- **Fields**:
+  - `rate`: The exchange rate value.
+  - `lastUpdated`: The timestamp of the last update.
+- **Methods**:
+  - `getRate()`: Returns the exchange rate.
+  - `getLastUpdated()`: Returns the timestamp of the last update.
 
-#### Fields:
-- **`rate`**: The exchange rate.
-- **`lastUpdated`**: The timestamp of the last update.
+#### `FraudDetectionService`
+- A service for detecting fraudulent cheque activities.
+- Implements various fraud detection mechanisms, such as velocity checks, pattern matching, and unusual frequency detection.
+- **Fields**:
+  - `fraudDetection`: An instance of the `FraudDetection` class.
+  - `historyManager`: An instance of the `ChequeHistoryManager` class.
+  - `recentTransactions`: A map of recent cheque transactions.
+- **Fraud Detection Parameters**:
+  - `VELOCITY_CHECK_DAYS`: Number of days for velocity checks.
+  - `VELOCITY_THRESHOLD`: Maximum allowed transactions within the velocity check period.
+  - `PATTERN_THRESHOLD`: Similarity threshold for pattern matching.
+  - `SIMILAR_AMOUNT_THRESHOLD`: Similarity threshold for transaction amounts.
+  - `UNUSUAL_FREQUENCY_THRESHOLD`: Threshold for unusual transaction frequency.
+- **Fraud Alert Levels**:
+  - `LOW`, `MEDIUM`, `HIGH`, `CRITICAL`.
 
-#### Methods:
-- **`getRate`**: Returns the exchange rate.
-- **`getLastUpdated`**: Returns the last updated timestamp.
-
-### 8. **FraudDetectionService Class**
-This class implements fraud detection mechanisms for cheque transactions. It uses a `ChequeHistoryManager` to manage cheque history and detect fraudulent activities based on various thresholds.
-
-#### Key Features:
-- **Fraud Detection Thresholds**:
-  - Velocity Check: Monitors the number of transactions within a specific period.
-  - Pattern Similarity: Detects patterns with a similarity threshold.
-  - Unusual Frequency: Flags transactions with unusually high frequency.
-- **Alert Levels**: Defines different levels of fraud alerts (LOW, MEDIUM, HIGH, CRITICAL).
-
-#### Dependencies:
-- **`FraudDetection`**: A class or module for detecting fraud.
-- **`ChequeHistoryManager`**: Manages the history of cheque transactions.
-- **`ChequeTransaction`**: Represents individual cheque transactions.
-
-## External Dependencies
-- **`CurrencyRate`**: Used for caching exchange rates with timestamps.
-- **`ChequeHistoryManager`**: Manages cheque transaction history.
-- **`FraudDetection`**: Provides fraud detection capabilities.
-- **`ChequeTransaction`**: Represents cheque transactions for fraud detection.
-
-## Notes
-- The code contains hardcoded API keys and fallback rates, which should be replaced with secure and dynamic configurations in a production environment.
-- The JSON parsing in `fetchRateFromAPIV2` is inefficient and should be replaced with a robust library or method for better performance and maintainability.
+### External Dependencies
+- `java.time.LocalDateTime`: Used for handling timestamps.
+- `java.net.HttpURLConnection`: Used for making HTTP requests to the external API.
+- `org.json.simple.parser.JSONParser` and `org.json.simple.JSONObject`: Used for parsing JSON responses from the API.
+- `java.util` classes: Used for data structures like `Map`, `List`, and utility methods like `Collections.sort`.
+- `FraudDetection`, `ChequeHistoryManager`, and `ChequeTransaction`: Classes used in the fraud detection service.
 
 === NEXT CHUNK ===
 
@@ -2565,102 +2455,120 @@ This class implements fraud detection mechanisms for cheque transactions. It use
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_23"
-confidence_score: 0.9
+confidence_score: 0.95
 external_dependencies: ["FraudDetection", "ChequeHistoryManager"]
 ---
 
-# Fraud Detection Service Documentation
+# Documentation: Fraud Detection Service
 
-## Overview
-This chunk of code implements a fraud detection service for cheque transactions. It defines thresholds for various fraud detection mechanisms, provides methods to evaluate transactions for potential fraud, and determines the severity of detected fraud. The service also logs the results of fraud checks and categorizes the fraud into different alert levels.
+This code chunk is part of a `FraudDetectionService` class, which is responsible for detecting fraudulent activities related to cheque transactions. It uses various thresholds and checks to identify potential fraud and assigns an alert level based on the severity of the detected issues.
 
-## Key Components
+## Constants
 
 ### Fraud Detection Thresholds
-The following constants define thresholds for detecting fraudulent activities:
-- **VELOCITY_CHECK_DAYS**: Number of days to consider for velocity checks (default: 7 days).
-- **VELOCITY_THRESHOLD**: Maximum allowed transactions within the velocity check period (default: 5 transactions).
-- **PATTERN_THRESHOLD**: Similarity threshold for detecting pattern-based fraud (default: 95%).
-- **SIMILAR_AMOUNT_THRESHOLD**: Similarity threshold for recent transaction amounts (default: 90%).
-- **UNUSUAL_FREQUENCY_THRESHOLD**: Multiplier for detecting unusual frequency of transactions (default: 3x normal frequency).
+- **`VELOCITY_CHECK_DAYS`**: Number of days to consider for velocity checks (default: `7` days).
+- **`VELOCITY_THRESHOLD`**: Maximum number of transactions allowed within the velocity check period (default: `5`).
+- **`PATTERN_THRESHOLD`**: Similarity threshold for pattern analysis (default: `0.95` or 95%).
+- **`SIMILAR_AMOUNT_THRESHOLD`**: Similarity threshold for recent cheque amounts (default: `0.90` or 90%).
+- **`UNUSUAL_FREQUENCY_THRESHOLD`**: Multiplier for detecting unusual frequency of transactions (default: `3x`).
 
 ### Fraud Alert Levels
-An enumeration `AlertLevel` is defined to categorize the severity of detected fraud:
+The `AlertLevel` enum defines the severity levels of fraud alerts:
 - `LOW`
 - `MEDIUM`
 - `HIGH`
 - `CRITICAL`
 
-### Constructor
-```java
-public FraudDetectionService()
-```
-Initializes the `FraudDetection` instance and a `HashMap` to store recent transactions.
+## Constructor
 
-### Methods
+### `FraudDetectionService()`
+Initializes the `FraudDetectionService` with the following:
+- `fraudDetection`: An instance of the `FraudDetection` class.
+- `recentTransactions`: A `HashMap` to store recent transactions for each account.
 
-#### `setHistoryManager(ChequeHistoryManager historyManager)`
-Sets the `ChequeHistoryManager` instance for accessing historical cheque data.
+## Methods
 
-#### `isFraudulentCheque(String accountId, String chequeNumber, double amount)`
-Evaluates a cheque transaction for potential fraud by performing various checks:
-- Duplicate cheque detection.
-- Abnormal amount detection.
-- Suspicious activity detection.
-- Velocity-based fraud detection.
-- Pattern-based fraud detection.
-- Historical duplicate detection (if `ChequeHistoryManager` is set).
-- Unusual frequency detection (if `ChequeHistoryManager` is set).
-- Similar recent transaction detection (if `ChequeHistoryManager` is set).
+### `setHistoryManager(ChequeHistoryManager historyManager)`
+Sets the `ChequeHistoryManager` instance to enable historical checks for fraud detection.
 
-Returns `true` if any of the checks indicate fraud, otherwise returns `false`.
+### `isFraudulentCheque(String accountId, String chequeNumber, double amount)`
+Determines whether a cheque is fraudulent by performing the following checks:
+1. **Duplicate Cheque Check**: Uses `checkDuplicateCheque` to verify if the cheque has already been processed.
+2. **Abnormal Amount Check**: Uses `checkAbnormalAmount` to detect unusually high amounts.
+3. **Suspicious Activity Check**: Uses `checkSuspiciousActivity` to identify suspicious account activity.
+4. **Velocity Fraud Check**: Uses `checkVelocityFraud` to detect rapid transactions within a short period.
+5. **Pattern Fraud Check**: Uses `checkPatternFraud` to identify patterns in transaction amounts.
+6. **Historical Duplicate Check**: Uses `checkHistoricalDuplicate` to find duplicate cheques in historical data (if `ChequeHistoryManager` is set).
+7. **Unusual Frequency Check**: Uses `checkUnusualFrequency` to detect unusually high transaction frequency (if `ChequeHistoryManager` is set).
+8. **Similar Recent Amount Check**: Uses `checkSimilarToRecent` to find recent cheques with similar amounts (if `ChequeHistoryManager` is set).
+
+Logs the results of these checks using `logFraudChecks` and determines the alert level using `determineAlertLevel`.
+
+Returns `true` if any of the checks indicate fraud; otherwise, returns `false`.
+
+### Private Helper Methods
 
 #### `checkDuplicateCheque(String accountId, String chequeNumber)`
-Checks if the cheque is a duplicate using the `FraudDetection` instance.
+Checks if the cheque has already been processed using the `FraudDetection.isDuplicateCheque` method.
 
 #### `checkAbnormalAmount(double amount)`
-Checks if the cheque amount is abnormal using the `FraudDetection` instance.
+Checks if the cheque amount exceeds a predefined threshold using the `FraudDetection.isAbnormalAmount` method.
 
 #### `checkSuspiciousActivity(String accountId, double amount)`
-Checks for suspicious activity using the `FraudDetection` instance.
+Checks for suspicious activity in the account using the `FraudDetection.isSuspiciousActivity` method.
 
 #### `checkVelocityFraud(String accountId, double amount)`
-Detects velocity-based fraud by analyzing the number of transactions within the last `VELOCITY_CHECK_DAYS` days. If the count exceeds `VELOCITY_THRESHOLD`, it flags the transaction as fraudulent.
+Detects rapid transactions within a short period (velocity fraud). It:
+- Tracks recent transactions for the account.
+- Filters transactions within the last `VELOCITY_CHECK_DAYS`.
+- Returns `true` if the number of recent transactions exceeds `VELOCITY_THRESHOLD`.
 
 #### `checkPatternFraud(String accountId, double amount)`
-Analyzes recent transactions for pattern-based fraud by comparing the similarity of transaction amounts. Flags fraud if at least three transactions have a similarity above `PATTERN_THRESHOLD`.
+Analyzes patterns in transaction amounts to detect fraud. It:
+- Compares the current amount with past amounts.
+- Calculates similarity using the `PATTERN_THRESHOLD`.
+- Returns `true` if at least three past transactions are similar to the current one.
 
 #### `checkHistoricalDuplicate(String accountId, String chequeNumber)`
-Checks if the cheque number exists in the historical data provided by the `ChequeHistoryManager`.
+Checks for duplicate cheques in historical data using the `ChequeHistoryManager.getChequeNumbers` method.
 
 #### `checkUnusualFrequency(String accountId)`
-Detects unusual frequency of transactions by comparing recent transaction counts to the average monthly frequency. Flags fraud if the recent count exceeds the average by `UNUSUAL_FREQUENCY_THRESHOLD`.
+Detects unusually high transaction frequency by comparing recent transactions to the average monthly frequency. Uses the `ChequeHistoryManager.getTotalChequeCount` and `ChequeHistoryManager.getRecentChequeCount` methods.
 
 #### `checkSimilarToRecent(String accountId, double amount)`
-Checks if the transaction amount is similar to recent transactions using the `ChequeHistoryManager`.
+Checks if the current cheque amount is similar to recent amounts using the `ChequeHistoryManager.hasSimilarRecentCheque` method and the `SIMILAR_AMOUNT_THRESHOLD`.
 
 #### `determineAlertLevel(...)`
-Determines the fraud alert level based on the results of various checks. The alert levels are categorized as `LOW`, `MEDIUM`, `HIGH`, or `CRITICAL` based on the severity of detected fraud.
+Determines the fraud alert level based on the results of the checks. Assigns weights to each check and calculates a total fraud score:
+- `CRITICAL`: Fraud score >= 5 or duplicate/historical duplicate detected.
+- `HIGH`: Fraud score >= 3.
+- `MEDIUM`: Fraud score >= 2.
+- `LOW`: Fraud score < 2.
 
 #### `logFraudChecks(...)`
-Logs the results of all fraud checks and provides a summary of whether fraud was detected.
+Logs the results of all fraud checks and provides a summary indicating whether fraud was detected.
 
 #### `formatCheckResult(boolean failed)`
-Formats the result of a fraud check for logging purposes.
+Formats the result of a fraud check as either `FAILED ⚠️` or `Passed ✓`.
 
 ### Inner Class: `ChequeTransaction`
 Represents a cheque transaction with the following fields:
-- `amount`: The transaction amount.
-- `date`: The transaction date.
+- `amount`: The amount of the cheque.
+- `date`: The date of the transaction.
 
-Provides getter methods for both fields.
+#### Constructor
+- `ChequeTransaction(double amount, java.time.LocalDate date)`: Initializes a cheque transaction with the specified amount and date.
+
+#### Methods
+- `getAmount()`: Returns the transaction amount.
+- `getDate()`: Returns the transaction date.
 
 ## External Dependencies
-- **FraudDetection**: Used for performing core fraud detection checks (e.g., duplicate cheque, abnormal amount, suspicious activity).
-- **ChequeHistoryManager**: Provides historical data for advanced fraud checks (e.g., historical duplicates, unusual frequency, similar recent transactions).
+- **`FraudDetection`**: Provides methods for detecting duplicate cheques, abnormal amounts, and suspicious activity.
+- **`ChequeHistoryManager`**: Provides historical data for cheques, including cheque numbers, total cheque count, and recent cheque count.
 
-## Usage
-This service can be used in financial systems to detect and categorize fraudulent cheque transactions. It integrates with external systems for historical data and provides detailed logging for audit purposes.
+## Summary
+The `FraudDetectionService` class is a comprehensive solution for detecting cheque-related fraud. It combines real-time and historical data analysis to identify various types of fraudulent activities and assigns an appropriate alert level based on the severity of the detected issues.
 
 === NEXT CHUNK ===
 
@@ -2668,19 +2576,23 @@ This service can be used in financial systems to detect and categorize fraudulen
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_24"
-confidence_score: 0.95
+confidence_score: 0.9
 external_dependencies: ["FraudDetection", "ChequeHistoryManager"]
 ---
 
-# Documentation for Fraud Detection and Cheque Management Code Chunk
+# Documentation for Code Chunk
 
 ## Overview
-This code chunk is part of a fraud detection system for cheque transactions. It includes methods for detecting fraudulent activities based on various criteria, such as duplicate cheques, abnormal amounts, suspicious activity, velocity fraud, and pattern fraud. Additionally, it integrates with a `ChequeHistoryManager` to perform historical checks and manage cheque transaction history.
+This code chunk is part of a fraud detection system implemented in Java. It includes methods and classes for detecting fraudulent cheque activities. The main components in this chunk are:
 
-## Key Components
+1. **Summary Output**: Prints a summary of fraud detection results.
+2. **Helper Methods**: Includes utility methods for formatting results and performing specific fraud checks.
+3. **`ChequeTransaction` Class**: Represents a cheque transaction with attributes for amount and date.
+4. **`FraudDetectionServiceV1` Class**: Implements various fraud detection mechanisms and integrates with a `ChequeHistoryManager` for historical data analysis.
 
-### 1. **Summary Output**
-The code includes a summary output section that prints the results of fraud detection checks:
+## Code Components
+
+### Summary Output
 ```java
 System.out.println("\n--- Summary ---");
 if (anyFraudDetected) {
@@ -2690,246 +2602,216 @@ if (anyFraudDetected) {
 }
 System.out.println("=============================\n");
 ```
-This provides a user-friendly summary of whether fraud was detected.
+This block prints a summary of the fraud detection results. If any fraud is detected, it displays a warning; otherwise, it confirms no fraud was found.
 
-### 2. **Helper Method: `formatCheckResult`**
-This method formats the result of a fraud check for display purposes:
+### `formatCheckResult` Method
 ```java
 private String formatCheckResult(boolean failed) {
     return failed ? "FAILED ⚠️" : "Passed ✓";
 }
 ```
-- **Input:** A boolean indicating whether the check failed.
-- **Output:** A formatted string indicating the result.
+This utility method formats the result of a fraud check. It returns "FAILED ⚠️" if the check failed and "Passed ✓" otherwise.
 
-### 3. **Inner Class: `ChequeTransaction`**
+### `ChequeTransaction` Class
+```java
+private static class ChequeTransaction {
+    private double amount;
+    private java.time.LocalDate date;
+
+    public ChequeTransaction(double amount, java.time.LocalDate date) {
+        this.amount = amount;
+        this.date = date;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public java.time.LocalDate getDate() {
+        return date;
+    }
+}
+```
 This class represents a cheque transaction with two attributes:
-- `amount` (double): The amount of the cheque.
-- `date` (LocalDate): The date of the transaction.
+- `amount`: The monetary value of the cheque.
+- `date`: The date of the transaction.
 
-#### Constructor:
-```java
-public ChequeTransaction(double amount, java.time.LocalDate date) {
-    this.amount = amount;
-    this.date = date;
-}
-```
-#### Getters:
-```java
-public double getAmount() {
-    return amount;
-}
+It includes a constructor for initializing these attributes and getter methods for accessing them.
 
-public java.time.LocalDate getDate() {
-    return date;
-}
-```
+### `FraudDetectionServiceV1` Class
+#### Overview
+This class is responsible for detecting fraudulent cheque activities. It uses various mechanisms, including velocity checks, pattern analysis, and historical data analysis, to identify potential fraud.
 
-### 4. **Class: `FraudDetectionServiceV1`**
-This class implements the core fraud detection logic. It uses various thresholds and criteria to determine if a cheque is fraudulent.
+#### Attributes
+- `fraudDetection`: An instance of the `FraudDetection` class, which provides core fraud detection functionalities.
+- `historyManager`: An instance of the `ChequeHistoryManager` class, used for historical data analysis.
+- `recentTransactions`: A map storing recent transactions for each account.
 
-#### Key Attributes:
-- `FraudDetection fraudDetection`: An instance of the `FraudDetection` class for performing basic fraud checks.
-- `ChequeHistoryManager historyManager`: Manages historical cheque data.
-- `Map<String, List<ChequeTransaction>> recentTransactions`: Tracks recent transactions for velocity and pattern checks.
+#### Fraud Detection Thresholds
+- `VELOCITY_CHECK_DAYS`: The number of days to consider for velocity checks.
+- `VELOCITY_THRESHOLD`: The maximum number of transactions allowed within the velocity check period.
+- `PATTERN_THRESHOLD`: The similarity threshold for pattern analysis.
+- `SIMILAR_AMOUNT_THRESHOLD`: The similarity threshold for comparing recent amounts.
+- `UNUSUAL_FREQUENCY_THRESHOLD`: The multiplier for determining unusual transaction frequency.
 
-#### Fraud Detection Thresholds:
-- `VELOCITY_CHECK_DAYS`: Number of days for velocity checks.
-- `VELOCITY_THRESHOLD`: Maximum allowed transactions within the velocity check period.
-- `PATTERN_THRESHOLD`: Similarity threshold for pattern analysis.
-- `SIMILAR_AMOUNT_THRESHOLD`: Similarity threshold for recent amounts.
-- `UNUSUAL_FREQUENCY_THRESHOLD`: Multiplier for detecting unusual frequency.
+#### Methods
+- **`setHistoryManager`**: Sets the `ChequeHistoryManager` instance.
+- **`isFraudulentCheque`**: Determines if a cheque is fraudulent by performing various checks, including duplicate detection, abnormal amount detection, and historical analysis.
+- **`checkDuplicateCheque`**: Checks if a cheque is a duplicate using the `FraudDetection` instance.
+- **`checkAbnormalAmount`**: Checks if the cheque amount is abnormal.
+- **`checkSuspiciousActivity`**: Checks for suspicious activity based on the account ID and amount.
+- **`checkVelocityFraud`**: Detects fraud based on the frequency of recent transactions.
+- **`checkPatternFraud`**: Identifies fraud based on patterns in transaction amounts.
+- **`checkHistoricalDuplicate`**: Checks for duplicate cheques in historical data.
+- **`checkUnusualFrequency`**: Determines if the frequency of transactions is unusually high.
+- **`checkSimilarToRecent`**: Checks if the current transaction amount is similar to recent transactions.
+- **`determineAlertLevel`**: Determines the level of fraud alert based on the results of various checks.
+- **`logFraudChecks`**: Logs the results of all fraud checks for a given transaction.
 
-#### Fraud Alert Levels:
-The `AlertLevel` enum defines four levels of fraud alerts:
+#### `AlertLevel` Enum
+Defines the levels of fraud alerts:
 - `LOW`
 - `MEDIUM`
 - `HIGH`
 - `CRITICAL`
 
-#### Methods:
-1. **`isFraudulentCheque`**
-   - Determines if a cheque is fraudulent based on multiple checks.
-   - Integrates with `ChequeHistoryManager` for historical checks.
-
-2. **`checkDuplicateCheque`**
-   - Checks for duplicate cheques using `FraudDetection`.
-
-3. **`checkAbnormalAmount`**
-   - Checks if the cheque amount is abnormal.
-
-4. **`checkSuspiciousActivity`**
-   - Checks for suspicious activity based on account and amount.
-
-5. **`checkVelocityFraud`**
-   - Detects velocity fraud by analyzing recent transactions.
-
-6. **`checkPatternFraud`**
-   - Detects pattern fraud by analyzing transaction amounts for similarity.
-
-7. **`checkHistoricalDuplicate`**
-   - Checks for duplicate cheques in historical data.
-
-8. **`checkUnusualFrequency`**
-   - Detects unusual frequency of transactions.
-
-9. **`checkSimilarToRecent`**
-   - Checks if the amount is similar to recent transactions.
-
-10. **`determineAlertLevel`**
-    - Determines the fraud alert level based on the results of various checks.
-
-11. **`logFraudChecks`**
-    - Logs the results of all fraud checks for auditing purposes.
-
-### 5. **External Dependencies**
-- **`FraudDetection`**: Provides methods for basic fraud checks, such as detecting duplicate cheques and abnormal amounts.
-- **`ChequeHistoryManager`**: Manages historical cheque data and provides methods for retrieving cheque numbers, total cheque counts, and recent cheque counts.
-
-#### `ChequeHistoryManager` Example:
-```java
-static class ChequeHistoryManager {
-    private Map<String, List<ChequeRecord>> history = new HashMap<>();
-
-    public void recordCheque(String acc, String chq, String curr, double amt, Date d) {
-        history.computeIfAbsent(acc, k -> new ArrayList<>()).add(new ChequeRecord(acc, chq, curr, amt, d));
-    }
-
-    public void displayChequeHistory(String acc) {
-        System.out.println("History for " + acc + ": " + history.getOrDefault(acc, Collections.emptyList()).size() + " records.");
-    }
-}
-```
+## External Dependencies
+- **`FraudDetection`**: Provides core fraud detection functionalities. The exact implementation details are not provided in this chunk.
+- **`ChequeHistoryManager`**: Manages historical cheque data. The exact implementation details are not provided in this chunk.
 
 ## Summary
-This code chunk provides a comprehensive implementation of a fraud detection system for cheque transactions. It uses a combination of real-time and historical data to identify potential fraud and assigns an alert level based on the severity of the detected issues. The integration with `FraudDetection` and `ChequeHistoryManager` enhances its capabilities, making it a robust solution for detecting fraudulent cheque activities.
+This code chunk is a comprehensive implementation of a fraud detection service for cheque transactions. It combines real-time checks with historical data analysis to identify potential fraud. The use of helper methods and a dedicated `ChequeTransaction` class ensures modularity and readability.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_25"
-confidence_score: 0.9
-external_dependencies: ["java.time.LocalDate", "java.util.HashMap", "java.util.List", "java.util.ArrayList", "java.util.Map"]
+confidence_score: 0.95
+external_dependencies: [java.time.LocalDate, java.util.Map, java.util.List, java.util.HashMap, java.util.ArrayList, FraudDetection, ChequeHistoryManager]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Fraud Detection Code Chunk
 
 ## Overview
-This code chunk is part of a fraud detection system for cheque transactions. It performs various checks to identify potential fraudulent activities, such as duplicate cheques, abnormal amounts, suspicious activities, velocity fraud, and pattern analysis. Additionally, if a `ChequeHistoryManager` is available, it performs advanced checks like historical duplicate detection, unusual frequency checks, and similarity to recent transactions.
 
-The code also includes a helper method for formatting check results and a nested class `ChequeTransaction` to represent individual cheque transactions. Furthermore, it defines a `FraudDetectionServiceV2` class that encapsulates the logic for detecting fraudulent cheque activities.
+This code chunk is part of a fraud detection system implemented in Java. It performs various checks to identify potential fraudulent activities related to cheque transactions. The checks are categorized into basic and advanced checks, and the results are displayed in a structured format. The code also includes a helper method for formatting the results of the checks and a nested class for representing cheque transactions.
 
----
+## Code Components
 
-## Code Details
+### 1. **Basic Checks**
+The following basic checks are performed to detect potential fraud:
+- **Duplicate Check**: Verifies if the cheque is a duplicate.
+- **Abnormal Amount Check**: Checks if the cheque amount is abnormal.
+- **Suspicious Activity Check**: Identifies suspicious activities based on the account and amount.
+- **Velocity Check**: Detects rapid transactions within a short period.
+- **Pattern Analysis**: Analyzes patterns in transaction amounts.
 
-### Fraud Detection Checks
-The code performs the following checks:
+The results of these checks are formatted using the `formatCheckResult` method and displayed in the console.
 
-1. **Basic Checks:**
-   - **Duplicate Check:** Verifies if the cheque is a duplicate.
-   - **Abnormal Amount Check:** Checks if the cheque amount is abnormal.
-   - **Suspicious Activity Check:** Identifies suspicious activities related to the cheque.
-   - **Velocity Check:** Determines if there are too many transactions within a short period.
-   - **Pattern Analysis:** Checks for patterns in transaction amounts that may indicate fraud.
+### 2. **Advanced Checks**
+If a `historyManager` instance is available, the following advanced checks are performed:
+- **Historical Duplicate Check**: Checks for duplicates in historical data.
+- **Unusual Frequency Check**: Identifies unusual transaction frequencies.
+- **Similar Recent Amount Check**: Compares the current transaction amount with recent transactions for similarity.
 
-2. **Advanced Checks (if `historyManager` is available):**
-   - **Historical Duplicate Check:** Verifies if the cheque number has been used in the past.
-   - **Unusual Frequency Check:** Checks if the frequency of transactions is unusually high compared to historical data.
-   - **Similar Recent Amount Check:** Determines if the cheque amount is similar to recent transactions.
+### 3. **Summary**
+The results of all checks are aggregated to determine if any fraud is detected. A summary message is displayed in the console:
+- If any fraud is detected, a "FRAUD ALERT" message is shown.
+- Otherwise, a "No fraud detected" message is displayed.
 
-### Fraud Summary
-After performing the checks, the code determines if any fraud has been detected. If any of the checks fail, a fraud alert is raised; otherwise, it confirms that no fraud has been detected.
+### 4. **Helper Method: `formatCheckResult`**
+This private method formats the result of a check for display purposes:
+- Returns `"FAILED \u26A0\uFE0F"` if the check failed (i.e., fraud detected).
+- Returns `"Passed \u2713"` if the check passed (i.e., no fraud detected).
 
-### Helper Method: `formatCheckResult`
-This private method formats the result of a fraud check for display purposes.
-
-#### Method Signature
+#### Method Signature:
 ```java
 private String formatCheckResult(boolean failed)
 ```
 
-#### Parameters
-- `failed` (boolean): Indicates whether the check failed.
+#### Parameters:
+- `failed`: A boolean indicating whether the check failed.
 
-#### Returns
-- A string indicating the result of the check:
-  - "FAILED ⚠️" if the check failed.
-  - "Passed ✓" if the check passed.
+#### Returns:
+- A formatted string representing the result of the check.
 
-### Nested Class: `ChequeTransaction`
-This private static class represents a cheque transaction with an amount and a date.
+### 5. **Nested Class: `ChequeTransaction`**
+This private static class represents a cheque transaction with the following attributes:
+- `amount`: The monetary value of the cheque.
+- `date`: The date of the transaction.
 
-#### Constructor
+#### Constructor:
 ```java
 public ChequeTransaction(double amount, java.time.LocalDate date)
 ```
-- `amount` (double): The amount of the cheque.
-- `date` (LocalDate): The date of the cheque transaction.
 
-#### Methods
+#### Methods:
 - `getAmount()`: Returns the amount of the cheque.
-- `getDate()`: Returns the date of the cheque transaction.
+- `getDate()`: Returns the date of the transaction.
 
-### Class: `FraudDetectionServiceV2`
-This class implements various fraud detection mechanisms and integrates with a `ChequeHistoryManager` for advanced checks.
+### 6. **Fraud Detection Service**
+The `FraudDetectionServiceV2` class implements various fraud detection mechanisms. It uses a `FraudDetection` instance and optionally a `ChequeHistoryManager` instance for historical data analysis.
 
-#### Fields
-- `fraudDetection`: An instance of the `FraudDetection` class used for performing basic fraud checks.
-- `historyManager`: An optional `ChequeHistoryManager` instance for advanced checks.
-- Various `Map` objects to store transaction data for different types of fraud checks.
-- `fraudLogs`: A list to store logs of detected frauds.
-- `totalFraudChecks`: A counter for the total number of fraud checks performed.
+#### Key Attributes:
+- `fraudDetection`: An instance of the `FraudDetection` class.
+- `historyManager`: An optional instance of the `ChequeHistoryManager` class.
+- Various maps and lists to store transaction data and fraud logs.
 
-#### Fraud Detection Thresholds
-- `VELOCITY_CHECK_DAYS`: The number of days to consider for velocity checks (default: 7 days).
-- `VELOCITY_THRESHOLD`: The maximum number of transactions allowed within the velocity check period (default: 5).
-- `PATTERN_THRESHOLD`: The similarity threshold for pattern analysis (default: 95%).
-- `SIMILAR_AMOUNT_THRESHOLD`: The similarity threshold for recent amounts (default: 90%).
-- `UNUSUAL_FREQUENCY_THRESHOLD`: The multiplier for determining unusual frequency (default: 3x).
+#### Key Methods:
+- `isFraudulentCheque`: Determines if a cheque is fraudulent based on various checks.
+- `checkDuplicateCheque`: Checks for duplicate cheques.
+- `checkAbnormalAmount`: Checks for abnormal cheque amounts.
+- `checkSuspiciousActivity`: Identifies suspicious activities.
+- `checkVelocityFraud`: Detects rapid transactions.
+- `checkPatternFraud`: Analyzes patterns in transaction amounts.
+- `checkHistoricalDuplicate`: Checks for duplicates in historical data.
+- `checkUnusualFrequency`: Identifies unusual transaction frequencies.
 
-#### Fraud Alert Levels
-The `AlertLevel` enum defines the severity of detected fraud:
+#### Fraud Detection Thresholds:
+- `VELOCITY_CHECK_DAYS`: Number of days for velocity check (7 days).
+- `VELOCITY_THRESHOLD`: Maximum allowed transactions within the velocity check period (5 transactions).
+- `PATTERN_THRESHOLD`: Similarity threshold for pattern analysis (95%).
+- `SIMILAR_AMOUNT_THRESHOLD`: Similarity threshold for recent amounts (90%).
+- `UNUSUAL_FREQUENCY_THRESHOLD`: Multiplier for unusual frequency detection (3x normal frequency).
+
+#### Fraud Alert Levels:
+The `AlertLevel` enum defines the severity of fraud alerts:
 - `LOW`
 - `MEDIUM`
 - `HIGH`
 - `CRITICAL`
 
-#### Constructor
-The class provides two constructors:
-1. Default constructor: Initializes all fields with default values.
-2. Parameterized constructor: Accepts a `ChequeHistoryManager` instance for advanced checks.
-
-#### Methods
-- `isFraudulentCheque(String accountId, String chequeNumber, double amount)`: Main method to determine if a cheque is fraudulent. It performs all basic and advanced checks and logs the results.
-- `checkDuplicateCheque(String accountId, String chequeNumber)`: Checks for duplicate cheques.
-- `checkAbnormalAmount(double amount)`: Checks if the cheque amount is abnormal.
-- `checkSuspiciousActivity(String accountId, double amount)`: Identifies suspicious activities.
-- `checkVelocityFraud(String accountId, double amount)`: Checks for a high frequency of transactions within a short period.
-- `checkPatternFraud(String accountId, double amount)`: Analyzes patterns in transaction amounts.
-- `checkHistoricalDuplicate(String accountId, String chequeNumber)`: Checks for historical duplicates using `ChequeHistoryManager`.
-- `checkUnusualFrequency(String accountId)`: Checks for unusual transaction frequency using `ChequeHistoryManager`.
-- `checkSimilarToRecent(String accountId, double amount)`: Checks if the cheque amount is similar to recent transactions.
-
----
-
 ## External Dependencies
-- `java.time.LocalDate`: Used for handling dates in cheque transactions.
-- `java.util.HashMap`, `java.util.List`, `java.util.ArrayList`, `java.util.Map`: Used for storing and managing transaction data.
 
----
+### 1. **FraudDetection Class**
+The `FraudDetection` class is responsible for performing the core fraud detection checks. It provides methods such as:
+- `isDuplicateCheque`: Checks if a cheque is a duplicate.
+- `isAbnormalAmount`: Determines if the cheque amount is abnormal.
+- `isSuspiciousActivity`: Identifies suspicious activities based on account and amount.
+
+### 2. **ChequeHistoryManager Class**
+The `ChequeHistoryManager` class manages historical cheque data. It provides methods for recording and retrieving cheque history:
+- `recordCheque`: Records a cheque transaction in the history.
+- `displayChequeHistory`: Displays the history of cheques for a specific account.
+
+#### Nested Class: `ChequeRecord`
+Represents a record of a cheque transaction with attributes such as:
+- `accountNumber`: The account number associated with the cheque.
+- `chequeNumber`: The cheque number.
+- `currency`: The currency of the transaction.
+- `amount`: The amount of the cheque.
+- `date`: The date of the transaction.
 
 ## Notes
-- The `FraudDetection` and `ChequeHistoryManager` classes are external dependencies and are not defined in this code chunk. Their methods are used for performing specific fraud checks.
-- The `formatCheckResult` method is used extensively to format the results of the fraud checks for display purposes.
-- The `ChequeTransaction` class is a utility class for representing individual cheque transactions with an amount and a date.
+- The `FraudDetection` and `ChequeHistoryManager` classes are integral to the fraud detection system. Their methods are used extensively for both basic and advanced checks.
+- The `formatCheckResult` method and the `ChequeTransaction` class are utility components that enhance the readability and organization of the code.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_26"
 confidence_score: 0.95
@@ -2939,9 +2821,7 @@ external_dependencies: ["ChequeHistoryManager", "AlertLevel"]
 # Documentation for Code Chunk in `DemoApplication.java`
 
 ## Overview
-This code chunk is part of a fraud detection system implemented in Java. It contains methods for detecting fraudulent activities related to cheque transactions, determining alert levels based on the results of these checks, and logging the outcomes of the fraud checks. Additionally, it defines a nested static class `ChequeTransaction` to represent individual cheque transactions.
-
-The code relies on a `ChequeHistoryManager` class (mock implementation found in the same file) to retrieve historical cheque data and perform advanced fraud checks. It also uses an `AlertLevel` enum (not defined in this chunk) to categorize the severity of detected fraud.
+This code chunk is part of a fraud detection system for cheque transactions. It contains methods to perform various fraud checks, determine the severity of fraud alerts, and log the results of these checks. Additionally, it defines a nested class for representing cheque transactions.
 
 ## Methods
 
@@ -2949,36 +2829,58 @@ The code relies on a `ChequeHistoryManager` class (mock implementation found in 
 ```java
 private boolean checkHistoricalDuplicate(String accountId, String chequeNumber)
 ```
-**Purpose**: Checks if a given cheque number has been used before for the specified account.
+This method checks if a given cheque number has been used previously for a specific account.
 
-- **Parameters**:
-  - `accountId` (String): The account identifier.
-  - `chequeNumber` (String): The cheque number to check.
-- **Returns**: `true` if the cheque number exists in the account's historical records, otherwise `false`.
-- **Dependencies**: Uses `historyManager.getChequeNumbers(accountId)` to fetch historical cheque numbers.
+#### Parameters:
+- `accountId` (String): The unique identifier for the account.
+- `chequeNumber` (String): The cheque number to check for duplicates.
+
+#### Returns:
+- `boolean`: `true` if the cheque number exists in the account's historical records, `false` otherwise.
+
+#### Implementation:
+- Retrieves a list of historical cheque numbers for the given account using `historyManager.getChequeNumbers(accountId)`.
+- Checks if the provided `chequeNumber` exists in the retrieved list.
+
+---
 
 ### `checkUnusualFrequency`
 ```java
 private boolean checkUnusualFrequency(String accountId)
 ```
-**Purpose**: Determines if the frequency of recent cheque transactions is unusually high compared to the average monthly frequency.
+This method determines if the frequency of recent cheque transactions for a given account is unusually high compared to the average monthly frequency.
 
-- **Parameters**:
-  - `accountId` (String): The account identifier.
-- **Returns**: `true` if the recent cheque frequency exceeds a predefined threshold, otherwise `false`.
-- **Dependencies**: Uses `historyManager.getTotalChequeCount(accountId)` and `historyManager.getRecentChequeCount(accountId)` to fetch cheque counts.
+#### Parameters:
+- `accountId` (String): The unique identifier for the account.
+
+#### Returns:
+- `boolean`: `true` if the recent cheque frequency exceeds the unusual frequency threshold, `false` otherwise.
+
+#### Implementation:
+- Retrieves the total and recent cheque counts for the account using `historyManager.getTotalChequeCount(accountId)` and `historyManager.getRecentChequeCount(accountId)`.
+- If the total cheque count is less than 10, the method returns `false`.
+- Calculates the average monthly frequency as `totalCheques / 3.0`.
+- Compares the recent cheque count to the product of the average monthly frequency and the `UNUSUAL_FREQUENCY_THRESHOLD` (3).
+
+---
 
 ### `checkSimilarToRecent`
 ```java
 private boolean checkSimilarToRecent(String accountId, double amount)
 ```
-**Purpose**: Checks if the given cheque amount is similar to recent cheque amounts for the specified account.
+This method checks if a given cheque amount is similar to recent cheque amounts for a specific account.
 
-- **Parameters**:
-  - `accountId` (String): The account identifier.
-  - `amount` (double): The cheque amount to check.
-- **Returns**: `true` if a similar recent cheque exists, otherwise `false`.
-- **Dependencies**: Uses `historyManager.hasSimilarRecentCheque(accountId, amount, SIMILAR_AMOUNT_THRESHOLD)`.
+#### Parameters:
+- `accountId` (String): The unique identifier for the account.
+- `amount` (double): The cheque amount to compare.
+
+#### Returns:
+- `boolean`: `true` if a similar recent cheque exists, `false` otherwise.
+
+#### Implementation:
+- Uses `historyManager.hasSimilarRecentCheque(accountId, amount, SIMILAR_AMOUNT_THRESHOLD)` to determine if a similar cheque exists.
+
+---
 
 ### `determineAlertLevel`
 ```java
@@ -2987,19 +2889,26 @@ private AlertLevel determineAlertLevel(boolean isDuplicate, boolean isAbnormal,
                                        boolean isPatternFraud, boolean isHistoricalDuplicate,
                                        boolean isUnusualFrequency, boolean isSimilarToRecent)
 ```
-**Purpose**: Determines the alert level based on the results of various fraud checks.
+This method determines the severity of a fraud alert based on various fraud detection checks.
 
-- **Parameters**:
-  - `isDuplicate` (boolean): Indicates if the cheque is a duplicate.
-  - `isAbnormal` (boolean): Indicates if the cheque amount is abnormal.
-  - `isSuspicious` (boolean): Indicates if the activity is suspicious.
-  - `isVelocityFraud` (boolean): Indicates if velocity fraud is detected.
-  - `isPatternFraud` (boolean): Indicates if pattern fraud is detected.
-  - `isHistoricalDuplicate` (boolean): Indicates if the cheque is a historical duplicate.
-  - `isUnusualFrequency` (boolean): Indicates if the cheque frequency is unusual.
-  - `isSimilarToRecent` (boolean): Indicates if the cheque amount is similar to recent cheques.
-- **Returns**: An `AlertLevel` value representing the severity of the detected fraud.
-- **Logic**: Assigns a score to each fraud type and calculates a total fraud score. The alert level is determined based on the total score and specific conditions.
+#### Parameters:
+- `isDuplicate` (boolean): Indicates if the cheque is a duplicate.
+- `isAbnormal` (boolean): Indicates if the cheque amount is abnormal.
+- `isSuspicious` (boolean): Indicates if the activity is suspicious.
+- `isVelocityFraud` (boolean): Indicates if velocity fraud is detected.
+- `isPatternFraud` (boolean): Indicates if pattern fraud is detected.
+- `isHistoricalDuplicate` (boolean): Indicates if the cheque is a historical duplicate.
+- `isUnusualFrequency` (boolean): Indicates if the cheque frequency is unusual.
+- `isSimilarToRecent` (boolean): Indicates if the cheque amount is similar to recent amounts.
+
+#### Returns:
+- `AlertLevel`: The severity of the fraud alert (`LOW`, `MEDIUM`, `HIGH`, or `CRITICAL`).
+
+#### Implementation:
+- Assigns weights to each fraud check and calculates a total fraud score.
+- Determines the alert level based on the fraud score and specific conditions.
+
+---
 
 ### `logFraudChecks`
 ```java
@@ -3009,62 +2918,67 @@ private void logFraudChecks(String accountId, String chequeNumber, double amount
                             boolean isHistoricalDuplicate, boolean isUnusualFrequency,
                             boolean isSimilarToRecent)
 ```
-**Purpose**: Logs the results of various fraud checks for a specific cheque transaction.
+This method logs the results of various fraud checks for a specific cheque transaction.
 
-- **Parameters**:
-  - `accountId` (String): The account identifier.
-  - `chequeNumber` (String): The cheque number.
-  - `amount` (double): The cheque amount.
-  - `isDuplicate` (boolean): Result of the duplicate cheque check.
-  - `isAbnormal` (boolean): Result of the abnormal amount check.
-  - `isSuspicious` (boolean): Result of the suspicious activity check.
-  - `isVelocityFraud` (boolean): Result of the velocity fraud check.
-  - `isPatternFraud` (boolean): Result of the pattern fraud check.
-  - `isHistoricalDuplicate` (boolean): Result of the historical duplicate check.
-  - `isUnusualFrequency` (boolean): Result of the unusual frequency check.
-  - `isSimilarToRecent` (boolean): Result of the similar recent amount check.
-- **Output**: Prints a detailed fraud check report to the console.
-- **Dependencies**: Uses `formatCheckResult(boolean)` to format the results of individual checks.
+#### Parameters:
+- `accountId` (String): The unique identifier for the account.
+- `chequeNumber` (String): The cheque number.
+- `amount` (double): The cheque amount.
+- Various boolean flags indicating the results of different fraud checks.
+
+#### Implementation:
+- Logs the account ID, cheque number, and amount.
+- Logs the results of basic and advanced fraud checks.
+- Summarizes whether any fraud was detected.
+
+---
 
 ### `formatCheckResult`
 ```java
 private String formatCheckResult(boolean failed)
 ```
-**Purpose**: Formats the result of a fraud check for logging purposes.
+This method formats the result of a fraud check for logging purposes.
 
-- **Parameters**:
-  - `failed` (boolean): Indicates whether the check failed.
-- **Returns**: A string indicating the result of the check ("FAILED ⚠️" or "Passed ✓").
+#### Parameters:
+- `failed` (boolean): Indicates if the check failed.
 
-### `ChequeTransaction` (Nested Static Class)
-**Purpose**: Represents a cheque transaction with an amount and a date.
+#### Returns:
+- `String`: A formatted string indicating whether the check passed or failed.
 
-- **Fields**:
-  - `amount` (double): The amount of the cheque.
-  - `date` (LocalDate): The date of the cheque transaction.
-- **Constructor**:
-  - `ChequeTransaction(double amount, LocalDate date)`: Initializes the `amount` and `date` fields.
-- **Methods**:
-  - `getAmount()`: Returns the amount of the cheque.
-  - `getDate()`: Returns the date of the cheque transaction.
+---
+
+### `ChequeTransaction` (Nested Class)
+```java
+private static class ChequeTransaction
+```
+This nested class represents a cheque transaction with an amount and a date.
+
+#### Fields:
+- `amount` (double): The amount of the cheque.
+- `date` (java.time.LocalDate): The date of the cheque transaction.
+
+#### Constructor:
+```java
+public ChequeTransaction(double amount, java.time.LocalDate date)
+```
+Initializes a new `ChequeTransaction` with the specified amount and date.
+
+#### Methods:
+- `getAmount()`: Returns the cheque amount.
+- `getDate()`: Returns the cheque date.
+
+---
 
 ## External Dependencies
-
-### `ChequeHistoryManager`
-A mock implementation of a class that manages historical cheque data. It provides methods to record and retrieve cheque information for specific accounts.
-
-### `AlertLevel`
-An enumeration (not defined in this chunk) used to represent the severity of detected fraud.
-
-## Notes
-- The `historyManager` object is assumed to be an instance of `ChequeHistoryManager`.
-- Constants such as `UNUSUAL_FREQUENCY_THRESHOLD` and `SIMILAR_AMOUNT_THRESHOLD` are used but not defined in this chunk. They are likely defined elsewhere in the codebase.
-- The `logFraudChecks` method uses `System.out.println` for logging, which may not be suitable for production environments. Consider using a logging framework for better control and configurability.
+- **`ChequeHistoryManager`**: Provides methods for retrieving historical cheque data.
+- **`AlertLevel`**: Enum defining fraud alert levels.
+- **`UNUSUAL_FREQUENCY_THRESHOLD`**: Constant for unusual frequency detection.
+- **`SIMILAR_AMOUNT_THRESHOLD`**: Constant for similar amount detection.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_27"
 confidence_score: 0.95
@@ -3073,112 +2987,77 @@ external_dependencies: ["BatchCheque"]
 
 # Documentation for `AdminService` Class and Related Methods
 
-## Overview
-The `AdminService` class is a static inner class within the `DemoApplication` file. It is responsible for managing master data, batch operations, and stuck transactions in the context of a cheque processing system. The class provides methods to manage IFSC codes, bank codes, cheque batches, and stuck transactions.
-
-The class also interacts with the `BatchCheque` class, which represents individual cheques with attributes such as account number, cheque number, currency, amount, and signature.
-
----
+The provided code defines the `AdminService` class, which is a static inner class in the `DemoApplication` file. This class is responsible for managing master data, batch operations, and stuck transactions in a cheque processing system. Below is a detailed explanation of the class and its methods.
 
 ## Class: `AdminService`
+The `AdminService` class provides functionality for:
+1. Managing master data, such as IFSC codes and bank codes.
+2. Handling batch operations for cheques.
+3. Managing stuck transactions.
 
 ### Fields
-
-1. **`ifscToBankCode`**
-   - Type: `Map<String, String>`
-   - Description: Maps IFSC codes to their corresponding bank codes.
-
-2. **`bankCodeToName`**
-   - Type: `Map<String, String>`
-   - Description: Maps bank codes to their corresponding bank names.
-
-3. **`batches`**
-   - Type: `Map<String, List<BatchCheque>>`
-   - Description: Stores batches of cheques, where each batch is identified by a unique batch ID and contains a list of `BatchCheque` objects.
-
-4. **`stuckTransactions`**
-   - Type: `Set<String>`
-   - Description: Stores a set of cheque numbers that are marked as stuck transactions.
-
----
+- **`ifscToBankCode`**: A `Map<String, String>` that maps IFSC codes to bank codes.
+- **`bankCodeToName`**: A `Map<String, String>` that maps bank codes to bank names.
+- **`batches`**: A `Map<String, List<BatchCheque>>` that stores batches of cheques, where each batch is identified by a unique batch ID.
+- **`stuckTransactions`**: A `Set<String>` that keeps track of cheque numbers marked as stuck.
 
 ### Methods
 
 #### Master Data Management
-
 1. **`addOrUpdateIFSC(String ifsc, String bankCode)`**
-   - **Description**: Adds or updates the mapping between an IFSC code and a bank code.
-   - **Parameters**:
-     - `ifsc`: The IFSC code to be added or updated.
-     - `bankCode`: The bank code to be associated with the given IFSC code.
-   - **Output**: Prints a confirmation message indicating the mapping.
+   - Adds or updates the mapping of an IFSC code to a bank code.
+   - Prints a confirmation message.
 
 2. **`addOrUpdateBankCode(String bankCode, String bankName)`**
-   - **Description**: Adds or updates the mapping between a bank code and a bank name.
-   - **Parameters**:
-     - `bankCode`: The bank code to be added or updated.
-     - `bankName`: The name of the bank to be associated with the given bank code.
-   - **Output**: Prints a confirmation message indicating the mapping.
+   - Adds or updates the mapping of a bank code to a bank name.
+   - Prints a confirmation message.
 
 3. **`displayIFSCs()`**
-   - **Description**: Displays all IFSC-to-bank code mappings.
-   - **Output**: Prints the mappings to the console. If no mappings exist, a message indicating this is displayed.
+   - Displays all IFSC-to-bank-code mappings.
+   - Prints a message if no records are available.
 
 4. **`displayBankCodes()`**
-   - **Description**: Displays all bank code-to-name mappings.
-   - **Output**: Prints the mappings to the console. If no mappings exist, a message indicating this is displayed.
+   - Displays all bank-code-to-bank-name mappings.
+   - Prints a message if no records are available.
 
 #### Batch Management
-
 1. **`createBatch(String batchId, List<BatchCheque> cheques)`**
-   - **Description**: Creates a new batch of cheques and associates it with a unique batch ID.
-   - **Parameters**:
-     - `batchId`: The unique identifier for the batch.
-     - `cheques`: A list of `BatchCheque` objects to be included in the batch.
-   - **Output**: Prints a confirmation message indicating the batch creation and the number of cheques in the batch.
+   - Creates a new batch of cheques and associates it with a unique batch ID.
+   - Prints a confirmation message with the batch ID and the number of cheques in the batch.
 
 2. **`displayBatches()`**
-   - **Description**: Displays a summary of all batches, including their IDs and the number of cheques in each batch.
-   - **Output**: Prints the batch summaries to the console. If no batches exist, a message indicating this is displayed.
+   - Displays a list of all batches and the number of cheques in each batch.
+   - Prints a message if no batches are available.
 
 3. **`displayBatchDetails(String batchId)`**
-   - **Description**: Displays detailed information about a specific batch, including the account number, cheque number, amount, and currency of each cheque in the batch.
-   - **Parameters**:
-     - `batchId`: The unique identifier of the batch to be displayed.
-   - **Output**: Prints the details of the specified batch to the console. If the batch does not exist, a message indicating this is displayed.
+   - Displays detailed information about a specific batch, including account number, cheque number, amount, and currency for each cheque in the batch.
+   - Prints a message if the batch is not found.
 
 #### Stuck Transaction Management
-
 1. **`markTransactionStuck(String chequeNumber)`**
-   - **Description**: Marks a cheque as a stuck transaction by adding its cheque number to the `stuckTransactions` set.
-   - **Parameters**:
-     - `chequeNumber`: The cheque number to be marked as stuck.
-   - **Output**: Prints a confirmation message indicating that the cheque has been marked as stuck.
+   - Marks a cheque as stuck by adding its cheque number to the `stuckTransactions` set.
+   - Prints a confirmation message.
 
 2. **`resetStuckTransaction(String chequeNumber)`**
-   - **Description**: Removes a cheque from the `stuckTransactions` set, effectively resetting its stuck status.
-   - **Parameters**:
-     - `chequeNumber`: The cheque number to be removed from the stuck transactions list.
-   - **Output**: Prints a confirmation message indicating whether the cheque was successfully removed or if it was not marked as stuck.
+   - Removes a cheque number from the `stuckTransactions` set.
+   - Prints a confirmation message if the cheque was successfully removed, or a message indicating that the cheque was not marked as stuck.
 
 3. **`displayStuckTransactions()`**
-   - **Description**: Displays all cheque numbers that are currently marked as stuck transactions.
-   - **Output**: Prints the list of stuck cheque numbers to the console. If no stuck transactions exist, a message indicating this is displayed.
+   - Displays all cheque numbers currently marked as stuck.
+   - Prints a message if no stuck transactions are found.
 
----
-
-## External Dependencies
-
-### Class: `BatchCheque`
-The `AdminService` class relies on the `BatchCheque` class, which represents individual cheques. The `BatchCheque` class has the following fields:
-
-- `String accountNumber`: The account number associated with the cheque.
-- `String chequeNumber`: The unique identifier for the cheque.
-- `String currency`: The currency in which the cheque is issued.
-- `double amount`: The monetary value of the cheque.
-- `String signature`: The signature associated with the cheque.
+### External Dependencies
+The `AdminService` class depends on the `BatchCheque` class, which represents a cheque in the system. The `BatchCheque` class has the following fields:
+- **`accountNumber`**: The account number associated with the cheque.
+- **`chequeNumber`**: The unique identifier for the cheque.
+- **`currency`**: The currency in which the cheque is issued.
+- **`amount`**: The amount of money specified on the cheque.
+- **`signature`**: The signature on the cheque.
 
 The `BatchCheque` class also includes a constructor to initialize these fields.
+
+### Purpose
+The `AdminService` class is designed to facilitate the management of master data, batch operations, and stuck transactions in a cheque processing system. It provides a structured way to handle these operations and ensures that the system can manage its data effectively.
 
 === NEXT CHUNK ===
 
@@ -3193,144 +3072,129 @@ external_dependencies: ["java.util.Map", "java.util.HashMap"]
 # Documentation for `User` and `UserService` Classes
 
 ## Overview
-This code defines two static classes, `User` and `UserService`, which are part of a user management and authentication system. The `User` class represents individual users with attributes such as username, password, and role. The `UserService` class provides functionality to manage users, including registering new users and authenticating existing ones.
+This code chunk defines two static classes, `User` and `UserService`, which are part of a user management and authentication system. The `User` class represents individual users, while the `UserService` class provides functionality for managing users and handling authentication.
 
 ## `User` Class
-The `User` class is a simple data model that encapsulates the following attributes:
+The `User` class is a simple data model that encapsulates information about a user, including their username, password, and role.
 
 ### Fields
-- `username` (String): The username of the user.
-- `password` (String): The password of the user. **Note:** In a real-world application, passwords should be hashed and not stored in plain text.
-- `role` (String): The role of the user, such as `EMPLOYEE` or `ACCOUNT_HOLDER`.
+- `private String username`: Stores the username of the user.
+- `private String password`: Stores the password of the user. **Note:** In a real-world application, passwords should be hashed for security.
+- `private String role`: Represents the role of the user, such as `EMPLOYEE` or `ACCOUNT_HOLDER`.
 
 ### Constructor
 ```java
 public User(String username, String password, String role)
 ```
-Initializes a new `User` object with the provided `username`, `password`, and `role`.
+Initializes a new `User` object with the provided username, password, and role.
 
 ### Methods
-- `getUsername()`: Returns the username of the user.
-- `getPassword()`: Returns the password of the user.
-- `getRole()`: Returns the role of the user.
+- `public String getUsername()`: Returns the username of the user.
+- `public String getPassword()`: Returns the password of the user.
+- `public String getRole()`: Returns the role of the user.
 
 ## `UserService` Class
-The `UserService` class provides methods to manage users and handle authentication.
+The `UserService` class provides methods for managing users and authenticating them. It uses a `Map` to store user data, where the key is the username and the value is a `User` object.
 
 ### Fields
-- `users` (Map<String, User>): A map that stores `User` objects, with the username as the key.
+- `private Map<String, User> users`: A `HashMap` that stores user data.
 
 ### Constructor
 ```java
 public UserService()
 ```
-Initializes the `UserService` and populates it with some sample users for demonstration purposes:
+The constructor initializes the `users` map and populates it with some sample users for demonstration purposes. The sample users include:
 - `employee1` with password `password123` and role `EMPLOYEE`
 - `account1001` with password `chequeuser` and role `ACCOUNT_HOLDER`
 - `account1002` with password `securepass` and role `ACCOUNT_HOLDER`
 
 ### Methods
 
-#### `registerUser`
-```java
-public void registerUser(String username, String password, String role)
-```
+#### `public void registerUser(String username, String password, String role)`
 Registers a new user by adding them to the `users` map.
 
 **Parameters:**
-- `username` (String): The username of the new user.
-- `password` (String): The password of the new user.
-- `role` (String): The role of the new user.
+- `username`: The username of the new user.
+- `password`: The password of the new user.
+- `role`: The role of the new user.
 
 **Behavior:**
-- Creates a new `User` object and stores it in the `users` map.
-- Prints a message indicating the user has been registered.
+- Creates a new `User` object with the provided details.
+- Adds the `User` object to the `users` map.
+- Prints a message indicating that the user has been registered.
 
-#### `authenticate`
-```java
-public User authenticate(String username, String password)
-```
+#### `public User authenticate(String username, String password)`
 Authenticates a user based on their username and password.
 
 **Parameters:**
-- `username` (String): The username of the user attempting to authenticate.
-- `password` (String): The password of the user attempting to authenticate.
+- `username`: The username of the user attempting to authenticate.
+- `password`: The password of the user attempting to authenticate.
 
 **Returns:**
 - The authenticated `User` object if the username and password match.
 - `null` if authentication fails.
 
 **Behavior:**
-- Retrieves the `User` object from the `users` map using the provided username.
-- Compares the provided password with the stored password.
-- Prints a message indicating whether authentication was successful or failed.
+- Retrieves the `User` object associated with the given username from the `users` map.
+- Checks if the retrieved `User` object is not `null` and if the password matches.
+- Prints a success message if authentication is successful, or a failure message otherwise.
 
 ## Notes
-- The `password` field in the `User` class is stored in plain text, which is a security risk. In a production environment, passwords should be hashed and salted.
-- The `UserService` class is initialized with hardcoded sample users, which is suitable for demonstration purposes but not for production use.
-
-## External Dependencies
-- `java.util.Map`: Used to store the mapping between usernames and `User` objects.
-- `java.util.HashMap`: Implementation of the `Map` interface used to store user data.
+- The `User` class currently stores passwords in plain text, which is a security risk. In a production environment, passwords should be hashed and salted.
+- The `UserService` class is designed for demonstration purposes and is not thread-safe. In a multi-threaded environment, additional synchronization would be required to ensure thread safety.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_29"
-confidence_score: 0.9
+confidence_score: 0.95
 external_dependencies: []
 ---
 
-# Documentation for `BatchCheque` Class
+# BatchCheque Class
 
-## Overview
-The `BatchCheque` class is a simple data structure used to represent a cheque in the context of a cheque processing system. This system is designed to process cheques with fraud detection capabilities. The class encapsulates the details of a cheque, such as the account number, cheque number, currency, amount, and signature.
+The `BatchCheque` class is a simple data model used to represent a cheque in the context of a cheque processing system. This class encapsulates the details of a cheque, such as the account number, cheque number, currency, amount, and signature. It is likely used as part of a larger system for processing cheques, potentially with fraud detection capabilities.
 
-## Class Definition
-```java
-class BatchCheque {
-    String accountNumber;
-    String chequeNumber;
-    String currency;
-    double amount;
-    String signature;
+## Purpose
+The purpose of the `BatchCheque` class is to serve as a container for cheque-related data. It provides a structured way to store and pass around cheque information within the application.
 
-    public BatchCheque(String accountNumber, String chequeNumber, String currency, double amount, String signature) {
-        this.accountNumber = accountNumber;
-        this.chequeNumber = chequeNumber;
-        this.currency = currency;
-        this.amount = amount;
-        this.signature = signature;
-    }
-}
-```
+## Fields
 
-### Fields
 - `String accountNumber`: Represents the account number associated with the cheque.
 - `String chequeNumber`: Represents the unique cheque number.
 - `String currency`: Specifies the currency in which the cheque is issued.
 - `double amount`: Represents the monetary value of the cheque.
-- `String signature`: Stores the signature associated with the cheque for validation purposes.
+- `String signature`: Stores the signature associated with the cheque, likely for verification purposes.
 
-### Constructor
-The class provides a parameterized constructor to initialize all the fields of the `BatchCheque` object.
+## Constructor
 
-#### Parameters:
-1. `String accountNumber`: The account number associated with the cheque.
-2. `String chequeNumber`: The unique cheque number.
-3. `String currency`: The currency in which the cheque is issued.
-4. `double amount`: The monetary value of the cheque.
-5. `String signature`: The signature associated with the cheque.
+The class provides a single constructor to initialize all its fields:
 
-### Usage
-The `BatchCheque` class is used to create objects that represent individual cheques. These objects can then be processed by the cheque processing system, which may include operations like fraud detection, validation, and further processing.
-
-Example usage:
 ```java
-BatchCheque cheque = new BatchCheque("123456789", "987654321", "USD", 1500.00, "John Doe");
+public BatchCheque(String accountNumber, String chequeNumber, String currency, double amount, String signature)
 ```
+
+### Parameters
+- `accountNumber`: The account number associated with the cheque.
+- `chequeNumber`: The unique cheque number.
+- `currency`: The currency in which the cheque is issued.
+- `amount`: The monetary value of the cheque.
+- `signature`: The signature associated with the cheque.
+
+## Usage
+The `BatchCheque` class is likely used in conjunction with other components of the cheque processing system. For example, instances of this class might be created and added to a collection for batch processing, as suggested by the following usage example:
+
+```java
+chequesToProcess.add(new BatchCheque(accountNumber, chequeNumber, currency, amount, signature));
+```
+
+This indicates that the `BatchCheque` objects are being stored in a collection (e.g., a list) for further processing, such as fraud detection or clearing.
+
+## Additional Notes
+
+The class does not include any methods beyond the constructor, suggesting that it is primarily intended as a data container. Any operations on the cheque data are likely performed by other components of the system.
 
 === NEXT CHUNK ===
 
@@ -3345,167 +3209,157 @@ external_dependencies: ["CurrencyExchangeService", "SignatureVerificationService
 # Documentation for `CreateApplication` Class
 
 ## Overview
-The `CreateApplication` class serves as the entry point for a Cheque Processing System with enhanced fraud detection capabilities. It initializes various services, handles user authentication, and provides a menu-driven interface for processing cheques, viewing cheque history, and performing other related operations.
+The `CreateApplication` class serves as the entry point for a Cheque Processing System with enhanced fraud detection capabilities. It initializes various services, handles user authentication, and provides a menu-driven interface for processing cheques, viewing cheque history, and managing currency exchange information.
 
-## Class Structure
-The class contains the following key components:
+## Key Functionalities
 
-### Main Method
-The `main` method is the starting point of the application. It performs the following tasks:
+### 1. **System Initialization**
+The `main` method initializes the following services:
+- **`CurrencyExchangeService`**: Handles currency exchange operations.
+- **`SignatureVerificationService`**: Verifies signatures on cheques.
+- **`CoreBankingSystemUpdater`**: Updates the core banking system with transaction details.
+- **`UserService`**: Manages user authentication and registration.
+- **`ChequeHistoryManager`**: Maintains and displays cheque processing history.
+- **`FraudDetectionService`**: Detects potential fraud in cheque transactions.
 
-1. **Initialization**:
-   - Prints a welcome message.
-   - Initializes various services required for the application:
-     - `CurrencyExchangeService`: Handles currency exchange operations.
-     - `SignatureVerificationService`: Verifies signatures on cheques.
-     - `CoreBankingSystemUpdater`: Updates the core banking system with transaction details.
-     - `UserService`: Manages user authentication and registration.
-     - `ChequeHistoryManager`: Maintains and displays cheque transaction history.
-     - `FraudDetectionService`: Detects fraudulent activities in cheque transactions.
-   - Sets up dependencies, such as linking the `FraudDetectionService` with the `ChequeHistoryManager`.
+### 2. **Login Process**
+The `performLogin` method handles user authentication. It allows up to three login attempts and returns an authenticated `User` object if successful. If authentication fails after three attempts, the application exits.
 
-2. **User Authentication**:
-   - Calls the `performLogin` method to authenticate the user.
-   - Exits the application if login fails after the maximum allowed attempts.
+### 3. **Cheque Processing**
+The application provides options for processing cheques:
+- **Single Cheque Processing**: Users can input details such as account number, cheque number, currency, amount, and signature to process a single cheque.
+- **Batch Cheque Processing**: Users can process multiple cheques in a batch by providing details for each cheque.
 
-3. **Menu-Driven Interface**:
-   - Displays a menu with options for various operations, including:
-     - Processing a single cheque.
-     - Processing multiple cheques in a batch.
-     - Viewing cheque history.
-     - Accessing currency exchange information.
-     - Generating cheque reports.
-     - Exiting the application.
-   - Handles user input and invokes the appropriate methods based on the selected option.
+### 4. **Cheque History Management**
+Users can view the history of processed cheques for a specific account using the `ChequeHistoryManager`.
 
-### Helper Methods
+### 5. **Currency Exchange Information**
+The `displayCurrencyExchangeMenu` method provides options to view supported currencies, get exchange rates, and convert currencies.
 
-#### `performLogin`
+### 6. **Report Generation**
+The `handleReportGeneration` method allows users to generate various reports, such as daily, weekly, monthly, or custom date range reports, using the `ChequeHistoryManager`.
+
+### 7. **Exit Option**
+Users can exit the application at any time by selecting the appropriate menu option.
+
+## Methods
+
+### `performLogin(Scanner scanner, UserService userService)`
 Handles the user login process.
 - **Parameters**:
-  - `Scanner scanner`: Used to read user input.
-  - `UserService userService`: Used to authenticate the user.
-- **Returns**: An authenticated `User` object if login is successful, or `null` if login fails after the maximum allowed attempts.
-- **Logic**:
-  - Prompts the user for a username and password.
-  - Validates the credentials using the `UserService`.
-  - Allows up to three login attempts before exiting.
+  - `scanner`: A `Scanner` object for reading user input.
+  - `userService`: A `UserService` object for authenticating users.
+- **Returns**: An authenticated `User` object or `null` if login fails after three attempts.
 
-#### `processChequeBatch`
-Handles the processing of multiple cheques in a batch.
+### `processChequeBatch(Scanner scanner, ChequeProcessor chequeProcessor)`
+Handles batch processing of cheques.
 - **Parameters**:
-  - `Scanner scanner`: Used to read user input.
-  - `ChequeProcessor chequeProcessor`: Used to process the cheques.
-- **Logic**:
-  - Prompts the user for the number of cheques in the batch.
-  - Collects details for each cheque (account number, cheque number, currency, amount, and signature).
-  - Adds the cheque details to a list and processes them using the `ChequeProcessor`.
+  - `scanner`: A `Scanner` object for reading user input.
+  - `chequeProcessor`: A `ChequeProcessor` object for processing cheques.
+- **Details**: Prompts the user for the number of cheques in the batch and their details, then processes each cheque.
 
-#### `displayCurrencyExchangeMenu`
+### `displayCurrencyExchangeMenu(Scanner scanner, CurrencyExchangeService currencyExchangeService)`
 Displays the currency exchange menu and handles user interactions.
 - **Parameters**:
-  - `Scanner scanner`: Used to read user input.
-  - `CurrencyExchangeService currencyExchangeService`: Used to fetch and display currency exchange information.
+  - `scanner`: A `Scanner` object for reading user input.
+  - `currencyExchangeService`: A `CurrencyExchangeService` object for currency-related operations.
 
-#### `handleReportGeneration`
-Handles the generation of cheque reports.
+### `handleReportGeneration(Scanner scanner, ChequeHistoryManager chequeHistoryManager)`
+Handles the report generation menu and logic.
 - **Parameters**:
-  - `Scanner scanner`: Used to read user input.
-  - `ChequeHistoryManager chequeHistoryManager`: Used to fetch and display cheque history for report generation.
+  - `scanner`: A `Scanner` object for reading user input.
+  - `chequeHistoryManager`: A `ChequeHistoryManager` object for managing cheque history.
 
 ## External Dependencies
-The `CreateApplication` class relies on the following external classes:
+The `CreateApplication` class depends on the following external classes:
+- `CurrencyExchangeService`
+- `SignatureVerificationService`
+- `CoreBankingSystemUpdater`
+- `UserService`
+- `ChequeHistoryManager`
+- `FraudDetectionService`
+- `ChequeProcessor`
+- `BatchCheque`
 
-1. **`CurrencyExchangeService`**: Manages currency exchange operations.
-2. **`SignatureVerificationService`**: Verifies the authenticity of cheque signatures.
-3. **`CoreBankingSystemUpdater`**: Updates the core banking system with transaction details.
-4. **`UserService`**: Handles user authentication and registration.
-5. **`ChequeHistoryManager`**: Maintains and displays cheque transaction history.
-6. **`FraudDetectionService`**: Detects fraudulent activities in cheque transactions.
-7. **`ChequeProcessor`**: Processes cheques, including signature verification, fraud detection, and core banking updates.
-8. **`BatchCheque`**: Represents a cheque in a batch processing operation.
-
-## Key Features
-- **User Authentication**: Ensures only authorized users can access the system.
-- **Cheque Processing**: Supports both single and batch cheque processing.
-- **Fraud Detection**: Integrates fraud detection mechanisms to ensure secure transactions.
-- **Cheque History Management**: Allows users to view the history of processed cheques.
-- **Currency Exchange**: Provides information on currency exchange rates and conversions.
-- **Report Generation**: Enables users to generate reports based on cheque history.
-
-## Notes
-- The application uses a `Scanner` for user input, which may not be suitable for production environments due to potential security risks (e.g., reading passwords in plain text).
-- The services used in this application appear to be mock implementations, as indicated by the search results.
-- The `BatchCheque` class is used to represent individual cheques in batch processing but its implementation details were not fully provided in the code chunk.
+These classes provide the necessary functionality for currency exchange, signature verification, core banking updates, user authentication, cheque history management, fraud detection, and cheque processing.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_31"
 confidence_score: 0.9
-external_dependencies: ["BatchCheque", "ChequeProcessor", "CurrencyExchangeService", "ChequeHistoryManager"]
+external_dependencies: ["BatchCheque", "CurrencyExchangeService", "ChequeHistoryManager"]
 ---
 
 # Documentation for Code Chunk
 
-This code chunk is part of a larger Java application and contains three main functionalities:
+This code chunk contains three main functionalities:
 
 1. **Batch Cheque Processing**
 2. **Currency Exchange Menu**
 3. **Cheque Report Generation**
 
 ## 1. Batch Cheque Processing
+This section of the code collects details for a batch of cheques from the user and processes them using a `chequeProcessor` object. The details collected include:
 
-This section of the code collects details for a batch of cheques from the user and processes them using a `ChequeProcessor` instance.
+- Account number
+- Cheque number
+- Currency
+- Amount
+- Signature
 
-### Key Steps:
-- A list `chequesToProcess` is initialized to store `BatchCheque` objects.
-- A loop iterates `batchSize` times to collect cheque details (account number, cheque number, currency, amount, and signature) from the user via a `Scanner`.
-- Each cheque is added to the `chequesToProcess` list as a `BatchCheque` object.
-- After collecting all cheques, the `ChequeProcessor` processes each cheque in the list by calling its `processCheque` method.
+The collected data is stored in a list of `BatchCheque` objects, which are then processed in a batch.
 
-### External Dependencies:
-- **`BatchCheque`**: Represents a cheque with attributes such as account number, cheque number, currency, amount, and signature.
-- **`ChequeProcessor`**: A service responsible for processing cheques. It includes functionalities like signature verification, fraud detection, currency conversion, and updating the core banking system.
+### Key Operations:
+- User input is collected using a `Scanner` object.
+- Each cheque is added to a list of `BatchCheque` objects.
+- The `chequeProcessor.processCheque` method is called for each cheque in the list.
+
+### External Dependency:
+- `BatchCheque`: Represents a cheque with attributes like account number, cheque number, currency, amount, and signature.
 
 ## 2. Currency Exchange Menu
+This section provides a menu-driven interface for currency exchange operations. The menu includes the following options:
 
-This section provides a menu-driven interface for users to interact with a `CurrencyExchangeService` to perform various currency-related operations.
+1. View supported currencies.
+2. Get the exchange rate for a specific currency.
+3. Get detailed exchange rate information (mid, buy, sell, and fee rates).
+4. Convert an amount from one currency to another.
+5. Return to the main menu.
 
-### Menu Options:
-1. **View Supported Currencies**: Displays a list of currencies supported by the service.
-2. **Get Exchange Rate**: Allows the user to input a currency code and retrieves the exchange rate for that currency.
-3. **Get Detailed Exchange Rate Information**: Provides detailed exchange rate information (mid, buy, sell, and fee rates) for a specific currency.
-4. **Convert Currency**: Converts an amount from one currency to another using the `convertCurrency` method of `CurrencyExchangeService`.
-5. **Return to Main Menu**: Exits the currency exchange menu.
+### Key Operations:
+- User input is collected to navigate the menu and perform actions.
+- The `CurrencyExchangeService` is used to fetch supported currencies, exchange rates, and perform currency conversion.
 
-### External Dependencies:
-- **`CurrencyExchangeService`**: Provides methods to get supported currencies, fetch exchange rates, and perform currency conversions.
+### External Dependency:
+- `CurrencyExchangeService`: Provides methods for currency-related operations such as fetching exchange rates and converting currencies.
 
 ## 3. Cheque Report Generation
+This section handles the generation of cheque reports based on user-selected time periods. The available options are:
 
-This section handles the generation of cheque reports for different time periods or custom date ranges.
+1. Daily Report (Today)
+2. Weekly Report (Last 7 Days)
+3. Monthly Report (Last 30 Days)
+4. Custom Date Range Report
+5. Return to the main menu
 
-### Key Steps:
-- Displays a menu with options for generating daily, weekly, monthly, or custom date range reports.
-- Based on the user's choice, determines the start and end dates for the report.
-- Fetches cheque records for the specified date range using the `ChequeHistoryManager`.
-- If records are found, generates a CSV report and writes it to a file.
+### Key Operations:
+- User input is collected to select the report type and date range.
+- The `ChequeHistoryManager` is used to fetch cheque records for the specified period.
+- The records are written to a CSV file.
 
-### External Dependencies:
-- **`ChequeHistoryManager`**: Manages cheque history and provides methods to fetch records within a specific date range and generate CSV reports.
+### External Dependency:
+- `ChequeHistoryManager`: Manages cheque history and provides methods to fetch records and generate CSV reports.
 
 ### Error Handling:
-- Ensures proper handling of invalid date formats and cases where the start date is after the end date.
-- Handles exceptions during file writing and informs the user of any errors.
+- Input validation is performed for date formats and logical errors (e.g., start date after end date).
+- Exceptions during file writing are caught and logged.
 
 ## Additional Notes:
-- The `SignatureVerificationService` class is partially included in the chunk and appears to provide a mechanism for verifying cheque signatures.
-- The `Scanner` object is used extensively for user input throughout the code.
-
-This chunk demonstrates a combination of user interaction, data processing, and integration with external services to achieve its functionality.
+- The `SignatureVerificationService` class is partially included, which appears to manage account signatures for verification purposes.
+- The code uses standard Java libraries like `Scanner`, `LocalDate`, and `BufferedWriter` for input handling, date manipulation, and file writing, respectively.
 
 === NEXT CHUNK ===
 
@@ -3513,143 +3367,100 @@ This chunk demonstrates a combination of user interaction, data processing, and 
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_32"
-confidence_score: 0.9
-external_dependencies: ["CurrencyRate", "CurrencyExchangeService", "CoreBankingSystemUpdater", "ChequeHistoryManager", "FraudDetectionService"]
+confidence_score: 0.95
+external_dependencies: ["CoreBankingSystemUpdater", "ChequeHistoryManager", "FraudDetectionService", "CurrencyRate"]
 ---
 
 # Documentation for `SignatureVerificationService`, `ChequeProcessor`, and `CurrencyExchangeService`
 
 ## Overview
 This code chunk contains three main components:
+
 1. **`SignatureVerificationService`**: A service for verifying and managing account signatures.
 2. **`ChequeProcessor`**: A module for processing cheques, including signature verification, fraud detection, currency conversion, and updating the core banking system.
-3. **`CurrencyExchangeService`**: A service for fetching and managing currency exchange rates, including fallback mechanisms and caching.
-
----
+3. **`CurrencyExchangeService`**: A service for fetching and managing currency exchange rates, including fallback mechanisms.
 
 ## `SignatureVerificationService`
 
 ### Purpose
-The `SignatureVerificationService` is responsible for verifying account signatures and managing updates to the stored signatures. It uses a `HashMap` to store account numbers and their associated signatures.
-
-### Fields
-- `Map<String, String> accountSignatures`: Stores account numbers and their corresponding signatures.
+This class is responsible for verifying account signatures and managing updates to the stored signatures. It uses a `HashMap` to store account numbers and their corresponding signatures.
 
 ### Methods
 
-#### Constructor
-```java
-public SignatureVerificationService()
-```
-Initializes the service with some sample account signatures for demonstration purposes.
+- **`SignatureVerificationService()`**: Constructor that initializes the service with sample account signatures for demonstration purposes.
 
-#### `verifySignature`
-```java
-public boolean verifySignature(String accountNumber, String signature)
-```
-Verifies if the provided signature matches the one on file for the given account number.
-- **Parameters**:
-  - `accountNumber`: The account number.
-  - `signature`: The signature to verify.
-- **Returns**: `true` if the signature is valid, `false` otherwise.
-- **Behavior**:
-  - If no signature is on file, it accepts the provided signature and stores it.
-  - Compares the provided signature with the stored signature.
+- **`boolean verifySignature(String accountNumber, String signature)`**:
+  - Verifies if the provided signature matches the stored signature for the given account number.
+  - If no signature is on file, it accepts the new signature and stores it.
+  - Returns `true` if the signature is valid, `false` otherwise.
 
-#### `updateSignature`
-```java
-public void updateSignature(String accountNumber, String newSignature)
-```
-Updates the stored signature for a given account number.
-- **Parameters**:
-  - `accountNumber`: The account number.
-  - `newSignature`: The new signature to store.
-
----
+- **`void updateSignature(String accountNumber, String newSignature)`**:
+  - Updates the stored signature for the specified account number.
 
 ## `ChequeProcessor`
 
 ### Purpose
-The `ChequeProcessor` handles the end-to-end processing of cheques, including signature verification, fraud detection, currency conversion, and updating the core banking system.
+This class processes cheques by performing multiple operations, including:
+- Signature verification
+- Fraud detection
+- Currency conversion
+- Updating the core banking system
+- Recording cheque history
 
-### Fields
-- `CurrencyExchangeService currencyExchangeService`: Service for currency exchange operations.
-- `SignatureVerificationService signatureVerificationService`: Service for signature verification.
-- `CoreBankingSystemUpdater coreBankingSystemUpdater`: Service for updating the core banking system.
-- `ChequeHistoryManager chequeHistoryManager`: Service for recording cheque history.
-- `FraudDetectionService fraudDetectionService`: Service for detecting fraudulent cheques.
+### Dependencies
+- **`CurrencyExchangeService`**: For currency conversion.
+- **`SignatureVerificationService`**: For signature verification.
+- **`CoreBankingSystemUpdater`**: For updating the core banking system.
+- **`ChequeHistoryManager`**: For recording cheque history.
+- **`FraudDetectionService`**: For detecting fraudulent cheques.
 
 ### Methods
 
-#### Constructor
-```java
-public ChequeProcessor(CurrencyExchangeService currencyExchangeService,
-                       SignatureVerificationService signatureVerificationService,
-                       CoreBankingSystemUpdater coreBankingSystemUpdater,
-                       ChequeHistoryManager chequeHistoryManager,
-                       FraudDetectionService fraudDetectionService)
-```
-Initializes the `ChequeProcessor` with the required services.
+- **`ChequeProcessor(...)`**: Constructor that initializes the processor with the required services.
 
-#### `processCheque`
-```java
-public void processCheque(String accountNumber, String chequeNumber, String currency, double amount, String signature)
-```
-Processes a cheque by performing the following steps:
-1. Verifies the signature using `SignatureVerificationService`.
-2. Detects fraud using `FraudDetectionService`.
-3. Converts the amount to local currency if necessary using `CurrencyExchangeService`.
-4. Updates the core banking system using `CoreBankingSystemUpdater`.
-5. Records the cheque history using `ChequeHistoryManager`.
-
-- **Parameters**:
-  - `accountNumber`: The account number.
-  - `chequeNumber`: The cheque number.
-  - `currency`: The currency of the cheque.
-  - `amount`: The amount on the cheque.
-  - `signature`: The signature on the cheque.
-
----
+- **`void processCheque(String accountNumber, String chequeNumber, String currency, double amount, String signature)`**:
+  - Verifies the signature using `SignatureVerificationService`.
+  - Detects fraud using `FraudDetectionService`.
+  - Converts the cheque amount to the local currency using `CurrencyExchangeService`.
+  - Updates the core banking system using `CoreBankingSystemUpdater`.
+  - Records the cheque in the history using `ChequeHistoryManager`.
 
 ## `CurrencyExchangeService`
 
 ### Purpose
-The `CurrencyExchangeService` provides functionality for fetching and managing currency exchange rates. It includes mechanisms for caching rates, using fallback rates, and fetching rates from an external API.
-
-### Fields
-- `Map<String, CurrencyRate> exchangeRateCache`: Caches exchange rates for currencies.
-- `static final String BASE_CURRENCY`: The base currency (USD).
-- `static final long CACHE_EXPIRY_MINUTES`: Cache expiry time in minutes.
-- `static final String API_KEY`: API key for fetching rates from an external source.
-- `static final Map<String, Double> FALLBACK_RATES`: Fallback exchange rates for various currencies.
+This class provides functionality for fetching and managing currency exchange rates. It includes a caching mechanism and fallback rates for cases where external API calls fail.
 
 ### Methods
 
-#### `getExchangeRate`
-```java
-public double getExchangeRate(String currency)
-```
-Fetches the exchange rate for a specific currency.
-- **Parameters**:
-  - `currency`: The currency code (e.g., EUR, GBP).
-- **Returns**: The exchange rate relative to the base currency (USD).
-- **Behavior**:
-  - Checks the cache for a valid rate.
-  - Attempts to fetch the rate from an external API.
-  - Falls back to predefined rates if the API fetch fails.
+- **`double getExchangeRate(String currency)`**:
+  - Fetches the exchange rate for the specified currency relative to the base currency (USD).
+  - Uses cached rates if available and valid.
+  - Attempts to fetch rates from an external API if not cached.
+  - Falls back to predefined rates if the API call fails.
 
----
+### Constants
+- **`BASE_CURRENCY`**: The base currency for exchange rates (USD).
+- **`CACHE_EXPIRY_MINUTES`**: The duration for which cached rates are valid.
+- **`FALLBACK_RATES`**: A map of predefined exchange rates for various currencies.
 
 ## External Dependencies
-- `CurrencyRate`: Represents a currency rate with its value and last updated timestamp.
-- `CurrencyExchangeService`: Provides detailed exchange rate information.
-- `CoreBankingSystemUpdater`: Updates the core banking system with transaction details.
-- `ChequeHistoryManager`: Records cheque processing history.
-- `FraudDetectionService`: Detects fraudulent cheques.
 
----
+### `CoreBankingSystemUpdater`
+A mock implementation that updates the core banking system with the account number and the amount in local currency.
 
-This documentation provides a detailed overview of the services and their methods, ensuring clarity for developers working with this code.
+### `ChequeHistoryManager`
+Manages the history of processed cheques and supports report generation for various time periods.
+
+### `FraudDetectionService`
+Detects fraudulent cheques by analyzing patterns, recent transactions, and other factors.
+
+### `CurrencyRate`
+Represents a currency rate with attributes for the rate value and the last updated timestamp.
+
+## Notes
+- The `SignatureVerificationService` is a simplified implementation for demonstration purposes and may not be suitable for production use.
+- The `CurrencyExchangeService` includes a fallback mechanism to ensure functionality even when external APIs are unavailable.
+- The `ChequeProcessor` integrates multiple services to provide a comprehensive cheque processing workflow.
 
 === NEXT CHUNK ===
 
@@ -3658,20 +3469,17 @@ original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_33"
 confidence_score: 0.95
-external_dependencies: ["org.json.simple.parser.JSONParser", "org.json.simple.JSONObject", "ChequeHistoryManager", "FraudDetection", "ChequeTransaction"]
+external_dependencies: ["FALLBACK_RATES", "exchangeRateCache", "CurrencyRate", "CACHE_EXPIRY_MINUTES", "FraudDetection", "ChequeHistoryManager", "ChequeTransaction"]
 ---
 
-# Documentation for Code Chunk
+# Documentation for Code Chunk from `DemoApplication.java`
 
 ## Overview
-This code chunk is part of a larger application that provides currency exchange services and fraud detection for cheque transactions. It includes methods for handling fallback exchange rates, currency conversion, detailed exchange rate calculations, and fraud detection mechanisms. Additionally, it defines helper classes and services such as `CurrencyRate` and `FraudDetectionService`.
+This code chunk is part of a larger application that provides currency exchange services and fraud detection for cheque transactions. It includes methods for handling currency exchange rates, converting currencies, managing exchange rate caches, and detecting fraudulent cheque activities. The code relies on external dependencies such as `FALLBACK_RATES`, `exchangeRateCache`, `CurrencyRate`, `CACHE_EXPIRY_MINUTES`, `FraudDetection`, `ChequeHistoryManager`, and `ChequeTransaction`.
 
-## Key Components and Methods
+## Code Breakdown
 
-### 1. **Fallback Exchange Rates**
-The code uses a predefined map `FALLBACK_RATES` to store exchange rates for various currencies in case the external API fetch fails. If a fallback rate is available for a given currency, it is cached and returned.
-
-#### Example:
+### 1. Fallback Exchange Rates
 ```java
 Double fallbackRate = FALLBACK_RATES.get(currencyCode);
 if (fallbackRate != null) {
@@ -3679,272 +3487,223 @@ if (fallbackRate != null) {
     exchangeRateCache.put(currencyCode, new CurrencyRate(fallbackRate, java.time.LocalDateTime.now()));
     return fallbackRate;
 }
+System.out.println("No exchange rate available for currency: " + currencyCode);
+return 0.0;
 ```
+- **Purpose**: This block uses fallback exchange rates when fetching rates from an external API fails. If a fallback rate exists for the given currency code, it is used and cached with a timestamp.
+- **Key Variables**:
+  - `FALLBACK_RATES`: A predefined map of fallback exchange rates for various currencies.
+  - `exchangeRateCache`: A cache to store exchange rates with timestamps.
+  - `CurrencyRate`: A class that encapsulates the exchange rate and the timestamp of when it was last updated.
 
-### 2. **Currency Conversion**
-The `convertCurrency` method converts an amount from one currency to another using exchange rates. It first retrieves the exchange rates for the source and target currencies, validates them, and performs the conversion.
-
-#### Method Signature:
+### 2. Currency Conversion
 ```java
-public double convertCurrency(double amount, String fromCurrency, String toCurrency)
-```
+public double convertCurrency(double amount, String fromCurrency, String toCurrency) {
+    double fromRate = getExchangeRate(fromCurrency);
+    double toRate = getExchangeRate(toCurrency);
 
-#### Key Steps:
-- Fetch exchange rates for both currencies.
-- Convert the amount to the base currency and then to the target currency.
-- Log the conversion details.
+    if (fromRate <= 0 || toRate <= 0) {
+        System.out.println("Cannot convert: invalid exchange rates");
+        return 0.0;
+    }
 
-### 3. **Detailed Exchange Rate Information**
-The `getDetailedExchangeRates` method provides additional details about exchange rates, including buy/sell rates and fees.
+    double amountInBaseCurrency = amount * fromRate;
+    double convertedAmount = amountInBaseCurrency / toRate;
 
-#### Method Signature:
-```java
-public Map<String, Double> getDetailedExchangeRates(String currency)
-```
+    System.out.println(String.format("Converted %.2f %s to %.2f %s",
+            amount, fromCurrency.toUpperCase(), convertedAmount, toCurrency.toUpperCase()));
 
-#### Key Steps:
-- Calculate buy and sell rates as slight variations of the base rate.
-- Calculate a fee as a percentage of the base rate.
-- Return a map containing the detailed rate information.
-
-### 4. **Supported Currencies**
-The `getSupportedCurrencies` method returns a sorted list of all supported currency codes, including the base currency and those in the fallback rates.
-
-#### Method Signature:
-```java
-public List<String> getSupportedCurrencies()
-```
-
-### 5. **Cache Validation**
-The `isCacheValid` method checks if a cached exchange rate is still valid based on a predefined expiry time (`CACHE_EXPIRY_MINUTES`).
-
-#### Method Signature:
-```java
-private boolean isCacheValid(String currency)
-```
-
-### 6. **Fetch Rate from API**
-The `fetchRateFromAPI` method retrieves exchange rates from an external API (e.g., Open Exchange Rates API). It handles HTTP requests, parses JSON responses, and extracts the required exchange rate.
-
-#### Method Signature:
-```java
-private double fetchRateFromAPI(String currency) throws Exception
-```
-
-#### Key Steps:
-- Construct the API URL using the base currency and API key.
-- Make an HTTP GET request and handle the response.
-- Parse the JSON response to extract the exchange rate for the specified currency.
-- Handle errors and log messages.
-
-### 7. **Clear Cache**
-The `clearCache` method clears all cached exchange rates.
-
-#### Method Signature:
-```java
-public void clearCache()
-```
-
-### 8. **CurrencyRate Class**
-This helper class stores exchange rate information along with a timestamp indicating when the rate was last updated.
-
-#### Key Fields:
-- `rate`: The exchange rate value.
-- `lastUpdated`: The timestamp of the last update.
-
-#### Key Methods:
-- `getRate()`: Returns the exchange rate.
-- `getLastUpdated()`: Returns the timestamp of the last update.
-
-### 9. **FraudDetectionService Class**
-This class implements various fraud detection mechanisms for cheque transactions. It uses a `ChequeHistoryManager` to track historical cheque data and detect anomalies.
-
-#### Key Features:
-- **Fraud Detection Checks**: Includes checks for duplicate cheques, abnormal amounts, suspicious activity, velocity fraud, pattern fraud, historical duplicates, unusual frequency, and similarity to recent transactions.
-- **Fraud Alert Levels**: Determines the severity of fraud using predefined thresholds.
-
-#### Method Signature:
-```java
-public boolean isFraudulentCheque(String accountId, String chequeNumber, double amount)
-```
-
-#### Key Steps:
-- Perform various fraud detection checks.
-- Log the results of the checks.
-- Determine the overall fraud alert level.
-- Return whether the cheque is fraudulent.
-
-### 10. **ChequeHistoryManager Class**
-This mock implementation manages the history of cheque transactions for fraud detection purposes.
-
-#### Key Features:
-- Records cheque transactions.
-- Displays the history of cheques for a specific account.
-
-#### Example:
-```java
-public void recordCheque(String acc, String chq, String curr, double amt, Date d) {
-    history.computeIfAbsent(acc, k -> new ArrayList<>()).add(new ChequeRecord(acc, chq, curr, amt, d));
+    return convertedAmount;
 }
 ```
+- **Purpose**: Converts an amount from one currency to another using exchange rates.
+- **Key Steps**:
+  1. Fetch exchange rates for the source (`fromCurrency`) and target (`toCurrency`) currencies.
+  2. Validate the rates to ensure they are greater than zero.
+  3. Convert the amount to the base currency and then to the target currency.
+  4. Log the conversion details.
+
+### 3. Detailed Exchange Rates
+```java
+public Map<String, Double> getDetailedExchangeRates(String currency) {
+    String currencyCode = currency.toUpperCase();
+    double baseRate = getExchangeRate(currencyCode);
+
+    if (baseRate <= 0) {
+        return Collections.emptyMap();
+    }
+
+    Map<String, Double> detailedRates = new HashMap<>();
+    detailedRates.put("mid", baseRate);
+    detailedRates.put("buy", baseRate * 0.99);
+    detailedRates.put("sell", baseRate * 1.01);
+    detailedRates.put("fee", baseRate * 0.005);
+
+    return detailedRates;
+}
+```
+- **Purpose**: Provides detailed exchange rate information, including mid, buy, sell rates, and fees.
+- **Key Calculations**:
+  - `buy`: Slightly lower than the mid rate (99%).
+  - `sell`: Slightly higher than the mid rate (101%).
+  - `fee`: A 0.5% fee based on the mid rate.
+
+### 4. Supported Currencies
+```java
+public List<String> getSupportedCurrencies() {
+    List<String> currencies = new ArrayList<>();
+    currencies.add(BASE_CURRENCY);
+    currencies.addAll(FALLBACK_RATES.keySet());
+    Collections.sort(currencies);
+    return currencies;
+}
+```
+- **Purpose**: Returns a sorted list of all supported currency codes, including the base currency and those in the fallback rates.
+
+### 5. Cache Validation
+```java
+private boolean isCacheValid(String currency) {
+    if (!exchangeRateCache.containsKey(currency)) {
+        return false;
+    }
+
+    CurrencyRate cachedRate = exchangeRateCache.get(currency);
+    java.time.LocalDateTime now = java.time.LocalDateTime.now();
+    java.time.LocalDateTime expiryTime = cachedRate.getLastUpdated().plusMinutes(CACHE_EXPIRY_MINUTES);
+
+    return now.isBefore(expiryTime);
+}
+```
+- **Purpose**: Checks if the cached exchange rate for a currency is still valid based on a predefined expiration time (`CACHE_EXPIRY_MINUTES`).
+- **Key Variables**:
+  - `exchangeRateCache`: Stores cached exchange rates.
+  - `CACHE_EXPIRY_MINUTES`: The duration (in minutes) for which a cached rate is considered valid.
+
+### 6. Fraud Detection Service
+```java
+public boolean isFraudulentCheque(String accountId, String chequeNumber, double amount) {
+    boolean isDuplicate = checkDuplicateCheque(accountId, chequeNumber);
+    boolean isAbnormal = checkAbnormalAmount(amount);
+    boolean isSuspicious = checkSuspiciousActivity(accountId, amount);
+    boolean isVelocityFraud = checkVelocityFraud(accountId, amount);
+    boolean isPatternFraud = checkPatternFraud(accountId, amount);
+
+    boolean isHistoricalDuplicate = false;
+    boolean isUnusualFrequency = false;
+    boolean isSimilarToRecent = false;
+
+    if (historyManager != null) {
+        isHistoricalDuplicate = checkHistoricalDuplicate(accountId, chequeNumber);
+        isUnusualFrequency = checkUnusualFrequency(accountId);
+        isSimilarToRecent = checkSimilarToRecent(accountId, amount);
+    }
+
+    logFraudChecks(accountId, chequeNumber, amount, isDuplicate, isAbnormal,
+            isSuspicious, isVelocityFraud, isPatternFraud,
+            isHistoricalDuplicate, isUnusualFrequency, isSimilarToRecent);
+
+    AlertLevel alertLevel = determineAlertLevel(isDuplicate, isAbnormal,
+            isSuspicious, isVelocityFraud, isPatternFraud,
+            isHistoricalDuplicate, isUnusualFrequency, isSimilarToRecent);
+
+    System.out.println("Fraud Alert Level: " + alertLevel);
+
+    return isDuplicate || isAbnormal || isSuspicious || isVelocityFraud || isPatternFraud ||
+            isHistoricalDuplicate || isUnusualFrequency || isSimilarToRecent;
+}
+```
+- **Purpose**: Detects fraudulent cheque activities using various checks, including duplicate cheques, abnormal amounts, suspicious activity, velocity fraud, and pattern fraud.
+- **Key Components**:
+  - `FraudDetection`: A service for performing fraud detection.
+  - `ChequeHistoryManager`: Manages historical cheque data for additional checks.
+  - `AlertLevel`: Enum representing the severity of fraud alerts.
 
 ## External Dependencies
-- **`org.json.simple.parser.JSONParser`**: Used for parsing JSON responses from the external API.
-- **`org.json.simple.JSONObject`**: Represents JSON objects in the parsed response.
+- **`FALLBACK_RATES`**: A predefined map of fallback exchange rates.
+- **`exchangeRateCache`**: A cache for storing exchange rates with timestamps.
+- **`CurrencyRate`**: A class representing an exchange rate and its last updated timestamp.
+- **`CACHE_EXPIRY_MINUTES`**: The duration for which cached rates are valid.
+- **`FraudDetection`**: A service for detecting fraudulent activities.
 - **`ChequeHistoryManager`**: Manages historical cheque data.
-- **`FraudDetection`**: Implements fraud detection logic.
-- **`ChequeTransaction`**: Represents cheque transaction data.
-
-## Notes
-- The `API_KEY` used in the `fetchRateFromAPI` method is a placeholder and should be replaced with a valid key in production.
-- The `CACHE_EXPIRY_MINUTES` constant determines how long cached exchange rates remain valid.
-- The fraud detection logic relies on multiple thresholds and historical data to identify suspicious activities.
+- **`ChequeTransaction`**: Represents a cheque transaction, used in fraud detection.
 
 === NEXT CHUNK ===
 
 ---
-original_file: "legacy_source/DemoApplication.java"
+original_file: "legacy_source\DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_34"
 confidence_score: 0.95
-external_dependencies: ["AlertLevel", "ChequeHistoryManager"]
+external_dependencies: ["AlertLevel", "ChequeHistoryManager", "ChequeTransaction"]
 ---
 
 # Documentation for Fraud Detection Code Chunk
 
-## Overview
-This code chunk is part of a fraud detection system that evaluates various fraud indicators for cheque transactions. It performs checks for duplicate cheques, abnormal amounts, suspicious activities, velocity fraud, pattern fraud, historical duplicates, unusual frequency, and similarity to recent transactions. Based on these checks, it determines an alert level and logs the results.
+This code chunk is part of a fraud detection system implemented in Java. It contains methods to evaluate various fraud detection checks, log the results, and determine the alert level based on the findings. Below is a detailed explanation of the methods and their purposes:
 
-## Key Methods and Classes
+## Methods
 
-### 1. `logFraudChecks`
-Logs the results of various fraud checks for a given transaction. It provides a detailed report of the checks performed and their outcomes.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-- `chequeNumber` (String): The cheque number.
-- `amount` (double): The amount of the cheque.
-- `isDuplicate` (boolean): Indicates if the cheque is a duplicate.
-- `isAbnormal` (boolean): Indicates if the amount is abnormal.
-- `isSuspicious` (boolean): Indicates if the activity is suspicious.
-- `isVelocityFraud` (boolean): Indicates if velocity fraud is detected.
-- `isPatternFraud` (boolean): Indicates if pattern fraud is detected.
-- `isHistoricalDuplicate` (boolean): Indicates if the cheque is a historical duplicate.
-- `isUnusualFrequency` (boolean): Indicates if there is unusual frequency in transactions.
-- `isSimilarToRecent` (boolean): Indicates if the cheque amount is similar to recent transactions.
-
-### 2. `determineAlertLevel`
-Determines the alert level based on the results of the fraud checks.
-
-#### Parameters:
-- `isDuplicate` (boolean): Indicates if the cheque is a duplicate.
-- `isAbnormal` (boolean): Indicates if the amount is abnormal.
-- `isSuspicious` (boolean): Indicates if the activity is suspicious.
-- `isVelocityFraud` (boolean): Indicates if velocity fraud is detected.
-- `isPatternFraud` (boolean): Indicates if pattern fraud is detected.
-- `isHistoricalDuplicate` (boolean): Indicates if the cheque is a historical duplicate.
-- `isUnusualFrequency` (boolean): Indicates if there is unusual frequency in transactions.
-- `isSimilarToRecent` (boolean): Indicates if the cheque amount is similar to recent transactions.
-
-#### Returns:
-- `AlertLevel`: The determined alert level (CRITICAL, HIGH, MEDIUM, LOW).
-
-### 3. `checkDuplicateCheque`
-Checks if a cheque is a duplicate by consulting the `fraudDetection` object.
+### `logFraudChecks`
+Logs the results of various fraud detection checks for a given account and cheque. It provides a detailed report of the checks performed and their outcomes. This method is crucial for auditing and tracking the results of fraud detection mechanisms.
 
 #### Parameters:
 - `accountId` (String): The account identifier.
 - `chequeNumber` (String): The cheque number.
+- `amount` (double): The cheque amount.
+- `isDuplicate` (boolean): Result of the duplicate cheque check.
+- `isAbnormal` (boolean): Result of the abnormal amount check.
+- `isSuspicious` (boolean): Result of the suspicious activity check.
+- `isVelocityFraud` (boolean): Result of the velocity fraud check.
+- `isPatternFraud` (boolean): Result of the pattern fraud check.
+- `isHistoricalDuplicate` (boolean): Result of the historical duplicate check.
+- `isUnusualFrequency` (boolean): Result of the unusual frequency check.
+- `isSimilarToRecent` (boolean): Result of the similar recent amount check.
 
-#### Returns:
-- `boolean`: True if the cheque is a duplicate, false otherwise.
+This method uses the `formatCheckResult` method to format the results of each fraud check for logging purposes.
 
-### 4. `checkAbnormalAmount`
-Checks if the cheque amount is abnormal.
-
-#### Parameters:
-- `amount` (double): The amount of the cheque.
-
-#### Returns:
-- `boolean`: True if the amount is abnormal, false otherwise.
-
-### 5. `checkSuspiciousActivity`
-Checks for suspicious activity based on the account ID and amount.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-- `amount` (double): The amount of the cheque.
-
-#### Returns:
-- `boolean`: True if suspicious activity is detected, false otherwise.
-
-### 6. `checkVelocityFraud`
-Checks for velocity fraud by analyzing recent transactions.
+### `determineAlertLevel`
+Determines the alert level based on the results of various fraud checks. The alert level can be one of the following:
+- `CRITICAL`: Indicates the highest level of fraud risk.
+- `HIGH`: Indicates a high level of fraud risk.
+- `MEDIUM`: Indicates a moderate level of fraud risk.
+- `LOW`: Indicates a low level of fraud risk.
 
 #### Parameters:
-- `accountId` (String): The account identifier.
-- `amount` (double): The amount of the cheque.
+- Various boolean flags indicating the results of different fraud checks, such as `isDuplicate`, `isAbnormal`, `isSuspicious`, etc.
 
 #### Returns:
-- `boolean`: True if velocity fraud is detected, false otherwise.
+- `AlertLevel`: The determined alert level.
 
-### 7. `checkPatternFraud`
-Checks for pattern fraud by analyzing recent transaction amounts for patterns.
+#### Logic:
+The method calculates a `fraudCount` based on the results of the fraud checks:
+- Duplicate or historical duplicate checks add 3 points each.
+- Abnormal amount, suspicious activity, velocity fraud, and pattern fraud checks add 2 points each.
+- Unusual frequency and similar recent amount checks add 1 point each.
+
+The `fraudCount` is then used to determine the alert level:
+- `CRITICAL`: `fraudCount >= 8`
+- `HIGH`: `fraudCount >= 5`
+- `MEDIUM`: `fraudCount >= 3`
+- `LOW`: `fraudCount < 3`
+
+### `formatCheckResult`
+Formats the result of a fraud check for logging purposes. This method is used by `logFraudChecks` to create a human-readable string for each fraud check result.
 
 #### Parameters:
-- `accountId` (String): The account identifier.
-- `amount` (double): The amount of the cheque.
+- `failed` (boolean): The result of the fraud check.
 
 #### Returns:
-- `boolean`: True if pattern fraud is detected, false otherwise.
+- `String`: A formatted string indicating whether the check passed or failed.
 
-### 8. `checkHistoricalDuplicate`
-Checks if the cheque is a historical duplicate by consulting the `historyManager`.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-- `chequeNumber` (String): The cheque number.
-
-#### Returns:
-- `boolean`: True if the cheque is a historical duplicate, false otherwise.
-
-### 9. `checkUnusualFrequency`
-Checks for unusual frequency of transactions for the given account.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-
-#### Returns:
-- `boolean`: True if unusual frequency is detected, false otherwise.
-
-### 10. `checkSimilarToRecent`
-Checks if the cheque amount is similar to recent transactions.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-- `amount` (double): The amount of the cheque.
-
-#### Returns:
-- `boolean`: True if the amount is similar to recent transactions, false otherwise.
-
-### 11. `formatCheckResult`
-Formats the result of a fraud check for logging purposes.
-
-#### Parameters:
-- `failed` (boolean): Indicates if the check failed.
-
-#### Returns:
-- `String`: A formatted string indicating the result of the check ("FAILED ⚠️" or "Passed ✓").
-
-### 12. `ChequeTransaction` (Inner Class)
-Represents a cheque transaction with an amount and a date.
+### `ChequeTransaction` (Inner Class)
+Represents a cheque transaction with an amount and date.
 
 #### Fields:
-- `amount` (double): The amount of the transaction.
-- `date` (LocalDate): The date of the transaction.
+- `amount` (double): The transaction amount.
+- `date` (java.time.LocalDate): The transaction date.
 
 #### Constructor:
-- `ChequeTransaction(double amount, LocalDate date)`: Initializes a new cheque transaction.
+- `ChequeTransaction(double amount, java.time.LocalDate date)`: Initializes a new instance of the `ChequeTransaction` class.
 
 #### Methods:
 - `getAmount()`: Returns the transaction amount.
@@ -3952,14 +3711,18 @@ Represents a cheque transaction with an amount and a date.
 
 ## External Dependencies
 
-### 1. `AlertLevel`
-An external class used to represent the severity of a fraud alert. Possible values include `CRITICAL`, `HIGH`, `MEDIUM`, and `LOW`.
+### `AlertLevel`
+An enum or class used to represent the alert level. Possible values include `CRITICAL`, `HIGH`, `MEDIUM`, and `LOW`. This is used to categorize the severity of detected fraud.
 
-### 2. `ChequeHistoryManager`
-A mock implementation of a class that manages historical cheque data. It provides methods to record and retrieve cheque history for accounts.
+### `ChequeHistoryManager`
+A class responsible for managing historical cheque data. It includes the following features:
+- **ChequeRecord (Inner Class)**: Represents individual cheque records with fields for account number, cheque number, currency, amount, and date.
+- **Methods**:
+  - `recordCheque(String acc, String chq, String curr, double amt, Date d)`: Records a cheque transaction in the history.
+  - `displayChequeHistory(String acc)`: Displays the history of cheques for a specific account.
 
-## Summary
-This code chunk is a comprehensive implementation of a fraud detection system for cheque transactions. It uses various checks to identify potential fraud and assigns an alert level based on the results. The system also logs detailed reports of the checks performed, making it easier to analyze and act upon potential fraud cases.
+### `ChequeTransaction`
+An inner class used to represent individual cheque transactions. It is used in fraud detection methods like `checkPatternFraud` to analyze transaction patterns and detect anomalies.
 
 === NEXT CHUNK ===
 
@@ -3967,7 +3730,7 @@ This code chunk is a comprehensive implementation of a fraud detection system fo
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_35"
-confidence_score: 0.95
+confidence_score: 0.9
 external_dependencies: [java.time.LocalDateTime]
 ---
 
@@ -3975,118 +3738,113 @@ external_dependencies: [java.time.LocalDateTime]
 
 ## Overview
 
-This code chunk is part of a system that monitors and evaluates account activities for potential fraud or suspicious behavior. It includes methods to determine if a transaction amount is abnormal, assess suspicious activity, record transactions, update account profiles, and evaluate abnormal behavior patterns. Additionally, it defines two inner classes, `TransactionRecord` and `AccountProfile`, to manage transaction history and account-related data.
+This code chunk is part of a system designed to monitor and detect potentially fraudulent or suspicious financial activities. It includes methods for identifying abnormal transaction amounts, tracking suspicious activity, recording transactions, updating account profiles, and analyzing behavioral patterns. Additionally, the code references several constants and collections that are not defined within this chunk but are critical to its functionality.
 
----
+## Constants and Collections
+
+The following constants and collections are referenced in this code but are not defined within the provided chunk. They are assumed to be declared elsewhere in the class or a parent class:
+
+### Constants
+- **`ABNORMAL_AMOUNT_THRESHOLD`**: Likely represents the threshold above which a transaction amount is considered abnormal.
+- **`SUSPICIOUS_ACTIVITY_MULTIPLIER`**: Likely used to calculate a threshold for identifying suspicious activity based on abnormal amounts.
+- **`AMOUNT_VARIANCE_THRESHOLD`**: Likely represents the acceptable variance between a transaction amount and the average transaction amount for an account.
+
+### Collections
+- **`accountActivity`**: Presumably a map or similar data structure that tracks the total activity for each account.
+- **`accountTransactionHistory`**: Presumably a map or similar data structure that stores the transaction history for each account.
+- **`accountProfiles`**: Presumably a map or similar data structure that stores the profile information for each account.
 
 ## Methods
 
 ### `isAbnormalAmount(double amount)`
-Determines if a given transaction amount exceeds a predefined threshold.
-
+- **Purpose**: Determines if a given transaction amount exceeds a predefined abnormal threshold.
 - **Parameters**:
   - `amount` (double): The transaction amount to evaluate.
-- **Returns**:
-  - `true` if the amount exceeds the `ABNORMAL_AMOUNT_THRESHOLD`.
-  - `false` otherwise.
+- **Returns**: `true` if the amount exceeds the `ABNORMAL_AMOUNT_THRESHOLD`, otherwise `false`.
 
 ---
 
 ### `isSuspiciousActivity(String accountId, double amount)`
-Evaluates whether a transaction is suspicious based on the account's activity and behavior.
-
+- **Purpose**: Evaluates whether a transaction is suspicious based on the account's activity and behavioral patterns.
 - **Parameters**:
   - `accountId` (String): The unique identifier for the account.
   - `amount` (double): The transaction amount.
-- **Returns**:
-  - `true` if the transaction is deemed suspicious.
-  - `false` otherwise.
+- **Returns**: `true` if the transaction is deemed suspicious, otherwise `false`.
 - **Logic**:
-  1. Retrieves the total activity for the account from the `accountActivity` map.
+  1. Retrieves the total activity for the account from `accountActivity`.
   2. Updates the total activity with the current transaction amount.
   3. Records the transaction using `recordTransaction`.
   4. Updates the account profile using `updateAccountProfile`.
-  5. Checks if the total activity exceeds a threshold (`ABNORMAL_AMOUNT_THRESHOLD * SUSPICIOUS_ACTIVITY_MULTIPLIER`).
+  5. Checks if the total activity exceeds a threshold defined as `ABNORMAL_AMOUNT_THRESHOLD * SUSPICIOUS_ACTIVITY_MULTIPLIER`.
   6. Evaluates abnormal behavior using `isAbnormalBehavior`.
   7. Returns `true` if either the threshold is exceeded or abnormal behavior is detected.
 
 ---
 
 ### `recordTransaction(String accountId, double amount)`
-Records a transaction in the account's transaction history and removes records older than 90 days.
-
+- **Purpose**: Records a transaction for an account and maintains a history of transactions within the last 90 days.
 - **Parameters**:
   - `accountId` (String): The unique identifier for the account.
   - `amount` (double): The transaction amount.
 - **Logic**:
-  1. Checks if the account exists in the `accountTransactionHistory` map. If not, initializes a new list for the account.
-  2. Adds a new `TransactionRecord` with the current timestamp to the account's transaction history.
+  1. Initializes the transaction history for the account if it does not exist.
+  2. Adds a new `TransactionRecord` with the current timestamp.
   3. Filters the transaction history to retain only records from the last 90 days.
 
 ---
 
 ### `updateAccountProfile(String accountId, double amount)`
-Updates the account's profile with the new transaction data.
-
+- **Purpose**: Updates the account profile with the details of a new transaction.
 - **Parameters**:
   - `accountId` (String): The unique identifier for the account.
   - `amount` (double): The transaction amount.
 - **Logic**:
-  1. Checks if the account exists in the `accountProfiles` map. If not, initializes a new `AccountProfile` for the account.
-  2. Updates the account profile with the new transaction using the `updateWithTransaction` method of the `AccountProfile` class.
+  1. Initializes the account profile if it does not exist.
+  2. Updates the profile's total transaction amount, transaction count, maximum transaction amount, and minimum transaction amount.
 
 ---
 
 ### `isAbnormalBehavior(String accountId, double amount)`
-Determines if a transaction exhibits abnormal behavior based on the account's transaction history.
-
+- **Purpose**: Determines if a transaction exhibits abnormal behavior based on the account's historical transaction data.
 - **Parameters**:
   - `accountId` (String): The unique identifier for the account.
   - `amount` (double): The transaction amount.
-- **Returns**:
-  - `true` if the transaction exhibits abnormal behavior.
-  - `false` otherwise.
+- **Returns**: `true` if the transaction exhibits abnormal behavior, otherwise `false`.
 - **Logic**:
-  1. Checks if the account exists in the `accountProfiles` map. If not, returns `false`.
-  2. Retrieves the account's profile and calculates the average transaction amount.
+  1. Checks if the account profile exists.
+  2. If the account has at least 5 transactions, calculates the average transaction amount.
   3. Computes the variance between the current transaction amount and the average.
-  4. Returns `true` if the variance exceeds the `AMOUNT_VARIANCE_THRESHOLD` and the amount is greater than the average.
+  4. Returns `true` if the variance exceeds `AMOUNT_VARIANCE_THRESHOLD` and the amount is greater than the average.
 
 ---
 
 ## Inner Classes
 
 ### `TransactionRecord`
-Represents a single transaction record.
-
+- **Purpose**: Represents a single transaction record.
 - **Fields**:
   - `amount` (double): The transaction amount.
-  - `timestamp` (LocalDateTime): The timestamp of the transaction.
+  - `timestamp` (java.time.LocalDateTime): The timestamp of the transaction.
 - **Constructor**:
-  - `TransactionRecord(double amount, LocalDateTime timestamp)`: Initializes a new transaction record with the specified amount and timestamp.
+  - `TransactionRecord(double amount, java.time.LocalDateTime timestamp)`: Initializes a new transaction record with the specified amount and timestamp.
 
 ---
 
 ### `AccountProfile`
-Represents the profile of an account, including transaction statistics.
-
+- **Purpose**: Represents the profile of an account, including transaction statistics.
 - **Fields**:
   - `totalAmount` (double): The total amount of all transactions.
   - `transactionCount` (int): The total number of transactions.
   - `maxAmount` (double): The maximum transaction amount.
   - `minAmount` (double): The minimum transaction amount.
 - **Methods**:
-  - `updateWithTransaction(double amount)`: Updates the profile with a new transaction, adjusting the total amount, transaction count, and min/max amounts.
+  - `updateWithTransaction(double amount)`: Updates the profile with a new transaction, adjusting the total amount, transaction count, maximum amount, and minimum amount.
 
 ---
 
-## Constants and External Dependencies
+## Notes
+- The constants `ABNORMAL_AMOUNT_THRESHOLD`, `SUSPICIOUS_ACTIVITY_MULTIPLIER`, and `AMOUNT_VARIANCE_THRESHOLD` are not defined in this chunk but are likely declared elsewhere in the class or a parent class.
+- The collections `accountActivity`, `accountTransactionHistory`, and `accountProfiles` are also not defined in this chunk but are assumed to be instance variables of the class.
 
-- **Constants**:
-  - `ABNORMAL_AMOUNT_THRESHOLD`: A predefined threshold for abnormal transaction amounts.
-  - `SUSPICIOUS_ACTIVITY_MULTIPLIER`: A multiplier used to determine suspicious activity thresholds.
-  - `AMOUNT_VARIANCE_THRESHOLD`: A threshold for detecting abnormal behavior based on transaction variance.
-- **External Dependencies**:
-  - `java.time.LocalDateTime`: Used for timestamping transactions and filtering transaction history.
-
----
+## External Dependencies
+- `java.time.LocalDateTime`: Used for timestamping transactions and filtering transaction history.

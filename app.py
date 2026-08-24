@@ -93,8 +93,9 @@ st.sidebar.markdown("---")
 st.sidebar.title("Pipeline Controls")
 if st.sidebar.button("▶ Run Documentation Pipeline (main.py)"):
     st.sidebar.info("Pipeline started in background. Please check the terminal running Streamlit for logs.")
+    import sys
     import subprocess
-    subprocess.Popen(["python", "main.py"])
+    subprocess.Popen([sys.executable, "main.py"])
 
 st.sidebar.markdown("---")
 st.sidebar.title("Phase 7: Modernization")

@@ -1,146 +1,78 @@
 ---
-original_file: "legacy_source/DemoApplication.java"
+original_file: "legacy_source\DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_34"
 confidence_score: 0.95
-external_dependencies: ["AlertLevel", "ChequeHistoryManager"]
+external_dependencies: ["AlertLevel", "ChequeHistoryManager", "ChequeTransaction"]
 ---
 
 # Documentation for Fraud Detection Code Chunk
 
-## Overview
-This code chunk is part of a fraud detection system that evaluates various fraud indicators for cheque transactions. It performs checks for duplicate cheques, abnormal amounts, suspicious activities, velocity fraud, pattern fraud, historical duplicates, unusual frequency, and similarity to recent transactions. Based on these checks, it determines an alert level and logs the results.
+This code chunk is part of a fraud detection system implemented in Java. It contains methods to evaluate various fraud detection checks, log the results, and determine the alert level based on the findings. Below is a detailed explanation of the methods and their purposes:
 
-## Key Methods and Classes
+## Methods
 
-### 1. `logFraudChecks`
-Logs the results of various fraud checks for a given transaction. It provides a detailed report of the checks performed and their outcomes.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-- `chequeNumber` (String): The cheque number.
-- `amount` (double): The amount of the cheque.
-- `isDuplicate` (boolean): Indicates if the cheque is a duplicate.
-- `isAbnormal` (boolean): Indicates if the amount is abnormal.
-- `isSuspicious` (boolean): Indicates if the activity is suspicious.
-- `isVelocityFraud` (boolean): Indicates if velocity fraud is detected.
-- `isPatternFraud` (boolean): Indicates if pattern fraud is detected.
-- `isHistoricalDuplicate` (boolean): Indicates if the cheque is a historical duplicate.
-- `isUnusualFrequency` (boolean): Indicates if there is unusual frequency in transactions.
-- `isSimilarToRecent` (boolean): Indicates if the cheque amount is similar to recent transactions.
-
-### 2. `determineAlertLevel`
-Determines the alert level based on the results of the fraud checks.
-
-#### Parameters:
-- `isDuplicate` (boolean): Indicates if the cheque is a duplicate.
-- `isAbnormal` (boolean): Indicates if the amount is abnormal.
-- `isSuspicious` (boolean): Indicates if the activity is suspicious.
-- `isVelocityFraud` (boolean): Indicates if velocity fraud is detected.
-- `isPatternFraud` (boolean): Indicates if pattern fraud is detected.
-- `isHistoricalDuplicate` (boolean): Indicates if the cheque is a historical duplicate.
-- `isUnusualFrequency` (boolean): Indicates if there is unusual frequency in transactions.
-- `isSimilarToRecent` (boolean): Indicates if the cheque amount is similar to recent transactions.
-
-#### Returns:
-- `AlertLevel`: The determined alert level (CRITICAL, HIGH, MEDIUM, LOW).
-
-### 3. `checkDuplicateCheque`
-Checks if a cheque is a duplicate by consulting the `fraudDetection` object.
+### `logFraudChecks`
+Logs the results of various fraud detection checks for a given account and cheque. It provides a detailed report of the checks performed and their outcomes. This method is crucial for auditing and tracking the results of fraud detection mechanisms.
 
 #### Parameters:
 - `accountId` (String): The account identifier.
 - `chequeNumber` (String): The cheque number.
+- `amount` (double): The cheque amount.
+- `isDuplicate` (boolean): Result of the duplicate cheque check.
+- `isAbnormal` (boolean): Result of the abnormal amount check.
+- `isSuspicious` (boolean): Result of the suspicious activity check.
+- `isVelocityFraud` (boolean): Result of the velocity fraud check.
+- `isPatternFraud` (boolean): Result of the pattern fraud check.
+- `isHistoricalDuplicate` (boolean): Result of the historical duplicate check.
+- `isUnusualFrequency` (boolean): Result of the unusual frequency check.
+- `isSimilarToRecent` (boolean): Result of the similar recent amount check.
 
-#### Returns:
-- `boolean`: True if the cheque is a duplicate, false otherwise.
+This method uses the `formatCheckResult` method to format the results of each fraud check for logging purposes.
 
-### 4. `checkAbnormalAmount`
-Checks if the cheque amount is abnormal.
-
-#### Parameters:
-- `amount` (double): The amount of the cheque.
-
-#### Returns:
-- `boolean`: True if the amount is abnormal, false otherwise.
-
-### 5. `checkSuspiciousActivity`
-Checks for suspicious activity based on the account ID and amount.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-- `amount` (double): The amount of the cheque.
-
-#### Returns:
-- `boolean`: True if suspicious activity is detected, false otherwise.
-
-### 6. `checkVelocityFraud`
-Checks for velocity fraud by analyzing recent transactions.
+### `determineAlertLevel`
+Determines the alert level based on the results of various fraud checks. The alert level can be one of the following:
+- `CRITICAL`: Indicates the highest level of fraud risk.
+- `HIGH`: Indicates a high level of fraud risk.
+- `MEDIUM`: Indicates a moderate level of fraud risk.
+- `LOW`: Indicates a low level of fraud risk.
 
 #### Parameters:
-- `accountId` (String): The account identifier.
-- `amount` (double): The amount of the cheque.
+- Various boolean flags indicating the results of different fraud checks, such as `isDuplicate`, `isAbnormal`, `isSuspicious`, etc.
 
 #### Returns:
-- `boolean`: True if velocity fraud is detected, false otherwise.
+- `AlertLevel`: The determined alert level.
 
-### 7. `checkPatternFraud`
-Checks for pattern fraud by analyzing recent transaction amounts for patterns.
+#### Logic:
+The method calculates a `fraudCount` based on the results of the fraud checks:
+- Duplicate or historical duplicate checks add 3 points each.
+- Abnormal amount, suspicious activity, velocity fraud, and pattern fraud checks add 2 points each.
+- Unusual frequency and similar recent amount checks add 1 point each.
+
+The `fraudCount` is then used to determine the alert level:
+- `CRITICAL`: `fraudCount >= 8`
+- `HIGH`: `fraudCount >= 5`
+- `MEDIUM`: `fraudCount >= 3`
+- `LOW`: `fraudCount < 3`
+
+### `formatCheckResult`
+Formats the result of a fraud check for logging purposes. This method is used by `logFraudChecks` to create a human-readable string for each fraud check result.
 
 #### Parameters:
-- `accountId` (String): The account identifier.
-- `amount` (double): The amount of the cheque.
+- `failed` (boolean): The result of the fraud check.
 
 #### Returns:
-- `boolean`: True if pattern fraud is detected, false otherwise.
+- `String`: A formatted string indicating whether the check passed or failed.
 
-### 8. `checkHistoricalDuplicate`
-Checks if the cheque is a historical duplicate by consulting the `historyManager`.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-- `chequeNumber` (String): The cheque number.
-
-#### Returns:
-- `boolean`: True if the cheque is a historical duplicate, false otherwise.
-
-### 9. `checkUnusualFrequency`
-Checks for unusual frequency of transactions for the given account.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-
-#### Returns:
-- `boolean`: True if unusual frequency is detected, false otherwise.
-
-### 10. `checkSimilarToRecent`
-Checks if the cheque amount is similar to recent transactions.
-
-#### Parameters:
-- `accountId` (String): The account identifier.
-- `amount` (double): The amount of the cheque.
-
-#### Returns:
-- `boolean`: True if the amount is similar to recent transactions, false otherwise.
-
-### 11. `formatCheckResult`
-Formats the result of a fraud check for logging purposes.
-
-#### Parameters:
-- `failed` (boolean): Indicates if the check failed.
-
-#### Returns:
-- `String`: A formatted string indicating the result of the check ("FAILED ⚠️" or "Passed ✓").
-
-### 12. `ChequeTransaction` (Inner Class)
-Represents a cheque transaction with an amount and a date.
+### `ChequeTransaction` (Inner Class)
+Represents a cheque transaction with an amount and date.
 
 #### Fields:
-- `amount` (double): The amount of the transaction.
-- `date` (LocalDate): The date of the transaction.
+- `amount` (double): The transaction amount.
+- `date` (java.time.LocalDate): The transaction date.
 
 #### Constructor:
-- `ChequeTransaction(double amount, LocalDate date)`: Initializes a new cheque transaction.
+- `ChequeTransaction(double amount, java.time.LocalDate date)`: Initializes a new instance of the `ChequeTransaction` class.
 
 #### Methods:
 - `getAmount()`: Returns the transaction amount.
@@ -148,11 +80,15 @@ Represents a cheque transaction with an amount and a date.
 
 ## External Dependencies
 
-### 1. `AlertLevel`
-An external class used to represent the severity of a fraud alert. Possible values include `CRITICAL`, `HIGH`, `MEDIUM`, and `LOW`.
+### `AlertLevel`
+An enum or class used to represent the alert level. Possible values include `CRITICAL`, `HIGH`, `MEDIUM`, and `LOW`. This is used to categorize the severity of detected fraud.
 
-### 2. `ChequeHistoryManager`
-A mock implementation of a class that manages historical cheque data. It provides methods to record and retrieve cheque history for accounts.
+### `ChequeHistoryManager`
+A class responsible for managing historical cheque data. It includes the following features:
+- **ChequeRecord (Inner Class)**: Represents individual cheque records with fields for account number, cheque number, currency, amount, and date.
+- **Methods**:
+  - `recordCheque(String acc, String chq, String curr, double amt, Date d)`: Records a cheque transaction in the history.
+  - `displayChequeHistory(String acc)`: Displays the history of cheques for a specific account.
 
-## Summary
-This code chunk is a comprehensive implementation of a fraud detection system for cheque transactions. It uses various checks to identify potential fraud and assigns an alert level based on the results. The system also logs detailed reports of the checks performed, making it easier to analyze and act upon potential fraud cases.
+### `ChequeTransaction`
+An inner class used to represent individual cheque transactions. It is used in fraud detection methods like `checkPatternFraud` to analyze transaction patterns and detect anomalies.

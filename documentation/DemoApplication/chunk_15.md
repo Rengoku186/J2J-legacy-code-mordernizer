@@ -9,63 +9,96 @@ external_dependencies: ["CurrencyExchangeService", "SignatureVerificationService
 # Documentation for `ChequeApplication` Class
 
 ## Overview
-The `ChequeApplication` class serves as the entry point for a comprehensive cheque processing system. It initializes various services, handles user authentication, and provides a menu-driven interface for performing multiple cheque-related operations. The system includes enhanced fraud detection, cheque history management, and administrative tools.
+The `ChequeApplication` class serves as the main entry point for a cheque processing system. It initializes various services, handles user authentication, and provides a menu-driven interface for performing a wide range of cheque-related operations. The system includes enhanced fraud detection, cheque history management, and administrative tools.
 
-## Key Functionalities
+## Key Features
+- User authentication and session management.
+- Cheque processing (single and batch).
+- Fraud detection and exception reporting.
+- Currency exchange information.
+- Cheque image scanning, encryption, and submission.
+- Administrative tools for managing IFSC codes, batches, and stuck transactions.
 
-### 1. **System Initialization**
-The `main` method initializes the following services:
-- **CurrencyExchangeService**: Handles currency exchange operations.
-- **SignatureVerificationService**: Verifies cheque signatures.
-- **CoreBankingSystemUpdater**: Updates the core banking system with cheque transactions.
-- **UserService**: Manages user authentication and information.
-- **ChequeHistoryManager**: Tracks and displays cheque history.
-- **FraudDetectionService**: Detects fraudulent cheque activities.
-- **ExceptionReportManager**: Manages and displays cheque exception reports.
-- **ChequeStatusManager**: Tracks the status of cheques.
-- **EmailNotificationService**: Sends email notifications.
-- **AdminService**: Provides administrative functionalities.
-- **ChequeImageHandler**: Handles cheque image processing.
-- **CryptographyService**: Encrypts and signs cheque data.
-- **ClearinghouseService**: Sends cheque data to the clearinghouse.
+## Code Walkthrough
 
-### 2. **User Authentication**
-The `performLogin` method is invoked to authenticate the user. If authentication fails after multiple attempts, the system exits.
+### `main` Method
+The `main` method is the entry point of the application. It performs the following tasks:
 
-### 3. **Menu-Driven Operations**
-The application provides a menu with the following options:
+1. **Initialization**:
+   - Initializes various services required for cheque processing, such as:
+     - `CurrencyExchangeService`
+     - `SignatureVerificationService`
+     - `CoreBankingSystemUpdater`
+     - `UserService`
+     - `ChequeHistoryManager`
+     - `FraudDetectionService`
+     - `ExceptionReportManager`
+     - `ChequeStatusManager`
+     - `EmailNotificationService`
+     - `AdminService`
+     - `ChequeImageHandler`
+     - `CryptographyService`
+     - `ClearinghouseService`
+   - Sets up dependencies, such as linking the `FraudDetectionService` with the `ChequeHistoryManager`.
 
-#### Cheque Processing
-- **Process a Single Cheque**: Prompts the user for cheque details and processes it using the `ChequeProcessor`.
-- **Process Multiple Cheques (Batch)**: Invokes the `processChequeBatch` method to handle batch processing.
+2. **User Authentication**:
+   - Calls the `performLogin` method to authenticate the user. If authentication fails after multiple attempts, the application exits.
 
-#### Cheque History and Reports
-- **View Cheque History**: Displays the cheque history for a specific account using `ChequeHistoryManager`.
-- **Generate Cheque Reports**: Calls `handleReportGeneration` to generate detailed reports.
+3. **Main Menu**:
+   - Displays a menu with various options for the user to interact with the system. The options include:
+     1. Process a single cheque.
+     2. Process multiple cheques in a batch.
+     3. View cheque history.
+     4. Display currency exchange information.
+     5. Generate cheque reports.
+     6. Scan, encrypt, and send a cheque image.
+     7. Simulate cheque printing.
+     8. Exit the application.
+     9. View cheque exception reports.
+     10. View all cheque statuses.
+     11. Cancel a cheque.
+     12. Record FIR/legal complaint for a bounced cheque.
+     13. Admin: Edit IFSC/Bank codes.
+     14. Admin: Manage batches.
+     15. Admin: Reset stuck transactions.
 
-#### Currency Exchange
-- **Currency Exchange Information**: Displays a currency exchange menu using `displayCurrencyExchangeMenu`.
+4. **Menu Option Handling**:
+   - The user selects an option by entering a number. The application then performs the corresponding action using helper methods and services. For example:
+     - **Option 1**: Processes a single cheque using the `ChequeProcessor` service.
+     - **Option 2**: Processes multiple cheques in a batch using the `processChequeBatch` method.
+     - **Option 3**: Displays cheque history using the `ChequeHistoryManager`.
+     - **Option 4**: Displays currency exchange information using the `displayCurrencyExchangeMenu` method.
+     - **Option 5**: Generates reports using the `handleReportGeneration` method.
+     - **Option 6**: Handles cheque image submission using the `handleChequeImageSubmission` method.
+     - **Option 7**: Simulates cheque printing using the `ChequePrintingService`.
+     - **Option 8**: Logs out and exits the application.
+     - **Option 9**: Displays exception reports using the `ExceptionReportManager`.
+     - **Option 10**: Displays all cheque statuses using the `ChequeStatusManager`.
+     - **Option 11**: Cancels a cheque using the `ChequeProcessor`.
+     - **Option 12**: Records FIR/legal complaints for bounced cheques using the `ExceptionReportManager`.
 
-#### Cheque Image Handling
-- **Scan, Encrypt, and Send Cheque Image**: Uses `handleChequeImageSubmission` to process cheque images.
+### Helper Methods
 
-#### Administrative Tools
-- **Edit IFSC/Bank Codes**: Allows administrators to edit bank codes.
-- **Manage Batches**: Provides batch management functionalities.
-- **Reset Stuck Transactions**: Resets transactions stuck in the system.
+#### `performLogin`
+Handles user authentication by interacting with the `UserService`. If the user fails to authenticate after multiple attempts, the application exits.
 
-#### Miscellaneous
-- **Simulate Cheque Printing**: Uses `handleChequePrinting` to simulate cheque printing.
-- **View Cheque Exception Report**: Displays exceptions using `ExceptionReportManager`.
-- **View All Cheque Statuses**: Lists all cheque statuses using `ChequeStatusManager`.
-- **Cancel a Cheque**: Cancels a cheque using `ChequeProcessor`.
-- **Record FIR/Legal Complaint for Bounced Cheque**: Records FIR details for bounced cheques using `ExceptionReportManager`.
+#### `processChequeBatch`
+Processes multiple cheques in a batch. It collects cheque details from the user and uses the `ChequeProcessor` to process each cheque.
 
-### 4. **Exit**
-The user can log out and exit the system by selecting the appropriate menu option.
+#### `displayCurrencyExchangeMenu`
+Displays a menu for currency exchange operations, such as viewing supported currencies, getting exchange rates, and converting currencies. Interacts with the `CurrencyExchangeService`.
+
+#### `handleReportGeneration`
+Generates various reports related to cheque processing. Interacts with the `ChequeHistoryManager`.
+
+#### `handleChequeImageSubmission`
+Handles the process of scanning, encrypting, signing, and sending a cheque image. Interacts with the `ChequeImageHandler`, `CryptographyService`, and `ClearinghouseService`.
+
+#### `handleChequePrinting`
+Simulates cheque printing. Uses the `ChequePrintingService`.
 
 ## External Dependencies
-The `ChequeApplication` class relies on the following external classes and services:
+The `ChequeApplication` class relies on the following external services and classes:
 - `CurrencyExchangeService`
 - `SignatureVerificationService`
 - `CoreBankingSystemUpdater`
@@ -82,9 +115,5 @@ The `ChequeApplication` class relies on the following external classes and servi
 - `ChequeProcessor`
 - `ChequePrintingService`
 
-## Notes
-- The `performLogin`, `processChequeBatch`, `displayCurrencyExchangeMenu`, `handleReportGeneration`, `handleChequeImageSubmission`, and `handleChequePrinting` methods are defined elsewhere in the codebase.
-- The application uses a `Scanner` object for user input.
-- The system includes robust error handling for invalid inputs and failed operations.
-
-This documentation provides an overview of the `ChequeApplication` class and its functionalities. For detailed implementation of the referenced methods, refer to their respective documentation.
+## Conclusion
+The `ChequeApplication` class is a comprehensive system for managing cheque-related operations, including processing, fraud detection, and administrative tasks. It is designed to be user-friendly and extensible, with a modular architecture that allows for easy integration of new features.

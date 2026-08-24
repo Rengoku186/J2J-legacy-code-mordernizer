@@ -1,5 +1,5 @@
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_27"
 confidence_score: 0.95
@@ -8,109 +8,74 @@ external_dependencies: ["BatchCheque"]
 
 # Documentation for `AdminService` Class and Related Methods
 
-## Overview
-The `AdminService` class is a static inner class within the `DemoApplication` file. It is responsible for managing master data, batch operations, and stuck transactions in the context of a cheque processing system. The class provides methods to manage IFSC codes, bank codes, cheque batches, and stuck transactions.
-
-The class also interacts with the `BatchCheque` class, which represents individual cheques with attributes such as account number, cheque number, currency, amount, and signature.
-
----
+The provided code defines the `AdminService` class, which is a static inner class in the `DemoApplication` file. This class is responsible for managing master data, batch operations, and stuck transactions in a cheque processing system. Below is a detailed explanation of the class and its methods.
 
 ## Class: `AdminService`
+The `AdminService` class provides functionality for:
+1. Managing master data, such as IFSC codes and bank codes.
+2. Handling batch operations for cheques.
+3. Managing stuck transactions.
 
 ### Fields
-
-1. **`ifscToBankCode`**
-   - Type: `Map<String, String>`
-   - Description: Maps IFSC codes to their corresponding bank codes.
-
-2. **`bankCodeToName`**
-   - Type: `Map<String, String>`
-   - Description: Maps bank codes to their corresponding bank names.
-
-3. **`batches`**
-   - Type: `Map<String, List<BatchCheque>>`
-   - Description: Stores batches of cheques, where each batch is identified by a unique batch ID and contains a list of `BatchCheque` objects.
-
-4. **`stuckTransactions`**
-   - Type: `Set<String>`
-   - Description: Stores a set of cheque numbers that are marked as stuck transactions.
-
----
+- **`ifscToBankCode`**: A `Map<String, String>` that maps IFSC codes to bank codes.
+- **`bankCodeToName`**: A `Map<String, String>` that maps bank codes to bank names.
+- **`batches`**: A `Map<String, List<BatchCheque>>` that stores batches of cheques, where each batch is identified by a unique batch ID.
+- **`stuckTransactions`**: A `Set<String>` that keeps track of cheque numbers marked as stuck.
 
 ### Methods
 
 #### Master Data Management
-
 1. **`addOrUpdateIFSC(String ifsc, String bankCode)`**
-   - **Description**: Adds or updates the mapping between an IFSC code and a bank code.
-   - **Parameters**:
-     - `ifsc`: The IFSC code to be added or updated.
-     - `bankCode`: The bank code to be associated with the given IFSC code.
-   - **Output**: Prints a confirmation message indicating the mapping.
+   - Adds or updates the mapping of an IFSC code to a bank code.
+   - Prints a confirmation message.
 
 2. **`addOrUpdateBankCode(String bankCode, String bankName)`**
-   - **Description**: Adds or updates the mapping between a bank code and a bank name.
-   - **Parameters**:
-     - `bankCode`: The bank code to be added or updated.
-     - `bankName`: The name of the bank to be associated with the given bank code.
-   - **Output**: Prints a confirmation message indicating the mapping.
+   - Adds or updates the mapping of a bank code to a bank name.
+   - Prints a confirmation message.
 
 3. **`displayIFSCs()`**
-   - **Description**: Displays all IFSC-to-bank code mappings.
-   - **Output**: Prints the mappings to the console. If no mappings exist, a message indicating this is displayed.
+   - Displays all IFSC-to-bank-code mappings.
+   - Prints a message if no records are available.
 
 4. **`displayBankCodes()`**
-   - **Description**: Displays all bank code-to-name mappings.
-   - **Output**: Prints the mappings to the console. If no mappings exist, a message indicating this is displayed.
+   - Displays all bank-code-to-bank-name mappings.
+   - Prints a message if no records are available.
 
 #### Batch Management
-
 1. **`createBatch(String batchId, List<BatchCheque> cheques)`**
-   - **Description**: Creates a new batch of cheques and associates it with a unique batch ID.
-   - **Parameters**:
-     - `batchId`: The unique identifier for the batch.
-     - `cheques`: A list of `BatchCheque` objects to be included in the batch.
-   - **Output**: Prints a confirmation message indicating the batch creation and the number of cheques in the batch.
+   - Creates a new batch of cheques and associates it with a unique batch ID.
+   - Prints a confirmation message with the batch ID and the number of cheques in the batch.
 
 2. **`displayBatches()`**
-   - **Description**: Displays a summary of all batches, including their IDs and the number of cheques in each batch.
-   - **Output**: Prints the batch summaries to the console. If no batches exist, a message indicating this is displayed.
+   - Displays a list of all batches and the number of cheques in each batch.
+   - Prints a message if no batches are available.
 
 3. **`displayBatchDetails(String batchId)`**
-   - **Description**: Displays detailed information about a specific batch, including the account number, cheque number, amount, and currency of each cheque in the batch.
-   - **Parameters**:
-     - `batchId`: The unique identifier of the batch to be displayed.
-   - **Output**: Prints the details of the specified batch to the console. If the batch does not exist, a message indicating this is displayed.
+   - Displays detailed information about a specific batch, including account number, cheque number, amount, and currency for each cheque in the batch.
+   - Prints a message if the batch is not found.
 
 #### Stuck Transaction Management
-
 1. **`markTransactionStuck(String chequeNumber)`**
-   - **Description**: Marks a cheque as a stuck transaction by adding its cheque number to the `stuckTransactions` set.
-   - **Parameters**:
-     - `chequeNumber`: The cheque number to be marked as stuck.
-   - **Output**: Prints a confirmation message indicating that the cheque has been marked as stuck.
+   - Marks a cheque as stuck by adding its cheque number to the `stuckTransactions` set.
+   - Prints a confirmation message.
 
 2. **`resetStuckTransaction(String chequeNumber)`**
-   - **Description**: Removes a cheque from the `stuckTransactions` set, effectively resetting its stuck status.
-   - **Parameters**:
-     - `chequeNumber`: The cheque number to be removed from the stuck transactions list.
-   - **Output**: Prints a confirmation message indicating whether the cheque was successfully removed or if it was not marked as stuck.
+   - Removes a cheque number from the `stuckTransactions` set.
+   - Prints a confirmation message if the cheque was successfully removed, or a message indicating that the cheque was not marked as stuck.
 
 3. **`displayStuckTransactions()`**
-   - **Description**: Displays all cheque numbers that are currently marked as stuck transactions.
-   - **Output**: Prints the list of stuck cheque numbers to the console. If no stuck transactions exist, a message indicating this is displayed.
+   - Displays all cheque numbers currently marked as stuck.
+   - Prints a message if no stuck transactions are found.
 
----
-
-## External Dependencies
-
-### Class: `BatchCheque`
-The `AdminService` class relies on the `BatchCheque` class, which represents individual cheques. The `BatchCheque` class has the following fields:
-
-- `String accountNumber`: The account number associated with the cheque.
-- `String chequeNumber`: The unique identifier for the cheque.
-- `String currency`: The currency in which the cheque is issued.
-- `double amount`: The monetary value of the cheque.
-- `String signature`: The signature associated with the cheque.
+### External Dependencies
+The `AdminService` class depends on the `BatchCheque` class, which represents a cheque in the system. The `BatchCheque` class has the following fields:
+- **`accountNumber`**: The account number associated with the cheque.
+- **`chequeNumber`**: The unique identifier for the cheque.
+- **`currency`**: The currency in which the cheque is issued.
+- **`amount`**: The amount of money specified on the cheque.
+- **`signature`**: The signature on the cheque.
 
 The `BatchCheque` class also includes a constructor to initialize these fields.
+
+### Purpose
+The `AdminService` class is designed to facilitate the management of master data, batch operations, and stuck transactions in a cheque processing system. It provides a structured way to handle these operations and ensures that the system can manage its data effectively.

@@ -1,102 +1,103 @@
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_08"
-confidence_score: 0.95
-external_dependencies: ["CoreBankingSystemUpdater", "ChequeHistoryManager", "ChequeStatusManager", "ChequeStatus", "ExceptionReportManager", "EmailNotificationService"]
+confidence_score: 0.9
+external_dependencies: ["CoreBankingSystemUpdater", "ChequeHistoryManager", "ChequeStatusManager", "ChequeStatus", "ExceptionReportManager", "EmailNotificationService", "CurrencyRate"]
 ---
 
 # Documentation for Code Chunk
 
-## Overview
-This code chunk is part of a cheque processing system. It handles the processing and cancellation of cheques, including updating the core banking system, recording cheque history, managing cheque statuses, and handling exceptions. Additionally, it includes a utility class for currency exchange services.
+This code chunk is part of a larger system that processes financial transactions, specifically handling cheques and currency exchange operations. Below is a detailed explanation of the functionality provided in this chunk.
 
-## Code Breakdown
+## Key Functionalities
 
-### Cheque Processing
-The code processes a cheque by performing the following steps:
+### 1. **Processing Cheques**
+The code handles cheque processing, including:
+- Logging details about the currency, amount, exchange rate, and fees.
+- Calculating the final amount in the local currency after applying fees.
+- Updating the core banking system with the final amount.
+- Recording the cheque in the cheque history.
+- Updating the cheque status to `PROCESSED` upon successful processing.
+- Handling exceptions during cheque processing and notifying the user via email in case of errors.
 
-1. **Log and Display Transaction Details:**
-   - Logs and displays details such as currency, original amount, exchange rate, fee rate, fee amount, and the amount in local currency before and after applying fees.
+#### Key Methods and Classes Used:
+- **`coreBankingSystemUpdater.updateCoreBankingSystem(accountNumber, amountInLocalCurrency)`**:
+  Updates the core banking system with the account number and the final amount in the local currency. This method is part of the `CoreBankingSystemUpdater` class.
 
-2. **Update Core Banking System:**
-   - Calls `coreBankingSystemUpdater.updateCoreBankingSystem(accountNumber, amountInLocalCurrency)` to update the account balance in the core banking system.
+- **`chequeHistoryManager.recordCheque(accountNumber, chequeNumber, currency, amount, new java.util.Date())`**:
+  Records the cheque details, including account number, cheque number, currency, amount, and the current date. This method is part of the `ChequeHistoryManager` class.
 
-   **Dependency:**
-   - `CoreBankingSystemUpdater` is a mock implementation that updates the core banking system with the account number and the final amount in local currency.
+- **`chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.PROCESSED)`**:
+  Updates the status of the cheque to `PROCESSED`. This method is part of the `ChequeStatusManager` class, which uses the `ChequeStatus` enum to represent the status of cheques (e.g., `ISSUED`, `PROCESSED`, `CANCELED`).
 
-3. **Record Cheque History:**
-   - Calls `chequeHistoryManager.recordCheque(accountNumber, chequeNumber, currency, amount, new java.util.Date())` to record the cheque details in the history.
+- **`Logger.info()` and `Logger.error()`**:
+  Logs information and errors during the cheque processing.
 
-   **Dependency:**
-   - `ChequeHistoryManager` is a mock implementation that stores cheque records in a history map.
+- **`exceptionReportManager.reportException(accountNumber, chequeNumber, "ProcessingError", ex.getMessage())`**:
+  Reports any exceptions that occur during cheque processing. This method is part of the `ExceptionReportManager` class.
 
-4. **Update Cheque Status:**
-   - Calls `chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.PROCESSED)` to update the status of the cheque to `PROCESSED`.
+- **`emailNotificationService.sendEmail()`**:
+  Sends an email notification to the account holder in case of a processing error. This method is part of the `EmailNotificationService` class.
 
-   **Dependency:**
-   - `ChequeStatusManager` is a class that manages the status of cheques using a map. The status is represented by the `ChequeStatus` enum, which includes values like `ISSUED`, `PROCESSED`, and `CANCELED`.
+### 2. **Cancelling Cheques**
+The code provides functionality to cancel a cheque by updating its status to `CANCELED` and logging the action.
 
-5. **Error Handling:**
-   - If an exception occurs during processing, the following actions are taken:
-     - Logs the error using `Logger.error`.
-     - Reports the exception using `exceptionReportManager.reportException(accountNumber, chequeNumber, "ProcessingError", ex.getMessage())`.
+#### Key Methods and Classes Used:
+- **`chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.CANCELED)`**:
+  Updates the status of the cheque to `CANCELED`.
 
-       **Dependency:**
-       - `ExceptionReportManager` is a class that logs exception details, including account number, cheque number, error type, and error message.
+- **`Logger.info()` and `Logger.error()`**:
+  Logs information and errors during the cheque cancellation process.
 
-     - Sends an email notification about the error using `emailNotificationService.sendEmail`.
+### 3. **Currency Exchange Service**
+The `CurrencyExchangeService` class provides functionalities for handling currency exchange operations, including fetching exchange rates, converting currencies, and providing detailed exchange rate information.
 
-       **Dependency:**
-       - `EmailNotificationService` is a class that simulates sending email notifications by printing the email details to the console.
+#### Key Methods:
+- **`getExchangeRate(String currency)`**:
+  Fetches the exchange rate for a given currency. The method first checks a local cache for the rate, then attempts to fetch it from an external API. If both fail, it falls back to predefined rates.
 
-### Cheque Cancellation
-The `cancelCheque` method is used to cancel a cheque. It performs the following steps:
+- **`convertCurrency(double amount, String fromCurrency, String toCurrency)`**:
+  Converts an amount from one currency to another using the exchange rates.
 
-1. **Update Cheque Status:**
-   - Calls `chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.CANCELED)` to update the status of the cheque to `CANCELED`.
+- **`getDetailedExchangeRates(String currency)`**:
+  Provides detailed exchange rate information, including buy/sell rates and fees.
 
-2. **Log and Display Cancellation:**
-   - Logs the cancellation using `Logger.info` and displays a message to the console.
+- **`getSupportedCurrencies()`**:
+  Returns a list of all supported currencies, including the base currency (`USD`) and fallback rates.
 
-3. **Error Handling:**
-   - If an exception occurs during cancellation, it logs the error using `Logger.error` and displays an error message to the console.
+#### Key Attributes:
+- **`exchangeRateCache`**:
+  A cache for storing exchange rates to reduce API calls.
 
-### CurrencyExchangeService Class
-This class provides methods for handling currency exchange rates and conversions. It includes the following features:
+- **`FALLBACK_RATES`**:
+  A predefined map of fallback exchange rates for various currencies.
 
-1. **Exchange Rate Retrieval:**
-   - The `getExchangeRate` method retrieves the exchange rate for a given currency. It first checks a cache for a valid rate, then attempts to fetch the rate from an external API. If both fail, it falls back to predefined rates.
+- **`CACHE_EXPIRY_MINUTES`**:
+  The duration (in minutes) for which cached rates are considered valid.
 
-2. **Currency Conversion:**
-   - The `convertCurrency` method converts an amount from one currency to another by first converting it to the base currency (USD) and then to the target currency.
+- **`BASE_CURRENCY`**:
+  The base currency for all exchange rate calculations (default is `USD`).
 
-3. **Detailed Exchange Rates:**
-   - The `getDetailedExchangeRates` method provides detailed rate information, including mid, buy, and sell rates, as well as fees.
-
-4. **Supported Currencies:**
-   - The `getSupportedCurrencies` method returns a sorted list of all supported currency codes.
-
-5. **Cache Validation:**
-   - The `isCacheValid` method checks if a cached exchange rate is still valid based on a predefined expiry time.
-
-### External Dependencies
-- **CoreBankingSystemUpdater:** Updates the core banking system with account and transaction details.
-- **ChequeHistoryManager:** Records cheque details in a history map.
-- **ChequeStatusManager:** Manages the status of cheques using a map.
-- **ChequeStatus:** Enum representing the status of a cheque (e.g., ISSUED, PROCESSED, CANCELED).
-- **ExceptionReportManager:** Logs exception details.
-- **EmailNotificationService:** Simulates sending email notifications.
+#### Helper Methods:
+- **`isCacheValid(String currency)`**:
+  Checks if the cached exchange rate for a given currency is still valid.
 
 ## Error Handling
 The code includes robust error handling mechanisms:
-- Logs errors using `Logger.error`.
-- Reports exceptions using `ExceptionReportManager`.
-- Sends email notifications for errors using `EmailNotificationService`.
+- Logs errors using `Logger.error()`.
+- Reports exceptions using `exceptionReportManager.reportException()`.
+- Notifies users via email using `emailNotificationService.sendEmail()`.
 
-## Notes
-- The `CurrencyExchangeService` class uses a combination of cached rates, external API calls, and fallback rates to provide exchange rate information. The API key is hardcoded as "demo" and should be replaced with a valid key in a production environment.
-- The `CurrencyExchangeService` class also calculates buy/sell rates and fees based on the base rate.
-- The `cancelCheque` method is a simple implementation that only updates the cheque status to `CANCELED` and logs the action.
+## External Dependencies
+The following external classes and enums are used in this code chunk:
+- **`CoreBankingSystemUpdater`**: Updates the core banking system.
+- **`ChequeHistoryManager`**: Manages cheque history records.
+- **`ChequeStatusManager`**: Manages the status of cheques.
+- **`ChequeStatus`**: Enum representing cheque statuses (`ISSUED`, `PROCESSED`, `CANCELED`).
+- **`ExceptionReportManager`**: Handles exception reporting.
+- **`EmailNotificationService`**: Sends email notifications.
+- **`CurrencyRate`**: Represents exchange rate information, including the rate and the last updated timestamp.
 
-This code is part of a larger system and relies on several external classes and services for its functionality.
+## Summary
+This code chunk is a critical part of the application, handling cheque processing, cancellation, and currency exchange operations. It integrates with multiple services and includes comprehensive error handling to ensure reliability and user notification in case of issues.

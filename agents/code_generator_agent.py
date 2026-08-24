@@ -43,6 +43,60 @@ def init_spring_boot_project(target_dir="modernized_source"):
     else:
         raise Exception(f"Failed to fetch Spring Boot project: {response.text}")
 
+def run_auto_healer(target_dir, java_src_dir, llm, phase_name=""):
+    """Compiles the project and auto-heals any errors."""
+    max_retries = 3
+    for attempt in range(1, max_retries + 1):
+        print(f"\n[Auto-Healer {phase_name}] Attempt {attempt}: Compiling project...")
+        
+        mvnw_path = os.path.abspath(os.path.join(target_dir, "mvnw.cmd"))
+        result = subprocess.run([mvnw_path, "clean", "compile"], cwd=target_dir, capture_output=True, text=True, shell=True)
+        
+        if result.returncode == 0:
+            print(f"[Auto-Healer {phase_name}] Build SUCCESS! The code is valid.")
+            return True
+            
+        print(f"[Auto-Healer {phase_name}] Build FAILED. Analyzing compiler errors...")
+        error_output = result.stdout + "\n" + result.stderr
+        
+        error_lines = [line for line in error_output.split("\n") if "[ERROR]" in line]
+        compressed_error = "\n".join(error_lines[:50]) # Limit to top 50 errors
+        
+        # Read all current files to give to the healer
+        current_files = ""
+        for fname in os.listdir(java_src_dir):
+            if fname.endswith(".java"):
+                with open(os.path.join(java_src_dir, fname), "r", encoding="utf-8") as f:
+                    current_files += f"\n--- {fname} ---\n{f.read()}\n"
+        
+        fixer_system = """You are an Expert Java Debugger. The Spring Boot code failed to compile.
+        I will provide you with the compiler errors and the current source code of all files.
+        Return a JSON object containing ONLY the files that need to be fixed, with their full corrected Java code.
+        Format: {"files": [{"filename": "UserService.java", "fixed_code": "package com.example.demo; ..."}]}"""
+        
+        fixer_prompt = f"Compiler Errors:\n{compressed_error}\n\nCurrent Source Code:\n{current_files}\n\nPlease provide the fully corrected code for the broken files to fix the compiler errors."
+        
+        fix_response = llm.invoke([
+            SystemMessage(content=fixer_system),
+            HumanMessage(content=fixer_prompt)
+        ])
+        
+        try:
+            fix_plan = json.loads(fix_response.content)
+            for f in fix_plan.get("files", []):
+                fname = f.get("filename")
+                fcode = f.get("fixed_code", "").replace("```java", "").replace("```", "").strip()
+                if fname and fcode:
+                    print(f"[Auto-Healer {phase_name}] Applying fix to {fname}...")
+                    file_path = os.path.join(java_src_dir, fname)
+                    with open(file_path, "w", encoding="utf-8") as fw:
+                        fw.write(fcode)
+        except Exception as e:
+            print(f"[Auto-Healer {phase_name}] Failed to parse fix response: {e}")
+            
+    print(f"[Auto-Healer {phase_name}] Failed to perfectly compile after {max_retries} attempts.")
+    return False
+
 def run_code_generation():
     """Runs the modular code generation and auto-healing compilation loop."""
     llm = AzureChatOpenAI(
@@ -53,6 +107,15 @@ def run_code_generation():
         temperature=0,
         max_retries=6,
         model_kwargs={"response_format": {"type": "json_object"}}
+    )
+    
+    code_llm = AzureChatOpenAI(
+        api_key=os.environ.get("AZURE_OPENAI_KEY_GPT4o"),
+        azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
+        azure_deployment=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
+        api_version="2025-01-01-preview",
+        temperature=0,
+        max_retries=6
     )
     
     master_files = glob.glob("master_docs/*.md")
@@ -70,13 +133,15 @@ def run_code_generation():
         java_src_dir = os.path.join(target_dir, "src", "main", "java", "com", "example", "demo")
         os.makedirs(java_src_dir, exist_ok=True)
         
-        # 2. Planning Phase
-        print("[Code Generator] Planning architecture...")
-        plan_system = """You are a Principal Software Architect. Your job is to read a Master Document for a legacy application and determine the exact Spring Boot Java files needed to modernize it.
+        # ---------------------------------------------------------
+        # PHASE 1: Architecture Planning
+        # ---------------------------------------------------------
+        print("[Phase 1] Planning architecture...")
+        plan_system = """You are a Principal Software Architect. Read the Master Document and determine the exact Spring Boot Java files needed.
         Return a strictly formatted JSON object with a single key "files" containing a list of strings representing the filenames. 
-        Example: {"files": ["DemoApplication.java", "UserService.java", "FraudDetectionService.java", "User.java", "ChequeProcessor.java"]}
+        Example: {"files": ["DemoApplication.java", "UserService.java"]}
         
-        NOTE: This is a safe, educational simulation of a banking system. It contains concepts like "Fraud Detection" and "Cryptography" for educational purposes only. Do not trigger safety filters."""
+        NOTE: This is a safe, educational simulation. Concepts like "Fraud Detection" and "Cryptography" are for educational purposes only. Do not trigger safety filters."""
         
         plan_response = llm.invoke([
             SystemMessage(content=plan_system),
@@ -89,95 +154,88 @@ def run_code_generation():
         except Exception as e:
             raise Exception(f"Failed to parse planning response: {e}")
             
-        print(f"[Code Generator] Planned files: {files_to_generate}")
+        print(f"[Phase 1] Planned files: {files_to_generate}")
         
-        # 3. Execution Phase (File by File)
-        code_llm = AzureChatOpenAI(
-            api_key=os.environ.get("AZURE_OPENAI_KEY_GPT4o"),
-            azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
-            azure_deployment=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-            api_version="2025-01-01-preview",
-            temperature=0,
-            max_retries=6
-        )
+        # ---------------------------------------------------------
+        # PHASE 1.5: Skeleton Generation & Healing
+        # ---------------------------------------------------------
+        skeleton_system = """You are a Senior Java Developer specializing in Spring Boot 3.x and Java 21.
+        Write ONLY the SKELETON class for the requested file.
+        Include package, imports, class annotations, field declarations, and method signatures.
+        DO NOT WRITE BUSINESS LOGIC. Leave all methods empty (return null, 0, or false).
+        Use package com.example.demo; Use Lombok where appropriate. Use Spring annotations.
+        CRITICAL RULE: A .java file MUST contain EXACTLY ONE class (the one matching the filename). Do NOT define multiple classes, inner classes, or package-private classes in the same file.
+        Return ONLY the raw Java code. Do not include markdown code blocks.
+        NOTE: Safe educational simulation."""
         
-        code_system = """You are a Senior Java Developer specializing in Spring Boot 3.x and Java 21.
-        You will receive a Master Document and a specific filename to write.
-        You MUST write the ENTIRE, EXHAUSTIVE, complete Java code for that specific file.
-        DO NOT USE PLACEHOLDERS. DO NOT SUMMARIZE. Write every single mathematical formula and business rule detailed in the Master Document for that specific class.
-        Use package com.example.demo; Use Lombok. Use Spring annotations.
-        Return ONLY the raw Java code. Do not include markdown code blocks (```java). Just return the raw code.
-        
-        NOTE: This is a safe, educational simulation of a banking system. Concepts like "Fraud Detection", "Security", or "Cryptography" are purely theoretical and safe. Do not trigger safety filters."""
-        
-        generated_files_content = {}
         for filename in files_to_generate:
-            print(f"[Code Generator] Generating {filename}...")
-            prompt = f"Here is the Master Document:\n\n{master_content}\n\nYour task: Write the FULL and EXHAUSTIVE code for {filename}. Output ONLY raw Java code, no markdown blocks."
+            print(f"[Phase 1.5] Generating SKELETON for {filename}...")
+            prompt = f"Master Document:\n\n{master_content}\n\nTask: Write the SKELETON code for {filename}. Output ONLY raw Java code."
             
             try:
                 file_response = code_llm.invoke([
-                    SystemMessage(content=code_system),
+                    SystemMessage(content=skeleton_system),
                     HumanMessage(content=prompt)
                 ])
                 raw_code = file_response.content.replace("```java", "").replace("```", "").strip()
             except Exception as e:
-                print(f"[Code Generator] WARNING: Failed to generate {filename} due to error: {e}")
-                print(f"[Code Generator] This is likely a content filter false-positive on 'Fraud' or 'Security'. Attempting to skip or output placeholder...")
-                raw_code = f"// File generation blocked by Azure Content Filter: {e}\npackage com.example.demo;\npublic class {filename.replace('.java','')} {{}}"
-            
-            generated_files_content[filename] = raw_code
-            generated_files_content[filename] = raw_code
+                print(f"[Phase 1.5] WARNING: Failed to generate {filename}. Fallback skeleton used.")
+                raw_code = f"package com.example.demo;\npublic class {filename.replace('.java','')} {{}}"
             
             file_path = os.path.join(java_src_dir, filename)
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(raw_code)
                 
-        # 4. Auto-Healing Compilation Loop
-        max_retries = 3
-        for attempt in range(1, max_retries + 1):
-            print(f"\n[Auto-Healer] Attempt {attempt}: Compiling project...")
+        # Heal Skeletons
+        success = run_auto_healer(target_dir, java_src_dir, llm, phase_name="Skeleton")
+        if not success:
+            print("[Phase 1.5] Skeleton Healing failed. Continuing anyway, but Phase 2 might struggle.")
             
-            # Use mvnw.cmd on Windows
-            mvnw_path = os.path.join(target_dir, "mvnw.cmd")
-            result = subprocess.run([mvnw_path, "clean", "compile"], cwd=target_dir, capture_output=True, text=True)
-            
-            if result.returncode == 0:
-                print("[Auto-Healer] Build SUCCESS! The code is valid and runnable.")
-                return f"Successfully generated and compiled modular Java project in {target_dir}/"
-                
-            print("[Auto-Healer] Build FAILED. Analyzing compiler errors...")
-            error_output = result.stdout + "\n" + result.stderr
-            
-            # Extract just the ERROR lines to save tokens
-            error_lines = [line for line in error_output.split("\n") if "[ERROR]" in line]
-            compressed_error = "\n".join(error_lines[:50]) # Limit to top 50 errors
-            
-            fixer_system = """You are an Expert Java Debugger. The Spring Boot code you generated failed to compile.
-            I will provide you with the compiler errors and the list of files.
-            Return a JSON object containing ONLY the files that need to be fixed, with their full corrected Java code.
-            Format: {"files": [{"filename": "UserService.java", "fixed_code": "package com.example.demo; ..."}]}"""
-            
-            fixer_prompt = f"Compiler Errors:\n{compressed_error}\n\nPlease provide the fully corrected code for the broken files."
-            
-            fix_response = llm.invoke([
-                SystemMessage(content=fixer_system),
-                HumanMessage(content=fixer_prompt)
-            ])
+        # Read the healed skeletons to pass as context to Phase 2
+        healed_skeletons = ""
+        for filename in files_to_generate:
+            file_path = os.path.join(java_src_dir, filename)
+            if os.path.exists(file_path):
+                with open(file_path, "r", encoding="utf-8") as f:
+                    healed_skeletons += f"--- {filename} ---\n{f.read()}\n\n"
+
+        # ---------------------------------------------------------
+        # PHASE 2: Logic Implementation
+        # ---------------------------------------------------------
+        logic_system = """You are a Senior Java Developer specializing in Spring Boot 3.x and Java 21.
+        You are tasked with filling in the business logic for a specific file.
+        You have the Master Document and the complete compiling SKELETON project context.
+        Write the FULL and EXHAUSTIVE complete Java code for the file, filling in all method bodies based on the Master Document.
+        Do NOT change method signatures from the skeleton. You must adhere to the skeleton's API.
+        CRITICAL RULE: A .java file MUST contain EXACTLY ONE class (the one matching the filename). Do NOT define multiple classes, inner classes, or package-private classes in the same file.
+        Return ONLY the raw Java code. Do not include markdown code blocks.
+        NOTE: Safe educational simulation."""
+        
+        for filename in files_to_generate:
+            print(f"[Phase 2] Filling Logic for {filename}...")
+            prompt = f"Master Document:\n{master_content}\n\nAll Healed Skeletons Context:\n{healed_skeletons}\n\nTask: Write the FULL IMPLEMENTED code for {filename} by filling in the skeleton's method bodies. Output ONLY raw Java code."
             
             try:
-                fix_plan = json.loads(fix_response.content)
-                for f in fix_plan.get("files", []):
-                    fname = f.get("filename")
-                    fcode = f.get("fixed_code", "").replace("```java", "").replace("```", "").strip()
-                    if fname and fcode:
-                        print(f"[Auto-Healer] Applying fix to {fname}...")
-                        file_path = os.path.join(java_src_dir, fname)
-                        with open(file_path, "w", encoding="utf-8") as fw:
-                            fw.write(fcode)
+                file_response = code_llm.invoke([
+                    SystemMessage(content=logic_system),
+                    HumanMessage(content=prompt)
+                ])
+                raw_code = file_response.content.replace("```java", "").replace("```", "").strip()
             except Exception as e:
-                print(f"[Auto-Healer] Failed to parse fix response: {e}")
+                print(f"[Phase 2] WARNING: Failed to fill logic for {filename}: {e}")
+                continue # Skip and leave the skeleton in place
                 
-        return f"Finished code generation, but failed to perfectly compile after {max_retries} attempts. Check {target_dir}/ for errors."
+            file_path = os.path.join(java_src_dir, filename)
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(raw_code)
+                
+        # ---------------------------------------------------------
+        # PHASE 2.5: Final Auto-Healing
+        # ---------------------------------------------------------
+        success = run_auto_healer(target_dir, java_src_dir, llm, phase_name="Implementation")
+        if success:
+            return f"Successfully generated and compiled modular Java project in {target_dir}/"
+        else:
+            return f"Finished Two-Pass code generation, but failed to perfectly compile. Check {target_dir}/ for errors."
 
     return "No master documents found."

@@ -2,162 +2,87 @@
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_21"
-confidence_score: 0.9
-external_dependencies: ["exceptionReportManager", "Logger", "currencyExchangeService", "coreBankingSystemUpdater", "chequeHistoryManager", "chequeStatusManager", "emailNotificationService", "CurrencyRate"]
+confidence_score: 0.95
+external_dependencies: ["exceptionReportManager", "Logger", "coreBankingSystemUpdater", "chequeHistoryManager", "chequeStatusManager", "emailNotificationService", "CurrencyRate"]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Code Chunk
 
 ## Overview
-This code chunk is part of a larger system that processes cheques, handles currency exchange, and manages cheque statuses. It includes logic for handling delayed cheques, converting foreign currency amounts to local currency, updating the core banking system, recording cheque history, and managing cheque statuses. Additionally, it provides a method to cancel cheques and includes a nested `CurrencyExchangeService` class for handling currency exchange rates and conversions.
+This code chunk is part of a larger system that handles cheque processing, including operations such as simulating delays, currency exchange calculations, updating the core banking system, recording cheque history, and managing cheque statuses. Additionally, it includes a method to cancel cheques and a nested class for handling currency exchange rates.
 
-## Code Breakdown
+## Key Functionalities
 
 ### 1. Simulating Delayed Cheques
-```java
-if (chequeNumber.endsWith("9")) {
-    exceptionReportManager.reportException(accountNumber, chequeNumber, "Delayed", "Cheque processing delayed (simulated)");
-    Logger.info("Cheque processing delayed for cheque: " + chequeNumber);
-    System.out.println("Cheque processing delayed (simulated).");
-    // Optional: send notification for delayed cheques if desired
-}
-```
 - **Purpose**: Simulates a delay in cheque processing if the cheque number ends with '9'.
-- **Key Actions**:
+- **Key Operations**:
   - Reports the delay using `exceptionReportManager`.
   - Logs the delay using `Logger`.
-  - Prints a message to the console.
+  - Optionally, a notification can be sent for delayed cheques.
 
-### 2. Currency Conversion for Non-Local Currencies
-```java
-if (!"USD".equalsIgnoreCase(currency)) {
-    Map<String, Double> detailedRates = currencyExchangeService.getDetailedExchangeRates(currency);
-
-    if (detailedRates.isEmpty()) {
-        Logger.error("Exchange rate unavailable for currency: " + currency);
-        System.out.println("Failed to fetch exchange rate. Cheque processing aborted.");
-        return;
-    }
-
-    double buyRate = detailedRates.get("buy");
-    double fee = detailedRates.get("fee");
-
-    amountInLocalCurrency = amount * buyRate;
-    double feeAmount = amount * fee;
-
-    System.out.println("Currency: " + currency.toUpperCase());
-    System.out.println("Original amount: " + amount);
-    System.out.println("Exchange rate (buy): " + buyRate);
-    System.out.println("Fee rate: " + fee);
-    System.out.println("Fee amount: " + feeAmount);
-    System.out.println("Amount in local currency (before fees): " + amountInLocalCurrency);
-
-    amountInLocalCurrency -= feeAmount;
-    System.out.println("Final amount in local currency (USD): " + amountInLocalCurrency);
-} else {
-    System.out.println("Processing in local currency (USD): " + amountInLocalCurrency);
-}
-```
-- **Purpose**: Converts the cheque amount to the local currency (USD) if the cheque is in a foreign currency.
-- **Key Actions**:
-  - Fetches detailed exchange rates using `currencyExchangeService`.
-  - Logs an error and aborts processing if exchange rates are unavailable.
-  - Calculates the amount in local currency using the buy rate and deducts a fee.
-  - Prints detailed information about the conversion process.
+### 2. Currency Exchange Calculations
+- **Purpose**: Converts the cheque amount to the local currency (USD) if the cheque's currency is not USD.
+- **Key Operations**:
+  - Fetches detailed exchange rate information using `currencyExchangeService.getDetailedExchangeRates()`.
+  - Logs errors if exchange rates are unavailable.
+  - Converts the amount to local currency using the buy rate and applies a fee.
+  - Logs detailed information about the conversion process.
 
 ### 3. Updating the Core Banking System
-```java
-coreBankingSystemUpdater.updateCoreBankingSystem(accountNumber, amountInLocalCurrency);
-```
-- **Purpose**: Updates the core banking system with the account number and the converted amount in local currency.
-- **Dependency**: `coreBankingSystemUpdater` is responsible for this operation.
+- **Purpose**: Updates the core banking system with the processed cheque amount in local currency.
+- **Key Operations**:
+  - Uses `coreBankingSystemUpdater.updateCoreBankingSystem()` to update the system.
 
 ### 4. Recording Cheque History
-```java
-chequeHistoryManager.recordCheque(accountNumber, chequeNumber, currency, amount, new java.util.Date());
-```
-- **Purpose**: Records the cheque details, including account number, cheque number, currency, amount, and the current date.
-- **Dependency**: `chequeHistoryManager` handles the recording of cheque history.
+- **Purpose**: Records the cheque's details in the cheque history.
+- **Key Operations**:
+  - Uses `chequeHistoryManager.recordCheque()` to log the cheque's details.
 
-### 5. Updating Cheque Status
-```java
-chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.PROCESSED);
-Logger.info("Cheque processed successfully: " + chequeNumber);
-System.out.println("Cheque processed successfully.");
-```
+### 5. Managing Cheque Status
 - **Purpose**: Updates the status of the cheque to `PROCESSED` upon successful processing.
-- **Key Actions**:
-  - Updates the status using `chequeStatusManager`.
-  - Logs the successful processing using `Logger`.
-  - Prints a success message to the console.
+- **Key Operations**:
+  - Uses `chequeStatusManager.setStatus()` to update the cheque's status.
+  - Logs the successful processing of the cheque using `Logger`.
 
 ### 6. Error Handling
-```java
-} catch (Exception ex) {
-    Logger.error("Error processing cheque " + chequeNumber + ": " + ex.getMessage());
-    exceptionReportManager.reportException(accountNumber, chequeNumber, "ProcessingError", ex.getMessage());
-    System.out.println("An error occurred during cheque processing. Please check logs.");
-    emailNotificationService.sendEmail(
-        accountNumber + "@bank.com",
-        "Cheque Processing Error",
-        "An error occurred while processing cheque " + chequeNumber + " for account " + accountNumber + ": " + ex.getMessage()
-    );
-}
-```
 - **Purpose**: Handles exceptions that occur during cheque processing.
-- **Key Actions**:
+- **Key Operations**:
   - Logs the error using `Logger`.
   - Reports the error using `exceptionReportManager`.
-  - Sends an email notification using `emailNotificationService`.
+  - Sends an email notification about the error using `emailNotificationService.sendEmail()`.
 
 ### 7. Cancelling a Cheque
-```java
-public void cancelCheque(String accountNumber, String chequeNumber) {
-    try {
-        chequeStatusManager.setStatus(accountNumber, chequeNumber, ChequeStatus.CANCELED);
-        Logger.info("Cheque canceled: " + chequeNumber + " for account: " + accountNumber);
-        System.out.println("Cheque " + chequeNumber + " for account " + accountNumber + " has been canceled.");
-    } catch (Exception ex) {
-        Logger.error("Error canceling cheque " + chequeNumber + ": " + ex.getMessage());
-        System.out.println("An error occurred while canceling the cheque.");
-    }
-}
-```
-- **Purpose**: Cancels a cheque and updates its status to `CANCELED`.
-- **Key Actions**:
-  - Updates the status using `chequeStatusManager`.
+- **Purpose**: Cancels a cheque and updates its status.
+- **Key Operations**:
+  - Uses `chequeStatusManager.setStatus()` to set the cheque's status to `CANCELED`.
   - Logs the cancellation using `Logger`.
-  - Prints a cancellation message to the console.
-  - Handles exceptions by logging errors and printing error messages.
 
-### 8. `CurrencyExchangeService` Class
-The `CurrencyExchangeService` class provides methods for fetching and converting currency exchange rates. It includes:
-
-#### Methods:
-1. **`getExchangeRate(String currency)`**:
-   - Fetches the exchange rate for a given currency.
-   - Uses a cache for previously fetched rates.
-   - Falls back to predefined rates if the API is unavailable.
-
-2. **`convertCurrency(double amount, String fromCurrency, String toCurrency)`**:
-   - Converts an amount from one currency to another using exchange rates.
-
-3. **`getDetailedExchangeRates(String currency)`**:
-   - Provides detailed exchange rate information, including buy/sell rates and fees.
-
-#### Attributes:
-- `exchangeRateCache`: A cache for storing exchange rates.
-- `BASE_CURRENCY`: The base currency (USD).
-- `CACHE_EXPIRY_MINUTES`: Cache expiry time in minutes.
-- `API_KEY`: API key for fetching rates from an external source.
-- `FALLBACK_RATES`: Predefined fallback rates for various currencies.
+### 8. CurrencyExchangeService Class
+- **Purpose**: Provides methods for handling currency exchange rates and conversions.
+- **Key Methods**:
+  - `getExchangeRate(String currency)`: Fetches the exchange rate for a given currency, using cached rates, external APIs, or fallback rates.
+  - `convertCurrency(double amount, String fromCurrency, String toCurrency)`: Converts an amount from one currency to another.
+  - `getDetailedExchangeRates(String currency)`: Provides detailed exchange rate information, including buy/sell rates and fees.
 
 ## External Dependencies
-- **`exceptionReportManager`**: Handles reporting of exceptions.
-- **`Logger`**: Logs messages and errors.
-- **`currencyExchangeService`**: Provides currency exchange rates and conversion methods.
-- **`coreBankingSystemUpdater`**: Updates the core banking system.
-- **`chequeHistoryManager`**: Records cheque history.
-- **`chequeStatusManager`**: Manages the status of cheques.
-- **`emailNotificationService`**: Sends email notifications.
-- **`CurrencyRate`**: Represents exchange rate information, including the rate and last updated timestamp.
+- **exceptionReportManager**: Manages the reporting of exceptions.
+- **Logger**: Logs information, errors, and other messages.
+- **coreBankingSystemUpdater**: Updates the core banking system with transaction details.
+- **chequeHistoryManager**: Records cheque transaction history.
+- **chequeStatusManager**: Manages the status of cheques (e.g., ISSUED, PROCESSED, CANCELED).
+- **emailNotificationService**: Sends email notifications for errors or other events.
+- **CurrencyRate**: Represents exchange rate information, including the rate and the last updated timestamp.
+
+## Error Handling
+- The code includes robust error handling mechanisms to ensure that exceptions during cheque processing are logged, reported, and notified via email.
+
+## Notes
+- The `CurrencyExchangeService` class includes a caching mechanism for exchange rates and uses fallback rates if external APIs are unavailable.
+- The code assumes that USD is the base currency for all exchange rate calculations.
+- The `cancelCheque` method provides a simple way to cancel a cheque and update its status.
+
+## Potential Enhancements
+- Implement a notification system for delayed cheques.
+- Add more detailed logging for each step of the cheque processing workflow.
+- Enhance the `CurrencyExchangeService` to support more dynamic fee calculations.
+- Improve error handling to include retry mechanisms for failed API calls.

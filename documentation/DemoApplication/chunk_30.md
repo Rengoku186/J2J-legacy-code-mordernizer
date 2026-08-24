@@ -9,95 +9,76 @@ external_dependencies: ["CurrencyExchangeService", "SignatureVerificationService
 # Documentation for `CreateApplication` Class
 
 ## Overview
-The `CreateApplication` class serves as the entry point for a Cheque Processing System with enhanced fraud detection capabilities. It initializes various services, handles user authentication, and provides a menu-driven interface for processing cheques, viewing cheque history, and performing other related operations.
+The `CreateApplication` class serves as the entry point for a Cheque Processing System with enhanced fraud detection capabilities. It initializes various services, handles user authentication, and provides a menu-driven interface for processing cheques, viewing cheque history, and managing currency exchange information.
 
-## Class Structure
-The class contains the following key components:
+## Key Functionalities
 
-### Main Method
-The `main` method is the starting point of the application. It performs the following tasks:
+### 1. **System Initialization**
+The `main` method initializes the following services:
+- **`CurrencyExchangeService`**: Handles currency exchange operations.
+- **`SignatureVerificationService`**: Verifies signatures on cheques.
+- **`CoreBankingSystemUpdater`**: Updates the core banking system with transaction details.
+- **`UserService`**: Manages user authentication and registration.
+- **`ChequeHistoryManager`**: Maintains and displays cheque processing history.
+- **`FraudDetectionService`**: Detects potential fraud in cheque transactions.
 
-1. **Initialization**:
-   - Prints a welcome message.
-   - Initializes various services required for the application:
-     - `CurrencyExchangeService`: Handles currency exchange operations.
-     - `SignatureVerificationService`: Verifies signatures on cheques.
-     - `CoreBankingSystemUpdater`: Updates the core banking system with transaction details.
-     - `UserService`: Manages user authentication and registration.
-     - `ChequeHistoryManager`: Maintains and displays cheque transaction history.
-     - `FraudDetectionService`: Detects fraudulent activities in cheque transactions.
-   - Sets up dependencies, such as linking the `FraudDetectionService` with the `ChequeHistoryManager`.
+### 2. **Login Process**
+The `performLogin` method handles user authentication. It allows up to three login attempts and returns an authenticated `User` object if successful. If authentication fails after three attempts, the application exits.
 
-2. **User Authentication**:
-   - Calls the `performLogin` method to authenticate the user.
-   - Exits the application if login fails after the maximum allowed attempts.
+### 3. **Cheque Processing**
+The application provides options for processing cheques:
+- **Single Cheque Processing**: Users can input details such as account number, cheque number, currency, amount, and signature to process a single cheque.
+- **Batch Cheque Processing**: Users can process multiple cheques in a batch by providing details for each cheque.
 
-3. **Menu-Driven Interface**:
-   - Displays a menu with options for various operations, including:
-     - Processing a single cheque.
-     - Processing multiple cheques in a batch.
-     - Viewing cheque history.
-     - Accessing currency exchange information.
-     - Generating cheque reports.
-     - Exiting the application.
-   - Handles user input and invokes the appropriate methods based on the selected option.
+### 4. **Cheque History Management**
+Users can view the history of processed cheques for a specific account using the `ChequeHistoryManager`.
 
-### Helper Methods
+### 5. **Currency Exchange Information**
+The `displayCurrencyExchangeMenu` method provides options to view supported currencies, get exchange rates, and convert currencies.
 
-#### `performLogin`
+### 6. **Report Generation**
+The `handleReportGeneration` method allows users to generate various reports, such as daily, weekly, monthly, or custom date range reports, using the `ChequeHistoryManager`.
+
+### 7. **Exit Option**
+Users can exit the application at any time by selecting the appropriate menu option.
+
+## Methods
+
+### `performLogin(Scanner scanner, UserService userService)`
 Handles the user login process.
 - **Parameters**:
-  - `Scanner scanner`: Used to read user input.
-  - `UserService userService`: Used to authenticate the user.
-- **Returns**: An authenticated `User` object if login is successful, or `null` if login fails after the maximum allowed attempts.
-- **Logic**:
-  - Prompts the user for a username and password.
-  - Validates the credentials using the `UserService`.
-  - Allows up to three login attempts before exiting.
+  - `scanner`: A `Scanner` object for reading user input.
+  - `userService`: A `UserService` object for authenticating users.
+- **Returns**: An authenticated `User` object or `null` if login fails after three attempts.
 
-#### `processChequeBatch`
-Handles the processing of multiple cheques in a batch.
+### `processChequeBatch(Scanner scanner, ChequeProcessor chequeProcessor)`
+Handles batch processing of cheques.
 - **Parameters**:
-  - `Scanner scanner`: Used to read user input.
-  - `ChequeProcessor chequeProcessor`: Used to process the cheques.
-- **Logic**:
-  - Prompts the user for the number of cheques in the batch.
-  - Collects details for each cheque (account number, cheque number, currency, amount, and signature).
-  - Adds the cheque details to a list and processes them using the `ChequeProcessor`.
+  - `scanner`: A `Scanner` object for reading user input.
+  - `chequeProcessor`: A `ChequeProcessor` object for processing cheques.
+- **Details**: Prompts the user for the number of cheques in the batch and their details, then processes each cheque.
 
-#### `displayCurrencyExchangeMenu`
+### `displayCurrencyExchangeMenu(Scanner scanner, CurrencyExchangeService currencyExchangeService)`
 Displays the currency exchange menu and handles user interactions.
 - **Parameters**:
-  - `Scanner scanner`: Used to read user input.
-  - `CurrencyExchangeService currencyExchangeService`: Used to fetch and display currency exchange information.
+  - `scanner`: A `Scanner` object for reading user input.
+  - `currencyExchangeService`: A `CurrencyExchangeService` object for currency-related operations.
 
-#### `handleReportGeneration`
-Handles the generation of cheque reports.
+### `handleReportGeneration(Scanner scanner, ChequeHistoryManager chequeHistoryManager)`
+Handles the report generation menu and logic.
 - **Parameters**:
-  - `Scanner scanner`: Used to read user input.
-  - `ChequeHistoryManager chequeHistoryManager`: Used to fetch and display cheque history for report generation.
+  - `scanner`: A `Scanner` object for reading user input.
+  - `chequeHistoryManager`: A `ChequeHistoryManager` object for managing cheque history.
 
 ## External Dependencies
-The `CreateApplication` class relies on the following external classes:
+The `CreateApplication` class depends on the following external classes:
+- `CurrencyExchangeService`
+- `SignatureVerificationService`
+- `CoreBankingSystemUpdater`
+- `UserService`
+- `ChequeHistoryManager`
+- `FraudDetectionService`
+- `ChequeProcessor`
+- `BatchCheque`
 
-1. **`CurrencyExchangeService`**: Manages currency exchange operations.
-2. **`SignatureVerificationService`**: Verifies the authenticity of cheque signatures.
-3. **`CoreBankingSystemUpdater`**: Updates the core banking system with transaction details.
-4. **`UserService`**: Handles user authentication and registration.
-5. **`ChequeHistoryManager`**: Maintains and displays cheque transaction history.
-6. **`FraudDetectionService`**: Detects fraudulent activities in cheque transactions.
-7. **`ChequeProcessor`**: Processes cheques, including signature verification, fraud detection, and core banking updates.
-8. **`BatchCheque`**: Represents a cheque in a batch processing operation.
-
-## Key Features
-- **User Authentication**: Ensures only authorized users can access the system.
-- **Cheque Processing**: Supports both single and batch cheque processing.
-- **Fraud Detection**: Integrates fraud detection mechanisms to ensure secure transactions.
-- **Cheque History Management**: Allows users to view the history of processed cheques.
-- **Currency Exchange**: Provides information on currency exchange rates and conversions.
-- **Report Generation**: Enables users to generate reports based on cheque history.
-
-## Notes
-- The application uses a `Scanner` for user input, which may not be suitable for production environments due to potential security risks (e.g., reading passwords in plain text).
-- The services used in this application appear to be mock implementations, as indicated by the search results.
-- The `BatchCheque` class is used to represent individual cheques in batch processing but its implementation details were not fully provided in the code chunk.
+These classes provide the necessary functionality for currency exchange, signature verification, core banking updates, user authentication, cheque history management, fraud detection, and cheque processing.

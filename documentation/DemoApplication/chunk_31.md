@@ -1,66 +1,75 @@
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_31"
 confidence_score: 0.9
-external_dependencies: ["BatchCheque", "ChequeProcessor", "CurrencyExchangeService", "ChequeHistoryManager"]
+external_dependencies: ["BatchCheque", "CurrencyExchangeService", "ChequeHistoryManager"]
 ---
 
 # Documentation for Code Chunk
 
-This code chunk is part of a larger Java application and contains three main functionalities:
+This code chunk contains three main functionalities:
 
 1. **Batch Cheque Processing**
 2. **Currency Exchange Menu**
 3. **Cheque Report Generation**
 
 ## 1. Batch Cheque Processing
+This section of the code collects details for a batch of cheques from the user and processes them using a `chequeProcessor` object. The details collected include:
 
-This section of the code collects details for a batch of cheques from the user and processes them using a `ChequeProcessor` instance.
+- Account number
+- Cheque number
+- Currency
+- Amount
+- Signature
 
-### Key Steps:
-- A list `chequesToProcess` is initialized to store `BatchCheque` objects.
-- A loop iterates `batchSize` times to collect cheque details (account number, cheque number, currency, amount, and signature) from the user via a `Scanner`.
-- Each cheque is added to the `chequesToProcess` list as a `BatchCheque` object.
-- After collecting all cheques, the `ChequeProcessor` processes each cheque in the list by calling its `processCheque` method.
+The collected data is stored in a list of `BatchCheque` objects, which are then processed in a batch.
 
-### External Dependencies:
-- **`BatchCheque`**: Represents a cheque with attributes such as account number, cheque number, currency, amount, and signature.
-- **`ChequeProcessor`**: A service responsible for processing cheques. It includes functionalities like signature verification, fraud detection, currency conversion, and updating the core banking system.
+### Key Operations:
+- User input is collected using a `Scanner` object.
+- Each cheque is added to a list of `BatchCheque` objects.
+- The `chequeProcessor.processCheque` method is called for each cheque in the list.
+
+### External Dependency:
+- `BatchCheque`: Represents a cheque with attributes like account number, cheque number, currency, amount, and signature.
 
 ## 2. Currency Exchange Menu
+This section provides a menu-driven interface for currency exchange operations. The menu includes the following options:
 
-This section provides a menu-driven interface for users to interact with a `CurrencyExchangeService` to perform various currency-related operations.
+1. View supported currencies.
+2. Get the exchange rate for a specific currency.
+3. Get detailed exchange rate information (mid, buy, sell, and fee rates).
+4. Convert an amount from one currency to another.
+5. Return to the main menu.
 
-### Menu Options:
-1. **View Supported Currencies**: Displays a list of currencies supported by the service.
-2. **Get Exchange Rate**: Allows the user to input a currency code and retrieves the exchange rate for that currency.
-3. **Get Detailed Exchange Rate Information**: Provides detailed exchange rate information (mid, buy, sell, and fee rates) for a specific currency.
-4. **Convert Currency**: Converts an amount from one currency to another using the `convertCurrency` method of `CurrencyExchangeService`.
-5. **Return to Main Menu**: Exits the currency exchange menu.
+### Key Operations:
+- User input is collected to navigate the menu and perform actions.
+- The `CurrencyExchangeService` is used to fetch supported currencies, exchange rates, and perform currency conversion.
 
-### External Dependencies:
-- **`CurrencyExchangeService`**: Provides methods to get supported currencies, fetch exchange rates, and perform currency conversions.
+### External Dependency:
+- `CurrencyExchangeService`: Provides methods for currency-related operations such as fetching exchange rates and converting currencies.
 
 ## 3. Cheque Report Generation
+This section handles the generation of cheque reports based on user-selected time periods. The available options are:
 
-This section handles the generation of cheque reports for different time periods or custom date ranges.
+1. Daily Report (Today)
+2. Weekly Report (Last 7 Days)
+3. Monthly Report (Last 30 Days)
+4. Custom Date Range Report
+5. Return to the main menu
 
-### Key Steps:
-- Displays a menu with options for generating daily, weekly, monthly, or custom date range reports.
-- Based on the user's choice, determines the start and end dates for the report.
-- Fetches cheque records for the specified date range using the `ChequeHistoryManager`.
-- If records are found, generates a CSV report and writes it to a file.
+### Key Operations:
+- User input is collected to select the report type and date range.
+- The `ChequeHistoryManager` is used to fetch cheque records for the specified period.
+- The records are written to a CSV file.
 
-### External Dependencies:
-- **`ChequeHistoryManager`**: Manages cheque history and provides methods to fetch records within a specific date range and generate CSV reports.
+### External Dependency:
+- `ChequeHistoryManager`: Manages cheque history and provides methods to fetch records and generate CSV reports.
 
 ### Error Handling:
-- Ensures proper handling of invalid date formats and cases where the start date is after the end date.
-- Handles exceptions during file writing and informs the user of any errors.
+- Input validation is performed for date formats and logical errors (e.g., start date after end date).
+- Exceptions during file writing are caught and logged.
 
 ## Additional Notes:
-- The `SignatureVerificationService` class is partially included in the chunk and appears to provide a mechanism for verifying cheque signatures.
-- The `Scanner` object is used extensively for user input throughout the code.
-
-This chunk demonstrates a combination of user interaction, data processing, and integration with external services to achieve its functionality.
+- The `SignatureVerificationService` class is partially included, which appears to manage account signatures for verification purposes.
+- The code uses standard Java libraries like `Scanner`, `LocalDate`, and `BufferedWriter` for input handling, date manipulation, and file writing, respectively.

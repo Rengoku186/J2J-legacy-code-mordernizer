@@ -1,97 +1,167 @@
 ---
-original_file: "legacy_source\DemoApplication.java"
+original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_17"
-confidence_score: 0.9
+confidence_score: 0.95
 external_dependencies: ["BatchCheque", "ChequeProcessor", "CurrencyExchangeService", "ChequeHistoryManager", "ChequePrintingService"]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Code Chunk
 
 ## Overview
-This code chunk is part of a larger application that handles various banking operations, including cheque processing, currency exchange, report generation, and cheque printing. The provided code includes several methods that perform specific tasks related to these operations. Below is a detailed explanation of the code.
+This code chunk is part of a larger Java application that handles various functionalities related to cheque processing, currency exchange, report generation, and cheque printing. Below is a detailed explanation of the methods and logic implemented in this chunk.
 
 ---
 
 ### 1. **Batch Cheque Processing**
-This section of the code processes a batch of cheques. It adds cheques to a list (`chequesToProcess`) and processes them using a `ChequeProcessor` instance.
 
-#### Key Components:
-- **`chequesToProcess`**: A collection that stores instances of `BatchCheque`.
-- **`BatchCheque`**: Represents a cheque with attributes such as `accountNumber`, `chequeNumber`, `currency`, `amount`, and `signature`.
-- **`chequeProcessor`**: An instance of the `ChequeProcessor` class, which handles the processing of cheques.
+#### Purpose
+The batch cheque processing logic collects cheque details, processes them in a batch, and handles any errors that occur during the process.
 
-#### Workflow:
-1. Cheques are added to the `chequesToProcess` list using the `BatchCheque` constructor.
-2. If an exception occurs during input collection, it is logged using the `Logger.error` method, and the scanner buffer is cleared.
-3. The batch of cheques is processed using the `chequeProcessor.processCheque` method.
-4. Any exceptions during processing are logged.
+#### Key Operations
+- **Adding Cheques to Batch**: Cheques are added to a list (`chequesToProcess`) using the `BatchCheque` class.
+- **Processing Each Cheque**: The `ChequeProcessor` class is used to process each cheque in the batch.
+- **Error Handling**: Errors during cheque collection or processing are logged using the `Logger` class.
 
-#### External Dependencies:
-- `BatchCheque`: Represents a cheque object.
-- `ChequeProcessor`: A class responsible for processing cheques. It includes functionalities like signature verification, fraud detection, and currency conversion.
+#### Code Snippet
+```java
+chequesToProcess.add(new BatchCheque(accountNumber, chequeNumber, currency, amount, signature));
+} catch (Exception ex) {
+    Logger.error("Error collecting cheque batch input: " + ex.getMessage());
+    scanner.nextLine(); // Clear buffer
+}
+
+System.out.println("\nProcessing batch...");
+chequesToProcess.forEach(cheque -> {
+    try {
+        chequeProcessor.processCheque(cheque.accountNumber, cheque.chequeNumber, cheque.currency, cheque.amount, cheque.signature);
+    } catch (Exception ex) {
+        Logger.error("Error processing cheque in batch: " + ex.getMessage());
+    }
+});
+```
+
+#### External Dependencies
+- **`BatchCheque`**: Represents a cheque with attributes like account number, cheque number, currency, amount, and signature.
+- **`ChequeProcessor`**: A class responsible for processing cheques, including signature verification, fraud detection, and updating the core banking system.
 
 ---
 
 ### 2. **Currency Exchange Menu**
-This method (`displayCurrencyExchangeMenu`) provides a user interface for currency exchange operations. It interacts with the `CurrencyExchangeService` to perform various tasks.
 
-#### Parameters:
-- `scanner`: A `Scanner` object for reading user input.
-- `currencyExchangeService`: An instance of `CurrencyExchangeService` that provides currency exchange functionalities.
+#### Purpose
+Displays a menu for currency exchange operations and handles user interactions.
 
-#### Menu Options:
-1. **View Supported Currencies**: Displays a list of currencies supported by the service.
-2. **Get Exchange Rate**: Retrieves the exchange rate for a specific currency.
-3. **Get Detailed Exchange Rate Information**: Provides detailed information, including mid, buy, sell, and fee rates for a specific currency.
-4. **Convert Currency**: Converts an amount from one currency to another.
-5. **Return to Main Menu**: Exits the currency exchange menu.
+#### Key Operations
+- **Menu Options**:
+  1. View supported currencies.
+  2. Get exchange rate for a specific currency.
+  3. Get detailed exchange rate information (e.g., mid, buy, sell, fee rates).
+  4. Convert an amount from one currency to another.
+  5. Return to the main menu.
+- **User Input Handling**: The `Scanner` class is used to capture user input and navigate through the menu options.
+- **Integration with `CurrencyExchangeService`**: This service provides the necessary data for currency exchange operations.
 
-#### External Dependencies:
-- `CurrencyExchangeService`: Provides methods like `getSupportedCurrencies`, `getExchangeRate`, `getDetailedExchangeRates`, and `convertCurrency`.
+#### Code Snippet
+```java
+System.out.println("\n--- Currency Exchange Menu ---");
+System.out.println("1. View Supported Currencies");
+System.out.println("2. Get Exchange Rate");
+System.out.println("3. Get Detailed Exchange Rate Information");
+System.out.println("4. Convert Currency");
+System.out.println("5. Return to Main Menu");
+System.out.print("Enter your choice: ");
+
+int choice = scanner.nextInt();
+scanner.nextLine(); // Consume newline
+
+switch (choice) {
+    case 1:
+        List<String> supportedCurrencies = currencyExchangeService.getSupportedCurrencies();
+        System.out.println("\nSupported Currencies:");
+        for (String currencyCode : supportedCurrencies) {
+            System.out.println("- " + currencyCode);
+        }
+        break;
+    // Other cases omitted for brevity
+}
+```
+
+#### External Dependencies
+- **`CurrencyExchangeService`**: Provides methods to fetch supported currencies, exchange rates, and perform currency conversion.
 
 ---
 
 ### 3. **Report Generation**
-The `handleReportGeneration` method generates reports for cheque transactions over different time periods.
 
-#### Parameters:
-- `scanner`: A `Scanner` object for reading user input.
-- `chequeHistoryManager`: An instance of `ChequeHistoryManager` that manages cheque transaction history.
+#### Purpose
+Generates reports for cheque transactions over different time periods (daily, weekly, monthly, or custom date range).
 
-#### Workflow:
-1. Displays a menu with options for generating daily, weekly, monthly, or custom date range reports.
-2. Based on the user's choice, determines the date range for the report.
-3. Retrieves cheque records for the specified period using `chequeHistoryManager.getAllChequeRecordsInPeriod`.
-4. Generates a CSV report using `chequeHistoryManager.generateChequeReportCSV` and writes it to a file.
-5. Handles errors such as invalid date formats or no records found.
+#### Key Operations
+- **Date Range Selection**: Allows users to select predefined or custom date ranges.
+- **Fetching Records**: Uses `ChequeHistoryManager` to retrieve cheque records for the selected period.
+- **CSV Report Generation**: Generates a CSV file containing the cheque records.
+- **Error Handling**: Validates user input and handles file writing errors.
 
-#### External Dependencies:
-- `ChequeHistoryManager`: Manages cheque transaction history and provides methods for retrieving and generating reports.
+#### Code Snippet
+```java
+List<ChequeHistoryManager.ChequeRecord> records = chequeHistoryManager.getAllChequeRecordsInPeriod(startDate, endDate);
+
+if (records.isEmpty()) {
+    System.out.println("No cheque records found for the selected period.");
+    return;
+}
+
+String csvData = chequeHistoryManager.generateChequeReportCSV(records);
+String fileName = reportNamePrefix + startDate.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                  "_to_" + endDate.format(DateTimeFormatter.ISO_LOCAL_DATE) + ".csv";
+
+try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+    writer.write(csvData);
+    System.out.println("Report generated successfully: " + fileName);
+} catch (IOException e) {
+    System.err.println("Error writing report to file: " + e.getMessage());
+}
+```
+
+#### External Dependencies
+- **`ChequeHistoryManager`**: Manages cheque transaction history and provides methods to fetch records and generate reports.
 
 ---
 
 ### 4. **Cheque Printing Simulation**
-The `handleChequePrinting` method simulates the process of printing a cheque.
 
-#### Parameters:
-- `scanner`: A `Scanner` object for reading user input.
-- `printingService`: An instance of `ChequePrintingService` that handles cheque printing operations.
+#### Purpose
+Simulates the process of printing a cheque by collecting user input and formatting the cheque details.
 
-#### Workflow:
-1. Prompts the user to input details such as payee name, amount, date, account number, and cheque number.
-2. Parses the date input and defaults to the current date if the input is invalid.
-3. Uses the `printingService` to simulate the cheque printing process.
+#### Key Operations
+- **User Input**: Collects details such as payee name, amount, date, account number, and cheque number.
+- **Date Parsing**: Parses the date input and defaults to the current date if the input is invalid.
 
-#### External Dependencies:
-- `ChequePrintingService`: Provides methods for simulating cheque printing.
+#### Code Snippet
+```java
+System.out.print("Enter Payee Name: ");
+String payeeName = scanner.nextLine();
+
+System.out.print("Enter Amount: ");
+double amount = scanner.nextDouble();
+scanner.nextLine(); // Consume newline
+
+System.out.print("Enter Date (YYYY-MM-DD): ");
+String dateStr = scanner.nextLine();
+Date chequeDate;
+try {
+    chequeDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
+} catch (java.text.ParseException e) {
+    System.out.println("Invalid date format. Please use YYYY-MM-DD. Using current date.");
+    chequeDate = new Date();
+}
+```
+
+#### External Dependencies
+- **`ChequePrintingService`**: Handles the actual printing of cheques (not shown in this chunk).
 
 ---
 
-## Error Handling
-- Exceptions during cheque input collection and processing are logged using `Logger.error`.
-- Invalid user inputs, such as incorrect date formats, are handled with appropriate error messages.
-- If no records are found for a report, the user is notified.
-
 ## Summary
-This code chunk is part of a comprehensive banking application that handles cheque processing, currency exchange, report generation, and cheque printing. It relies on several external services and classes to perform these operations efficiently and includes robust error handling to ensure smooth execution.
+This code chunk demonstrates the implementation of key functionalities in a cheque processing system, including batch processing, currency exchange, report generation, and cheque printing. It integrates with several external services and handles user input and errors effectively.

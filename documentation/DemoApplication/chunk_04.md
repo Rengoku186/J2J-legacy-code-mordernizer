@@ -2,97 +2,72 @@
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_04"
-confidence_score: 0.95
+confidence_score: 0.9
 external_dependencies: ["BatchCheque", "ChequeProcessor", "CurrencyExchangeService", "ChequeHistoryManager", "ChequePrintingService"]
 ---
 
 # Documentation for Code Chunk
 
-This code chunk is part of a larger application and contains several functionalities related to cheque processing, currency exchange, report generation, and cheque printing. Below is a detailed explanation of the purpose and methods in this chunk.
+## Overview
+This code chunk is part of a larger application that handles cheque processing, currency exchange, report generation, and cheque printing. It includes methods for processing cheque batches, displaying a currency exchange menu, generating reports, and simulating cheque printing. The code interacts with several external services and classes, such as `BatchCheque`, `ChequeProcessor`, `CurrencyExchangeService`, `ChequeHistoryManager`, and `ChequePrintingService`.
 
 ## Key Functionalities
 
-### 1. **Batch Cheque Processing**
-This section of the code handles the processing of a batch of cheques. It performs the following steps:
-
-- **Adding Cheques to the Batch:**
-  ```java
-  chequesToProcess.add(new BatchCheque(accountNumber, chequeNumber, currency, amount, signature));
-  ```
-  - Creates a new `BatchCheque` object with the provided details (account number, cheque number, currency, amount, and signature) and adds it to the `chequesToProcess` list.
-  - If an exception occurs during this process, it logs the error and clears the scanner buffer.
-
-- **Processing the Batch:**
-  ```java
-  chequesToProcess.forEach(cheque -> {
-      try {
-          chequeProcessor.processCheque(cheque.accountNumber, cheque.chequeNumber, cheque.currency, cheque.amount, cheque.signature);
-      } catch (Exception ex) {
-          Logger.error("Error processing cheque in batch: " + ex.getMessage());
-      }
-  });
-  ```
-  - Iterates over the `chequesToProcess` list and processes each cheque using the `ChequeProcessor` class.
-  - Logs any errors encountered during the processing of individual cheques.
+### 1. **Processing Cheque Batches**
+- **Purpose**: Processes a batch of cheques by iterating over a list of `BatchCheque` objects and invoking the `processCheque` method of the `ChequeProcessor` class.
+- **Error Handling**: Logs errors during cheque collection and processing using a `Logger`.
+- **Key Operations**:
+  - Adds `BatchCheque` objects to a list (`chequesToProcess`).
+  - Iterates over the list and processes each cheque using `chequeProcessor.processCheque`.
 
 ### 2. **Currency Exchange Menu**
-The `displayCurrencyExchangeMenu` method provides a user interface for interacting with the currency exchange service. It supports the following options:
-
-- **View Supported Currencies:**
-  Retrieves and displays a list of supported currencies from the `CurrencyExchangeService`.
-
-- **Get Exchange Rate:**
-  Prompts the user for a currency code and retrieves the exchange rate for that currency using the `CurrencyExchangeService`.
-
-- **Get Detailed Exchange Rate Information:**
-  Prompts the user for a currency code and retrieves detailed exchange rate information (mid, buy, sell, and fee rates) from the `CurrencyExchangeService`.
-
-- **Convert Currency:**
-  Prompts the user for an amount, source currency, and target currency, and converts the amount using the `CurrencyExchangeService`.
-
-- **Return to Main Menu:**
-  Exits the currency exchange menu.
+- **Purpose**: Provides a menu-driven interface for users to interact with the `CurrencyExchangeService`.
+- **Menu Options**:
+  1. View supported currencies.
+  2. Get the exchange rate for a specific currency.
+  3. Get detailed exchange rate information (e.g., mid, buy, sell, and fee rates).
+  4. Convert an amount from one currency to another.
+  5. Return to the main menu.
+- **Error Handling**: Validates user input and handles unsupported currencies or invalid data gracefully.
 
 ### 3. **Report Generation**
-The `handleReportGeneration` method provides a user interface for generating cheque reports. It supports the following options:
-
-- **Daily Report:**
-  Generates a report for cheques processed on the current day.
-
-- **Weekly Report:**
-  Generates a report for cheques processed in the last 7 days.
-
-- **Monthly Report:**
-  Generates a report for cheques processed in the last 30 days.
-
-- **Custom Date Range Report:**
-  Prompts the user for a start and end date, and generates a report for cheques processed within that range.
-
-- **Return to Main Menu:**
-  Exits the report generation menu.
-
-The generated report is saved as a CSV file with a name based on the selected date range.
+- **Purpose**: Generates reports for cheque transactions over various time periods (daily, weekly, monthly, or custom date range).
+- **Key Operations**:
+  - Prompts the user to select a report type.
+  - Retrieves cheque records for the specified time period using `ChequeHistoryManager.getAllChequeRecordsInPeriod`.
+  - Generates a CSV report using `ChequeHistoryManager.generateChequeReportCSV` and writes it to a file.
+- **Error Handling**:
+  - Validates date inputs for custom date ranges.
+  - Handles cases where no records are found for the selected period.
 
 ### 4. **Cheque Printing Simulation**
-The `handleChequePrinting` method simulates the process of printing a cheque. It performs the following steps:
-
-- Prompts the user for the payee name, amount, date, account number, and cheque number.
-- Parses the date input and defaults to the current date if the input is invalid.
-- Uses the `ChequePrintingService` to simulate the printing of the cheque.
+- **Purpose**: Simulates the process of printing a cheque using the `ChequePrintingService`.
+- **Key Operations**:
+  - Collects user input for payee name, amount, date, account number, and cheque number.
+  - Validates the date format and defaults to the current date if invalid.
 
 ## External Dependencies
 
-- **`BatchCheque`:** Represents a cheque with attributes such as account number, cheque number, currency, amount, and signature.
-- **`ChequeProcessor`:** Handles the processing of cheques, including signature verification, fraud detection, currency conversion, and updating the core banking system.
-- **`CurrencyExchangeService`:** Provides functionalities for currency exchange, including retrieving exchange rates and converting currencies.
-- **`ChequeHistoryManager`:** Manages the history of cheques, including retrieving records for specific time periods and generating reports in CSV format.
-- **`ChequePrintingService`:** Simulates the printing of cheques.
+### 1. **BatchCheque**
+- Represents a cheque with attributes such as account number, cheque number, currency, amount, and signature.
+
+### 2. **ChequeProcessor**
+- Handles the processing of cheques, including signature verification, fraud detection, currency conversion, and updates to the core banking system.
+
+### 3. **CurrencyExchangeService**
+- Provides functionalities for currency exchange, including retrieving supported currencies, exchange rates, and converting amounts between currencies.
+
+### 4. **ChequeHistoryManager**
+- Manages cheque transaction history and provides methods for retrieving records and generating reports.
+
+### 5. **ChequePrintingService**
+- Simulates the printing of cheques based on user-provided details.
 
 ## Error Handling
+- The code includes robust error handling mechanisms, such as logging errors and validating user inputs.
+- Common issues like invalid date formats, unsupported currencies, and empty cheque records are handled gracefully.
 
-- Errors during cheque batch input or processing are logged using the `Logger.error` method.
-- Invalid user inputs, such as incorrect date formats or unsupported currency codes, are handled gracefully with appropriate error messages.
-- If no cheque records are found for a selected report period, a message is displayed to the user.
-- Errors during file writing for report generation are caught and logged.
-
-This code chunk demonstrates robust error handling and provides a user-friendly interface for managing cheques, currency exchange, and report generation.
+## Notes
+- The `Logger` class is used for error logging but is not defined in the provided code chunk.
+- The `scanner` object is used for user input and is assumed to be properly initialized elsewhere in the application.
+- The `BufferedWriter` and `FileWriter` classes are used for writing reports to files, and exceptions during file operations are caught and logged.
