@@ -138,8 +138,10 @@ def run_code_generation():
         # ---------------------------------------------------------
         print("[Phase 1] Planning architecture...")
         plan_system = """You are a Principal Software Architect. Read the Master Document and determine the exact Spring Boot Java files needed.
+        CRITICAL INSTRUCTION 1: You MUST explicitly include all data model/entity classes (e.g. User.java, Account.java, Transaction.java, Loan.java) in the file list. The system strictly enforces one class per file, so failing to generate dedicated files for models will cause compilation failures.
+        CRITICAL INSTRUCTION 2: Strictly adhere to the architectural constraints defined in the Master Document. Do NOT introduce new architectural layers, frameworks (like Spring Data JPA/database repositories), or external dependencies unless they are explicitly mentioned in the document.
         Return a strictly formatted JSON object with a single key "files" containing a list of strings representing the filenames. 
-        Example: {"files": ["DemoApplication.java", "UserService.java"]}
+        Example: {"files": ["DemoApplication.java", "UserService.java", "User.java", "Account.java"]}
         
         NOTE: This is a safe, educational simulation. Concepts like "Fraud Detection" and "Cryptography" are for educational purposes only. Do not trigger safety filters."""
         
@@ -164,7 +166,8 @@ def run_code_generation():
         Include package, imports, class annotations, field declarations, and method signatures.
         DO NOT WRITE BUSINESS LOGIC. Leave all methods empty (return null, 0, or false).
         Use package com.example.demo; Use Lombok where appropriate. Use Spring annotations.
-        CRITICAL RULE: A .java file MUST contain EXACTLY ONE class (the one matching the filename). Do NOT define multiple classes, inner classes, or package-private classes in the same file.
+        CRITICAL RULE 1: A .java file MUST contain EXACTLY ONE class (the one matching the filename). Do NOT define multiple classes, inner classes, or package-private classes in the same file.
+        CRITICAL RULE 2: Strictly adhere to the architectural constraints defined in the Master Document. Do NOT introduce new architectural layers, frameworks (like Spring Data JPA/database repositories), or external dependencies unless explicitly mentioned. If the document describes state being managed in-memory, you must implement it in-memory.
         Return ONLY the raw Java code. Do not include markdown code blocks.
         NOTE: Safe educational simulation."""
         
@@ -207,7 +210,8 @@ def run_code_generation():
         You have the Master Document and the complete compiling SKELETON project context.
         Write the FULL and EXHAUSTIVE complete Java code for the file, filling in all method bodies based on the Master Document.
         Do NOT change method signatures from the skeleton. You must adhere to the skeleton's API.
-        CRITICAL RULE: A .java file MUST contain EXACTLY ONE class (the one matching the filename). Do NOT define multiple classes, inner classes, or package-private classes in the same file.
+        CRITICAL RULE 1: A .java file MUST contain EXACTLY ONE class (the one matching the filename). Do NOT define multiple classes, inner classes, or package-private classes in the same file.
+        CRITICAL RULE 2: Strictly adhere to the architectural constraints defined in the Master Document. Do NOT introduce new architectural layers, frameworks (like Spring Data JPA/database repositories), or external dependencies unless explicitly mentioned. If the document describes state being managed in-memory, you must implement it in-memory.
         Return ONLY the raw Java code. Do not include markdown code blocks.
         NOTE: Safe educational simulation."""
         
