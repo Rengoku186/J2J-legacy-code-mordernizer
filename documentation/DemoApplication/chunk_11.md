@@ -9,9 +9,7 @@ external_dependencies: ["FraudDetection", "ChequeHistoryManager", "AlertLevel"]
 # Documentation for Fraud Detection Methods in `DemoApplication`
 
 ## Overview
-This code chunk is part of a fraud detection system that evaluates whether a cheque transaction is potentially fraudulent. It implements various checks, including duplicate detection, abnormal amounts, suspicious activity, velocity fraud, and pattern analysis. Additionally, it incorporates historical data checks if a `ChequeHistoryManager` is available.
-
-The main method, `isFraudulentCheque`, orchestrates these checks and determines the overall fraud status of a cheque transaction. The results of the checks are logged, and an alert level is determined based on the severity of the detected issues.
+This section of the code implements a comprehensive fraud detection mechanism for cheque transactions. It evaluates multiple criteria to determine whether a cheque is potentially fraudulent. The main method, `isFraudulentCheque`, orchestrates the fraud detection process by invoking various helper methods that perform specific checks.
 
 ## Key Methods
 
@@ -19,62 +17,66 @@ The main method, `isFraudulentCheque`, orchestrates these checks and determines 
 ```java
 public boolean isFraudulentCheque(String accountId, String chequeNumber, double amount)
 ```
-This is the main method that evaluates whether a cheque is fraudulent. It performs the following steps:
-1. Executes basic fraud checks: duplicate cheque, abnormal amount, suspicious activity, velocity fraud, and pattern fraud.
-2. If a `ChequeHistoryManager` is available, it performs additional checks: historical duplicate, unusual frequency, and similarity to recent transactions.
-3. Logs the results of all checks.
-4. Determines the fraud alert level using the `determineAlertLevel` method.
-5. Returns `true` if any of the checks indicate fraud; otherwise, returns `false`.
+This is the main method that determines whether a cheque is fraudulent. It performs the following checks:
+
+1. **Duplicate Check**: Verifies if the cheque has already been processed.
+2. **Abnormal Amount Check**: Checks if the cheque amount is unusually high or low.
+3. **Suspicious Activity Check**: Detects any suspicious activity associated with the account.
+4. **Velocity Fraud Check**: Ensures that the number of transactions within a specific time frame does not exceed a predefined threshold.
+5. **Pattern Fraud Check**: Identifies patterns in transaction amounts that may indicate fraud.
+6. **Historical Duplicate Check**: Checks if the cheque matches any previously processed cheques for the account.
+7. **Unusual Frequency Check**: Evaluates if the frequency of transactions is abnormal compared to historical data.
+8. **Similar Recent Amount Check**: Compares the cheque amount with recent transactions to identify similarities.
+
+The method logs the results of these checks and determines an overall fraud alert level using the `determineAlertLevel` method. It returns `true` if any of the checks indicate potential fraud.
 
 ### `checkDuplicateCheque`
 ```java
 private boolean checkDuplicateCheque(String accountId, String chequeNumber)
 ```
-Checks if the cheque is a duplicate using the `FraudDetection` service.
+Checks if the given cheque number has already been processed for the specified account. This is done using the `FraudDetection` service.
 
 ### `checkAbnormalAmount`
 ```java
 private boolean checkAbnormalAmount(double amount)
 ```
-Checks if the cheque amount is abnormal using the `FraudDetection` service.
+Determines if the cheque amount is abnormal by consulting the `FraudDetection` service.
 
 ### `checkSuspiciousActivity`
 ```java
 private boolean checkSuspiciousActivity(String accountId, double amount)
 ```
-Checks for suspicious activity associated with the account and amount using the `FraudDetection` service.
+Checks for suspicious activity related to the account and amount using the `FraudDetection` service.
 
 ### `checkVelocityFraud`
 ```java
 private boolean checkVelocityFraud(String accountId, double amount)
 ```
-Detects velocity fraud by analyzing the frequency of recent transactions for the account. It uses the constants:
-- `VELOCITY_CHECK_DAYS`: Number of days to consider for velocity checks (7 days).
-- `VELOCITY_THRESHOLD`: Maximum allowed transactions within the velocity check period (5 transactions).
+Analyzes the frequency of transactions for the account within a specific time frame. If the number of transactions exceeds a predefined threshold (`VELOCITY_THRESHOLD`), it flags the account for velocity fraud.
 
 ### `checkPatternFraud`
 ```java
 private boolean checkPatternFraud(String accountId, double amount)
 ```
-Analyzes transaction patterns to detect fraud. It checks if the current transaction amount is similar to at least three recent transactions using the `PATTERN_THRESHOLD` constant (95% similarity).
+Identifies patterns in transaction amounts. If the number of similar transactions exceeds a threshold (`PATTERN_THRESHOLD`), it flags the account for pattern fraud.
 
 ### `checkHistoricalDuplicate`
 ```java
 private boolean checkHistoricalDuplicate(String accountId, String chequeNumber)
 ```
-Checks if the cheque number exists in the historical records using the `ChequeHistoryManager`.
+Checks if the cheque number matches any historical records for the account. This is done using the `ChequeHistoryManager`.
 
 ### `checkUnusualFrequency`
 ```java
 private boolean checkUnusualFrequency(String accountId)
 ```
-Detects unusual transaction frequency by comparing recent transaction counts to the average monthly frequency. It uses the `UNUSUAL_FREQUENCY_THRESHOLD` constant (3x normal frequency).
+Evaluates the frequency of transactions for the account. If the recent transaction frequency significantly exceeds the historical average, it flags the account for unusual frequency.
 
 ### `checkSimilarToRecent`
 ```java
 private boolean checkSimilarToRecent(String accountId, double amount)
 ```
-Checks if the current transaction amount is similar to recent transactions using the `SIMILAR_AMOUNT_THRESHOLD` constant (90% similarity).
+Compares the cheque amount with recent transactions to identify similarities. If the similarity exceeds a threshold (`SIMILAR_AMOUNT_THRESHOLD`), it flags the account.
 
 ### `determineAlertLevel`
 ```java
@@ -83,11 +85,11 @@ private AlertLevel determineAlertLevel(boolean isDuplicate, boolean isAbnormal,
                                        boolean isPatternFraud, boolean isHistoricalDuplicate,
                                        boolean isUnusualFrequency, boolean isSimilarToRecent)
 ```
-Determines the fraud alert level based on the results of the checks. The alert levels are:
-- `LOW`
-- `MEDIUM`
-- `HIGH`
-- `CRITICAL`
+Determines the overall fraud alert level based on the results of the individual checks. The alert levels are:
+- **CRITICAL**: High likelihood of fraud.
+- **HIGH**: Moderate likelihood of fraud.
+- **MEDIUM**: Low likelihood of fraud.
+- **LOW**: Minimal likelihood of fraud.
 
 ### `logFraudChecks`
 ```java
@@ -97,24 +99,29 @@ private void logFraudChecks(String accountId, String chequeNumber, double amount
                             boolean isHistoricalDuplicate, boolean isUnusualFrequency,
                             boolean isSimilarToRecent)
 ```
-Logs the results of all fraud checks and provides a summary indicating whether fraud was detected.
+Logs the results of all fraud checks for auditing and debugging purposes. The log includes a summary indicating whether any fraud was detected.
+
+### `formatCheckResult`
+```java
+private String formatCheckResult(boolean failed)
+```
+Formats the result of a fraud check for logging purposes. Returns "FAILED ⚠️" if the check failed, otherwise "Passed ✓".
 
 ### `ChequeTransaction` (Inner Class)
 ```java
 private static class ChequeTransaction
 ```
-Represents a cheque transaction with the following fields:
-- `amount`: The transaction amount.
-- `date`: The transaction date.
-
-## Constants
-- `VELOCITY_CHECK_DAYS`: 7 days.
-- `VELOCITY_THRESHOLD`: 5 transactions.
-- `PATTERN_THRESHOLD`: 95% similarity.
-- `SIMILAR_AMOUNT_THRESHOLD`: 90% similarity.
-- `UNUSUAL_FREQUENCY_THRESHOLD`: 3x normal frequency.
+Represents a single cheque transaction with the following fields:
+- `amount`: The amount of the cheque.
+- `date`: The date of the transaction.
 
 ## External Dependencies
-- `FraudDetection`: Provides methods for detecting duplicate cheques, abnormal amounts, and suspicious activity.
-- `ChequeHistoryManager`: Manages historical cheque data and provides methods for advanced fraud checks.
-- `AlertLevel`: Enum representing the fraud alert levels.
+
+### `FraudDetection`
+A service used to perform basic fraud detection checks such as duplicate cheques, abnormal amounts, and suspicious activities.
+
+### `ChequeHistoryManager`
+Manages historical cheque data and provides methods to retrieve historical records for fraud detection.
+
+### `AlertLevel`
+An enumeration or class that defines the various levels of fraud alerts (e.g., CRITICAL, HIGH, MEDIUM, LOW).

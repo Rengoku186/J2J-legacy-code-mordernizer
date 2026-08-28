@@ -8,104 +8,96 @@ external_dependencies: ["FraudDetection", "ChequeHistoryManager"]
 
 # Documentation for Fraud Detection Code Chunk
 
-This code chunk is part of a fraud detection system implemented in the `FraudDetectionServiceV1` class. It provides various methods to detect fraudulent activities related to cheque transactions. Below is a detailed explanation of the methods and their purposes:
+## Overview
+This code chunk is part of a fraud detection system implemented in the `FraudDetectionServiceV1` class. It contains methods to evaluate various fraud detection criteria for cheque transactions, determine the alert level based on the results, and log the findings. The system uses external dependencies such as `FraudDetection` and `ChequeHistoryManager` to perform specific checks.
 
-## Key Methods
+## Key Components
 
-### `isFraudulentCheque`
-This method determines whether a cheque transaction is fraudulent by performing a series of checks. It evaluates the following conditions:
-- **Duplicate cheque**: Checks if the cheque has already been processed.
-- **Abnormal amount**: Checks if the transaction amount is unusually high or low.
-- **Suspicious activity**: Checks for suspicious patterns in the account's transaction history.
-- **Velocity fraud**: Checks if the number of transactions within a short period exceeds a predefined threshold.
-- **Pattern fraud**: Checks for repetitive patterns in transaction amounts.
-- **Historical duplicate**: Checks if the cheque matches any previously processed cheques.
-- **Unusual frequency**: Checks if the frequency of transactions is abnormally high compared to historical data.
-- **Similar to recent**: Checks if the transaction amount is similar to recent transactions.
+### 1. **Fraud Detection Methods**
+The following methods evaluate specific fraud detection criteria:
 
-The method returns `true` if any of the above checks fail, indicating potential fraud.
+#### `checkDuplicateCheque(String accountId, String chequeNumber)`
+- **Purpose**: Checks if a cheque is a duplicate.
+- **Implementation**: Delegates the check to the `FraudDetection` class via the `isDuplicateCheque` method.
 
-### `determineAlertLevel`
-This method calculates the fraud alert level based on the results of the individual checks. The alert levels are:
-- **LOW**: Minimal risk.
-- **MEDIUM**: Moderate risk.
-- **HIGH**: High risk.
-- **CRITICAL**: Severe risk.
+#### `checkAbnormalAmount(double amount)`
+- **Purpose**: Checks if the cheque amount is abnormal.
+- **Implementation**: Uses the `FraudDetection` class's `isAbnormalAmount` method.
 
-The alert level is determined by assigning weights to each check and summing them up. A higher score indicates a higher alert level.
+#### `checkSuspiciousActivity(String accountId, double amount)`
+- **Purpose**: Checks for suspicious activity based on the account ID and amount.
+- **Implementation**: Uses the `FraudDetection` class's `isSuspiciousActivity` method.
 
-### `logFraudChecks`
-This method logs the results of the fraud checks for a given transaction. It provides a detailed report, including:
-- Account ID
-- Cheque number
-- Transaction amount
-- Results of each fraud check
-- A summary indicating whether fraud was detected
-
-### Individual Check Methods
-
-#### `checkDuplicateCheque`
-- **Purpose**: Checks if a cheque with the same number has already been processed for the given account.
-- **Implementation**: Calls the `isDuplicateCheque` method of the `FraudDetection` class.
-
-#### `checkAbnormalAmount`
-- **Purpose**: Checks if the transaction amount is abnormal.
-- **Implementation**: Calls the `isAbnormalAmount` method of the `FraudDetection` class.
-
-#### `checkSuspiciousActivity`
-- **Purpose**: Checks for suspicious activity in the account.
-- **Implementation**: Calls the `isSuspiciousActivity` method of the `FraudDetection` class.
-
-#### `checkVelocityFraud`
-- **Purpose**: Checks if the number of transactions within the last 7 days exceeds a predefined threshold.
+#### `checkVelocityFraud(String accountId, double amount)`
+- **Purpose**: Detects velocity fraud by analyzing the frequency of recent transactions.
 - **Implementation**:
   - Maintains a list of recent transactions for each account.
-  - Filters transactions within the last 7 days.
-  - Compares the count of recent transactions to the `VELOCITY_THRESHOLD`.
+  - Filters transactions within the last 7 days (`VELOCITY_CHECK_DAYS`).
+  - Compares the count of recent transactions against a threshold (`VELOCITY_THRESHOLD`).
 
-#### `checkPatternFraud`
-- **Purpose**: Checks for repetitive patterns in transaction amounts.
+#### `checkPatternFraud(String accountId, double amount)`
+- **Purpose**: Detects pattern fraud by analyzing the similarity of recent transaction amounts.
 - **Implementation**:
-  - Analyzes the similarity of the current transaction amount with previous transactions.
+  - Compares the current amount with recent transaction amounts.
   - Uses a similarity threshold (`PATTERN_THRESHOLD`) to identify patterns.
 
-#### `checkHistoricalDuplicate`
-- **Purpose**: Checks if the cheque matches any previously processed cheques for the account.
-- **Implementation**: Calls the `getChequeNumbers` method of the `ChequeHistoryManager` class.
+#### `checkHistoricalDuplicate(String accountId, String chequeNumber)`
+- **Purpose**: Checks if the cheque number exists in the account's historical records.
+- **Implementation**: Uses the `ChequeHistoryManager` class's `getChequeNumbers` method.
 
-#### `checkUnusualFrequency`
-- **Purpose**: Checks if the frequency of transactions is abnormally high compared to historical data.
+#### `checkUnusualFrequency(String accountId)`
+- **Purpose**: Detects unusual cheque frequency compared to historical data.
 - **Implementation**:
-  - Retrieves the total and recent cheque counts from the `ChequeHistoryManager`.
-  - Compares the recent cheque count to the average monthly frequency multiplied by a threshold (`UNUSUAL_FREQUENCY_THRESHOLD`).
+  - Retrieves total and recent cheque counts using `ChequeHistoryManager`.
+  - Compares recent cheque frequency against a threshold (`UNUSUAL_FREQUENCY_THRESHOLD`).
 
-#### `checkSimilarToRecent`
-- **Purpose**: Checks if the transaction amount is similar to recent transactions.
-- **Implementation**: Calls the `hasSimilarRecentCheque` method of the `ChequeHistoryManager` class.
+#### `checkSimilarToRecent(String accountId, double amount)`
+- **Purpose**: Checks if the cheque amount is similar to recent amounts.
+- **Implementation**: Uses the `ChequeHistoryManager` class's `hasSimilarRecentCheque` method with a similarity threshold (`SIMILAR_AMOUNT_THRESHOLD`).
 
-### Helper Methods
+### 2. **Alert Level Determination**
+#### `determineAlertLevel(...)`
+- **Purpose**: Determines the fraud alert level based on the results of the fraud checks.
+- **Implementation**:
+  - Assigns weights to each fraud type.
+  - Calculates a cumulative fraud score.
+  - Returns an alert level (`LOW`, `MEDIUM`, `HIGH`, or `CRITICAL`) based on the score.
 
-#### `formatCheckResult`
-- **Purpose**: Formats the result of a fraud check for logging purposes.
+### 3. **Logging Fraud Checks**
+#### `logFraudChecks(...)`
+- **Purpose**: Logs the results of all fraud checks for a given transaction.
+- **Implementation**:
+  - Prints a detailed report of the fraud checks and their results.
+  - Summarizes whether any fraud was detected.
+
+### 4. **Helper Methods**
+#### `formatCheckResult(boolean failed)`
+- **Purpose**: Formats the result of a fraud check for logging.
 - **Implementation**: Returns "FAILED ⚠️" if the check failed, otherwise "Passed ✓".
 
-### Nested Class: `ChequeTransaction`
-This class represents a cheque transaction and contains the following fields:
-- `amount`: The transaction amount.
-- `date`: The date of the transaction.
-
-It provides getter methods for these fields.
+### 5. **Internal Class: `ChequeTransaction`**
+- **Purpose**: Represents a cheque transaction with an amount and date.
+- **Fields**:
+  - `double amount`: The transaction amount.
+  - `java.time.LocalDate date`: The transaction date.
+- **Methods**:
+  - `getAmount()`: Returns the transaction amount.
+  - `getDate()`: Returns the transaction date.
 
 ## External Dependencies
-- **`FraudDetection`**: Provides methods for detecting duplicate cheques, abnormal amounts, and suspicious activities.
-- **`ChequeHistoryManager`**: Manages historical cheque data and provides methods for retrieving cheque history and frequency information.
+
+### 1. **FraudDetection**
+- Provides methods for detecting duplicate cheques, abnormal amounts, and suspicious activities.
+
+### 2. **ChequeHistoryManager**
+- Manages historical cheque data and provides methods to retrieve cheque numbers, total cheque counts, and recent cheque counts.
 
 ## Constants
-- `VELOCITY_CHECK_DAYS`: The number of days to consider for velocity fraud detection (default: 7 days).
-- `VELOCITY_THRESHOLD`: The maximum allowed number of transactions within the velocity check period (default: 5).
-- `PATTERN_THRESHOLD`: The similarity threshold for pattern fraud detection (default: 95%).
-- `SIMILAR_AMOUNT_THRESHOLD`: The similarity threshold for recent transaction comparison (default: 90%).
-- `UNUSUAL_FREQUENCY_THRESHOLD`: The multiplier for detecting unusual transaction frequency (default: 3x).
+- `VELOCITY_CHECK_DAYS`: Number of days to consider for velocity fraud detection (7 days).
+- `VELOCITY_THRESHOLD`: Maximum allowed transactions within the velocity check period (5 transactions).
+- `PATTERN_THRESHOLD`: Similarity threshold for pattern fraud detection (95%).
+- `SIMILAR_AMOUNT_THRESHOLD`: Similarity threshold for recent cheque amount comparison (90%).
+- `UNUSUAL_FREQUENCY_THRESHOLD`: Multiplier for detecting unusual cheque frequency (3x).
 
 ## Summary
-This code chunk is a comprehensive implementation of a fraud detection system for cheque transactions. It uses a combination of basic and advanced checks to identify potential fraud and assigns an alert level based on the severity of the detected issues. The system is modular, allowing for easy integration with external components like `FraudDetection` and `ChequeHistoryManager`.
+This code chunk is a comprehensive implementation of a fraud detection system for cheque transactions. It uses a combination of basic and advanced checks to identify potential fraud and assigns an appropriate alert level based on the results. The system is modular, with each fraud detection criterion implemented as a separate method, and it leverages external dependencies for historical data and specific fraud checks.

@@ -3,17 +3,20 @@ original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_33"
 confidence_score: 0.95
-external_dependencies: ["FALLBACK_RATES", "exchangeRateCache", "CurrencyRate", "CACHE_EXPIRY_MINUTES", "FraudDetection", "ChequeHistoryManager", "ChequeTransaction"]
+external_dependencies: ["FALLBACK_RATES", "exchangeRateCache", "getExchangeRate", "ChequeHistoryManager", "FraudDetection", "ChequeTransaction", "logFraudChecks", "determineAlertLevel"]
 ---
 
-# Documentation for Code Chunk from `DemoApplication.java`
+# Documentation for Code Chunk
 
 ## Overview
-This code chunk is part of a larger application that provides currency exchange services and fraud detection for cheque transactions. It includes methods for handling currency exchange rates, converting currencies, managing exchange rate caches, and detecting fraudulent cheque activities. The code relies on external dependencies such as `FALLBACK_RATES`, `exchangeRateCache`, `CurrencyRate`, `CACHE_EXPIRY_MINUTES`, `FraudDetection`, `ChequeHistoryManager`, and `ChequeTransaction`.
+This code chunk is part of a larger application that handles currency exchange and fraud detection. It includes methods for currency conversion, fetching exchange rates, managing supported currencies, and detecting fraudulent cheque activities. Additionally, it defines helper classes and services to support these functionalities.
 
-## Code Breakdown
+## Key Components
 
-### 1. Fallback Exchange Rates
+### 1. **Fallback Rates Handling**
+The code uses a predefined map `FALLBACK_RATES` to provide exchange rates when API fetches fail. If a fallback rate is available for a given currency code, it is cached and returned. If no rate is available, a default value of `0.0` is returned.
+
+#### Code Snippet:
 ```java
 Double fallbackRate = FALLBACK_RATES.get(currencyCode);
 if (fallbackRate != null) {
@@ -24,139 +27,116 @@ if (fallbackRate != null) {
 System.out.println("No exchange rate available for currency: " + currencyCode);
 return 0.0;
 ```
-- **Purpose**: This block uses fallback exchange rates when fetching rates from an external API fails. If a fallback rate exists for the given currency code, it is used and cached with a timestamp.
-- **Key Variables**:
-  - `FALLBACK_RATES`: A predefined map of fallback exchange rates for various currencies.
-  - `exchangeRateCache`: A cache to store exchange rates with timestamps.
-  - `CurrencyRate`: A class that encapsulates the exchange rate and the timestamp of when it was last updated.
 
-### 2. Currency Conversion
+### 2. **Currency Conversion**
+The `convertCurrency` method converts an amount from one currency to another using exchange rates. It first fetches the exchange rates for the source and target currencies, validates them, and performs the conversion.
+
+#### Method Signature:
 ```java
-public double convertCurrency(double amount, String fromCurrency, String toCurrency) {
-    double fromRate = getExchangeRate(fromCurrency);
-    double toRate = getExchangeRate(toCurrency);
-
-    if (fromRate <= 0 || toRate <= 0) {
-        System.out.println("Cannot convert: invalid exchange rates");
-        return 0.0;
-    }
-
-    double amountInBaseCurrency = amount * fromRate;
-    double convertedAmount = amountInBaseCurrency / toRate;
-
-    System.out.println(String.format("Converted %.2f %s to %.2f %s",
-            amount, fromCurrency.toUpperCase(), convertedAmount, toCurrency.toUpperCase()));
-
-    return convertedAmount;
-}
+public double convertCurrency(double amount, String fromCurrency, String toCurrency)
 ```
-- **Purpose**: Converts an amount from one currency to another using exchange rates.
-- **Key Steps**:
-  1. Fetch exchange rates for the source (`fromCurrency`) and target (`toCurrency`) currencies.
-  2. Validate the rates to ensure they are greater than zero.
-  3. Convert the amount to the base currency and then to the target currency.
-  4. Log the conversion details.
 
-### 3. Detailed Exchange Rates
+#### Key Steps:
+- Fetch exchange rates for `fromCurrency` and `toCurrency` using `getExchangeRate`.
+- Validate the rates to ensure they are greater than zero.
+- Convert the amount to the base currency and then to the target currency.
+- Log the conversion details.
+
+### 3. **Detailed Exchange Rate Information**
+The `getDetailedExchangeRates` method provides detailed information about a currency's exchange rate, including buy/sell rates and fees.
+
+#### Method Signature:
 ```java
-public Map<String, Double> getDetailedExchangeRates(String currency) {
-    String currencyCode = currency.toUpperCase();
-    double baseRate = getExchangeRate(currencyCode);
-
-    if (baseRate <= 0) {
-        return Collections.emptyMap();
-    }
-
-    Map<String, Double> detailedRates = new HashMap<>();
-    detailedRates.put("mid", baseRate);
-    detailedRates.put("buy", baseRate * 0.99);
-    detailedRates.put("sell", baseRate * 1.01);
-    detailedRates.put("fee", baseRate * 0.005);
-
-    return detailedRates;
-}
+public Map<String, Double> getDetailedExchangeRates(String currency)
 ```
-- **Purpose**: Provides detailed exchange rate information, including mid, buy, sell rates, and fees.
-- **Key Calculations**:
-  - `buy`: Slightly lower than the mid rate (99%).
-  - `sell`: Slightly higher than the mid rate (101%).
-  - `fee`: A 0.5% fee based on the mid rate.
 
-### 4. Supported Currencies
+#### Key Steps:
+- Fetch the base exchange rate using `getExchangeRate`.
+- Calculate buy and sell rates as slight variations of the base rate.
+- Calculate a fee as 0.5% of the base rate.
+- Return the detailed rates in a map.
+
+### 4. **Supported Currencies**
+The `getSupportedCurrencies` method returns a sorted list of all supported currency codes, including the base currency and those in `FALLBACK_RATES`.
+
+#### Method Signature:
 ```java
-public List<String> getSupportedCurrencies() {
-    List<String> currencies = new ArrayList<>();
-    currencies.add(BASE_CURRENCY);
-    currencies.addAll(FALLBACK_RATES.keySet());
-    Collections.sort(currencies);
-    return currencies;
-}
+public List<String> getSupportedCurrencies()
 ```
-- **Purpose**: Returns a sorted list of all supported currency codes, including the base currency and those in the fallback rates.
 
-### 5. Cache Validation
+### 5. **Cache Validation**
+The `isCacheValid` method checks if a cached exchange rate is still valid based on a predefined expiry time.
+
+#### Method Signature:
 ```java
-private boolean isCacheValid(String currency) {
-    if (!exchangeRateCache.containsKey(currency)) {
-        return false;
-    }
-
-    CurrencyRate cachedRate = exchangeRateCache.get(currency);
-    java.time.LocalDateTime now = java.time.LocalDateTime.now();
-    java.time.LocalDateTime expiryTime = cachedRate.getLastUpdated().plusMinutes(CACHE_EXPIRY_MINUTES);
-
-    return now.isBefore(expiryTime);
-}
+private boolean isCacheValid(String currency)
 ```
-- **Purpose**: Checks if the cached exchange rate for a currency is still valid based on a predefined expiration time (`CACHE_EXPIRY_MINUTES`).
-- **Key Variables**:
-  - `exchangeRateCache`: Stores cached exchange rates.
-  - `CACHE_EXPIRY_MINUTES`: The duration (in minutes) for which a cached rate is considered valid.
 
-### 6. Fraud Detection Service
+#### Key Steps:
+- Check if the currency exists in the cache.
+- Compare the current time with the cached rate's expiry time.
+
+### 6. **API Rate Fetching**
+The `fetchRateFromAPI` method fetches exchange rates from an external API. It uses the Open Exchange Rates API as an example and parses the JSON response to extract the required rate.
+
+#### Method Signature:
 ```java
-public boolean isFraudulentCheque(String accountId, String chequeNumber, double amount) {
-    boolean isDuplicate = checkDuplicateCheque(accountId, chequeNumber);
-    boolean isAbnormal = checkAbnormalAmount(amount);
-    boolean isSuspicious = checkSuspiciousActivity(accountId, amount);
-    boolean isVelocityFraud = checkVelocityFraud(accountId, amount);
-    boolean isPatternFraud = checkPatternFraud(accountId, amount);
-
-    boolean isHistoricalDuplicate = false;
-    boolean isUnusualFrequency = false;
-    boolean isSimilarToRecent = false;
-
-    if (historyManager != null) {
-        isHistoricalDuplicate = checkHistoricalDuplicate(accountId, chequeNumber);
-        isUnusualFrequency = checkUnusualFrequency(accountId);
-        isSimilarToRecent = checkSimilarToRecent(accountId, amount);
-    }
-
-    logFraudChecks(accountId, chequeNumber, amount, isDuplicate, isAbnormal,
-            isSuspicious, isVelocityFraud, isPatternFraud,
-            isHistoricalDuplicate, isUnusualFrequency, isSimilarToRecent);
-
-    AlertLevel alertLevel = determineAlertLevel(isDuplicate, isAbnormal,
-            isSuspicious, isVelocityFraud, isPatternFraud,
-            isHistoricalDuplicate, isUnusualFrequency, isSimilarToRecent);
-
-    System.out.println("Fraud Alert Level: " + alertLevel);
-
-    return isDuplicate || isAbnormal || isSuspicious || isVelocityFraud || isPatternFraud ||
-            isHistoricalDuplicate || isUnusualFrequency || isSimilarToRecent;
-}
+private double fetchRateFromAPI(String currency) throws Exception
 ```
-- **Purpose**: Detects fraudulent cheque activities using various checks, including duplicate cheques, abnormal amounts, suspicious activity, velocity fraud, and pattern fraud.
-- **Key Components**:
-  - `FraudDetection`: A service for performing fraud detection.
-  - `ChequeHistoryManager`: Manages historical cheque data for additional checks.
-  - `AlertLevel`: Enum representing the severity of fraud alerts.
+
+#### Key Steps:
+- Construct the API URL using the base currency and API key.
+- Make an HTTP GET request and handle the response.
+- Parse the JSON response to extract the exchange rate for the specified currency.
+- Handle errors and log messages.
+
+### 7. **Fraud Detection Service**
+The `FraudDetectionService` class implements various fraud detection mechanisms, such as duplicate cheques, abnormal amounts, suspicious activity, velocity fraud, and pattern fraud. It also integrates with the `ChequeHistoryManager` for historical analysis.
+
+#### Key Features:
+- **Fraud Detection Checks:**
+  - Duplicate cheques
+  - Abnormal amounts
+  - Suspicious activity
+  - Velocity fraud
+  - Pattern fraud
+  - Historical duplicates
+  - Unusual frequency
+  - Similar recent transactions
+
+- **Fraud Alert Levels:**
+  - LOW, MEDIUM, HIGH, CRITICAL
+
+#### Method Highlights:
+- `isFraudulentCheque`: Combines multiple fraud detection checks and determines the fraud alert level.
+- `logFraudChecks`: Logs the results of fraud detection checks.
+- `determineAlertLevel`: Determines the fraud alert level based on the results of individual checks.
+
+### 8. **CurrencyRate Class**
+The `CurrencyRate` class stores exchange rate information along with a timestamp for when the rate was last updated.
+
+#### Key Methods:
+- `getRate`: Returns the exchange rate.
+- `getLastUpdated`: Returns the timestamp of the last update.
+
+### 9. **ChequeHistoryManager Class**
+The `ChequeHistoryManager` class manages historical cheque data and provides methods to record and display cheque history.
+
+#### Key Methods:
+- `recordCheque`: Records a cheque transaction.
+- `displayChequeHistory`: Displays the history of cheques for a specific account.
 
 ## External Dependencies
-- **`FALLBACK_RATES`**: A predefined map of fallback exchange rates.
-- **`exchangeRateCache`**: A cache for storing exchange rates with timestamps.
-- **`CurrencyRate`**: A class representing an exchange rate and its last updated timestamp.
-- **`CACHE_EXPIRY_MINUTES`**: The duration for which cached rates are valid.
-- **`FraudDetection`**: A service for detecting fraudulent activities.
-- **`ChequeHistoryManager`**: Manages historical cheque data.
-- **`ChequeTransaction`**: Represents a cheque transaction, used in fraud detection.
+- `FALLBACK_RATES`: A predefined map of fallback exchange rates.
+- `exchangeRateCache`: A cache for storing exchange rates.
+- `getExchangeRate`: A method to fetch exchange rates.
+- `ChequeHistoryManager`: A class for managing cheque history.
+- `FraudDetection`: A class for performing fraud detection checks.
+- `ChequeTransaction`: A class representing cheque transactions.
+- `logFraudChecks`: A method for logging fraud detection results.
+- `determineAlertLevel`: A method for determining fraud alert levels.
+
+## Notes
+- The code relies on an external API for fetching exchange rates. The API key is hardcoded as "demo" and should be replaced with a valid key in a production environment.
+- The fraud detection logic is comprehensive and includes multiple checks to ensure the security of financial transactions.
+- The `CurrencyRate` and `ChequeHistoryManager` classes are utility classes that support the main functionalities of the application.

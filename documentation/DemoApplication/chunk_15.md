@@ -2,103 +2,127 @@
 original_file: "legacy_source/DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_15"
-confidence_score: 0.9
+confidence_score: 0.95
 external_dependencies: ["CurrencyExchangeService", "SignatureVerificationService", "CoreBankingSystemUpdater", "UserService", "ChequeHistoryManager", "FraudDetectionService", "ExceptionReportManager", "ChequeStatusManager", "EmailNotificationService", "AdminService", "ChequeImageHandler", "CryptographyService", "ClearinghouseService", "ChequeProcessor", "ChequePrintingService"]
 ---
 
 # Documentation for `ChequeApplication` Class
 
 ## Overview
-The `ChequeApplication` class serves as the main entry point for a cheque processing system. It initializes various services, handles user authentication, and provides a menu-driven interface for performing a wide range of cheque-related operations. The system includes enhanced fraud detection, cheque history management, and administrative tools.
+The `ChequeApplication` class serves as the entry point for a comprehensive cheque processing system. It initializes various services, handles user authentication, and provides a menu-driven interface for performing a wide range of cheque-related operations. The system includes enhanced fraud detection, cheque history management, and administrative tools.
 
 ## Key Features
-- User authentication and session management.
+- User authentication with retry limits.
 - Cheque processing (single and batch).
 - Fraud detection and exception reporting.
 - Currency exchange information.
 - Cheque image scanning, encryption, and submission.
-- Administrative tools for managing IFSC codes, batches, and stuck transactions.
+- Administrative tools for managing IFSC codes, batches, and transactions.
 
-## Code Walkthrough
-
-### `main` Method
+## Main Method
 The `main` method is the entry point of the application. It performs the following tasks:
 
-1. **Initialization**:
-   - Initializes various services required for cheque processing, such as:
-     - `CurrencyExchangeService`
-     - `SignatureVerificationService`
-     - `CoreBankingSystemUpdater`
-     - `UserService`
-     - `ChequeHistoryManager`
-     - `FraudDetectionService`
-     - `ExceptionReportManager`
-     - `ChequeStatusManager`
-     - `EmailNotificationService`
-     - `AdminService`
-     - `ChequeImageHandler`
-     - `CryptographyService`
-     - `ClearinghouseService`
-   - Sets up dependencies, such as linking the `FraudDetectionService` with the `ChequeHistoryManager`.
+### 1. Initialization
+- Initializes various services required for cheque processing:
+  - `CurrencyExchangeService`
+  - `SignatureVerificationService`
+  - `CoreBankingSystemUpdater`
+  - `UserService`
+  - `ChequeHistoryManager`
+  - `FraudDetectionService`
+  - `ExceptionReportManager`
+  - `ChequeStatusManager`
+  - `EmailNotificationService`
+  - `AdminService`
+  - `ChequeImageHandler`
+  - `CryptographyService`
+  - `ClearinghouseService`
+- Sets up dependencies, such as linking the `FraudDetectionService` with the `ChequeHistoryManager`.
 
-2. **User Authentication**:
-   - Calls the `performLogin` method to authenticate the user. If authentication fails after multiple attempts, the application exits.
+### 2. User Authentication
+- Calls the `performLogin` method to authenticate the user.
+- Exits the application if the maximum login attempts are reached.
 
-3. **Main Menu**:
-   - Displays a menu with various options for the user to interact with the system. The options include:
-     1. Process a single cheque.
-     2. Process multiple cheques in a batch.
-     3. View cheque history.
-     4. Display currency exchange information.
-     5. Generate cheque reports.
-     6. Scan, encrypt, and send a cheque image.
-     7. Simulate cheque printing.
-     8. Exit the application.
-     9. View cheque exception reports.
-     10. View all cheque statuses.
-     11. Cancel a cheque.
-     12. Record FIR/legal complaint for a bounced cheque.
-     13. Admin: Edit IFSC/Bank codes.
-     14. Admin: Manage batches.
-     15. Admin: Reset stuck transactions.
+### 3. Menu-Driven Interface
+- Displays a menu with various options for cheque processing and administrative tasks.
+- Handles user input and executes the corresponding functionality using a `switch` statement.
 
-4. **Menu Option Handling**:
-   - The user selects an option by entering a number. The application then performs the corresponding action using helper methods and services. For example:
-     - **Option 1**: Processes a single cheque using the `ChequeProcessor` service.
-     - **Option 2**: Processes multiple cheques in a batch using the `processChequeBatch` method.
-     - **Option 3**: Displays cheque history using the `ChequeHistoryManager`.
-     - **Option 4**: Displays currency exchange information using the `displayCurrencyExchangeMenu` method.
-     - **Option 5**: Generates reports using the `handleReportGeneration` method.
-     - **Option 6**: Handles cheque image submission using the `handleChequeImageSubmission` method.
-     - **Option 7**: Simulates cheque printing using the `ChequePrintingService`.
-     - **Option 8**: Logs out and exits the application.
-     - **Option 9**: Displays exception reports using the `ExceptionReportManager`.
-     - **Option 10**: Displays all cheque statuses using the `ChequeStatusManager`.
-     - **Option 11**: Cancels a cheque using the `ChequeProcessor`.
-     - **Option 12**: Records FIR/legal complaints for bounced cheques using the `ExceptionReportManager`.
+## Menu Options
+The menu provides the following options:
 
-### Helper Methods
+1. **Process a Single Cheque**
+   - Prompts the user for account number, cheque number, currency, amount, and signature.
+   - Calls the `processCheque` method of the `ChequeProcessor` to process the cheque.
 
-#### `performLogin`
-Handles user authentication by interacting with the `UserService`. If the user fails to authenticate after multiple attempts, the application exits.
+2. **Process Multiple Cheques (Batch)**
+   - Calls the `processChequeBatch` method to handle batch processing of cheques.
 
-#### `processChequeBatch`
-Processes multiple cheques in a batch. It collects cheque details from the user and uses the `ChequeProcessor` to process each cheque.
+3. **View Cheque History**
+   - Prompts the user for an account number and displays the cheque history using the `ChequeHistoryManager`.
 
-#### `displayCurrencyExchangeMenu`
-Displays a menu for currency exchange operations, such as viewing supported currencies, getting exchange rates, and converting currencies. Interacts with the `CurrencyExchangeService`.
+4. **Currency Exchange Information**
+   - Calls the `displayCurrencyExchangeMenu` method to provide currency exchange options.
 
-#### `handleReportGeneration`
-Generates various reports related to cheque processing. Interacts with the `ChequeHistoryManager`.
+5. **Generate Cheque Reports**
+   - Calls the `handleReportGeneration` method to generate reports.
 
-#### `handleChequeImageSubmission`
-Handles the process of scanning, encrypting, signing, and sending a cheque image. Interacts with the `ChequeImageHandler`, `CryptographyService`, and `ClearinghouseService`.
+6. **Scan, Encrypt, and Send Cheque Image**
+   - Calls the `handleChequeImageSubmission` method to handle cheque image processing.
 
-#### `handleChequePrinting`
-Simulates cheque printing. Uses the `ChequePrintingService`.
+7. **Simulate Cheque Printing**
+   - Calls the `handleChequePrinting` method to simulate cheque printing.
+
+8. **Exit**
+   - Logs out the user and exits the application.
+
+9. **View Cheque Exception Report**
+   - Displays exceptions using the `ExceptionReportManager`.
+
+10. **View All Cheque Statuses**
+    - Displays all cheque statuses using the `ChequeStatusManager`.
+
+11. **Cancel a Cheque**
+    - Prompts the user for account and cheque numbers and cancels the cheque using the `ChequeProcessor`.
+
+12. **Record FIR/Legal Complaint for Bounced Cheque**
+    - Prompts the user for FIR details and records them using the `ExceptionReportManager`.
+
+13. **Admin: Edit IFSC/Bank Codes**
+    - Provides administrative functionality to edit IFSC and bank codes.
+
+14. **Admin: Manage Batches**
+    - Provides administrative functionality to manage cheque batches.
+
+15. **Admin: Reset Stuck Transactions**
+    - Provides administrative functionality to reset stuck transactions.
+
+## Key Methods
+
+### `performLogin`
+- Authenticates the user by validating credentials.
+- Returns an authenticated `User` object or `null` if authentication fails.
+
+### `processChequeBatch`
+- Handles batch processing of multiple cheques.
+- Collects cheque details from the user and processes them using the `ChequeProcessor`.
+
+### `displayCurrencyExchangeMenu`
+- Displays a menu for currency exchange options.
+- Allows the user to view supported currencies, get exchange rates, and convert currencies.
+
+### `handleReportGeneration`
+- Generates various reports related to cheque processing.
+
+### `handleChequeImageSubmission`
+- Handles the scanning, encryption, and submission of cheque images.
+- Uses the `ChequeImageHandler`, `CryptographyService`, and `ClearinghouseService`.
+
+### `handleChequePrinting`
+- Simulates the printing of cheques.
+- Uses the `ChequePrintingService`.
 
 ## External Dependencies
-The `ChequeApplication` class relies on the following external services and classes:
+The class relies on several external services and managers, including:
 - `CurrencyExchangeService`
 - `SignatureVerificationService`
 - `CoreBankingSystemUpdater`
@@ -115,5 +139,4 @@ The `ChequeApplication` class relies on the following external services and clas
 - `ChequeProcessor`
 - `ChequePrintingService`
 
-## Conclusion
-The `ChequeApplication` class is a comprehensive system for managing cheque-related operations, including processing, fraud detection, and administrative tasks. It is designed to be user-friendly and extensible, with a modular architecture that allows for easy integration of new features.
+These dependencies are initialized at the start of the application and are used throughout the program to perform various tasks.

@@ -1,97 +1,113 @@
 ---
-original_file: "legacy_source/DemoApplication.java"
+original_file: "legacy_source\DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_16"
-confidence_score: 0.95
-external_dependencies: ["AdminService", "BatchCheque", "Logger", "UserService", "User", "ChequeProcessor"]
+confidence_score: 0.9
+external_dependencies: ["AdminService", "BatchCheque", "Logger", "UserService", "ChequeProcessor"]
 ---
 
 # Documentation for Code Chunk
 
+This code chunk is part of the `DemoApplication` class and implements several administrative functionalities for managing IFSC codes, bank codes, cheque batches, and stuck transactions. Additionally, it includes methods for user login and batch cheque processing.
+
 ## Overview
-This code chunk is part of the `DemoApplication` class and implements several administrative functionalities for managing IFSC codes, bank codes, cheque batches, and stuck transactions. Additionally, it includes methods for user login and batch cheque processing. The code is structured using nested switch-case statements to handle various user choices.
 
-## Key Functionalities
+The code is structured into several `case` blocks within a `switch` statement, each handling a specific administrative task. The tasks include:
 
-### 1. **Admin: Edit IFSC/Bank Codes**
-This section allows administrators to manage IFSC and bank codes. The options include:
-- Adding or updating an IFSC code.
-- Adding or updating a bank code.
-- Viewing all IFSC codes.
-- Viewing all bank codes.
+1. **Editing IFSC/Bank Codes**
+2. **Managing Batches**
+3. **Resetting Stuck Transactions**
+4. **User Login**
+5. **Batch Cheque Processing**
 
-#### Code Details:
-- **Option 1:** Prompts the user to enter an IFSC and a bank code, then calls `adminService.addOrUpdateIFSC(ifsc, bankCode)`.
-- **Option 2:** Prompts the user to enter a bank code and name, then calls `adminService.addOrUpdateBankCode(code, name)`.
-- **Option 3:** Calls `adminService.displayIFSCs()` to display all IFSC codes.
-- **Option 4:** Calls `adminService.displayBankCodes()` to display all bank codes.
+### Key Classes and Methods Used
 
-### 2. **Admin: Manage Batches**
-This section allows administrators to manage cheque batches. The options include:
-- Creating a new batch.
-- Viewing all batches.
-- Viewing details of a specific batch.
+- **`AdminService`**: Provides methods for managing IFSC codes, bank codes, batches, and stuck transactions.
+- **`BatchCheque`**: Represents a cheque in a batch, including details like account number, cheque number, currency, amount, and signature.
+- **`Logger`**: Used for logging errors, warnings, and informational messages.
+- **`UserService`**: Handles user authentication and management.
+- **`ChequeProcessor`**: Processes cheques in a batch, including signature verification and fraud detection.
 
-#### Code Details:
-- **Option 1:**
-  - Prompts the user to enter a batch ID and the number of cheques in the batch.
-  - Collects details for each cheque (account number, cheque number, currency, amount, and signature).
-  - Creates a list of `BatchCheque` objects and calls `adminService.createBatch(batchId, batchCheques)`.
-- **Option 2:** Calls `adminService.displayBatches()` to display all batches.
-- **Option 3:** Prompts the user to enter a batch ID and calls `adminService.displayBatchDetails(viewBatchId)`.
+## Detailed Functionality
 
-### 3. **Admin: Reset Stuck Transactions**
-This section allows administrators to manage stuck transactions. The options include:
-- Marking a cheque as stuck.
-- Resetting a stuck cheque.
-- Viewing all stuck transactions.
+### Case 13: Edit IFSC/Bank Codes
 
-#### Code Details:
-- **Option 1:** Prompts the user to enter a cheque number and calls `adminService.markTransactionStuck(stuckChq)`.
-- **Option 2:** Prompts the user to enter a cheque number and calls `adminService.resetStuckTransaction(resetChq)`.
-- **Option 3:** Calls `adminService.displayStuckTransactions()` to display all stuck transactions.
+This block allows administrators to:
+- Add or update IFSC codes.
+- Add or update bank codes.
+- View existing IFSC codes and bank codes.
 
-### 4. **User Login**
-The `performLogin` method handles user authentication. It allows up to three login attempts and uses the `UserService` class to authenticate users.
+#### Code Flow
+1. The user selects an option from the menu.
+2. Depending on the choice, the program calls the appropriate method from the `AdminService` class:
+   - `addOrUpdateIFSC(ifsc, bankCode)`
+   - `addOrUpdateBankCode(code, name)`
+   - `displayIFSCs()`
+   - `displayBankCodes()`
 
-#### Code Details:
-- Prompts the user for a username and password.
-- Calls `userService.authenticate(username, password)` to validate credentials.
-- Logs successful or failed login attempts using the `Logger` class.
-- Returns the authenticated `User` object or `null` if login fails after three attempts.
+### Case 14: Manage Batches
 
-### 5. **Batch Cheque Processing**
+This block allows administrators to:
+- Create a new batch of cheques.
+- View all existing batches.
+- View details of a specific batch.
+
+#### Code Flow
+1. The user selects an option from the menu.
+2. Depending on the choice, the program calls the appropriate method from the `AdminService` class:
+   - `createBatch(batchId, batchCheques)`
+   - `displayBatches()`
+   - `displayBatchDetails(viewBatchId)`
+
+### Case 15: Reset Stuck Transactions
+
+This block allows administrators to:
+- Mark a cheque as stuck.
+- Reset a stuck cheque.
+- View all stuck transactions.
+
+#### Code Flow
+1. The user selects an option from the menu.
+2. Depending on the choice, the program calls the appropriate method from the `AdminService` class:
+   - `markTransactionStuck(stuckChq)`
+   - `resetStuckTransaction(resetChq)`
+   - `displayStuckTransactions()`
+
+### User Login
+
+The `performLogin` method handles user authentication. It allows up to three login attempts and uses the `UserService` class to validate credentials.
+
+#### Code Flow
+1. The user is prompted to enter their username and password.
+2. The `UserService.authenticate(username, password)` method is called to validate the credentials.
+3. If authentication is successful, the user is logged in; otherwise, they are given up to three attempts.
+
+### Batch Cheque Processing
+
 The `processChequeBatch` method handles the processing of multiple cheques in a batch.
 
-#### Code Details:
-- Prompts the user to enter the number of cheques in the batch.
-- Collects details for each cheque (account number, cheque number, currency, amount, and signature).
-- Creates a list of `BatchCheque` objects for processing.
-- Handles input errors and logs them using the `Logger` class.
+#### Code Flow
+1. The user is prompted to enter the number of cheques in the batch.
+2. For each cheque, the user provides details such as account number, cheque number, currency, amount, and signature.
+3. Each cheque is added to a list of `BatchCheque` objects.
+4. The list is then processed by the `ChequeProcessor` class.
+
+## Error Handling
+
+- Exceptions during user input or processing are caught and logged using the `Logger` class.
+- The program ensures that the scanner buffer is cleared after invalid input to avoid cascading errors.
 
 ## External Dependencies
 
-### 1. **AdminService**
-Provides methods for managing IFSC codes, bank codes, cheque batches, and stuck transactions.
+- **`AdminService`**: Manages administrative tasks.
+- **`BatchCheque`**: Represents cheque details.
+- **`Logger`**: Logs messages and errors.
+- **`UserService`**: Handles user authentication.
+- **`ChequeProcessor`**: Processes cheque batches.
 
-### 2. **BatchCheque**
-Represents a cheque in a batch, including details such as account number, cheque number, currency, amount, and signature.
+## Notes
 
-### 3. **Logger**
-Used for logging information, warnings, and errors.
-
-### 4. **UserService**
-Handles user authentication and management.
-
-### 5. **User**
-Represents a user in the system, including attributes such as username, password, and role.
-
-### 6. **ChequeProcessor**
-Processes cheques with functionalities such as signature verification, fraud detection, and currency conversion.
-
-## Error Handling
-- Exceptions during user login and cheque batch processing are caught and logged using the `Logger` class.
-- Input errors are handled gracefully, and the scanner buffer is cleared to avoid cascading issues.
-
-## Conclusion
-This code chunk implements critical administrative and user-facing functionalities in the `DemoApplication`. It leverages several external services and classes to provide a robust and modular design for managing banking operations.
+- The `AdminService` and `ChequeProcessor` classes are initialized elsewhere in the application.
+- The `Logger` class is used extensively for debugging and error reporting.
+- The `UserService` class includes methods for user authentication and registration.
+- The `BatchCheque` class encapsulates cheque details and is used in batch processing.

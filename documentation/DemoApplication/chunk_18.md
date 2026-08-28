@@ -1,149 +1,107 @@
 ---
-original_file: "legacy_source/DemoApplication.java"
+original_file: "legacy_source\\DemoApplication.java"
 language: "Java"
 chunk_id: "chunk_18"
 confidence_score: 0.95
-external_dependencies: ["Scanner", "ChequeImageHandler", "CryptographyService", "ClearinghouseService", "ChequePrintingService", "User"]
+external_dependencies: ["java.util.Scanner", "java.text.SimpleDateFormat", "java.util.Date", "java.text.ParseException", "java.util.Locale", "java.text.NumberFormat", "java.util.HashMap", "java.util.Map", "java.nio.charset.StandardCharsets", "ChequeImageHandler", "CryptographyService", "ClearinghouseService"]
 ---
 
 # Documentation for Code Chunk
 
-## Overview
-This code chunk contains two main functionalities:
-1. **Cheque Printing Simulation**: Captures user input for cheque details and simulates the printing of a cheque.
-2. **Cheque Image Submission**: Handles the process of scanning, encrypting, signing, and submitting a cheque image to a clearinghouse.
+This code chunk contains multiple functionalities related to cheque processing, including cheque printing, cheque image submission, user management, and exception reporting. Below is a detailed explanation of the key components and their purposes:
 
-Additionally, the code includes definitions for several utility classes, such as `ChequePrintingService`, `User`, `UserService`, and `ExceptionReportManager`.
+## 1. **Cheque Printing**
+The `ChequePrintingService` class provides a method to simulate the printing of a cheque. It formats the cheque details, such as payee name, amount, date, account number, and cheque number, and prints them in a structured format.
 
----
+### Method: `printCheque`
+- **Parameters:**
+  - `payeeName` (String): The name of the payee.
+  - `amount` (double): The amount to be paid.
+  - `date` (Date): The date of the cheque.
+  - `accountNumber` (String): The account number from which the cheque is issued.
+  - `chequeNumber` (String): The cheque number.
+  - `bankName` (String): The name of the bank issuing the cheque.
+- **Functionality:**
+  - Formats the cheque details using `SimpleDateFormat` for the date and `NumberFormat` for the amount.
+  - Prints the cheque details in a structured format to the console.
 
-## 1. Cheque Printing Simulation
+## 2. **Cheque Image Submission**
+The `handleChequeImageSubmission` method handles the process of scanning, encrypting, signing, and sending a cheque image to a clearinghouse.
 
-### Purpose
-The `handleChequePrinting` method simulates the process of printing a cheque. It collects user input for the payee name, amount, date, account number, and cheque number, and then uses the `ChequePrintingService` to print a simulated cheque.
+### Method: `handleChequeImageSubmission`
+- **Parameters:**
+  - `scanner` (Scanner): Used to read user input.
+  - `imageHandler` (ChequeImageHandler): Service to handle image upload.
+  - `cryptoService` (CryptographyService): Service for encryption and signing.
+  - `clearinghouseService` (ClearinghouseService): Service to send data to the clearinghouse.
+  - `currentUser` (User): The currently logged-in user.
+- **Functionality:**
+  1. Prompts the user for account number, cheque number, and image file path.
+  2. Loads the cheque image data using the `ChequeImageHandler`.
+  3. Encrypts the image data using the `CryptographyService`.
+  4. Signs the encrypted image data using the `CryptographyService` and the user's private key.
+  5. Submits the encrypted and signed data to the clearinghouse using the `ClearinghouseService`.
 
-### Code Walkthrough
-```java
-System.out.print("Enter Payee Name: ");
-String payeeName = scanner.nextLine();
-```
-Prompts the user to enter the payee's name and stores it in the `payeeName` variable.
+## 3. **User Management**
+The `User` class represents a user of the system, and the `UserService` class provides methods for user registration and authentication.
 
-```java
-System.out.print("Enter Amount: ");
-double amount = scanner.nextDouble();
-scanner.nextLine(); // Consume newline
-```
-Prompts the user to enter the cheque amount and stores it in the `amount` variable. The `scanner.nextLine()` is used to consume the newline character left by `nextDouble()`.
+### Class: `User`
+- **Attributes:**
+  - `username` (String): The username of the user.
+  - `password` (String): The password of the user (stored in plain text for simplicity).
+  - `role` (String): The role of the user (e.g., "EMPLOYEE", "ACCOUNT_HOLDER").
+- **Methods:**
+  - `getUsername()`: Returns the username.
+  - `getPassword()`: Returns the password.
+  - `getRole()`: Returns the role.
 
-```java
-System.out.print("Enter Date (YYYY-MM-DD): ");
-String dateStr = scanner.nextLine();
-Date chequeDate;
-try {
-    chequeDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
-} catch (java.text.ParseException e) {
-    System.out.println("Invalid date format. Please use YYYY-MM-DD. Using current date.");
-    chequeDate = new Date();
-}
-```
-Prompts the user to enter the cheque date in the format `YYYY-MM-DD`. If the input is invalid, the current date is used as a fallback.
+### Class: `UserService`
+- **Attributes:**
+  - `users` (Map<String, User>): A map of registered users.
+- **Methods:**
+  - `registerUser(String username, String password, String role)`: Registers a new user.
+  - `authenticate(String username, String password)`: Authenticates a user based on username and password.
 
-```java
-System.out.print("Enter Account Number: ");
-String accountNumber = scanner.nextLine();
+## 4. **Exception Reporting**
+The `ExceptionReportManager` class manages exception reports for cheques, such as bounced, duplicate, altered, or delayed cheques. It also supports recording FIR/legal complaint details for bounced cheques.
 
-System.out.print("Enter Cheque Number: ");
-String chequeNumber = scanner.nextLine();
-```
-Prompts the user to enter the account number and cheque number, storing them in `accountNumber` and `chequeNumber` respectively.
+### Inner Class: `ExceptionRecord`
+- **Attributes:**
+  - `accountNumber` (String): The account number associated with the cheque.
+  - `chequeNumber` (String): The cheque number.
+  - `type` (String): The type of exception (e.g., "Bounced").
+  - `details` (String): Additional details about the exception.
+  - `date` (Date): The date of the exception.
+  - `firDetails` (FIRDetails): Details of the FIR/legal complaint (if applicable).
 
-```java
-String bankName = "Global Trust Bank";
-```
-Sets the bank name to a default value. This can be made configurable in the future.
+### Inner Class: `FIRDetails`
+- **Attributes:**
+  - `firNumber` (String): The FIR number.
+  - `policeStation` (String): The police station where the FIR was filed.
+  - `firDate` (Date): The date of the FIR.
+  - `remarks` (String): Additional remarks about the FIR.
 
-```java
-printingService.printCheque(payeeName, amount, chequeDate, accountNumber, chequeNumber, bankName);
-```
-Calls the `printCheque` method of the `ChequePrintingService` to simulate the printing of the cheque with the provided details.
+## 5. **Email Notification Service**
+The `EmailNotificationService` class simulates sending email notifications.
 
----
-
-## 2. Cheque Image Submission
-
-### Purpose
-The `handleChequeImageSubmission` method facilitates the submission of a cheque image to a clearinghouse. It involves scanning the cheque image, encrypting the image data, signing the encrypted data, and submitting it to the clearinghouse.
-
-### Code Walkthrough
-```java
-System.out.print("Enter Account Number for the cheque: ");
-String accountNumber = scanner.nextLine();
-System.out.print("Enter Cheque Number: ");
-String chequeNumber = scanner.nextLine();
-System.out.print("Enter path to cheque image file (e.g., /path/to/cheque.jpg): ");
-String imagePath = scanner.nextLine();
-```
-Prompts the user to enter the account number, cheque number, and the file path to the cheque image.
-
-```java
-byte[] imageData = imageHandler.loadImageData(imagePath);
-if (imageData == null) {
-    System.out.println("Failed to load image data. Aborting submission.");
-    return;
-}
-System.out.println("Cheque image \"uploaded\" successfully from: " + imagePath);
-```
-Uses the `ChequeImageHandler` service to load the image data from the specified file path. If the image data cannot be loaded, the process is aborted.
-
-```java
-String encryptionKey = "a-very-secure-encryption-key"; // Placeholder
-byte[] encryptedImageData = cryptoService.encryptData(imageData, encryptionKey);
-System.out.println("Image data encrypted.");
-```
-Encrypts the image data using the `CryptographyService` with a placeholder encryption key.
-
-```java
-String privateKey = currentUser.getUsername() + "-private-key"; // Placeholder
-String digitalSignature = cryptoService.signData(encryptedImageData, privateKey);
-System.out.println("Encrypted image data signed. Signature: " + digitalSignature.substring(0, 10) + "...");
-```
-Signs the encrypted image data using the `CryptographyService` and the private key derived from the current user's username. A truncated version of the digital signature is displayed.
-
-```java
-clearinghouseService.submitToClearinghouse(accountNumber, chequeNumber, encryptedImageData, digitalSignature);
-```
-Submits the encrypted and signed cheque image data to the clearinghouse using the `ClearinghouseService`.
-
----
-
-## 3. Utility Classes
-
-### ChequePrintingService
-This class simulates the printing of a cheque. It formats the cheque details, including the payee name, amount, date, account number, and cheque number, and prints them in a structured format.
-
-### User
-Represents a user of the system, such as an employee or account holder. It includes attributes like `username`, `password`, and `role`.
-
-### UserService
-Manages user accounts and handles authentication. It includes methods for registering new users and authenticating existing users.
-
-### ExceptionReportManager
-Manages exception reports for cheques, such as bounced, duplicate, altered, or delayed cheques. It also supports recording FIR/legal complaint details for bounced cheques.
-
----
+### Method: `sendEmail`
+- **Parameters:**
+  - `to` (String): The recipient's email address.
+  - `subject` (String): The subject of the email.
+  - `body` (String): The body of the email.
+- **Functionality:**
+  - Prints the email details to the console.
 
 ## External Dependencies
-- `Scanner`: Used for capturing user input.
-- `ChequeImageHandler`: Handles the loading of cheque image data.
-- `CryptographyService`: Provides methods for encrypting and signing data.
-- `ClearinghouseService`: Facilitates the submission of cheque data to a clearinghouse.
-- `ChequePrintingService`: Simulates the printing of cheques.
-- `User`: Represents the currently logged-in user.
-
----
-
-## Notes
-- The `ChequePrintingService` and `CryptographyService` are simulated and do not perform actual printing or cryptographic operations.
-- The encryption key and private key used in the `handleChequeImageSubmission` method are placeholders and should be replaced with secure key management in a real system.
-- The `ExceptionReportManager` class includes a nested `FIRDetails` class for handling legal complaint details related to bounced cheques.
+- `ChequeImageHandler`: Handles image loading and processing.
+- `CryptographyService`: Provides encryption and signing functionalities.
+- `ClearinghouseService`: Submits data to the clearinghouse.
+- `java.util.Scanner`: Reads user input.
+- `java.text.SimpleDateFormat`: Formats dates.
+- `java.util.Date`: Represents dates.
+- `java.text.ParseException`: Handles date parsing errors.
+- `java.util.Locale`: Represents locale settings.
+- `java.text.NumberFormat`: Formats numbers.
+- `java.util.HashMap`: Provides a map implementation.
+- `java.util.Map`: Represents a map interface.
+- `java.nio.charset.StandardCharsets`: Provides character set constants.
