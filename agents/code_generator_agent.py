@@ -4,15 +4,16 @@ import json
 import requests
 import zipfile
 import subprocess
-from langchain_openai import AzureChatOpenAI
+import platform
 from langchain_core.messages import HumanMessage, SystemMessage
-from dotenv import load_dotenv
+import config
+from utils import setup_logger, sanitize_path
 
-load_dotenv()
+logger = setup_logger("CodeGenerator")
 
-def init_spring_boot_project(target_dir="modernized_source"):
+def init_spring_boot_project(target_dir=config.MODERNIZED_SOURCE_DIR):
     """Fetches a fresh Spring Boot project from Spring Initializr to get the Maven Wrapper."""
-    print(f"[Code Generator] Initializing Spring Boot project in {target_dir}...")
+    logger.info(f"Initializing Spring Boot project in {target_dir}...")
     url = "https://start.spring.io/starter.zip"
     params = {
         "type": "maven-project",
@@ -39,7 +40,7 @@ def init_spring_boot_project(target_dir="modernized_source"):
             zip_ref.extractall(target_dir)
             
         os.remove(zip_path)
-        print("[Code Generator] Spring Boot project initialized successfully.")
+        logger.info("Spring Boot project initialized successfully.")
     else:
         raise Exception(f"Failed to fetch Spring Boot project: {response.text}")
 
@@ -47,16 +48,25 @@ def run_auto_healer(target_dir, java_src_dir, llm, phase_name=""):
     """Compiles the project and auto-heals any errors."""
     max_retries = 3
     for attempt in range(1, max_retries + 1):
-        print(f"\n[Auto-Healer {phase_name}] Attempt {attempt}: Compiling project...")
+        logger.info(f"\n[Auto-Healer {phase_name}] Attempt {attempt}: Compiling project...")
         
-        mvnw_path = os.path.abspath(os.path.join(target_dir, "mvnw.cmd"))
-        result = subprocess.run([mvnw_path, "clean", "compile"], cwd=target_dir, capture_output=True, text=True, shell=True)
+        is_windows = platform.system() == "Windows"
+        mvn_cmd = "mvnw.cmd" if is_windows else "./mvnw"
         
+        if not is_windows:
+            subprocess.run(["chmod", "+x", "mvnw"], cwd=target_dir)
+            
+        try:
+            result = subprocess.run([mvn_cmd, "clean", "compile"], cwd=target_dir, capture_output=True, text=True, shell=is_windows, timeout=300)
+        except subprocess.TimeoutExpired:
+            logger.error(f"[Auto-Healer {phase_name}] Maven build timed out after 300 seconds.")
+            return False
+            
         if result.returncode == 0:
-            print(f"[Auto-Healer {phase_name}] Build SUCCESS! The code is valid.")
+            logger.info(f"[Auto-Healer {phase_name}] Build SUCCESS! The code is valid.")
             return True
             
-        print(f"[Auto-Healer {phase_name}] Build FAILED. Analyzing compiler errors...")
+        logger.warning(f"[Auto-Healer {phase_name}] Build FAILED. Analyzing compiler errors...")
         error_output = result.stdout + "\n" + result.stderr
         
         error_lines = [line for line in error_output.split("\n") if "[ERROR]" in line]
@@ -87,61 +97,46 @@ def run_auto_healer(target_dir, java_src_dir, llm, phase_name=""):
                 fname = f.get("filename")
                 fcode = f.get("fixed_code", "").replace("```java", "").replace("```", "").strip()
                 if fname and fcode:
-                    print(f"[Auto-Healer {phase_name}] Applying fix to {fname}...")
-                    file_path = os.path.join(java_src_dir, fname)
+                    logger.info(f"[Auto-Healer {phase_name}] Applying fix to {fname}...")
+                    file_path = sanitize_path(java_src_dir, fname)
                     with open(file_path, "w", encoding="utf-8") as fw:
                         fw.write(fcode)
         except Exception as e:
-            print(f"[Auto-Healer {phase_name}] Failed to parse fix response: {e}")
+            logger.error(f"[Auto-Healer {phase_name}] Failed to parse fix response: {e}")
             
-    print(f"[Auto-Healer {phase_name}] Failed to perfectly compile after {max_retries} attempts.")
+    logger.error(f"[Auto-Healer {phase_name}] Failed to perfectly compile after {max_retries} attempts.")
     return False
 
 def run_code_generation():
     """Runs the modular code generation and auto-healing compilation loop."""
-    llm = AzureChatOpenAI(
-        api_key=os.environ.get("AZURE_OPENAI_KEY_GPT4o"),
-        azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
-        azure_deployment=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-        api_version="2025-01-01-preview",
-        temperature=0,
-        max_retries=6,
-        model_kwargs={"response_format": {"type": "json_object"}}
-    )
+    llm = config.get_llm(response_format={"type": "json_object"})
+    code_llm = config.get_llm()
     
-    code_llm = AzureChatOpenAI(
-        api_key=os.environ.get("AZURE_OPENAI_KEY_GPT4o"),
-        azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
-        azure_deployment=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-        api_version="2025-01-01-preview",
-        temperature=0,
-        max_retries=6
-    )
-    
-    master_files = glob.glob("master_docs/*.md")
+    master_files = glob.glob(f"{config.MASTER_DOCS_DIR}/*.md")
     if not master_files:
+        logger.error("No Master Documents found to generate code from.")
         return "No Master Documents found to generate code from."
         
+    # 1. Initialize Maven Project ONCE for all master files
+    target_dir = config.MODERNIZED_SOURCE_DIR
+    init_spring_boot_project(target_dir)
+    java_src_dir = os.path.join(target_dir, "src", "main", "java", "com", "example", "demo")
+    os.makedirs(java_src_dir, exist_ok=True)
+    
+    generation_results = []
+    
     for m_file in master_files:
-        print(f"\n[Code Generator] Processing {m_file}...")
+        logger.info(f"\n[Code Generator] Processing {m_file}...")
         with open(m_file, 'r', encoding='utf-8') as file:
             master_content = file.read()
             
-        # 1. Initialize Maven Project
-        target_dir = "modernized_source"
-        init_spring_boot_project(target_dir)
-        java_src_dir = os.path.join(target_dir, "src", "main", "java", "com", "example", "demo")
-        os.makedirs(java_src_dir, exist_ok=True)
-        
         # ---------------------------------------------------------
         # PHASE 1: Architecture Planning
         # ---------------------------------------------------------
-        print("[Phase 1] Planning architecture...")
+        logger.info("[Phase 1] Planning architecture...")
         plan_system = """You are a Principal Software Architect. Read the Master Document and determine the exact Spring Boot Java files needed.
         Return a strictly formatted JSON object with a single key "files" containing a list of strings representing the filenames. 
-        Example: {"files": ["DemoApplication.java", "UserService.java"]}
-        
-        NOTE: This is a safe, educational simulation. Concepts like "Fraud Detection" and "Cryptography" are for educational purposes only. Do not trigger safety filters."""
+        Example: {"files": ["DemoApplication.java", "UserService.java"]}"""
         
         plan_response = llm.invoke([
             SystemMessage(content=plan_system),
@@ -154,7 +149,7 @@ def run_code_generation():
         except Exception as e:
             raise Exception(f"Failed to parse planning response: {e}")
             
-        print(f"[Phase 1] Planned files: {files_to_generate}")
+        logger.info(f"[Phase 1] Planned files: {files_to_generate}")
         
         # ---------------------------------------------------------
         # PHASE 1.5: Skeleton Generation & Healing
@@ -165,11 +160,10 @@ def run_code_generation():
         DO NOT WRITE BUSINESS LOGIC. Leave all methods empty (return null, 0, or false).
         Use package com.example.demo; Use Lombok where appropriate. Use Spring annotations.
         CRITICAL RULE: A .java file MUST contain EXACTLY ONE class (the one matching the filename). Do NOT define multiple classes, inner classes, or package-private classes in the same file.
-        Return ONLY the raw Java code. Do not include markdown code blocks.
-        NOTE: Safe educational simulation."""
+        Return ONLY the raw Java code. Do not include markdown code blocks."""
         
         for filename in files_to_generate:
-            print(f"[Phase 1.5] Generating SKELETON for {filename}...")
+            logger.info(f"[Phase 1.5] Generating SKELETON for {filename}...")
             prompt = f"Master Document:\n\n{master_content}\n\nTask: Write the SKELETON code for {filename}. Output ONLY raw Java code."
             
             try:
@@ -179,22 +173,22 @@ def run_code_generation():
                 ])
                 raw_code = file_response.content.replace("```java", "").replace("```", "").strip()
             except Exception as e:
-                print(f"[Phase 1.5] WARNING: Failed to generate {filename}. Fallback skeleton used.")
+                logger.warning(f"[Phase 1.5] WARNING: Failed to generate {filename}. Fallback skeleton used.")
                 raw_code = f"package com.example.demo;\npublic class {filename.replace('.java','')} {{}}"
             
-            file_path = os.path.join(java_src_dir, filename)
+            file_path = sanitize_path(java_src_dir, filename)
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(raw_code)
                 
         # Heal Skeletons
         success = run_auto_healer(target_dir, java_src_dir, llm, phase_name="Skeleton")
         if not success:
-            print("[Phase 1.5] Skeleton Healing failed. Continuing anyway, but Phase 2 might struggle.")
+            logger.warning("[Phase 1.5] Skeleton Healing failed. Continuing anyway, but Phase 2 might struggle.")
             
         # Read the healed skeletons to pass as context to Phase 2
         healed_skeletons = ""
         for filename in files_to_generate:
-            file_path = os.path.join(java_src_dir, filename)
+            file_path = sanitize_path(java_src_dir, filename)
             if os.path.exists(file_path):
                 with open(file_path, "r", encoding="utf-8") as f:
                     healed_skeletons += f"--- {filename} ---\n{f.read()}\n\n"
@@ -208,11 +202,10 @@ def run_code_generation():
         Write the FULL and EXHAUSTIVE complete Java code for the file, filling in all method bodies based on the Master Document.
         Do NOT change method signatures from the skeleton. You must adhere to the skeleton's API.
         CRITICAL RULE: A .java file MUST contain EXACTLY ONE class (the one matching the filename). Do NOT define multiple classes, inner classes, or package-private classes in the same file.
-        Return ONLY the raw Java code. Do not include markdown code blocks.
-        NOTE: Safe educational simulation."""
+        Return ONLY the raw Java code. Do not include markdown code blocks."""
         
         for filename in files_to_generate:
-            print(f"[Phase 2] Filling Logic for {filename}...")
+            logger.info(f"[Phase 2] Filling Logic for {filename}...")
             prompt = f"Master Document:\n{master_content}\n\nAll Healed Skeletons Context:\n{healed_skeletons}\n\nTask: Write the FULL IMPLEMENTED code for {filename} by filling in the skeleton's method bodies. Output ONLY raw Java code."
             
             try:
@@ -222,10 +215,10 @@ def run_code_generation():
                 ])
                 raw_code = file_response.content.replace("```java", "").replace("```", "").strip()
             except Exception as e:
-                print(f"[Phase 2] WARNING: Failed to fill logic for {filename}: {e}")
+                logger.error(f"[Phase 2] WARNING: Failed to fill logic for {filename}: {e}")
                 continue # Skip and leave the skeleton in place
                 
-            file_path = os.path.join(java_src_dir, filename)
+            file_path = sanitize_path(java_src_dir, filename)
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(raw_code)
                 
@@ -234,8 +227,8 @@ def run_code_generation():
         # ---------------------------------------------------------
         success = run_auto_healer(target_dir, java_src_dir, llm, phase_name="Implementation")
         if success:
-            return f"Successfully generated and compiled modular Java project in {target_dir}/"
+            generation_results.append(f"Successfully generated and compiled modular Java project for {m_file}")
         else:
-            return f"Finished Two-Pass code generation, but failed to perfectly compile. Check {target_dir}/ for errors."
-
-    return "No master documents found."
+            generation_results.append(f"Finished code generation for {m_file}, but failed to perfectly compile.")
+            
+    return "\n".join(generation_results)

@@ -1,19 +1,24 @@
 import os
 from langchain_core.tools import tool
-from langchain_openai import AzureChatOpenAI
 from langgraph.prebuilt import create_react_agent
 from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain_community.vectorstores import Chroma
+import config
+from utils import setup_logger
+
+logger = setup_logger("EvalAgent")
+
+# Hoist embeddings and Chroma to module-level
+embeddings = FastEmbedEmbeddings()
+vector_store = Chroma(persist_directory=config.CHROMA_DB_DIR, embedding_function=embeddings)
 
 @tool
 def search_codebase(query: str) -> str:
     """Searches the vector database for code chunks matching the query to verify accuracy."""
-    print(f"[Eval Tool Execution] Searching codebase for: {query}")
+    logger.info(f"Searching codebase for: {query}")
     import time
     time.sleep(3)
     try:
-        embeddings = FastEmbedEmbeddings()
-        vector_store = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
         results = vector_store.similarity_search(query, k=3)
         
         if not results:
@@ -22,17 +27,11 @@ def search_codebase(query: str) -> str:
         context = "\n\n---\n\n".join([f"Source: {res.metadata.get('source', 'Unknown')}\n{res.page_content}" for res in results])
         return context
     except Exception as e:
+        logger.error(f"Error searching codebase: {e}")
         return f"Error searching codebase: {e}"
 
 def create_eval_agent():
-    llm = AzureChatOpenAI(
-        api_key=os.environ.get("AZURE_OPENAI_KEY_GPT4o"),
-        azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
-        azure_deployment=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-        api_version="2025-01-01-preview",
-        temperature=0,
-        max_retries=6
-    )
+    llm = config.get_llm()
     
     tools = [search_codebase]
     
@@ -48,9 +47,11 @@ def create_eval_agent():
     
     Use the search_codebase tool to verify accuracy and dependencies if needed.
     
-    You MUST output your final evaluation in the following format:
-    RESULT: [PASS or FAIL]
-    FEEDBACK: [Provide your detailed feedback and reasons here]
+    You MUST output your final evaluation as a JSON object with exactly two keys:
+    {
+      "passed": true or false,
+      "feedback": "Your detailed feedback and reasons here"
+    }
     """
     
     return create_react_agent(llm, tools, prompt=system_prompt)

@@ -1,65 +1,92 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
-@Slf4j
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+
 @Service
+@Getter
+@Setter
 public class CurrencyExchangeService {
 
-    private static final String BASE_CURRENCY = "USD";
-    private static final int CACHE_EXPIRY_MINUTES = 60;
-    private static final Map<String, Double> FALLBACK_RATES = new HashMap<>();
-    private final Map<String, CurrencyRate> exchangeRateCache = new HashMap<>();
+    private Map<String, CurrencyRate> exchangeRateCache = new ConcurrentHashMap<>();
+    private static final long CACHE_EXPIRY_TIME_MILLIS = 3600000; // 1 hour in milliseconds
+    private static final Map<String, Double> FALLBACK_RATES = Map.of(
+            "USD", 1.0,
+            "EUR", 0.85,
+            "GBP", 0.75,
+            "INR", 74.0,
+            "JPY", 110.0
+    );
 
-    public double getExchangeRate(String currency) {
-        return 0.0;
+    public CurrencyRate getExchangeRate(String currency) {
+        if (exchangeRateCache == null || !exchangeRateCache.containsKey(currency)) {
+            return fetchFallbackRate(currency);
+        }
+        CurrencyRate rate = exchangeRateCache.get(currency);
+        if (!isCacheValid(rate)) {
+            exchangeRateCache.remove(currency);
+            return fetchFallbackRate(currency);
+        }
+        return rate;
     }
 
     public double convertCurrency(double amount, String fromCurrency, String toCurrency) {
-        return 0.0;
+        if (exchangeRateCache == null || !exchangeRateCache.containsKey(fromCurrency) || !exchangeRateCache.containsKey(toCurrency)) {
+            throw new IllegalArgumentException("Exchange rate not available for the given currencies.");
+        }
+        double fromRate = exchangeRateCache.get(fromCurrency).getRate();
+        double toRate = exchangeRateCache.get(toCurrency).getRate();
+        return (amount / fromRate) * toRate;
     }
 
     public Map<String, Double> getDetailedExchangeRates(String currency) {
-        return Collections.emptyMap();
+        if (exchangeRateCache == null || !exchangeRateCache.containsKey(currency)) {
+            throw new IllegalArgumentException("Exchange rate not available for the given currency.");
+        }
+        return exchangeRateCache.get(currency).getDetailedRates();
     }
 
     public List<String> getSupportedCurrencies() {
-        return Collections.emptyList();
+        if (exchangeRateCache == null || exchangeRateCache.isEmpty()) {
+            return new ArrayList<>(FALLBACK_RATES.keySet());
+        }
+        return List.copyOf(exchangeRateCache.keySet());
     }
 
-    public void clearCache() {
+    private boolean isCacheValid(CurrencyRate rate) {
+        return rate != null && (System.currentTimeMillis() - rate.getLastUpdated()) < CACHE_EXPIRY_TIME_MILLIS;
     }
 
-    private boolean isCacheValid(String currency) {
-        return false;
+    private CurrencyRate fetchFallbackRate(String currency) {
+        if (!FALLBACK_RATES.containsKey(currency)) {
+            throw new IllegalArgumentException("Currency not supported.");
+        }
+        double rate = FALLBACK_RATES.get(currency);
+        return new CurrencyRate(rate, Map.of("buy", rate * 0.99, "sell", rate * 1.01, "fee", 0.01), System.currentTimeMillis());
     }
 
-    private double fetchRateFromAPI(String currency) throws Exception {
-        return 0.0;
+    public void updateExchangeRate(String currency, double rate, Map<String, Double> detailedRates) {
+        if (currency == null || rate <= 0 || detailedRates == null || detailedRates.isEmpty()) {
+            throw new IllegalArgumentException("Invalid exchange rate data.");
+        }
+        exchangeRateCache.put(currency, new CurrencyRate(rate, detailedRates, System.currentTimeMillis()));
     }
 
-    private static class CurrencyRate {
-        private final double rate;
-        private final LocalDateTime lastUpdated;
+    @Getter
+    @Setter
+    public static class CurrencyRate {
+        private double rate;
+        private Map<String, Double> detailedRates;
+        private long lastUpdated;
 
-        public CurrencyRate(double rate, LocalDateTime lastUpdated) {
+        public CurrencyRate(double rate, Map<String, Double> detailedRates, long lastUpdated) {
             this.rate = rate;
+            this.detailedRates = detailedRates;
             this.lastUpdated = lastUpdated;
-        }
-
-        public double getRate() {
-            return rate;
-        }
-
-        public LocalDateTime getLastUpdated() {
-            return lastUpdated;
         }
     }
 }

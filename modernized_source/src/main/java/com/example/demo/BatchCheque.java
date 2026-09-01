@@ -2,14 +2,18 @@ package com.example.demo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Objects;
 
 /**
- * The BatchCheque class represents a cheque in the system.
- * It contains details such as the account number, cheque number, currency, amount, and signature.
+ * Represents a cheque in a batch with details such as account number, cheque number, currency, amount, and signature.
  */
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class BatchCheque {
+
     private String accountNumber;
     private String chequeNumber;
     private String currency;
@@ -18,38 +22,55 @@ public class BatchCheque {
 
     /**
      * Validates the cheque details to ensure they meet the required criteria.
-     * 
+     *
      * @return true if the cheque details are valid, false otherwise.
      */
     public boolean validateChequeDetails() {
-        if (accountNumber == null || accountNumber.isEmpty()) {
+        if (accountNumber == null || accountNumber.isBlank()) {
             return false;
         }
-        if (chequeNumber == null || chequeNumber.isEmpty()) {
+        if (chequeNumber == null || chequeNumber.isBlank()) {
             return false;
         }
-        if (currency == null || currency.isEmpty()) {
+        if (currency == null || currency.isBlank()) {
             return false;
         }
         if (amount <= 0) {
             return false;
         }
-        if (signature == null || signature.isEmpty()) {
+        if (signature == null || signature.isBlank()) {
             return false;
         }
         return true;
     }
 
     /**
-     * Formats the cheque details into a readable string.
-     * 
+     * Checks if this cheque is equal to another cheque based on account number and cheque number.
+     *
+     * @param otherCheque The other cheque to compare with.
+     * @return true if the account number and cheque number match, false otherwise.
+     */
+    public boolean isDuplicate(BatchCheque otherCheque) {
+        if (otherCheque == null) {
+            return false;
+        }
+        return Objects.equals(this.accountNumber, otherCheque.accountNumber) &&
+               Objects.equals(this.chequeNumber, otherCheque.chequeNumber);
+    }
+
+    /**
+     * Formats the cheque details into a readable string representation.
+     *
      * @return A string representation of the cheque details.
      */
     @Override
     public String toString() {
-        return String.format(
-            "BatchCheque [Account Number: %s, Cheque Number: %s, Currency: %s, Amount: %.2f, Signature: %s]",
-            accountNumber, chequeNumber, currency, amount, signature
-        );
+        return "BatchCheque{" +
+                "accountNumber='" + accountNumber + '\'' +
+                ", chequeNumber='" + chequeNumber + '\'' +
+                ", currency='" + currency + '\'' +
+                ", amount=" + amount +
+                ", signature='" + signature + '\'' +
+                '}';
     }
 }

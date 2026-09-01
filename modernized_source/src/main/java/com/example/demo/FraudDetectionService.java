@@ -1,146 +1,163 @@
 package com.example.demo;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Slf4j
+import java.util.*;
+import java.util.stream.Collectors;
+
 @Service
 public class FraudDetectionService {
 
     private static final int VELOCITY_CHECK_DAYS = 7;
     private static final int VELOCITY_THRESHOLD = 5;
-    private static final double PATTERN_THRESHOLD = 0.95;
-    private static final double SIMILAR_AMOUNT_THRESHOLD = 0.90;
-    private static final int UNUSUAL_FREQUENCY_THRESHOLD = 3;
+    private static final double PATTERN_THRESHOLD = 0.9;
+    private static final double SIMILAR_AMOUNT_THRESHOLD = 0.95;
+    private static final double UNUSUAL_FREQUENCY_THRESHOLD = 2.0;
 
-    private final ChequeHistoryManager historyManager;
-    private final Map<String, List<ChequeTransaction>> recentTransactions;
-
-    public FraudDetectionService(ChequeHistoryManager historyManager) {
-        this.historyManager = historyManager;
-        this.recentTransactions = new HashMap<>();
-    }
+    private final Map<String, List<ChequeTransaction>> transactionHistory = new HashMap<>();
 
     public boolean isFraudulentCheque(String accountId, String chequeNumber, double amount) {
-        boolean isDuplicate = checkDuplicateCheque(accountId, chequeNumber);
-        boolean isAbnormal = checkAbnormalAmount(amount);
-        boolean isSuspicious = checkSuspiciousActivity(accountId, amount);
-        boolean isVelocityFraud = checkVelocityFraud(accountId, amount);
-        boolean isPatternFraud = checkPatternFraud(accountId, amount);
+        boolean[] fraudChecks = new boolean[8];
 
-        boolean isHistoricalDuplicate = false;
-        boolean isUnusualFrequency = false;
-        boolean isSimilarToRecent = false;
+        fraudChecks[0] = checkDuplicateCheque(accountId, chequeNumber);
+        fraudChecks[1] = checkAbnormalAmount(accountId, amount);
+        fraudChecks[2] = checkSuspiciousActivity(accountId, amount);
+        fraudChecks[3] = checkVelocityFraud(accountId);
+        fraudChecks[4] = checkPatternFraud(accountId);
+        fraudChecks[5] = checkHistoricalDuplicate(accountId, chequeNumber);
+        fraudChecks[6] = checkUnusualFrequency(accountId);
+        fraudChecks[7] = checkSimilarToRecent(accountId, amount);
 
-        if (historyManager != null) {
-            isHistoricalDuplicate = checkHistoricalDuplicate(accountId, chequeNumber);
-            isUnusualFrequency = checkUnusualFrequency(accountId);
-            isSimilarToRecent = checkSimilarToRecent(accountId, amount);
-        }
+        String alertLevel = determineAlertLevel(fraudChecks);
+        logFraudChecks(accountId, chequeNumber, fraudChecks);
 
-        logFraudChecks(accountId, chequeNumber, amount, isDuplicate, isAbnormal, isSuspicious, isVelocityFraud, isPatternFraud, isHistoricalDuplicate, isUnusualFrequency, isSimilarToRecent);
-
-        AlertLevel alertLevel = determineAlertLevel(isDuplicate, isAbnormal, isSuspicious, isVelocityFraud, isPatternFraud, isHistoricalDuplicate, isUnusualFrequency, isSimilarToRecent);
-
-        log.info("Fraud Alert Level: {}", alertLevel);
-
-        return isDuplicate || isAbnormal || isSuspicious || isVelocityFraud || isPatternFraud || isHistoricalDuplicate || isUnusualFrequency || isSimilarToRecent;
+        return !alertLevel.equals("LOW");
     }
 
     private boolean checkDuplicateCheque(String accountId, String chequeNumber) {
-        List<String> chequeNumbers = historyManager.getChequeNumbers(accountId);
-        return chequeNumbers != null && chequeNumbers.contains(chequeNumber);
+        List<ChequeTransaction> transactions = transactionHistory.getOrDefault(accountId, new ArrayList<>());
+        return transactions.stream().anyMatch(tx -> tx.getChequeNumber().equals(chequeNumber));
     }
 
-    private boolean checkAbnormalAmount(double amount) {
-        return amount > 50000; // Example threshold for abnormal amount
+    private boolean checkAbnormalAmount(String accountId, double amount) {
+        List<ChequeTransaction> transactions = transactionHistory.getOrDefault(accountId, new ArrayList<>());
+        if (transactions.isEmpty()) return false;
+
+        double average = transactions.stream().mapToDouble(ChequeTransaction::getAmount).average().orElse(0);
+        double standardDeviation = Math.sqrt(transactions.stream()
+                .mapToDouble(tx -> Math.pow(tx.getAmount() - average, 2))
+                .average()
+                .orElse(0));
+
+        return amount > average + 3 * standardDeviation || amount < average - 3 * standardDeviation;
     }
 
     private boolean checkSuspiciousActivity(String accountId, double amount) {
-        int recentCount = historyManager.getRecentChequeCount(accountId);
-        return recentCount > 10 && amount > 10000; // Example logic for suspicious activity
+        return amount > 100000; // Example threshold for suspicious activity
     }
 
-    private boolean checkVelocityFraud(String accountId, double amount) {
-        List<ChequeTransaction> transactions = recentTransactions.getOrDefault(accountId, new ArrayList<>());
-        LocalDate cutoffDate = LocalDate.now().minusDays(VELOCITY_CHECK_DAYS);
-        long recentCount = transactions.stream().filter(tx -> tx.getDate().isAfter(cutoffDate)).count();
-        return recentCount > VELOCITY_THRESHOLD;
+    private boolean checkVelocityFraud(String accountId) {
+        List<ChequeTransaction> transactions = transactionHistory.getOrDefault(accountId, new ArrayList<>());
+        Date now = new Date();
+        long count = transactions.stream()
+                .filter(tx -> (now.getTime() - tx.getDate().getTime()) <= VELOCITY_CHECK_DAYS * 24 * 60 * 60 * 1000L)
+                .count();
+        return count > VELOCITY_THRESHOLD;
     }
 
-    private boolean checkPatternFraud(String accountId, double amount) {
-        List<ChequeTransaction> transactions = recentTransactions.getOrDefault(accountId, new ArrayList<>());
-        long similarCount = transactions.stream().filter(tx -> Math.abs(tx.getAmount() - amount) / amount <= PATTERN_THRESHOLD).count();
-        return similarCount >= 3;
+    private boolean checkPatternFraud(String accountId) {
+        List<ChequeTransaction> transactions = transactionHistory.getOrDefault(accountId, new ArrayList<>());
+        if (transactions.size() < 3) return false;
+
+        for (int i = 0; i < transactions.size() - 2; i++) {
+            double amount1 = transactions.get(i).getAmount();
+            double amount2 = transactions.get(i + 1).getAmount();
+            double amount3 = transactions.get(i + 2).getAmount();
+
+            if (isSimilar(amount1, amount2) && isSimilar(amount2, amount3)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkHistoricalDuplicate(String accountId, String chequeNumber) {
-        List<String> chequeNumbers = historyManager.getChequeNumbers(accountId);
-        return chequeNumbers != null && chequeNumbers.contains(chequeNumber);
+        List<ChequeTransaction> transactions = transactionHistory.getOrDefault(accountId, new ArrayList<>());
+        return transactions.stream().anyMatch(tx -> tx.getChequeNumber().equals(chequeNumber));
     }
 
     private boolean checkUnusualFrequency(String accountId) {
-        int totalCheques = historyManager.getTotalChequeCount(accountId);
-        int recentCheques = historyManager.getRecentChequeCount(accountId);
-        if (totalCheques < 10) return false;
-        double averageMonthlyFrequency = totalCheques / 3.0;
-        return recentCheques > averageMonthlyFrequency * UNUSUAL_FREQUENCY_THRESHOLD;
+        List<ChequeTransaction> transactions = transactionHistory.getOrDefault(accountId, new ArrayList<>());
+        if (transactions.isEmpty()) return false;
+
+        Map<Integer, Long> monthlyCounts = transactions.stream()
+                .collect(Collectors.groupingBy(tx -> tx.getDate().getMonth(), Collectors.counting()));
+
+        double averageFrequency = monthlyCounts.values().stream().mapToLong(Long::longValue).average().orElse(0);
+        long currentMonthCount = monthlyCounts.getOrDefault(new Date().getMonth(), 0L);
+
+        return currentMonthCount > UNUSUAL_FREQUENCY_THRESHOLD * averageFrequency;
     }
 
     private boolean checkSimilarToRecent(String accountId, double amount) {
-        return historyManager.hasSimilarRecentCheque(accountId, amount, SIMILAR_AMOUNT_THRESHOLD);
+        List<ChequeTransaction> transactions = transactionHistory.getOrDefault(accountId, new ArrayList<>());
+        if (transactions.isEmpty()) return false;
+
+        return transactions.stream()
+                .mapToDouble(ChequeTransaction::getAmount)
+                .anyMatch(txAmount -> isSimilar(txAmount, amount));
     }
 
-    private AlertLevel determineAlertLevel(boolean isDuplicate, boolean isAbnormal, boolean isSuspicious, boolean isVelocityFraud, boolean isPatternFraud, boolean isHistoricalDuplicate, boolean isUnusualFrequency, boolean isSimilarToRecent) {
-        int fraudCount = 0;
-        if (isDuplicate || isHistoricalDuplicate) fraudCount += 3;
-        if (isAbnormal || isSuspicious || isVelocityFraud || isPatternFraud) fraudCount += 2;
-        if (isUnusualFrequency || isSimilarToRecent) fraudCount += 1;
-
-        if (fraudCount >= 8) return AlertLevel.CRITICAL;
-        if (fraudCount >= 5) return AlertLevel.HIGH;
-        if (fraudCount >= 3) return AlertLevel.MEDIUM;
-        return AlertLevel.LOW;
+    private boolean isSimilar(double amount1, double amount2) {
+        double ratio = Math.min(amount1, amount2) / Math.max(amount1, amount2);
+        return ratio >= SIMILAR_AMOUNT_THRESHOLD;
     }
 
-    private void logFraudChecks(String accountId, String chequeNumber, double amount, boolean isDuplicate, boolean isAbnormal, boolean isSuspicious, boolean isVelocityFraud, boolean isPatternFraud, boolean isHistoricalDuplicate, boolean isUnusualFrequency, boolean isSimilarToRecent) {
-        log.info("Fraud Check Results for Account: {}, Cheque: {}, Amount: {}", accountId, chequeNumber, amount);
-        log.info("Duplicate Check: {}", formatCheckResult(isDuplicate));
-        log.info("Abnormal Amount Check: {}", formatCheckResult(isAbnormal));
-        log.info("Suspicious Activity Check: {}", formatCheckResult(isSuspicious));
-        log.info("Velocity Fraud Check: {}", formatCheckResult(isVelocityFraud));
-        log.info("Pattern Fraud Check: {}", formatCheckResult(isPatternFraud));
-        log.info("Historical Duplicate Check: {}", formatCheckResult(isHistoricalDuplicate));
-        log.info("Unusual Frequency Check: {}", formatCheckResult(isUnusualFrequency));
-        log.info("Similar to Recent Check: {}", formatCheckResult(isSimilarToRecent));
+    private String determineAlertLevel(boolean[] fraudChecks) {
+        int score = 0;
+        for (boolean check : fraudChecks) {
+            if (check) score++;
+        }
+
+        if (score >= 5) return "CRITICAL";
+        if (score >= 3) return "HIGH";
+        if (score >= 1) return "MEDIUM";
+        return "LOW";
     }
 
-    private String formatCheckResult(boolean failed) {
-        return failed ? "FAILED ⚠️" : "Passed ✓";
+    private void logFraudChecks(String accountId, String chequeNumber, boolean[] fraudChecks) {
+        System.out.println("Fraud checks for account: " + accountId + ", cheque: " + chequeNumber);
+        System.out.println("Duplicate Cheque: " + fraudChecks[0]);
+        System.out.println("Abnormal Amount: " + fraudChecks[1]);
+        System.out.println("Suspicious Activity: " + fraudChecks[2]);
+        System.out.println("Velocity Fraud: " + fraudChecks[3]);
+        System.out.println("Pattern Fraud: " + fraudChecks[4]);
+        System.out.println("Historical Duplicate: " + fraudChecks[5]);
+        System.out.println("Unusual Frequency: " + fraudChecks[6]);
+        System.out.println("Similar to Recent Transactions: " + fraudChecks[7]);
     }
 
     private static class ChequeTransaction {
+        private final String chequeNumber;
         private final double amount;
-        private final LocalDate date;
+        private final Date date;
 
-        public ChequeTransaction(double amount, LocalDate date) {
+        public ChequeTransaction(String chequeNumber, double amount, Date date) {
+            this.chequeNumber = chequeNumber;
             this.amount = amount;
             this.date = date;
+        }
+
+        public String getChequeNumber() {
+            return chequeNumber;
         }
 
         public double getAmount() {
             return amount;
         }
 
-        public LocalDate getDate() {
+        public Date getDate() {
             return date;
         }
-    }
-
-    public enum AlertLevel {
-        LOW, MEDIUM, HIGH, CRITICAL
     }
 }

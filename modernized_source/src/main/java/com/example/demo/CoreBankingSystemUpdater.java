@@ -2,64 +2,91 @@ package com.example.demo;
 
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class CoreBankingSystemUpdater {
 
-    // Simulated database to store account balances
-    private final Map<String, Double> accountBalances = new ConcurrentHashMap<>();
+    // Simulated database for account balances
+    private final Map<String, Double> accountBalances = new HashMap<>();
 
     /**
-     * Updates the core banking system with the specified account number and amount.
-     * If the account does not exist, it initializes the account with the given amount.
+     * Updates the core banking system with the transaction details.
+     * Adds the transaction amount to the account's balance.
      *
      * @param accountNumber The account number to update.
      * @param amount        The amount to add to the account balance.
      */
     public void updateCoreBankingSystem(String accountNumber, double amount) {
-        if (accountNumber == null || accountNumber.isEmpty()) {
-            throw new IllegalArgumentException("Account number cannot be null or empty.");
+        if (accountNumber == null || accountNumber.isBlank()) {
+            throw new IllegalArgumentException("Account number cannot be null or blank.");
         }
 
         if (amount <= 0) {
-            throw new IllegalArgumentException("Amount must be greater than zero.");
+            throw new IllegalArgumentException("Transaction amount must be greater than zero.");
         }
 
-        accountBalances.merge(accountNumber, amount, Double::sum);
+        synchronized (this) {
+            double currentBalance = accountBalances.getOrDefault(accountNumber, 0.0);
+            double updatedBalance = currentBalance + amount;
+            accountBalances.put(accountNumber, updatedBalance);
 
-        System.out.println("Core Banking System updated successfully.");
-        System.out.println("Account Number: " + accountNumber);
-        System.out.println("New Balance: " + accountBalances.get(accountNumber));
+            Logger logger = new Logger();
+            logger.info("Updated account balance for account " + accountNumber + ": " + updatedBalance);
+        }
     }
 
     /**
-     * Retrieves the current balance for the specified account number.
+     * Retrieves the current balance of the specified account.
      *
-     * @param accountNumber The account number to retrieve the balance for.
-     * @return The current balance of the account, or 0.0 if the account does not exist.
+     * @param accountNumber The account number to query.
+     * @return The current balance of the account.
      */
     public double getAccountBalance(String accountNumber) {
-        if (accountNumber == null || accountNumber.isEmpty()) {
-            throw new IllegalArgumentException("Account number cannot be null or empty.");
+        if (accountNumber == null || accountNumber.isBlank()) {
+            throw new IllegalArgumentException("Account number cannot be null or blank.");
         }
 
-        return accountBalances.getOrDefault(accountNumber, 0.0);
+        synchronized (this) {
+            return accountBalances.getOrDefault(accountNumber, 0.0);
+        }
     }
 
     /**
-     * Displays all account balances in the core banking system.
+     * Resets the balance of the specified account to zero.
+     *
+     * @param accountNumber The account number to reset.
      */
-    public void displayAllAccountBalances() {
-        if (accountBalances.isEmpty()) {
-            System.out.println("No accounts found in the Core Banking System.");
-            return;
+    public void resetAccountBalance(String accountNumber) {
+        if (accountNumber == null || accountNumber.isBlank()) {
+            throw new IllegalArgumentException("Account number cannot be null or blank.");
         }
 
-        System.out.println("=== Core Banking System Account Balances ===");
-        accountBalances.forEach((accountNumber, balance) -> 
-            System.out.println("Account Number: " + accountNumber + ", Balance: " + balance)
-        );
+        synchronized (this) {
+            accountBalances.put(accountNumber, 0.0);
+
+            Logger logger = new Logger();
+            logger.info("Reset account balance for account " + accountNumber + " to zero.");
+        }
+    }
+
+    /**
+     * Displays all account balances in the system.
+     */
+    public void displayAllAccountBalances() {
+        synchronized (this) {
+            if (accountBalances.isEmpty()) {
+                Logger logger = new Logger();
+                logger.info("No accounts found in the system.");
+                return;
+            }
+
+            Logger logger = new Logger();
+            logger.info("Displaying all account balances:");
+            accountBalances.forEach((accountNumber, balance) -> 
+                logger.info("Account: " + accountNumber + ", Balance: " + balance)
+            );
+        }
     }
 }

@@ -2,17 +2,29 @@ package com.example.demo;
 
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 @Service
 public class EmailNotificationService {
 
+    // Regex pattern for validating email addresses
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"
+    );
+
     /**
-     * Sends a generic email to the specified recipient.
+     * Sends an email to a single recipient.
      *
      * @param recipient The email address of the recipient.
      * @param subject   The subject of the email.
-     * @param body      The body content of the email.
+     * @param body      The body of the email.
      */
     public void sendEmail(String recipient, String subject, String body) {
+        if (!validateEmailAddress(recipient)) {
+            System.err.println("Invalid email address: " + recipient);
+            return;
+        }
+
         // Simulate sending an email
         System.out.println("Sending email to: " + recipient);
         System.out.println("Subject: " + subject);
@@ -21,26 +33,43 @@ public class EmailNotificationService {
     }
 
     /**
-     * Sends an error notification email to the specified recipient.
+     * Sends an email to multiple recipients.
      *
-     * @param recipient   The email address of the recipient.
-     * @param errorDetails The details of the error to include in the email.
+     * @param recipients An array of email addresses of the recipients.
+     * @param subject    The subject of the email.
+     * @param body       The body of the email.
      */
-    public void sendErrorNotification(String recipient, String errorDetails) {
-        String subject = "Error Notification";
-        String body = "Dear User,\n\nAn error occurred in the system:\n\n" + errorDetails + "\n\nPlease address this issue promptly.\n\nBest regards,\nSystem Administrator";
-        sendEmail(recipient, subject, body);
+    public void sendBulkEmails(String[] recipients, String subject, String body) {
+        if (recipients == null || recipients.length == 0) {
+            System.err.println("No recipients provided for bulk email.");
+            return;
+        }
+
+        for (String recipient : recipients) {
+            if (!validateEmailAddress(recipient)) {
+                System.err.println("Invalid email address in bulk email: " + recipient);
+                continue;
+            }
+
+            // Simulate sending an email
+            System.out.println("Sending email to: " + recipient);
+            System.out.println("Subject: " + subject);
+            System.out.println("Body: " + body);
+        }
+
+        System.out.println("Bulk email process completed.");
     }
 
     /**
-     * Sends a fraud alert email to the specified recipient.
+     * Validates an email address using a regex pattern.
      *
-     * @param recipient   The email address of the recipient.
-     * @param alertDetails The details of the fraud alert to include in the email.
+     * @param email The email address to validate.
+     * @return True if the email address is valid, false otherwise.
      */
-    public void sendFraudAlert(String recipient, String alertDetails) {
-        String subject = "Fraud Alert Notification";
-        String body = "Dear User,\n\nA potential fraud has been detected:\n\n" + alertDetails + "\n\nPlease review this matter immediately.\n\nBest regards,\nFraud Detection Team";
-        sendEmail(recipient, subject, body);
+    public boolean validateEmailAddress(String email) {
+        if (email == null || email.isEmpty()) {
+            return false;
+        }
+        return EMAIL_PATTERN.matcher(email).matches();
     }
 }

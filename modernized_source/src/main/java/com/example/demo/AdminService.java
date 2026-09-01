@@ -1,107 +1,129 @@
 package com.example.demo;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.HashMap;
-import java.util.HashSet;
+import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 
+import java.util.*;
+
+@Service
+@RequiredArgsConstructor
 public class AdminService {
 
-    private Map<String, String> ifscToBankCode = new HashMap<>();
-    private Map<String, String> bankCodeToName = new HashMap<>();
-    private Map<String, List<BatchCheque>> batches = new HashMap<>();
-    private Set<String> stuckTransactions = new HashSet<>();
+    private final Map<String, String> ifscToBankCodeMap = new HashMap<>();
+    private final Map<String, String> bankCodeToNameMap = new HashMap<>();
+    private final Map<String, List<BatchCheque>> batchMap = new HashMap<>();
+    private final Set<String> stuckTransactions = new HashSet<>();
 
     public void addOrUpdateIFSC(String ifsc, String bankCode) {
-        ifscToBankCode.put(ifsc, bankCode);
-        System.out.println("IFSC code " + ifsc + " has been added/updated with bank code " + bankCode + ".");
+        if (ifsc == null || bankCode == null || ifsc.isEmpty() || bankCode.isEmpty()) {
+            System.out.println("Invalid IFSC or Bank Code. Please provide valid inputs.");
+            return;
+        }
+        ifscToBankCodeMap.put(ifsc, bankCode);
+        System.out.println("IFSC " + ifsc + " has been added/updated with Bank Code: " + bankCode);
     }
 
-    public void addOrUpdateBankCode(String bankCode, String bankName) {
-        bankCodeToName.put(bankCode, bankName);
-        System.out.println("Bank code " + bankCode + " has been added/updated with bank name " + bankName + ".");
+    public void addOrUpdateBankCode(String code, String name) {
+        if (code == null || name == null || code.isEmpty() || name.isEmpty()) {
+            System.out.println("Invalid Bank Code or Bank Name. Please provide valid inputs.");
+            return;
+        }
+        bankCodeToNameMap.put(code, name);
+        System.out.println("Bank Code " + code + " has been added/updated with Bank Name: " + name);
     }
 
     public void displayIFSCs() {
-        if (ifscToBankCode.isEmpty()) {
+        if (ifscToBankCodeMap.isEmpty()) {
             System.out.println("No IFSC codes available.");
-        } else {
-            System.out.println("IFSC to Bank Code Mappings:");
-            ifscToBankCode.forEach((ifsc, bankCode) -> 
-                System.out.println("IFSC: " + ifsc + " -> Bank Code: " + bankCode));
+            return;
         }
+        System.out.println("List of IFSC codes and their corresponding Bank Codes:");
+        ifscToBankCodeMap.forEach((ifsc, bankCode) -> 
+            System.out.println("IFSC: " + ifsc + " -> Bank Code: " + bankCode)
+        );
     }
 
     public void displayBankCodes() {
-        if (bankCodeToName.isEmpty()) {
-            System.out.println("No Bank codes available.");
-        } else {
-            System.out.println("Bank Code to Bank Name Mappings:");
-            bankCodeToName.forEach((bankCode, bankName) -> 
-                System.out.println("Bank Code: " + bankCode + " -> Bank Name: " + bankName));
-        }
-    }
-
-    public void createBatch(String batchId, List<BatchCheque> cheques) {
-        if (batches.containsKey(batchId)) {
-            System.out.println("Batch ID " + batchId + " already exists. Please use a unique batch ID.");
+        if (bankCodeToNameMap.isEmpty()) {
+            System.out.println("No Bank Codes available.");
             return;
         }
-        batches.put(batchId, cheques);
-        System.out.println("Batch " + batchId + " created with " + cheques.size() + " cheques.");
+        System.out.println("List of Bank Codes and their corresponding Bank Names:");
+        bankCodeToNameMap.forEach((code, name) -> 
+            System.out.println("Bank Code: " + code + " -> Bank Name: " + name)
+        );
+    }
+
+    public void createBatch(String batchId, List<BatchCheque> batchCheques) {
+        if (batchId == null || batchId.isEmpty() || batchCheques == null || batchCheques.isEmpty()) {
+            System.out.println("Invalid Batch ID or Batch Cheques. Please provide valid inputs.");
+            return;
+        }
+        batchMap.put(batchId, new ArrayList<>(batchCheques));
+        System.out.println("Batch " + batchId + " has been created with " + batchCheques.size() + " cheques.");
     }
 
     public void displayBatches() {
-        if (batches.isEmpty()) {
+        if (batchMap.isEmpty()) {
             System.out.println("No batches available.");
-        } else {
-            System.out.println("Available Batches:");
-            batches.forEach((batchId, cheques) -> 
-                System.out.println("Batch ID: " + batchId + " -> Number of Cheques: " + cheques.size()));
+            return;
         }
+        System.out.println("List of all batches:");
+        batchMap.forEach((batchId, cheques) -> 
+            System.out.println("Batch ID: " + batchId + " -> Number of Cheques: " + cheques.size())
+        );
     }
 
     public void displayBatchDetails(String batchId) {
-        List<BatchCheque> cheques = batches.get(batchId);
-        if (cheques == null) {
-            System.out.println("Batch ID " + batchId + " not found.");
+        if (batchId == null || batchId.isEmpty() || !batchMap.containsKey(batchId)) {
+            System.out.println("Invalid Batch ID or Batch not found.");
             return;
         }
-        System.out.println("Details for Batch ID: " + batchId);
-        for (BatchCheque cheque : cheques) {
+        List<BatchCheque> cheques = batchMap.get(batchId);
+        System.out.println("Details of Batch ID: " + batchId);
+        cheques.forEach(cheque -> 
             System.out.println("Account Number: " + cheque.getAccountNumber() +
                                ", Cheque Number: " + cheque.getChequeNumber() +
                                ", Currency: " + cheque.getCurrency() +
                                ", Amount: " + cheque.getAmount() +
-                               ", Signature: " + cheque.getSignature());
-        }
+                               ", Signature: " + cheque.getSignature())
+        );
     }
 
     public void markTransactionStuck(String chequeNumber) {
+        if (chequeNumber == null || chequeNumber.isEmpty()) {
+            System.out.println("Invalid Cheque Number. Please provide a valid input.");
+            return;
+        }
         if (stuckTransactions.contains(chequeNumber)) {
-            System.out.println("Cheque number " + chequeNumber + " is already marked as stuck.");
+            System.out.println("Cheque Number " + chequeNumber + " is already marked as stuck.");
             return;
         }
         stuckTransactions.add(chequeNumber);
-        System.out.println("Cheque number " + chequeNumber + " has been marked as stuck.");
+        System.out.println("Cheque Number " + chequeNumber + " has been marked as stuck.");
     }
 
     public void resetStuckTransaction(String chequeNumber) {
-        if (stuckTransactions.remove(chequeNumber)) {
-            System.out.println("Cheque number " + chequeNumber + " has been removed from stuck transactions.");
-        } else {
-            System.out.println("Cheque number " + chequeNumber + " was not marked as stuck.");
+        if (chequeNumber == null || chequeNumber.isEmpty()) {
+            System.out.println("Invalid Cheque Number. Please provide a valid input.");
+            return;
         }
+        if (!stuckTransactions.contains(chequeNumber)) {
+            System.out.println("Cheque Number " + chequeNumber + " is not marked as stuck.");
+            return;
+        }
+        stuckTransactions.remove(chequeNumber);
+        System.out.println("Cheque Number " + chequeNumber + " has been reset from stuck transactions.");
     }
 
     public void displayStuckTransactions() {
         if (stuckTransactions.isEmpty()) {
             System.out.println("No stuck transactions available.");
-        } else {
-            System.out.println("Stuck Transactions:");
-            stuckTransactions.forEach(chequeNumber -> 
-                System.out.println("Cheque Number: " + chequeNumber));
+            return;
         }
+        System.out.println("List of stuck transactions:");
+        stuckTransactions.forEach(chequeNumber -> 
+            System.out.println("Cheque Number: " + chequeNumber)
+        );
     }
 }

@@ -21,3 +21,12 @@ chroma_db/
 # (Optional) Generated Output Folders - uncomment if you don't want to track these in git
 # documentation/
 # flagged_documents/
+master_docs/
+
+# Agentic Orchestrator Files
+state_checkpoint.db
+audit_report.json
+
+
+codebase_analysis.md 
+sme_presentation_script.md 

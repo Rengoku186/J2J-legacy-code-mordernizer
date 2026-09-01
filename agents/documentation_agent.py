@@ -1,42 +1,52 @@
 import os
 from langchain_core.tools import tool
-from langchain_openai import AzureChatOpenAI
 from langgraph.prebuilt import create_react_agent
 from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain_community.vectorstores import Chroma
+import config
+from utils import setup_logger, sanitize_path
+
+logger = setup_logger("DocAgent")
+
+# Hoist embeddings and Chroma to module-level for performance
+embeddings = FastEmbedEmbeddings()
+vector_store = Chroma(persist_directory=config.CHROMA_DB_DIR, embedding_function=embeddings)
 
 @tool
 def read_java_file(file_path: str) -> str:
     """Reads and returns the contents of a Java file given its file path."""
-    print(f"[Tool Execution] Reading code from: {file_path}")
+    logger.info(f"Reading code from: {file_path}")
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             return f.read()
     except Exception as e:
+        logger.error(f"Error reading file {file_path}: {e}")
         return f"Error reading file: {e}"
 
 @tool
 def write_documentation(file_path: str, content: str) -> str:
     """Writes the provided markdown documentation content to the specified file path."""
-    print(f"[Tool Execution] Writing documentation to: {file_path}")
+    logger.info(f"Writing documentation to: {file_path}")
     try:
+        # Sanitize path to prevent path traversal
+        safe_path = sanitize_path(os.getcwd(), file_path)
+        
         # Ensure the directory exists
-        os.makedirs(os.path.dirname(os.path.abspath(file_path)), exist_ok=True)
-        with open(file_path, 'w', encoding='utf-8') as f:
+        os.makedirs(os.path.dirname(safe_path), exist_ok=True)
+        with open(safe_path, 'w', encoding='utf-8') as f:
             f.write(content)
-        return f"Successfully wrote documentation to {file_path}"
+        return f"Successfully wrote documentation to {safe_path}"
     except Exception as e:
+        logger.error(f"Error writing to file {file_path}: {e}")
         return f"Error writing to file: {e}"
 
 @tool
 def search_codebase(query: str) -> str:
     """Searches the vector database for code chunks matching the query to provide context."""
-    print(f"[Tool Execution] Searching codebase for: {query}")
+    logger.info(f"Searching codebase for: {query}")
     import time
     time.sleep(3)  # Slow down the agent's LLM calls to respect rate limits
     try:
-        embeddings = FastEmbedEmbeddings()
-        vector_store = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
         results = vector_store.similarity_search(query, k=3)
         
         if not results:
@@ -45,18 +55,12 @@ def search_codebase(query: str) -> str:
         context = "\n\n---\n\n".join([f"Source: {res.metadata.get('source', 'Unknown')}\n{res.page_content}" for res in results])
         return context
     except Exception as e:
+        logger.error(f"Error searching codebase: {e}")
         return f"Error searching codebase: {e}"
 
 def create_doc_agent():
     # Initialize the LLM (gpt-4o) using Azure
-    llm = AzureChatOpenAI(
-        api_key=os.environ.get("AZURE_OPENAI_KEY_GPT4o"),
-        azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
-        azure_deployment=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-        api_version="2025-01-01-preview",
-        temperature=0,
-        max_retries=6
-    )
+    llm = config.get_llm()
     
     tools = [read_java_file, write_documentation, search_codebase]
     
