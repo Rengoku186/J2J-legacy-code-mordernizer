@@ -3,7 +3,7 @@ import glob
 from langchain_core.tools import tool
 from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
+from utils.ast_splitter import ASTSplitter
 from langgraph.prebuilt import create_react_agent
 import config
 from utils import setup_logger
@@ -15,27 +15,23 @@ embeddings = FastEmbedEmbeddings()
 vector_store = Chroma(persist_directory=config.CHROMA_DB_DIR, embedding_function=embeddings)
 
 @tool
-def list_files_in_directory(directory_path: str) -> list[str]:
-    """Lists all Java files in the specified directory and its subdirectories."""
-    logger.info(f"Listing files in: {directory_path}")
-    pattern = os.path.join(directory_path, "**", "*.java")
+def list_files_in_directory(directory_path: str, extension: str) -> list[str]:
+    """Lists all files in the specified directory that match the given extension (e.g., '.java', '.py')."""
+    logger.info(f"Listing files in: {directory_path} with extension: {extension}")
+    pattern = os.path.join(directory_path, "**", f"*{extension}")
     files = glob.glob(pattern, recursive=True)
     return files
 
 @tool
-def chunk_and_embed_file(file_path: str) -> str:
-    """Reads a Java file, chunks it intelligently, and stores the embeddings in the vector database."""
-    logger.info(f"Chunking and embedding: {file_path}")
+def chunk_and_embed_file(file_path: str, splitter_language: str) -> str:
+    """Reads a source file, chunks it intelligently based on its AST language, and stores the embeddings."""
+    logger.info(f"Chunking and embedding: {file_path} using language: {splitter_language}")
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             code = f.read()
             
-        java_splitter = RecursiveCharacterTextSplitter.from_language(
-            language=Language.JAVA, 
-            chunk_size=1000, 
-            chunk_overlap=100
-        )
-        docs = java_splitter.create_documents([code], metadatas=[{"source": file_path}])
+        splitter = ASTSplitter(language=splitter_language)
+        docs = splitter.create_documents([code], metadatas=[{"source": file_path}])
         
         # De-duplicate: Delete existing chunks for this file before inserting
         try:
@@ -61,8 +57,9 @@ def create_ingestion_agent():
     system_prompt = """
     You are an autonomous Codebase Ingestion Agent.
     Your job is to index legacy codebases so that other agents can search them later.
-    When given a directory, you should first list all the files in it.
-    Then, iterate through those files and use the chunk_and_embed_file tool on each of them.
+    You will be given an instruction that includes a source language extension and a splitter language.
+    When given a directory, you should first list all the files in it using the `list_files_in_directory` tool with the provided `extension`.
+    Then, iterate through those files and use the `chunk_and_embed_file` tool on each of them with the provided `splitter_language`.
     Report back when all files have been successfully embedded.
     """
     

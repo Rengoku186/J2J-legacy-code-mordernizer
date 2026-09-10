@@ -44,8 +44,6 @@ def write_documentation(file_path: str, content: str) -> str:
 def search_codebase(query: str) -> str:
     """Searches the vector database for code chunks matching the query to provide context."""
     logger.info(f"Searching codebase for: {query}")
-    import time
-    time.sleep(3)  # Slow down the agent's LLM calls to respect rate limits
     try:
         results = vector_store.similarity_search(query, k=3)
         
@@ -78,7 +76,12 @@ def create_doc_agent():
     external_dependencies: [<list_of_external_classes>]
     ---
     
-    Below the metadata, document the specific chunk of code provided. Explain its purpose and methods.
+    Below the metadata, document the specific chunk of code provided. You MUST explicitly extract and document the following into distinct sections:
+    1. **Business Rules**: Any core business logic (e.g., pricing, eligibility, decisions).
+    2. **Validation Logic**: Any input checks, constraints, or assertions.
+    3. **Integration Points**: Any external API calls, database queries, or dependencies.
+    4. **Technical Implementation**: Explain its general purpose and methods.
+    
     You have tools to read files, write files, and search the codebase.
     If you encounter unknown methods or classes in the chunk you are reading, use the search_codebase tool to find their definitions before writing the documentation.
     """

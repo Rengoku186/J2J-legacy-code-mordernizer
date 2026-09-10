@@ -10,3 +10,6 @@ langchain-community
 fastembed
 streamlit
 langgraph-checkpoint-sqlite
+tree-sitter
+tree-sitter-languages
+tenacity

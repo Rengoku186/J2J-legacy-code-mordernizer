@@ -16,8 +16,6 @@ vector_store = Chroma(persist_directory=config.CHROMA_DB_DIR, embedding_function
 def search_codebase(query: str) -> str:
     """Searches the vector database for code chunks matching the query to verify accuracy."""
     logger.info(f"Searching codebase for: {query}")
-    import time
-    time.sleep(3)
     try:
         results = vector_store.similarity_search(query, k=3)
         
@@ -37,20 +35,25 @@ def create_eval_agent():
     
     system_prompt = """
     You are an autonomous Document Evaluator Agent.
-    Your task is to review Markdown documentation generated for a Java codebase.
-    You must grade the documentation strictly on a Pass/Fail scale based on these 4 criteria:
+    Your task is to review Markdown documentation generated for a codebase.
+    You must grade the documentation based on these criteria:
     
     1. Completeness: Does the documentation cover the entire chunk provided?
-    2. Accuracy: Are the descriptions technically correct based on the Java code?
+    2. Accuracy: Are the descriptions technically correct based on the code?
     3. Dependency: Are external class calls properly identified and explained?
-    4. Traceability: Is the origin (file and chunk) clearly traceable via YAML frontmatter?
+    4. Traceability: Is the origin (file and chunk) clearly traceable?
     
     Use the search_codebase tool to verify accuracy and dependencies if needed.
     
-    You MUST output your final evaluation as a JSON object with exactly two keys:
+    You MUST output your final evaluation as a JSON object with EXACTLY these keys:
     {
-      "passed": true or false,
-      "feedback": "Your detailed feedback and reasons here"
+      "completeness_score": <int 0-10>,
+      "accuracy_score": <int 0-10>,
+      "dependency_score": <int 0-10>,
+      "confidence": <int 0-100>,
+      "passed": <true if ALL scores are >= 7, else false>,
+      "areas_for_review": ["List of specific issues or 'None'"],
+      "feedback": "Detailed feedback for rework"
     }
     """
     
